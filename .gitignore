@@ -37,3 +37,4 @@ target/**
 # IJ files
 *.iml
 .idea/**
+/target/
