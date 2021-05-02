@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class DuenioMascota {
 
+	private String usuario;
+	private String password;
 	private String apellido;
 	private String nombre;
 	private LocalDate fechaNacimiento;
@@ -12,8 +14,11 @@ public class DuenioMascota {
 	private Contacto contacto;
 	List<Mascota> mascotas;
 
-	public DuenioMascota(String apellido, String nombre, LocalDate fechaNacimiento, TipoDocumento tipoDocumento,
-			Long numeroDocumento, Contacto contacto, List<Mascota> mascotas) {
+	public DuenioMascota(String usuario, String password, String apellido, String nombre, LocalDate fechaNacimiento,
+			TipoDocumento tipoDocumento, Long numeroDocumento, Contacto contacto, List<Mascota> mascotas) {
+		super();
+		this.usuario = usuario;
+		this.password = password;
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
