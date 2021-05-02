@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
  * Documento de una Persona
  * 
@@ -28,8 +30,8 @@ public class Documento {
    * @param id   el número de identificación
    */
   public Documento(Documento.TipoDocumento tipo, String id) {
-    this.tipo = tipo;
-    this.id = id;
+    this.tipo = Objects.requireNonNull(tipo);
+    this.id = Objects.requireNonNull(id);
   }
 
   /**
