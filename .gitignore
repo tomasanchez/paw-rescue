@@ -15,6 +15,10 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# Node
+node_modules/
+*.lock
+
 # Package Files #
 *.jar
 *.war

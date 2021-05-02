@@ -1,0 +1,20 @@
+{
+  "name": "patitas-al-rescate",
+  "version": "0.0.0",
+  "description": "guau! que sistema!",
+  "main": "index.js",
+  "repository": "https://github.com/dds-utn/2021-vi-no-grupo-23.git",
+  "author": "Tomas <tosanchez@frba.utn.edu.ar>",
+  "license": "MIT",
+  "dependencies": {
+    "standard-version": "^9.2.0"
+  },
+  "scripts": {
+    "verify": "mvn verify",
+    "test": "mvn test",
+    "release": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "release:major": "standard-version --release-as major"
+  }
+}
