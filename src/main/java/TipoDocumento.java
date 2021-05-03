@@ -1,4 +1,4 @@
 
 public enum TipoDocumento {
-	DNI,CI
+  DNI, CI, LC, LE
 }

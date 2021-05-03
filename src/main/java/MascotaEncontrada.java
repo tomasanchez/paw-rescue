@@ -4,9 +4,9 @@ public class MascotaEncontrada {
 
 	private List <String> foto;
 	private String descripcion;
-	private String lugar; // ni idea que tipo seria
+	private Coordenada lugar;
 	
-	public MascotaEncontrada(List<String> foto, String descripcion, String lugar) {
+	public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar) {
 		super();
 		this.foto = foto;
 		this.descripcion = descripcion;
