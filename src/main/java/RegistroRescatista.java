@@ -5,7 +5,6 @@ public class RegistroRescatista extends RegistroPersona{
 	private MascotaEncontrada mascotaEncontrada;
 	
 	public void mascotaEncontrada(MascotaEncontrada mascotaEncontrada) {
-		this.mascotaEncontrada = mascotaEncontrada;
 		this.mascotaEncontrada = Objects.requireNonNull(mascotaEncontrada);
 	}
 

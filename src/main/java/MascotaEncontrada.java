@@ -7,7 +7,6 @@ public class MascotaEncontrada {
 	private Coordenada lugar;
 	
 	public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar) {
-		super();
 		this.foto = foto;
 		this.descripcion = descripcion;
 		this.lugar = lugar;

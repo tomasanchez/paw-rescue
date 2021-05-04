@@ -16,7 +16,6 @@ public class DuenioMascota {
 
 	public DuenioMascota(String usuario, String password, String apellido, String nombre, LocalDate fechaNacimiento,
 			TipoDocumento tipoDocumento, Long numeroDocumento, Contacto contacto, List<Mascota> mascotas) {
-		super();
 		this.usuario = usuario;
 		this.password = password;
 		this.apellido = apellido;

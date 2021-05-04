@@ -11,7 +11,6 @@ public class Rescatista {
 	
 	public Rescatista(String apellido, String nombre, LocalDate fechaNacimiento, TipoDocumento tipoDocumento,
 			Long numeroDocumento, Contacto contacto, MascotaEncontrada mascotaEncontrada) {
-		super();
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;

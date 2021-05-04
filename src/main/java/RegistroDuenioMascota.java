@@ -13,12 +13,11 @@ public class RegistroDuenioMascota extends RegistroPersona{
 	}
 	
 	public void usuario(String usuario) {
-		this.usuario= usuario;
 		this.usuario = Objects.requireNonNull(usuario);
 	}
 	
 	public void password(String password) {
-		this.password= password;
+	  //TODO validar contraseña
 		this.password = Objects.requireNonNull(password);
 	}
 	

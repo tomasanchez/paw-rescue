@@ -13,7 +13,6 @@ public class Mascota {
 
 	public Mascota(String nombre, String apodo,TipoMascota tipoMascota, int edad, Sexo sexo, String descripcionFisica, 
 			List<String> fotos) {
-		super();
 		this.nombre = nombre;
 		this.apodo = apodo;
 		this.tipoMascota = tipoMascota;
