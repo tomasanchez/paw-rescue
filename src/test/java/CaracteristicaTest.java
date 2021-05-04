@@ -14,13 +14,23 @@ import org.junit.jupiter.api.Test;
 public class CaracteristicaTest {
 
   @Test
+  public void noVacias() {
+    // Sin características vacías
+    Assertions.assertThrows(NullPointerException.class, () -> {
+      new Caracteristica(null, null);
+    });
+  }
+
+  @Test
   public void funcionaCastrado() {
+    // El valor debe ser el indicado
     boolean valor = true;
     Assertions.assertTrue(Objects.equals(castrado(valor), valor));
   }
 
   @Test
   public void funcionaColor() {
+    // El valor debe ser el indicado
     String color = "Café con Leche";
     Assertions.assertTrue(Objects.equals(color(color), color));
   }
