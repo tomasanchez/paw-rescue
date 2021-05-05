@@ -17,28 +17,34 @@ public abstract class RegistroPersona {
   protected Long numeroDocumento;
   protected Contacto contacto;
 
-  public void nombre(String nombre) {
+  public RegistroPersona nombre(String nombre) {
     this.nombre = Objects.requireNonNull(nombre);
+    return this;
   }
 
-  public void apellido(String apellido) {
+  public RegistroPersona apellido(String apellido) {
     this.apellido = Objects.requireNonNull(nombre);
+    return this;
   }
 
-  public void fechaNacimiento(LocalDate fechaNacimiento) {
+  public RegistroPersona fechaNacimiento(LocalDate fechaNacimiento) {
     this.fechaNacimiento = Objects.requireNonNull(fechaNacimiento);
+    return this;
   }
 
-  public void tipoDocumento(Documento.TipoDocumento tipoDocumento) {
+  public RegistroPersona tipoDocumento(Documento.TipoDocumento tipoDocumento) {
     this.tipoDocumento = Objects.requireNonNull(tipoDocumento);
+    return this;
   }
 
-  public void numeroDocumento(Long numeroDocumento) {
+  public RegistroPersona numeroDocumento(Long numeroDocumento) {
     this.numeroDocumento = Objects.requireNonNull(numeroDocumento);
+    return this;
   }
 
-  public void contacto(Contacto contacto) {
+  public RegistroPersona contacto(Contacto contacto) {
     this.contacto = Objects.requireNonNull(contacto);
+    return this;
   }
 
   /**

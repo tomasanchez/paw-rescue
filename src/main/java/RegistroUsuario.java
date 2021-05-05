@@ -15,18 +15,25 @@ public class RegistroUsuario extends RegistroPersona {
   private String password;
   List<Mascota> mascotas;
 
-  public void mascotas(List<Mascota> mascotas) {
+  public RegistroUsuario mascotas(List<Mascota> mascotas) {
     this.mascotas = Objects.requireNonNull(mascotas);
+
+    return this;
   }
 
-  public void usuario(String usuario) {
+  public RegistroUsuario usuario(String usuario) {
     this.usuario = Objects.requireNonNull(usuario);
+    return this;
   }
 
-  public void password(String password) {
+  public RegistroUsuario password(String password) {
+
     if (new ValidadorContrasenia().validarContrasenia(password))
       throw new InvalidPasswordException("La contrasenia esta en el top 10000 de las peores contraseñas");
+
     this.password = Objects.requireNonNull(password);
+
+    return this;
   }
 
   /**
