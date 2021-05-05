@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Abstraccion de datos personales
@@ -43,11 +44,11 @@ public class Persona {
    * @param contacto        datos de un contacto
    */
   public Persona(String nombre, String apellido, Documento documento, LocalDate fechaNacimiento, Contacto contacto) {
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.documento = documento;
-    this.fechaNacimiento = fechaNacimiento;
-    this.contacto = contacto;
+    this.nombre = Objects.requireNonNull(nombre);
+    this.apellido = Objects.requireNonNull(apellido);
+    this.documento = Objects.requireNonNull(documento);
+    this.fechaNacimiento = Objects.requireNonNull(fechaNacimiento);
+    this.contacto = Objects.requireNonNull(contacto);
   }
 
 }

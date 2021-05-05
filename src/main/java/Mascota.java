@@ -10,6 +10,7 @@ public class Mascota {
   List<String> fotos;
   TipoMascota tipoMascota;
   // Caracteristica a definir
+  List<Caracteristica> caracteristicas;
 
   public Mascota(String nombre, String apodo, TipoMascota tipoMascota, int edad, Sexo sexo, String descripcionFisica,
       List<String> fotos) {

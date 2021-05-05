@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Usuario común.
@@ -37,10 +38,10 @@ public class Usuario {
   List<Mascota> mascotas;
 
   public Usuario(Persona datosPeronales, String usuario, String password, List<Mascota> mascotas) {
-    this.datosPeronales = datosPeronales;
-    this.usuario = usuario;
-    this.password = password;
-    this.mascotas = mascotas;
+    this.datosPeronales = Objects.requireNonNull(datosPeronales);
+    this.usuario = Objects.requireNonNull(usuario);
+    this.password = Objects.requireNonNull(password);
+    this.mascotas = Objects.requireNonNull(mascotas);
   }
 
 }
