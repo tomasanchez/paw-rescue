@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Kenti
  * @version 2.0
  */
-public class RegistroDuenioMascota extends RegistroPersona {
+public class RegistroUsuario extends RegistroPersona {
 
   private String usuario;
   private String password;
@@ -34,7 +34,7 @@ public class RegistroDuenioMascota extends RegistroPersona {
    * 
    * @return un nuevo Usuario
    */
-  public DuenioMascota duenioMascota() {
-    return new DuenioMascota(datosPeronales(), usuario, password, mascotas);
+  public Usuario duenioMascota() {
+    return new Usuario(datosPeronales(), usuario, password, mascotas);
   }
 }

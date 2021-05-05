@@ -1,7 +1,7 @@
 import java.util.List;
 
 public class RescatePatitas {
-  List<MascotaEncontrada> masccotasEncontradas;
-  List<DuenioMascota> dueniosMascotas;
+  List<MascotaEncontrada> mascotasEncontradas;
+  List<Usuario> usuarios;
 
 }

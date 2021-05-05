@@ -6,7 +6,7 @@ import java.util.List;
  * @author Kenti
  * @version 2.0
  */
-public class DuenioMascota {
+public class Usuario {
 
   /**
    * Los datos relacionados al nombre, apellido, documento, contacto.
@@ -36,7 +36,7 @@ public class DuenioMascota {
    */
   List<Mascota> mascotas;
 
-  public DuenioMascota(Persona datosPeronales, String usuario, String password, List<Mascota> mascotas) {
+  public Usuario(Persona datosPeronales, String usuario, String password, List<Mascota> mascotas) {
     this.datosPeronales = datosPeronales;
     this.usuario = usuario;
     this.password = password;
