@@ -29,7 +29,7 @@ public class UsuarioTest {
   @Test
   public void usuarioTieneUnaMascota() {
     // Listado de una unica mascota
-    List<Mascota> mascotas = Arrays.asList(new Mascota[] { perritaDePrueba("Maya") });
+    List<Mascota> mascotas = Arrays.asList(new Mascota[] { MascotaTest.perritaDePrueba("Maya") });
     // Tiene exactamente una mascota
     Assertions
         .assertTrue(usuarioDePruebas("Usuario", "1 Mascota").mascotas(mascotas).duenioMascota().mascotas.size() == 1);
@@ -38,8 +38,8 @@ public class UsuarioTest {
   @Test
   public void usuarioTieneMultiplesMascota() {
     // Listado de una unica mascota
-    List<Mascota> mascotas = Arrays
-        .asList(new Mascota[] { perritaDePrueba("Maya"), gatitoDePrueba("Tom"), perritaDePrueba("Lola") });
+    List<Mascota> mascotas = Arrays.asList(new Mascota[] { MascotaTest.perritaDePrueba("Maya"),
+        MascotaTest.gatitoDePrueba("Tom"), MascotaTest.perritaDePrueba("Lola") });
     // Tiene exactamente una mascota
     Assertions.assertTrue(usuarioDePruebas("Usuario", "Muchas Mascotas").mascotas(mascotas).duenioMascota().mascotas
         .size() == mascotas.size());
@@ -69,14 +69,6 @@ public class UsuarioTest {
    */
   static private Contacto contacoDePrueba(String nombre, String apellido) {
     return new Contacto(nombre, apellido, "+5491100000000", "mail@test.com");
-  }
-
-  static private Mascota perritaDePrueba(String nombre) {
-    return new Mascota(nombre, "manchitas", TipoMascota.PERRO, 0, Sexo.HEMBRA, "Con manchitas", null);
-  }
-
-  static private Mascota gatitoDePrueba(String nombre) {
-    return new Mascota(nombre, "manchitas", TipoMascota.GATO, 0, Sexo.MACHO, "Con manchitas", null);
   }
 
 }
