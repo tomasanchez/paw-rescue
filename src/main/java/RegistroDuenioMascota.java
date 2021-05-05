@@ -1,3 +1,5 @@
+import Exceptions.InvalidPasswordException;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -8,7 +10,6 @@ public class RegistroDuenioMascota extends RegistroPersona{
 	List<Mascota> mascotas;
 	
 	public void mascotas(List<Mascota> mascotas) {
-		this.mascotas= mascotas;
 		this.mascotas = Objects.requireNonNull(mascotas);
 	}
 	
@@ -17,7 +18,8 @@ public class RegistroDuenioMascota extends RegistroPersona{
 	}
 	
 	public void password(String password) {
-	  //TODO validar contraseña
+	  if(new ValidadorContrasenia().validarContrasenia(password))
+      throw new InvalidPasswordException("La contrasenia esta en el top 10000 de las peores contraseñas");
 		this.password = Objects.requireNonNull(password);
 	}
 	
