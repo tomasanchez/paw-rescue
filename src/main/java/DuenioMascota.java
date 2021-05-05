@@ -1,30 +1,46 @@
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
+/**
+ * Usuario común.
+ * 
+ * @author Kenti
+ * @version 2.0
+ */
 public class DuenioMascota {
 
-	private String usuario;
-	private String password;
-	private String apellido;
-	private String nombre;
-	private LocalDate fechaNacimiento;
-	private TipoDocumento tipoDocumento;
-	private Long numeroDocumento;
-	private Contacto contacto;
-	List<Mascota> mascotas;
+  /**
+   * Los datos relacionados al nombre, apellido, documento, contacto.
+   * 
+   * @since 2.0
+   */
+  Persona datosPeronales;
 
-	public DuenioMascota(String usuario, String password, String apellido, String nombre, LocalDate fechaNacimiento,
-			TipoDocumento tipoDocumento, Long numeroDocumento, Contacto contacto, List<Mascota> mascotas) {
-		this.usuario = usuario;
-		this.password = password;
-		this.apellido = apellido;
-		this.nombre = nombre;
-		this.fechaNacimiento = fechaNacimiento;
-		this.tipoDocumento = tipoDocumento;
-		this.numeroDocumento = numeroDocumento;
-		this.contacto = contacto;
-		this.mascotas = mascotas;
-	}
+  /**
+   * Usuario de logging.
+   * 
+   * @since 1.0
+   */
+  String usuario;
+
+  /**
+   * Password del usuario
+   * 
+   * @since 1.0
+   */
+  String password;
+
+  /**
+   * Mascotas registadas
+   * 
+   * @since 1.0
+   */
+  List<Mascota> mascotas;
+
+  public DuenioMascota(Persona datosPeronales, String usuario, String password, List<Mascota> mascotas) {
+    this.datosPeronales = datosPeronales;
+    this.usuario = usuario;
+    this.password = password;
+    this.mascotas = mascotas;
+  }
 
 }

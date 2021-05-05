@@ -1,25 +1,36 @@
-import java.time.LocalDate;
-
+/**
+ * Datos de un Rescatista
+ * 
+ * @since 05.03.2021
+ * @version 2.0
+ * @author Kenti
+ */
 public class Rescatista {
-	private String apellido;
-	private String nombre;
-	private LocalDate fechaNacimiento;
-	private TipoDocumento tipoDocumento;
-	private Long numeroDocumento;
-	private Contacto contacto;
-	private MascotaEncontrada mascotaEncontrada;
-	
-	public Rescatista(String apellido, String nombre, LocalDate fechaNacimiento, TipoDocumento tipoDocumento,
-			Long numeroDocumento, Contacto contacto, MascotaEncontrada mascotaEncontrada) {
-		this.apellido = apellido;
-		this.nombre = nombre;
-		this.fechaNacimiento = fechaNacimiento;
-		this.tipoDocumento = tipoDocumento;
-		this.numeroDocumento = numeroDocumento;
-		this.contacto = contacto;
-		this.mascotaEncontrada = mascotaEncontrada;
-	}
 
-	
+  /**
+   * 
+   * Nombre, Apellido, Documento, etc.
+   * 
+   * @since 2.0
+   */
+  Persona datosPeronales;
+
+  /**
+   * Animal encontrado.
+   * 
+   * @since 1.0
+   */
+  MascotaEncontrada mascotaEncontrada;
+
+  /**
+   * Guarda cuenta de una persona que rescata una mascota.
+   * 
+   * @param datosPeronales    los datos de Nombre, Apellido, Documento, etc.
+   * @param mascotaEncontrada el animal rescatado.
+   */
+  public Rescatista(Persona datosPeronales, MascotaEncontrada mascotaEncontrada) {
+    this.datosPeronales = datosPeronales;
+    this.mascotaEncontrada = mascotaEncontrada;
+  }
 
 }
