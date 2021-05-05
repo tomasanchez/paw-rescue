@@ -28,7 +28,7 @@ public class Contacto {
    * 
    * @since 1.0
    */
-  String telefono;
+  int  telefono;
 
   /**
    * Una dirección de email.
@@ -45,7 +45,7 @@ public class Contacto {
    * @param telefono un número de telefono
    * @param mail una direccion de email
    */
-  public Contacto(String nombre, String apellido, String telefono, String mail) {
+  public Contacto(String nombre, String apellido, int telefono, String mail) {
     this.nombre = Objects.requireNonNull(nombre);
     this.apellido = Objects.requireNonNull(apellido);
     this.telefono = telefono;
