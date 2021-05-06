@@ -1,4 +1,4 @@
 
 public enum Sexo {
-	MACHO,HEMBRA
+  MACHO, HEMBRA
 }

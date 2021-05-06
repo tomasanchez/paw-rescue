@@ -1,17 +1,42 @@
 import Exceptions.InvalidPasswordException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PasswordTest {
+
   @Test
-  public void contraseñaEnElTop10000(){
-    assertThrows(InvalidPasswordException.class,() -> new RegistroDuenioMascota().password("qwerty"));
-    assertThrows(InvalidPasswordException.class,() -> new RegistroDuenioMascota().password("666666"));
-    assertThrows(InvalidPasswordException.class,() -> new RegistroDuenioMascota().password("666666"));
-    assertThrows(InvalidPasswordException.class,() -> new RegistroDuenioMascota().password("superstar"));
-    assertThrows(InvalidPasswordException.class,() -> new RegistroDuenioMascota().password("1222"));
+  public void entreLasPeoresPasswords() {
+    // Estas password deberrían no aceptarse al estar dentro del TOP 10000
+    assertThrows(InvalidPasswordException.class, () -> generarPassword("qwerty"));
+    assertThrows(InvalidPasswordException.class, () -> generarPassword("666666"));
+    assertThrows(InvalidPasswordException.class, () -> generarPassword("superstar"));
+    assertThrows(InvalidPasswordException.class, () -> generarPassword("asd123"));
   }
-  
+
+  @Test
+  public void sinPasswordVacias() {
+    // Sin sin contraseñas.
+    assertThrows(InvalidPasswordException.class, () -> generarPassword(null));
+    assertThrows(InvalidPasswordException.class, () -> generarPassword(""));
+  }
+
+  @Test
+  public void noPasswordCortasStandard() {
+    // La longitud de las password debe ser mayor a 8 (standard)
+    assertThrows(InvalidPasswordException.class, () -> generarPassword("kenti"));
+    assertThrows(InvalidPasswordException.class, () -> generarPassword("quamtum"));
+    assertThrows(InvalidPasswordException.class, () -> generarPassword("queti"));
+  }
+
+  /**
+   * Genera una password válida
+   * 
+   * @param password la password a generar
+   * @return el Registro de usuario a continuar.
+   */
+  private static RegistroUsuario generarPassword(String password) {
+    return new RegistroUsuario().password(password);
+  }
+
 }

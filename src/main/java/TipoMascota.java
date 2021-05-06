@@ -1,3 +1,3 @@
 public enum TipoMascota {
-  PERRO,GATO
+  PERRO, GATO
 }
