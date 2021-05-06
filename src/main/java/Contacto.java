@@ -51,5 +51,21 @@ public class Contacto {
     this.telefono = telefono;
     this.mail = mail;
   }
+  
+  public String getNombre(){
+    return this.nombre;
+  }
+  
+  public String getApellido(){
+    return this.apellido;
+  }
+  
+  public String getTelefono(){
+    return this.telefono;
+  }
+  
+  public String getMail(){
+    return this.mail;
+  }
 
 }

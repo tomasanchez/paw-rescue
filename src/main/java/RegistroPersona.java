@@ -1,3 +1,5 @@
+import Exceptions.InvalidPasswordException;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -9,6 +11,7 @@ public abstract class RegistroPersona {
 	protected TipoDocumento tipoDocumento;
 	protected Long numeroDocumento;
 	protected Contacto contacto;
+ 
 	
 	public void nombre(String nombre) {
 		this.nombre = Objects.requireNonNull(nombre);
@@ -33,4 +36,6 @@ public abstract class RegistroPersona {
 	public void contacto(Contacto contacto) {
 		this.contacto = Objects.requireNonNull(contacto);
 	}
+	
+
 }

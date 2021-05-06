@@ -2,18 +2,24 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-public class DuenioMascota {
-
-	private String usuario;
-	private String password;
-	private String apellido;
-	private String nombre;
-	private LocalDate fechaNacimiento;
-	private TipoDocumento tipoDocumento;
-	private Long numeroDocumento;
-	private Contacto contacto;
+public class DuenioMascota extends Personas{
+  protected String usuario;
+  protected String password;
 	List<Mascota> mascotas;
-
+	
+	void registrarMascota(RegistroMascotaDuenio registroMascotaDuenio){
+	  registroMascotaDuenio.registrarMascota(this);
+  }
+  void registrarMascotaEncontrada(RegistroMascotaEncontrada regisroMascotaEncontrada, RescatePatitas rescatePatitas){
+	  regisroMascotaEncontrada.registrarMascotaEncontrada(rescatePatitas);
+  }
+  public String getUsuario(){
+    return this.usuario;
+  }
+  public String getPassword(){
+    return this.password;
+  }
+  
 	public DuenioMascota(String usuario, String password, String apellido, String nombre, LocalDate fechaNacimiento,
 			TipoDocumento tipoDocumento, Long numeroDocumento, Contacto contacto, List<Mascota> mascotas) {
 		this.usuario = usuario;
@@ -26,5 +32,9 @@ public class DuenioMascota {
 		this.contacto = contacto;
 		this.mascotas = mascotas;
 	}
-
+	
+  public List<Mascota> getMascotas(){
+	  return this.mascotas;
+  }
+  
 }

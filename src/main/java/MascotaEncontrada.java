@@ -5,6 +5,19 @@ public class MascotaEncontrada {
 	private List <String> foto;
 	private String descripcion;
 	private Coordenada lugar;
+	//La chapita?
+  
+  public String getDescripcion(){
+    return this.descripcion;
+  }
+  
+  public Coordenada getLugar(){
+    return this.lugar;
+  }
+  
+  public List <String> getFoto(){
+    return this.foto;
+  }
 	
 	public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar) {
 		this.foto = foto;

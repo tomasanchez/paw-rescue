@@ -6,4 +6,13 @@ public class Coordenada {
     this.coordenadaX = coordenadaX;
     this.coordenadaY = coordenadaY;
   }
+  
+  public String getCoordenadaX(){
+    return this.coordenadaX;
+  }
+  
+  public String getCoordenadaY(){
+    return this.coordenadaY;
+  }
 }
+
