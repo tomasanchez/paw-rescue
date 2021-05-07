@@ -14,7 +14,7 @@ public class RescatePatitas {
 
   /**
    * Obtiene las mascotas encontradas en los últimos días
-   * 
+   *
    * @param dias ultimos días en los que filtrar
    * @return las mascotas filtradas
    */
@@ -25,11 +25,27 @@ public class RescatePatitas {
 
   /**
    * Guarda la información de una mascota rescatada
-   * 
+   *
    * @param mascota la mascota rescatada
    */
   public void registrarRescate(MascotaEncontrada mascota) {
     this.mascotasEncontradas.add(mascota);
+  }
+
+  public List<MascotaEncontrada> getMascotasEncontradas() {
+    return this.mascotasEncontradas;
+  }
+
+  public List<Usuario> getUsuarios() {
+    return this.usuarios;
+  }
+
+  public void registrarDuenioMascota(DuenioMascota duenioMascota) {
+    usuarios.add(duenioMascota);
+  }
+
+  public Administrador generarUsuariosAdministradores(Persona datosPeronales, String usuario, String password) {
+    return new Administrador(datosPeronales, usuario, password);
   }
 
 }

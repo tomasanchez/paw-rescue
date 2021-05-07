@@ -39,10 +39,11 @@ public class Persona {
    * 
    * @param nombre          el nombre de la persona
    * @param apellido        su apellido
-   * @param documento       tipo y nro de documento
+   * @param documento       tipo documento y numerodocumento
    * @param fechaNacimiento dia del nacimiento
    * @param contacto        datos de un contacto
    */
+
   public Persona(String nombre, String apellido, Documento documento, LocalDate fechaNacimiento, Contacto contacto) {
     this.nombre = Objects.requireNonNull(nombre);
     this.apellido = Objects.requireNonNull(apellido);
@@ -51,4 +52,23 @@ public class Persona {
     this.contacto = Objects.requireNonNull(contacto);
   }
 
+  public String getNombre() {
+    return this.nombre;
+  }
+
+  public String getApellido() {
+    return this.apellido;
+  }
+
+  public Documento getDocumento() {
+    return this.documento;
+  }
+
+  public LocalDate getFechaNacimiento() {
+    return this.fechaNacimiento;
+  }
+
+  public Contacto getContacto() {
+    return this.contacto;
+  }
 }

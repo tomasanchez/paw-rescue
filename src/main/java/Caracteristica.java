@@ -2,8 +2,8 @@ import java.util.Objects;
 
 /**
  * Caracteristicas de una Mascota
- * 
- * 
+ *
+ *
  * @since 05.03.2021
  * @version 1.0
  * @author Tomás Sánchez
@@ -12,7 +12,7 @@ public class Caracteristica {
 
   /**
    * Los tipos de Caracteristicas disponibles
-   * 
+   *
    * @since 05.03.2021
    * @version 1.0
    * @author Tomás Sánchez
@@ -33,7 +33,7 @@ public class Caracteristica {
 
   /**
    * Instancia caracteristicas no nulas.
-   * 
+   *
    * @param caracteristica La "categoria" de la caracteristica
    * @param valor          la característica en sí
    */
@@ -42,4 +42,11 @@ public class Caracteristica {
     this.valor = Objects.requireNonNull(valor);
   }
 
+  public TipoCaracteristica getCaracteristica() {
+    return this.caracteristica;
+  }
+
+  public Object getValor() {
+    return this.valor;
+  }
 }

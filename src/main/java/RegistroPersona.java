@@ -3,7 +3,7 @@ import java.util.Objects;
 
 /**
  * Builder de una Persona
- * 
+ *
  * @since 05.03.2021
  * @version 2.0
  * @author Kenti
@@ -49,17 +49,17 @@ public abstract class RegistroPersona {
 
   /**
    * Registra los datos personales de una Persona.
-   * 
+   *
    * @return Datos personales.
    * @since 2.0
    */
   public Persona datosPeronales() {
-    return new Persona(nombre, apellido, registrarDocumento(), fechaNacimiento, contacto);
+    return new Persona(this.nombre, this.apellido, this.registrarDocumento(), this.fechaNacimiento, this.contacto);
   }
 
   /**
    * Registra el documento de una persona
-   * 
+   *
    * @return un Documento
    * @since 2.0
    */

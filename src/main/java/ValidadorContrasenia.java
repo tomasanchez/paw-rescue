@@ -10,6 +10,7 @@ import java.util.Objects;
 public class ValidadorContrasenia {
   private List<CriterioPassword> criterios = new ArrayList<>();
 
+
   public ValidadorContrasenia() {
     this.criterios.add(new CriterioPeoresContrasenias());
     this.criterios.add(new CriterioLargoMinimo(8));
@@ -18,7 +19,5 @@ public class ValidadorContrasenia {
   }
   public void ValidarContrasenia(String usuario, String password){
     criterios.stream().forEach(criterio ->criterio.cumpleCriterio(usuario,password));
-      
-    
   }
 }

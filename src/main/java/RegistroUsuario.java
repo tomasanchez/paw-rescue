@@ -1,6 +1,4 @@
 import Exceptions.InvalidPasswordException;
-
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -11,15 +9,8 @@ import java.util.Objects;
  */
 public class RegistroUsuario extends RegistroPersona {
 
-  private String usuario;
-  private String password;
-  List<Mascota> mascotas;
-
-  public RegistroUsuario mascotas(List<Mascota> mascotas) {
-    this.mascotas = Objects.requireNonNull(mascotas);
-
-    return this;
-  }
+  public String usuario;
+  public String password;
 
   public RegistroUsuario usuario(String usuario) {
     this.usuario = Objects.requireNonNull(usuario);
@@ -40,7 +31,7 @@ public class RegistroUsuario extends RegistroPersona {
    * 
    * @return un nuevo Usuario
    */
-  public Usuario duenioMascota() {
-    return new Usuario(datosPeronales(), usuario, password, mascotas);
+  public Usuario administrador() {
+    return new Usuario(datosPeronales(), usuario, password);
   }
 }
