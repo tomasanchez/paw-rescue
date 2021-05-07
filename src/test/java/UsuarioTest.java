@@ -49,7 +49,7 @@ public class UsuarioTest {
    * @param apellido Apellido del usuario de Prueba
    * @return un Registro de usuario
    */
-  static private RegistroUsuario usuarioDePruebas(String nombre, String apellido) {
+  static public RegistroUsuario usuarioDePruebas(String nombre, String apellido) {
     RegistroUsuario registro = new RegistroUsuario();
     // Registro de los datos personales
     registro.nombre(nombre).apellido(apellido).fechaNacimiento(LocalDate.now())
