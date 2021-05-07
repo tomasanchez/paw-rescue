@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class CriterioPeoresContrasenias implements CriterioPassword {
     peoresPasswords = new ArrayList<>();
     try (
         FileReader reader =
-            new FileReader(filePath + "10k-worst-passwords.txt", Charset.defaultCharset());
+            new FileReader(filePath + "10k-worst-passwords.txt", StandardCharsets.UTF_8);
         BufferedReader buffer = new BufferedReader(reader)) {
 
       while ((palabraLeida = buffer.readLine()) != null) {
