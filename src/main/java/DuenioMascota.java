@@ -37,4 +37,8 @@ public class DuenioMascota extends Usuario {
     return this.mascotas;
   }
 
+  public Integer getCantidadMascotas() {
+    return this.mascotas.size();
+  }
+
 }
