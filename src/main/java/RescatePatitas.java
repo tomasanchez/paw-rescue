@@ -20,7 +20,8 @@ public class RescatePatitas {
    * @return las mascotas filtradas
    */
   List<MascotaEncontrada> mascotasEncontradas(long dias) {
-    return mascotasEncontradas.stream().filter(mascota -> mascota.fecha.isAfter(LocalDate.now().minusDays(dias)))
+    return mascotasEncontradas.stream()
+        .filter(mascota -> mascota.fecha.isAfter(LocalDate.now().minusDays(dias)))
         .collect(Collectors.toList());
   }
 
@@ -45,7 +46,8 @@ public class RescatePatitas {
     usuarios.add(duenioMascota);
   }
 
-  public Administrador generarUsuariosAdministradores(Persona datosPeronales, String usuario, String password) {
+  public Administrador generarUsuariosAdministradores(Persona datosPeronales, String usuario,
+      String password) {
     return new Administrador(datosPeronales, usuario, password);
   }
 

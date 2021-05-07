@@ -1,6 +1,5 @@
-import java.util.Objects;
-
 import exeptions.InvalidPasswordException;
+import java.util.Objects;
 
 public class CriterioPasswordVacia implements CriterioPassword {
 

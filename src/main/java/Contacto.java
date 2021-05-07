@@ -40,10 +40,10 @@ public class Contacto {
   /**
    * Instancia un contacto.
    * 
-   * @param nombre   el nombre del contato.
+   * @param nombre el nombre del contato.
    * @param apellido el apellido del contacto.
    * @param telefono un número de telefono.
-   * @param mail     una direccion de email.
+   * @param mail una direccion de email.
    */
   public Contacto(String nombre, String apellido, String telefono, String mail) {
     this.nombre = Objects.requireNonNull(nombre);

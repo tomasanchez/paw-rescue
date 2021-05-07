@@ -38,14 +38,15 @@ public class Persona {
   /**
    * Instancia datos personales.
    * 
-   * @param nombre          el nombre de la persona
-   * @param apellido        su apellido
-   * @param documento       tipo documento y numerodocumento
+   * @param nombre el nombre de la persona
+   * @param apellido su apellido
+   * @param documento tipo documento y numerodocumento
    * @param fechaNacimiento dia del nacimiento
-   * @param contacto        datos de un contacto
+   * @param contacto datos de un contacto
    */
 
-  public Persona(String nombre, String apellido, Documento documento, LocalDate fechaNacimiento, Contacto contacto) {
+  public Persona(String nombre, String apellido, Documento documento, LocalDate fechaNacimiento,
+      Contacto contacto) {
     this.nombre = Objects.requireNonNull(nombre);
     this.apellido = Objects.requireNonNull(apellido);
     this.documento = Objects.requireNonNull(documento);

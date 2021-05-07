@@ -13,11 +13,12 @@ public class DuenioMascota extends Usuario {
    * Mascotas registadas.
    *
    * @param datosPeronales los datos relacionados al Nombre, DNI, etc.
-   * @param usuario        el nombre de usuario
-   * @param password       password válida.
-   * @param mascotas       las mascotas registadas
+   * @param usuario el nombre de usuario
+   * @param password password válida.
+   * @param mascotas las mascotas registadas
    */
-  public DuenioMascota(Persona datosPeronales, String usuario, String password, List<Mascota> mascotas) {
+  public DuenioMascota(Persona datosPeronales, String usuario, String password,
+      List<Mascota> mascotas) {
     super(datosPeronales, usuario, password);
     this.mascotas = mascotas;
   }

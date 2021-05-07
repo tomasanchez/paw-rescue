@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -10,6 +12,34 @@ public class RegistroUsuario extends RegistroPersona {
 
   public String usuario;
   public String password;
+  List<Mascota> mascotas;
+
+
+  public RegistroUsuario() {
+    this.mascotas = new ArrayList<Mascota>();
+  }
+
+  /**
+   * Agrega un listado de mascotas al owner de una mascota.
+   * 
+   * @param mascotas un listado de mascotas.
+   * @return el registro a continuar.
+   */
+  public RegistroUsuario mascotas(List<Mascota> mascotas) {
+    this.mascotas = Objects.requireNonNull(mascotas);
+    return this;
+  }
+
+  /**
+   * Añade una mascota a un owner.
+   * 
+   * @param mascota la mascota a registar.
+   * @return el registro a continuar
+   */
+  public RegistroUsuario mascota(Mascota mascota) {
+    this.mascotas.add(Objects.requireNonNull(mascota));
+    return this;
+  }
 
   /**
    * Guarda el nombre de usuario.

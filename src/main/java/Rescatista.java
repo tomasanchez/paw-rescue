@@ -25,7 +25,7 @@ public class Rescatista {
   /**
    * Guarda cuenta de una persona que rescata una mascota.
    *
-   * @param datosPeronales    los datos de Nombre, Apellido, Documento, etc.
+   * @param datosPeronales los datos de Nombre, Apellido, Documento, etc.
    * @param mascotaEncontrada el animal rescatado.
    */
   public Rescatista(Persona datosPeronales, MascotaEncontrada mascotaEncontrada) {

@@ -1,3 +1,4 @@
+import exeptions.InvalidPasswordException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -5,8 +6,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-
-import exeptions.InvalidPasswordException;
 
 public class CriterioPeoresContrasenias implements CriterioPassword {
   private List<String> peoresPasswords;
@@ -23,7 +22,8 @@ public class CriterioPeoresContrasenias implements CriterioPassword {
   @Override
   public void cumpleCriterio(String usuario, String password) {
     if (estaEntreLasPeores(password)) {
-      throw new InvalidPasswordException("La contrasenia esta en el top 10000 de las peores contraseñas");
+      throw new InvalidPasswordException(
+          "La contrasenia esta en el top 10000 de las peores contraseñas");
     }
   }
 
@@ -38,7 +38,9 @@ public class CriterioPeoresContrasenias implements CriterioPassword {
     String filePath = System.getProperty("user.dir") + "/src/files/";
     String palabraLeida;
     peoresPasswords = new ArrayList<>();
-    try (FileReader reader = new FileReader(filePath + "10k-worst-passwords.txt", Charset.defaultCharset());
+    try (
+        FileReader reader =
+            new FileReader(filePath + "10k-worst-passwords.txt", Charset.defaultCharset());
         BufferedReader buffer = new BufferedReader(reader)) {
 
       while ((palabraLeida = buffer.readLine()) != null) {

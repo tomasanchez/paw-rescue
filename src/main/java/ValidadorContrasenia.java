@@ -17,7 +17,7 @@ public class ValidadorContrasenia {
   /**
    * Valida la contraseña con toda una lista de criterios.
    * 
-   * @param usuario  el usuario a validar.
+   * @param usuario el usuario a validar.
    * @param password la password a validar.
    */
   public void validarPassword(String usuario, String password) {

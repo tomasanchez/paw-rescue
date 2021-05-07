@@ -33,8 +33,8 @@ public abstract class Usuario {
    * Instancia un nuevo usuario.
    * 
    * @param datosPeronales DNI, Nombre, etc.
-   * @param usuario        nombre de usuario.
-   * @param password       una password válida.
+   * @param usuario nombre de usuario.
+   * @param password una password válida.
    */
   public Usuario(Persona datosPeronales, String usuario, String password) {
     this.datosPeronales = Objects.requireNonNull(datosPeronales);

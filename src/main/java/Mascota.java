@@ -14,16 +14,16 @@ public class Mascota {
   /**
    * Instancia una mascota.
    * 
-   * @param nombre            el nombre de la mascota.
-   * @param apodo             un apodo.
-   * @param tipoMascota       el tipo de animal.
-   * @param edad              su edad en años.
-   * @param sexo              el sexo del animal.
+   * @param nombre el nombre de la mascota.
+   * @param apodo un apodo.
+   * @param tipoMascota el tipo de animal.
+   * @param edad su edad en años.
+   * @param sexo el sexo del animal.
    * @param descripcionFisica una descripción física.
-   * @param fotos             Lista de URLs de fotos.
+   * @param fotos Lista de URLs de fotos.
    */
-  public Mascota(String nombre, String apodo, TipoMascota tipoMascota, int edad, Sexo sexo, String descripcionFisica,
-      List<String> fotos) {
+  public Mascota(String nombre, String apodo, TipoMascota tipoMascota, int edad, Sexo sexo,
+      String descripcionFisica, List<String> fotos) {
     this.nombre = nombre;
     this.apodo = apodo;
     this.tipoMascota = tipoMascota;

@@ -11,7 +11,8 @@ public class CriterioLargoMinimo implements CriterioPassword {
   @Override
   public void cumpleCriterio(String usuario, String password) {
     if (password.length() < longitudMinima) {
-      throw new InvalidPasswordException("La contrasenia tiene menos de " + longitudMinima + " caracteres");
+      throw new InvalidPasswordException(
+          "La contrasenia tiene menos de " + longitudMinima + " caracteres");
     }
   }
 }

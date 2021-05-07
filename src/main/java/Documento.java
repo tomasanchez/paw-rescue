@@ -27,7 +27,7 @@ public class Documento {
    * Instancia un nuevo documento.
    * 
    * @param tipo el tipo de documento.
-   * @param id   el número de identificación.
+   * @param id el número de identificación.
    */
   public Documento(Documento.TipoDocumento tipo, String id) {
     this.tipo = Objects.requireNonNull(tipo);
