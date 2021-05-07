@@ -12,9 +12,10 @@ public class ValidadorContrasenia {
 
 
   public ValidadorContrasenia() {
+    this.criterios.add(new CriterioPasswordVacia());
     this.criterios.add(new CriterioPeoresContrasenias());
     this.criterios.add(new CriterioLargoMinimo(8));
-    this.criterios.add(new CriterioPasswordVacia());
+    
     
   }
   public void ValidarContrasenia(String usuario, String password){
