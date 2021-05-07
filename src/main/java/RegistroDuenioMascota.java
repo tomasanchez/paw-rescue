@@ -12,7 +12,7 @@ public class RegistroDuenioMascota extends RegistroUsuario {
   }
 
   public DuenioMascota duenioMascota() {
-    return new DuenioMascota(datosPeronales(), usuario, password,mascotas);
+    return new DuenioMascota(datosPeronales(), usuario, password, mascotas);
   }
-  
+
 }

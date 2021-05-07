@@ -63,7 +63,7 @@ public abstract class RegistroPersona {
    * @return un Documento
    * @since 2.0
    */
- private Documento registrarDocumento() {
+  private Documento registrarDocumento() {
     return new Documento(tipoDocumento, numeroDocumento.toString());
   }
 }

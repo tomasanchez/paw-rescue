@@ -13,4 +13,3 @@ public class RegistroRescatista extends RegistroPersona {
   }
 
 }
-

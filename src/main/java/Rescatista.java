@@ -29,22 +29,20 @@ public class Rescatista {
    * @param datosPeronales    los datos de Nombre, Apellido, Documento, etc.
    * @param mascotaEncontrada el animal rescatado.
    */
-  
-  
   public Rescatista(Persona datosPeronales, MascotaEncontrada mascotaEncontrada) {
     this.datosPeronales = datosPeronales;
     this.mascotaEncontrada = mascotaEncontrada;
   }
 
-  void registrarMascotaEncontrada(RescatePatitas rescatePatitas){
+  void registrarMascotaEncontrada(RescatePatitas rescatePatitas) {
     rescatePatitas.mascotasEncontradas.add(mascotaEncontrada);
   }
-  
-  public Persona getDatosPeronales(){
+
+  public Persona getDatosPeronales() {
     return this.datosPeronales;
   }
-  
-  public MascotaEncontrada getMascotaEncontrada(){
+
+  public MascotaEncontrada getMascotaEncontrada() {
     return this.mascotaEncontrada;
   }
 

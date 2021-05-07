@@ -91,7 +91,7 @@ public class ValidadorContrasenia {
     String palabraLeida;
     peoresPasswords = new ArrayList<>();
     try (FileReader reader = new FileReader(filePath + "10k-worst-passwords.txt", Charset.defaultCharset());
-         BufferedReader buffer = new BufferedReader(reader)) {
+        BufferedReader buffer = new BufferedReader(reader)) {
 
       while ((palabraLeida = buffer.readLine()) != null) {
         peoresPasswords.add(palabraLeida);

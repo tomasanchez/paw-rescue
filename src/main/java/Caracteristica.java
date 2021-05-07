@@ -42,11 +42,11 @@ public class Caracteristica {
     this.valor = Objects.requireNonNull(valor);
   }
 
-  public TipoCaracteristica getCaracteristica(){
+  public TipoCaracteristica getCaracteristica() {
     return this.caracteristica;
   }
-  
-  public Object getValor(){
+
+  public Object getValor() {
     return this.valor;
   }
 }

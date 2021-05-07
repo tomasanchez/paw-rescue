@@ -43,7 +43,7 @@ public class Contacto {
    * @param nombre   el nombre del contato
    * @param apellido el apellido del contacto
    * @param telefono un número de telefono
-   * @param mail una direccion de email
+   * @param mail     una direccion de email
    */
   public Contacto(String nombre, String apellido, String telefono, String mail) {
     this.nombre = Objects.requireNonNull(nombre);
@@ -51,20 +51,20 @@ public class Contacto {
     this.telefono = telefono;
     this.mail = mail;
   }
-  
-  public String getNombre(){
+
+  public String getNombre() {
     return this.nombre;
   }
-  
-  public String getApellido(){
+
+  public String getApellido() {
     return this.apellido;
   }
-  
-  public String getTelefono(){
+
+  public String getTelefono() {
     return this.telefono;
   }
-  
-  public String getMail(){
+
+  public String getMail() {
     return this.mail;
   }
 

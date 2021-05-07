@@ -21,7 +21,7 @@ public class RescatePatitas {
    */
   List<MascotaEncontrada> mascotasEncontradas(long dias) {
     return mascotasEncontradas.stream().filter(mascota -> mascota.fecha.isAfter(LocalDate.now().minusDays(dias)))
-      .collect(Collectors.toList());
+        .collect(Collectors.toList());
   }
 
   /**
@@ -32,21 +32,21 @@ public class RescatePatitas {
   public void registrarRescate(MascotaEncontrada mascota) {
     this.mascotasEncontradas.add(mascota);
   }
-  
-  public List<MascotaEncontrada> getMascotasEncontradas(){
+
+  public List<MascotaEncontrada> getMascotasEncontradas() {
     return this.mascotasEncontradas;
   }
-  
-  public List<Usuario> getUsuarios(){
+
+  public List<Usuario> getUsuarios() {
     return this.usuarios;
   }
-  
-  public void registrarDuenioMascota(DuenioMascota duenioMascota){
+
+  public void registrarDuenioMascota(DuenioMascota duenioMascota) {
     usuarios.add(duenioMascota);
   }
-  
-public Administrador generarUsuariosAdministradores(Persona datosPeronales, String usuario, String password){
-    return new Administrador(datosPeronales,usuario,password);
-}
+
+  public Administrador generarUsuariosAdministradores(Persona datosPeronales, String usuario, String password) {
+    return new Administrador(datosPeronales, usuario, password);
+  }
 
 }

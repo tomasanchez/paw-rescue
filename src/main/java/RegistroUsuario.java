@@ -14,7 +14,6 @@ public class RegistroUsuario extends RegistroPersona {
   public String usuario;
   public String password;
 
-
   public RegistroUsuario usuario(String usuario) {
     this.usuario = Objects.requireNonNull(usuario);
     return this;

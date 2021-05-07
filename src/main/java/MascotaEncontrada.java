@@ -7,16 +7,16 @@ public class MascotaEncontrada {
   String descripcion;
   Coordenada lugar;
   LocalDate fecha;
-  
-  public String getDescripcion(){
+
+  public String getDescripcion() {
     return this.descripcion;
   }
-  
-  public Coordenada getLugar(){
+
+  public Coordenada getLugar() {
     return this.lugar;
   }
-  
-  public List <String> getFoto(){
+
+  public List<String> getFoto() {
     return this.foto;
   }
 
@@ -26,6 +26,5 @@ public class MascotaEncontrada {
     this.lugar = lugar;
     this.fecha = fecha;
   }
-	
-	
+
 }
