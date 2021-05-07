@@ -1,6 +1,4 @@
 import Exceptions.InvalidPasswordException;
-
-import java.util.List;
 import java.util.Objects;
 
 /**

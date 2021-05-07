@@ -1,4 +1,3 @@
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -35,26 +34,23 @@ public class Usuario {
    * 
    * @since 1.0
    */
- 
 
   public Usuario(Persona datosPeronales, String usuario, String password) {
     this.datosPeronales = Objects.requireNonNull(datosPeronales);
     this.usuario = Objects.requireNonNull(usuario);
     this.password = Objects.requireNonNull(password);
   }
-  
 
-  public Persona getDatosPeronales(){
+  public Persona getDatosPeronales() {
     return this.datosPeronales;
   }
-  
-  public String getUsuario(){
+
+  public String getUsuario() {
     return this.usuario;
   }
-  
-  public String getPassword(){
+
+  public String getPassword() {
     return this.password;
   }
-  
-  
+
 }
