@@ -14,14 +14,14 @@ public class ValidadorContrasenia {
 
   /**
    * Mínimos caracteres necesarios.
-   * 
+   *
    * @since 2.0
    */
   private final int LONGITUD_MINIMA;
 
   /**
    * Un validador con el standard de almenos 8 cartácteres.
-   * 
+   *
    * @since 1.0
    */
   public ValidadorContrasenia() {
@@ -30,9 +30,9 @@ public class ValidadorContrasenia {
 
   /**
    * Instancia un validador con los caracteres a elección.
-   * 
+   *
    * @param minimaLongitud la minima longitud de caracteres de una password
-   * 
+   *
    * @since 2.0
    */
   public ValidadorContrasenia(int minimaLongitud) {
@@ -51,7 +51,7 @@ public class ValidadorContrasenia {
 
   /**
    * Verifica que la password no esté vacía
-   * 
+   *
    * @param password la password a verificar
    * @return si es NULL.
    */
@@ -61,7 +61,7 @@ public class ValidadorContrasenia {
 
   /**
    * Valia si cumple con la mínima longitud
-   * 
+   *
    * @param password la password a validar
    * @return Si la password tiene pocos caracteres
    * @since 2.0
@@ -72,7 +72,7 @@ public class ValidadorContrasenia {
 
   /**
    * Valia si cumple con no estar un la lista
-   * 
+   *
    * @param password la password a validar
    * @return Si la password está entre las peores.
    * @since 1.0
@@ -83,7 +83,7 @@ public class ValidadorContrasenia {
 
   /**
    * Obtiene el top 10000 peores passwords
-   * 
+   *
    * @since 1.0
    */
   private void refreshLista() {
@@ -91,7 +91,7 @@ public class ValidadorContrasenia {
     String palabraLeida;
     peoresPasswords = new ArrayList<>();
     try (FileReader reader = new FileReader(filePath + "10k-worst-passwords.txt", Charset.defaultCharset());
-        BufferedReader buffer = new BufferedReader(reader)) {
+         BufferedReader buffer = new BufferedReader(reader)) {
 
       while ((palabraLeida = buffer.readLine()) != null) {
         peoresPasswords.add(palabraLeida);

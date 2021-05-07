@@ -44,4 +44,12 @@ public class Documento {
   static enum TipoDocumento {
     DNI, CI, LC, LE
   }
+  
+  public TipoDocumento getTipo(){
+    return this.tipo;
+  }
+  
+  public String getId(){
+    return this.id;
+  }
 }

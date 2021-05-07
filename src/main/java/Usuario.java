@@ -35,13 +35,26 @@ public class Usuario {
    * 
    * @since 1.0
    */
-  List<Mascota> mascotas;
+ 
 
-  public Usuario(Persona datosPeronales, String usuario, String password, List<Mascota> mascotas) {
+  public Usuario(Persona datosPeronales, String usuario, String password) {
     this.datosPeronales = Objects.requireNonNull(datosPeronales);
     this.usuario = Objects.requireNonNull(usuario);
     this.password = Objects.requireNonNull(password);
-    this.mascotas = Objects.requireNonNull(mascotas);
   }
+  
 
+  public Persona getDatosPeronales(){
+    return this.datosPeronales;
+  }
+  
+  public String getUsuario(){
+    return this.usuario;
+  }
+  
+  public String getPassword(){
+    return this.password;
+  }
+  
+  
 }

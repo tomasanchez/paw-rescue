@@ -1,11 +1,12 @@
+import java.time.LocalDate;
 import java.util.List;
 
 public class MascotaEncontrada {
 
-	private List <String> foto;
-	private String descripcion;
-	private Coordenada lugar;
-	//La chapita?
+  List<String> foto;
+  String descripcion;
+  Coordenada lugar;
+  LocalDate fecha;
   
   public String getDescripcion(){
     return this.descripcion;
@@ -18,12 +19,13 @@ public class MascotaEncontrada {
   public List <String> getFoto(){
     return this.foto;
   }
-	
-	public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar) {
-		this.foto = foto;
-		this.descripcion = descripcion;
-		this.lugar = lugar;
-	}
+
+  public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar, LocalDate fecha) {
+    this.foto = foto;
+    this.descripcion = descripcion;
+    this.lugar = lugar;
+    this.fecha = fecha;
+  }
 	
 	
 }

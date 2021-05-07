@@ -42,7 +42,7 @@ public class CaracteristicaTest {
    * @return El valor de la caracteristica.
    */
   static boolean castrado(boolean valor) {
-    return (boolean) new Caracteristica(TipoCaracteristica.CASTRADO, valor).valor;
+    return (boolean) new Caracteristica(Caracteristica.TipoCaracteristica.CASTRADO, valor).valor;
   }
 
   /**
@@ -52,7 +52,7 @@ public class CaracteristicaTest {
    * @return el valor de la característica.
    */
   static String color(String color) {
-    return (String) new Caracteristica(TipoCaracteristica.COLOR1, color).valor;
+    return (String) new Caracteristica(Caracteristica.TipoCaracteristica.COLOR1, color).valor;
   }
 
 }
