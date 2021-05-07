@@ -1,1 +1,7 @@
-Hice una superclase  RegistroPersonas que es un builder abstract que tiene todos los métodos para pedir los datos de una persona. Luego creé dos subclases RegistroRescatista y RegistroDuenio para heredar comportamiento (pedir nombre, apellido, etc). Esto lo hice porque al hacer un builder de Rescatista, me quedó muy largo el código y además un rescatista y un dueño de mascota comparten casi todos los mismo datos y métodos menos 1 (mascotas y mascota encontrada).
+# Rescate de Patitas
+
+## Entrega I
+
+### Diagrama de Clases
+
+![Diagrama-de-Clases-I](images/dc-1.png)
