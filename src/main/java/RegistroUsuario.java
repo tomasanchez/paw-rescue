@@ -19,10 +19,9 @@ public class RegistroUsuario extends RegistroPersona {
 
   public RegistroUsuario password(String password) {
 
-    if (new ValidadorContrasenia().validarContrasenia(password))
-      throw new InvalidPasswordException("La contrasenia esta en el top 10000 de las peores contraseñas");
+    new ValidadorContrasenia().ValidarContrasenia(this.usuario,password);
 
-    this.password = Objects.requireNonNull(password);
+    this.password = password;
 
     return this;
   }
