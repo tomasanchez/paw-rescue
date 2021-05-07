@@ -11,4 +11,15 @@ public class Administrador extends Usuario {
   public Administrador(Persona datosPeronales, String usuario, String password) {
     super(datosPeronales, usuario, password);
   }
+
+  /**
+   * Agrega una caracteristica a una mascota.
+   * 
+   * @param mascota la mascota a agregar una Caracteristica
+   * @param caracteristica la caracteristica a agregar
+   * @return la mascota modificada.
+   */
+  public Mascota caracterizar(Mascota mascota, Caracteristica caracteristica) {
+    return mascota.agregarCaracteristica(caracteristica);
+  }
 }

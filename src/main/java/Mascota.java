@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mascota {
@@ -10,6 +11,7 @@ public class Mascota {
   private List<String> fotos;
   private TipoMascota tipoMascota;
   // Caracteristica a definir
+  private List<Caracteristica> caracteristicas;
 
   /**
    * Instancia una mascota.
@@ -31,6 +33,7 @@ public class Mascota {
     this.sexo = sexo;
     this.descripcionFisica = descripcionFisica;
     this.fotos = fotos;
+    this.caracteristicas = new ArrayList<Caracteristica>();
   }
 
   public String getNombre() {
@@ -61,4 +64,28 @@ public class Mascota {
     return this.fotos;
   }
 
+  public List<Caracteristica> getCaracteristicas() {
+    return this.caracteristicas;
+  }
+
+  /**
+   * Añade una nueva caracteristica.
+   * 
+   * @param caracteristica nueva caracteristica.
+   * @return la mascota modificada.
+   */
+  public Mascota agregarCaracteristica(Caracteristica caracteristica) {
+    this.getCaracteristicas().add(caracteristica);
+    return this;
+  }
+
+  /**
+   * Busca si posee el tipo de caracteristica.
+   * 
+   * @param tipo la caracteristica
+   * @return si posee o no la caracteristica.
+   */
+  public Boolean poseeCaracteristica(Caracteristica.TipoCaracteristica tipo) {
+    return this.caracteristicas.stream().anyMatch(c -> c.caracteristica == tipo);
+  }
 }
