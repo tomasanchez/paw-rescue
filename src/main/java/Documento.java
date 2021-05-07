@@ -1,33 +1,33 @@
 import java.util.Objects;
 
 /**
- * Documento de una Persona
+ * Documento de una Persona.
  * 
- * @author Tomás Sánchez
+ * @author Tomás Sánchez.
  * @since 05.02.2021
  * @version 1.0
  */
 public class Documento {
 
   /**
-   * El Tipo de Documento
+   * El Tipo de Documento.
    * 
    * @since 1.0
    */
   TipoDocumento tipo;
 
   /**
-   * El número de identificación en sí
+   * El número de identificación en sí.
    * 
    * @since 1.0
    */
   String id;
 
   /**
-   * Instancia un nuevo documento
+   * Instancia un nuevo documento.
    * 
-   * @param tipo el tipo de documento
-   * @param id   el número de identificación
+   * @param tipo el tipo de documento.
+   * @param id   el número de identificación.
    */
   public Documento(Documento.TipoDocumento tipo, String id) {
     this.tipo = Objects.requireNonNull(tipo);
@@ -35,7 +35,7 @@ public class Documento {
   }
 
   /**
-   * Tipo de un Documento
+   * Tipo de un Documento.
    * 
    * @author Tomás Sánchez
    * @since 02.05.2021

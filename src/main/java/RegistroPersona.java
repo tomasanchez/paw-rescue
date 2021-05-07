@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * Builder de una Persona
+ * Builder de una Persona.
  *
  * @since 05.03.2021
  * @version 2.0
@@ -54,11 +54,11 @@ public abstract class RegistroPersona {
    * @since 2.0
    */
   public Persona datosPeronales() {
-    return new Persona(this.nombre, this.apellido, this.registrarDocumento(), this.fechaNacimiento, this.contacto);
+    return new Persona(nombre, apellido, registrarDocumento(), fechaNacimiento, contacto);
   }
 
   /**
-   * Registra el documento de una persona
+   * Registra el documento de una persona.
    *
    * @return un Documento
    * @since 2.0

@@ -1,5 +1,6 @@
-import Exceptions.InvalidPasswordException;
 import org.junit.jupiter.api.Test;
+
+import exeptions.InvalidPasswordException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

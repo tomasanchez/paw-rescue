@@ -1,11 +1,11 @@
 public class Administrador extends Usuario {
 
   /**
-   * Mascotas registadas
+   * Mascotas registadas.
    *
-   * @param datosPeronales
-   * @param usuario
-   * @param password
+   * @param datosPeronales Nombre, DNI, etc.
+   * @param usuario        nombre de usuario.
+   * @param password       password válida.
    * @since 1.0
    */
   public Administrador(Persona datosPeronales, String usuario, String password) {

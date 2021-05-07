@@ -6,7 +6,7 @@ import java.util.Objects;
  * @author Kenti
  * @version 2.0
  */
-public class Usuario {
+public abstract class Usuario {
 
   /**
    * Los datos relacionados al nombre, apellido, documento, contacto.
@@ -23,18 +23,19 @@ public class Usuario {
   String usuario;
 
   /**
-   * Password del usuario
+   * Password del usuario.
    * 
    * @since 1.0
    */
   String password;
 
   /**
-   * Mascotas registadas
+   * Instancia un nuevo usuario.
    * 
-   * @since 1.0
+   * @param datosPeronales DNI, Nombre, etc.
+   * @param usuario        nombre de usuario.
+   * @param password       una password válida.
    */
-
   public Usuario(Persona datosPeronales, String usuario, String password) {
     this.datosPeronales = Objects.requireNonNull(datosPeronales);
     this.usuario = Objects.requireNonNull(usuario);

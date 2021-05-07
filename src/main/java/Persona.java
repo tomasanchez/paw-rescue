@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * Abstraccion de datos personales
+ * Abstraccion de datos personales.
  * 
  * @version 1.0
  * @since 05.05.2021
@@ -36,6 +36,7 @@ public class Persona {
   Contacto contacto;
 
   /**
+   * Instancia datos personales.
    * 
    * @param nombre          el nombre de la persona
    * @param apellido        su apellido

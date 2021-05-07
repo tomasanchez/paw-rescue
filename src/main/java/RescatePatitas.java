@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RescatePatitas {
+
   List<MascotaEncontrada> mascotasEncontradas;
   List<Usuario> usuarios;
 
@@ -13,7 +14,7 @@ public class RescatePatitas {
   }
 
   /**
-   * Obtiene las mascotas encontradas en los últimos días
+   * Obtiene las mascotas encontradas en los últimos días.
    *
    * @param dias ultimos días en los que filtrar
    * @return las mascotas filtradas
@@ -24,7 +25,7 @@ public class RescatePatitas {
   }
 
   /**
-   * Guarda la información de una mascota rescatada
+   * Guarda la información de una mascota rescatada.
    *
    * @param mascota la mascota rescatada
    */

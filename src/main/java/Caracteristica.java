@@ -1,7 +1,7 @@
 import java.util.Objects;
 
 /**
- * Caracteristicas de una Mascota
+ * Caracteristicas de una Mascota.
  *
  *
  * @since 05.03.2021
@@ -11,18 +11,18 @@ import java.util.Objects;
 public class Caracteristica {
 
   /**
-   * Los tipos de Caracteristicas disponibles
+   * Los tipos de Caracteristicas disponibles.
    *
    * @since 05.03.2021
    * @version 1.0
    * @author Tomás Sánchez
    */
-  static public enum TipoCaracteristica {
+  public static enum TipoCaracteristica {
     COLOR1, COLOR2, CASTRADO, MANCHAS, OTRO
   }
 
   /**
-   * La categoría de la caracteristica
+   * La categoría de la caracteristica.
    */
   TipoCaracteristica caracteristica;
 
@@ -34,8 +34,8 @@ public class Caracteristica {
   /**
    * Instancia caracteristicas no nulas.
    *
-   * @param caracteristica La "categoria" de la caracteristica
-   * @param valor          la característica en sí
+   * @param caracteristica La "categoria" de la caracteristica.
+   * @param valor          la característica en sí.
    */
   public Caracteristica(Caracteristica.TipoCaracteristica caracteristica, Object valor) {
     this.caracteristica = Objects.requireNonNull(caracteristica);

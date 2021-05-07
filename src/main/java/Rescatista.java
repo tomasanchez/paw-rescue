@@ -1,6 +1,6 @@
 
 /**
- * Datos de un Rescatista
+ * Datos de un Rescatista.
  *
  * @since 05.03.2021
  * @version 2.0
@@ -9,7 +9,6 @@
 public class Rescatista {
 
   /**
-   *
    * Nombre, Apellido, Documento, etc.
    *
    * @since 2.0
@@ -34,6 +33,11 @@ public class Rescatista {
     this.mascotaEncontrada = mascotaEncontrada;
   }
 
+  /**
+   * Registra una mascota encontrada.
+   * 
+   * @param rescatePatitas el programa en sí.
+   */
   void registrarMascotaEncontrada(RescatePatitas rescatePatitas) {
     rescatePatitas.mascotasEncontradas.add(mascotaEncontrada);
   }

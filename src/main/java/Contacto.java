@@ -1,7 +1,7 @@
 import java.util.Objects;
 
 /**
- * Datos de Contacto
+ * Datos de Contacto.
  * 
  * @author Tomás Sánchez
  * @since 05.02.2021
@@ -38,12 +38,12 @@ public class Contacto {
   String mail;
 
   /**
-   * Instancia un contacto
+   * Instancia un contacto.
    * 
-   * @param nombre   el nombre del contato
-   * @param apellido el apellido del contacto
-   * @param telefono un número de telefono
-   * @param mail     una direccion de email
+   * @param nombre   el nombre del contato.
+   * @param apellido el apellido del contacto.
+   * @param telefono un número de telefono.
+   * @param mail     una direccion de email.
    */
   public Contacto(String nombre, String apellido, String telefono, String mail) {
     this.nombre = Objects.requireNonNull(nombre);

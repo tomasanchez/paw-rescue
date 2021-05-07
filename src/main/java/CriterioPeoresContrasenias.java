@@ -1,5 +1,3 @@
-import Exceptions.InvalidPasswordException;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,29 +6,40 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CriterioPeoresContrasenias implements CriterioPassword{
+import exeptions.InvalidPasswordException;
+
+public class CriterioPeoresContrasenias implements CriterioPassword {
   private List<String> peoresPasswords;
   private Long ultimoRefresh;
-  
-  public CriterioPeoresContrasenias(){
+
+  public CriterioPeoresContrasenias() {
     refreshLista();
   }
+
+  public Long getUltimoRefresh() {
+    return this.ultimoRefresh;
+  }
+
   @Override
-  public void cumpleCriterio(String usuario, String password){
-    if(estaEntreLasPeores(password))
+  public void cumpleCriterio(String usuario, String password) {
+    if (estaEntreLasPeores(password)) {
       throw new InvalidPasswordException("La contrasenia esta en el top 10000 de las peores contraseñas");
+    }
   }
 
   private boolean estaEntreLasPeores(String password) {
     return peoresPasswords.stream().anyMatch(password::contentEquals);
   }
 
+  /**
+   * Refreca la lista de peores contraseñas.
+   */
   private void refreshLista() {
     String filePath = System.getProperty("user.dir") + "/src/files/";
     String palabraLeida;
     peoresPasswords = new ArrayList<>();
     try (FileReader reader = new FileReader(filePath + "10k-worst-passwords.txt", Charset.defaultCharset());
-         BufferedReader buffer = new BufferedReader(reader)) {
+        BufferedReader buffer = new BufferedReader(reader)) {
 
       while ((palabraLeida = buffer.readLine()) != null) {
         peoresPasswords.add(palabraLeida);
