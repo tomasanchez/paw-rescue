@@ -7,6 +7,7 @@ public class MascotaEncontrada {
   String descripcion;
   Coordenada lugar;
   LocalDate fecha;
+  int chapita;
 
   public String getDescripcion() {
     return this.descripcion;
@@ -15,6 +16,8 @@ public class MascotaEncontrada {
   public Coordenada getLugar() {
     return this.lugar;
   }
+  
+  public int getChapita(){ return this.chapita; }
 
   public List<String> getFoto() {
     return this.foto;
@@ -29,11 +32,12 @@ public class MascotaEncontrada {
    * @param fecha la fecha en la que fue encontrado.
    */
   public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar,
-      LocalDate fecha) {
+      LocalDate fecha, int chapita) {
     this.foto = foto;
     this.descripcion = descripcion;
     this.lugar = lugar;
     this.fecha = fecha;
+    this.chapita = chapita;
   }
 
 }

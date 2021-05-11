@@ -36,11 +36,13 @@ public class Rescatista {
   /**
    * Registra una mascota encontrada.
    * 
-   * @param rescatePatitas el programa en sí.
+   * @param 
    */
-  void registrarMascotaEncontrada(RescatePatitas rescatePatitas) {
-    rescatePatitas.mascotasEncontradas.add(mascotaEncontrada);
+  void registrarMascotaEncontrada(MascotaEncontrada mascotaEncontrada,AdministracionUsers administracionUsers) {
+    this.mascotaEncontrada = mascotaEncontrada;
+   administracionUsers.notificarDuenioMascotaPerdida(mascotaEncontrada);
   }
+  
 
   public Persona getDatosPeronales() {
     return this.datosPeronales;

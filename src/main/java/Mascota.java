@@ -12,6 +12,7 @@ public class Mascota {
   private TipoMascota tipoMascota;
   // Caracteristica a definir
   private List<Caracteristica> caracteristicas;
+  private int idChapita;
 
   /**
    * Instancia una mascota.
@@ -25,7 +26,7 @@ public class Mascota {
    * @param fotos Lista de URLs de fotos.
    */
   public Mascota(String nombre, String apodo, TipoMascota tipoMascota, int edad, Sexo sexo,
-      String descripcionFisica, List<String> fotos) {
+      String descripcionFisica, List<String> fotos, int idChapita) {
     this.nombre = nombre;
     this.apodo = apodo;
     this.tipoMascota = tipoMascota;
@@ -33,7 +34,8 @@ public class Mascota {
     this.sexo = sexo;
     this.descripcionFisica = descripcionFisica;
     this.fotos = fotos;
-    this.caracteristicas = new ArrayList<Caracteristica>();
+    this.caracteristicas = new ArrayList<>();
+    this.idChapita = idChapita;
   }
 
   public String getNombre() {
@@ -67,6 +69,8 @@ public class Mascota {
   public List<Caracteristica> getCaracteristicas() {
     return this.caracteristicas;
   }
+  
+  public int getIdChapita(){ return this.idChapita ; }
 
   /**
    * Añade una nueva caracteristica.

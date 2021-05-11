@@ -3,13 +3,14 @@ public class Administrador extends Usuario {
   /**
    * Mascotas registadas.
    *
-   * @param datosPeronales Nombre, DNI, etc.
+   *
+   * @param persona
    * @param usuario nombre de usuario.
    * @param password password válida.
    * @since 1.0
    */
-  public Administrador(Persona datosPeronales, String usuario, String password) {
-    super(datosPeronales, usuario, password);
+  public Administrador(Persona persona, String usuario, String password) {
+    super( usuario, password);
   }
 
   /**
@@ -22,4 +23,6 @@ public class Administrador extends Usuario {
   public Mascota caracterizar(Mascota mascota, Caracteristica caracteristica) {
     return mascota.agregarCaracteristica(caracteristica);
   }
+  
+  
 }

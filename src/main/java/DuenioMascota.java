@@ -4,11 +4,8 @@ import java.util.List;
 public class DuenioMascota extends Usuario {
 
   List<Mascota> mascotas;
-
-  public DuenioMascota(Persona datosPeronales, String usuario, String password) {
-    this(datosPeronales, usuario, password, new ArrayList<Mascota>());
-  }
-
+  Persona datosPeronales;
+  
   /**
    * Mascotas registadas.
    *
@@ -19,8 +16,9 @@ public class DuenioMascota extends Usuario {
    */
   public DuenioMascota(Persona datosPeronales, String usuario, String password,
       List<Mascota> mascotas) {
-    super(datosPeronales, usuario, password);
+    super(usuario, password);
     this.mascotas = mascotas;
+    this.datosPeronales = datosPeronales;
   }
 
   /**
@@ -28,9 +26,12 @@ public class DuenioMascota extends Usuario {
    * 
    * @param mascota la mascota a registrar
    */
-  public DuenioMascota registrarMascota(Mascota mascota) {
+  public void registrarMascota(Mascota mascota) {
     mascotas.add(mascota);
-    return this;
+  }
+
+  boolean esDuenio(MascotaEncontrada mascotaEncontrada) {
+    return mascotas.stream().anyMatch(mascota -> mascota.getIdChapita() == mascotaEncontrada.getChapita());
   }
 
   public List<Mascota> getMascotas() {
@@ -39,6 +40,10 @@ public class DuenioMascota extends Usuario {
 
   public Integer getCantidadMascotas() {
     return this.mascotas.size();
+  }
+
+  public Persona getDatosPeronales() {
+    return this.datosPeronales;
   }
 
 }

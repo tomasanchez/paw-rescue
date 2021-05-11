@@ -13,7 +13,6 @@ public abstract class Usuario {
    * 
    * @since 2.0
    */
-  Persona datosPeronales;
 
   /**
    * Usuario de logging.
@@ -31,19 +30,13 @@ public abstract class Usuario {
 
   /**
    * Instancia un nuevo usuario.
-   * 
-   * @param datosPeronales DNI, Nombre, etc.
+   *
    * @param usuario nombre de usuario.
    * @param password una password válida.
    */
-  public Usuario(Persona datosPeronales, String usuario, String password) {
-    this.datosPeronales = Objects.requireNonNull(datosPeronales);
+  public Usuario( String usuario, String password) {
     this.usuario = Objects.requireNonNull(usuario);
     this.password = Objects.requireNonNull(password);
-  }
-
-  public Persona getDatosPeronales() {
-    return this.datosPeronales;
   }
 
   public String getUsuario() {

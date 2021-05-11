@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Prueba de Caracteristicas
- * 
+ *
  * @since 05.03.2021
  * @version 1.0
  * @author Tomás Sánchez
@@ -37,7 +37,7 @@ public class CaracteristicaTest {
 
   /**
    * Instancia una caracteristica de Castrado
-   * 
+   *
    * @param valor si está o no castrado
    * @return El valor de la caracteristica.
    */
@@ -47,7 +47,7 @@ public class CaracteristicaTest {
 
   /**
    * Instancia una caracteristica de Color Principal.
-   * 
+   *
    * @param color el color caracteristíco.
    * @return el valor de la característica.
    */
