@@ -31,7 +31,7 @@ public class DuenioMascota extends Usuario {
   }
 
   boolean esDuenio(MascotaEncontrada mascotaEncontrada) {
-    return mascotas.stream().anyMatch(mascota -> mascota.getIdChapita() == mascotaEncontrada.getChapita());
+    return mascotas.stream().anyMatch(mascota -> mascota.esLaMismaMascota(mascotaEncontrada));
   }
 
   public List<Mascota> getMascotas() {

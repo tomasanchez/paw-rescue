@@ -32,4 +32,5 @@ public class AdministracionUsers {
   void notificarDuenioMascotaPerdida(MascotaEncontrada mascotaEncontrada){
     notificarMascotaEncontrada(buscarDueño(mascotaEncontrada));
   }
+  
 }

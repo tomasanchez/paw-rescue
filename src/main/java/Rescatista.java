@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 
 /**
  * Datos de un Rescatista.
@@ -52,4 +53,7 @@ public class Rescatista {
     return this.mascotaEncontrada;
   }
 
+  boolean compararFechaMascotaEncontrada(long dias){
+    return mascotaEncontrada.fecha.isAfter(LocalDate.now().minusDays(dias));
+  }
 }

@@ -10,17 +10,7 @@ public class AdminTest {
       admindePrueba();
     });
   }
-
-  @Test
-  public void adminAgregaCaracteristica() {
-    Mascota mascota = MascotaTest.gatitoDePrueba("Gato");
-    Administrador admin = admindePrueba();
-    Caracteristica castrado = new Caracteristica(Caracteristica.TipoCaracteristica.CASTRADO, true);
-    admin.caracterizar(mascota, castrado);
-    assertEquals(true, mascota.poseeCaracteristica(castrado.caracteristica));
-  }
-
-
+  
   public static Administrador admindePrueba() {
     return UsuarioTest.usuarioDePruebas("Admin", "Istrador").administrador();
   }

@@ -11,17 +11,6 @@ import java.util.Objects;
 public class Caracteristica {
 
   /**
-   * Los tipos de Caracteristicas disponibles.
-   *
-   * @since 05.03.2021
-   * @version 1.0
-   * @author Tomás Sánchez
-   */
-  public static enum TipoCaracteristica {
-    COLOR1, COLOR2, CASTRADO, MANCHAS, OTRO
-  }
-
-  /**
    * La categoría de la caracteristica.
    */
   TipoCaracteristica caracteristica;
@@ -37,7 +26,7 @@ public class Caracteristica {
    * @param caracteristica La "categoria" de la caracteristica.
    * @param valor          la característica en sí.
    */
-  public Caracteristica(Caracteristica.TipoCaracteristica caracteristica, Object valor) {
+  public Caracteristica(TipoCaracteristica caracteristica, Object valor) {
     this.caracteristica = Objects.requireNonNull(caracteristica);
     this.valor = Objects.requireNonNull(valor);
   }
@@ -49,4 +38,7 @@ public class Caracteristica {
   public Object getValor() {
     return this.valor;
   }
+}
+enum TipoCaracteristica {
+  COLOR1, COLOR2, CASTRADO, MANCHAS, OTRO
 }

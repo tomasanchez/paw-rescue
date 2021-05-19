@@ -3,16 +3,16 @@ import java.util.List;
 
 public class Mascota {
 
-  private String nombre;
-  private String apodo;
-  private int edad;
-  private Sexo sexo;
-  private String descripcionFisica;
-  private List<String> fotos;
-  private TipoMascota tipoMascota;
+  private final String nombre;
+  private final String apodo;
+  private final int edad;
+  private final Sexo sexo;
+  private final String descripcionFisica;
+  private final List<String> fotos;
+  private final TipoMascota tipoMascota;
   // Caracteristica a definir
-  private List<Caracteristica> caracteristicas;
-  private int idChapita;
+  private final List<Caracteristica> caracteristicas;
+  private final int idChapita;
 
   /**
    * Instancia una mascota.
@@ -78,6 +78,7 @@ public class Mascota {
    * @param caracteristica nueva caracteristica.
    * @return la mascota modificada.
    */
+  //TODO corregir
   public Mascota agregarCaracteristica(Caracteristica caracteristica) {
     this.getCaracteristicas().add(caracteristica);
     return this;
@@ -89,7 +90,13 @@ public class Mascota {
    * @param tipo la caracteristica
    * @return si posee o no la caracteristica.
    */
-  public Boolean poseeCaracteristica(Caracteristica.TipoCaracteristica tipo) {
-    return this.caracteristicas.stream().anyMatch(c -> c.caracteristica == tipo);
+  
+  //TODO corregir 
+  public Boolean poseeCaracteristica(TipoCaracteristica tipo) {
+    return caracteristicas.stream().anyMatch(c -> c.caracteristica == tipo);
+  }
+
+  boolean esLaMismaMascota(MascotaEncontrada mascotaEncontrada){
+    return this.getIdChapita() == mascotaEncontrada.getChapita();
   }
 }

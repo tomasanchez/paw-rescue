@@ -5,10 +5,10 @@ import java.util.stream.Collectors;
 
 public class AdministracionRescates {
 
-    List<Rescatista> rescatistas;
+    List<Rescatista> rescates;
     
     public AdministracionRescates() {
-      this.rescatistas = new ArrayList<>();
+      this.rescates = new ArrayList<>();
     }
 
     /**
@@ -18,24 +18,25 @@ public class AdministracionRescates {
      * @return las mascotas filtradas
      */
     List<Rescatista> mascotasEncontradas(long dias) {
-      return rescatistas.stream()
-        .filter(rescatista -> rescatista.mascotaEncontrada.fecha.isAfter(LocalDate.now().minusDays(dias)))
+      return rescates.stream()
+        .filter(rescate -> rescate.compararFechaMascotaEncontrada(dias))
         .collect(Collectors.toList());
     }
+    
     /**
      * Guarda la información de una mascota rescatada.
      *
      * @param rescatista el rescatista rescatada
      */
     public void registrarRescate(Rescatista rescatista) {
-      this.rescatistas.add(rescatista);
+      rescates.add(rescatista);
     }
     
     
     public List<Rescatista> getMascotasEncontradas() {
-      return this.rescatistas;
+      return rescates;
     }
-
+    
 
   }
 
