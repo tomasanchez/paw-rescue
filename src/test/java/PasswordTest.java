@@ -36,8 +36,8 @@ public class PasswordTest {
    * @param password la password a generar
    * @return el Registro de usuario a continuar.
    */
-  private static RegistroUsuario generarPassword(String password) {
-    return new RegistroUsuario().password(password);
+  private static RegistroDuenioMascota generarPassword(String password) {
+    return new RegistroDuenioMascota().password(password);
   }
 
 }

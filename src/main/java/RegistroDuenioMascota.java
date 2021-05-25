@@ -8,14 +8,14 @@ import java.util.Objects;
  * @author Kenti
  * @version 2.0
  */
-public class RegistroUsuario extends RegistroPersona {
+public class RegistroDuenioMascota extends RegistroPersona {
 
   public String usuario;
   public String password;
   List<Mascota> mascotas;
 
 
-  public RegistroUsuario() {
+  public RegistroDuenioMascota() {
     this.mascotas = new ArrayList<>();
   }
   
@@ -25,7 +25,7 @@ public class RegistroUsuario extends RegistroPersona {
    * //@param mascota la mascota a registar.
    * @return el registro a continuar
    */
-  public RegistroUsuario mascota(List<Mascota> mascotas) {
+  public RegistroDuenioMascota mascota(List<Mascota> mascotas) {
     this.mascotas = Objects.requireNonNull(mascotas);
     //this.mascotas.add(Objects.requireNonNull(mascota));
     return this;
@@ -37,7 +37,7 @@ public class RegistroUsuario extends RegistroPersona {
    * @param usuario nombre de usuario a crear.
    * @return el registro a continuar.
    */
-  public RegistroUsuario usuario(String usuario) {
+  public RegistroDuenioMascota usuario(String usuario) {
     this.usuario = Objects.requireNonNull(usuario);
     return this;
   }
@@ -48,7 +48,7 @@ public class RegistroUsuario extends RegistroPersona {
    * @param password la password a guardar.
    * @return el registro a continuar.
    */
-  public RegistroUsuario password(String password) {
+  public RegistroDuenioMascota password(String password) {
 
     new ValidadorContrasenia().validarPassword(this.usuario, password);
 

@@ -50,7 +50,7 @@ public class DuenioMascotaTest {
   }
   
      DuenioMascota crearDuenio(String usuario,String contraseña,Persona persona,List<Mascota> mascotas){
-     RegistroUsuario registroDuenio = new RegistroUsuario();
+     RegistroDuenioMascota registroDuenio = new RegistroDuenioMascota();
      registroDuenio.nombre(persona.nombre);
      registroDuenio.usuario(usuario);
      registroDuenio.apellido(persona.apellido);

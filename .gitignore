@@ -38,3 +38,4 @@ target/**
 *.iml
 .idea/**
 /target/
+/bin/
