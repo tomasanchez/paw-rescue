@@ -21,7 +21,7 @@ public class Documento {
    * 
    * @since 1.0
    */
-  String id;
+  long id;
 
   /**
    * Instancia un nuevo documento.
@@ -29,9 +29,9 @@ public class Documento {
    * @param tipo el tipo de documento.
    * @param id el número de identificación.
    */
-  public Documento(Documento.TipoDocumento tipo, String id) {
+  public Documento(TipoDocumento tipo,long id) {
     this.tipo = Objects.requireNonNull(tipo);
-    this.id = Objects.requireNonNull(id);
+    this.id =Objects.requireNonNull(id);
   }
 
   /**
@@ -41,15 +41,16 @@ public class Documento {
    * @since 02.05.2021
    * @version 1.0
    */
-  static enum TipoDocumento {
-    DNI, CI, LC, LE
-  }
+  
 
   public TipoDocumento getTipo() {
     return this.tipo;
   }
 
-  public String getId() {
+  public long getId() {
     return this.id;
   }
+}
+enum TipoDocumento {
+  DNI, CI, LC, LE
 }

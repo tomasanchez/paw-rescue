@@ -13,7 +13,7 @@ public abstract class RegistroPersona {
   protected String apellido;
   protected String nombre;
   protected LocalDate fechaNacimiento;
-  protected Documento.TipoDocumento tipoDocumento;
+  protected TipoDocumento tipoDocumento;
   protected Long numeroDocumento;
   protected Contacto contacto;
 
@@ -32,7 +32,7 @@ public abstract class RegistroPersona {
     return this;
   }
 
-  public RegistroPersona tipoDocumento(Documento.TipoDocumento tipoDocumento) {
+  public RegistroPersona tipoDocumento(TipoDocumento tipoDocumento) {
     this.tipoDocumento = Objects.requireNonNull(tipoDocumento);
     return this;
   }
@@ -64,6 +64,6 @@ public abstract class RegistroPersona {
    * @since 2.0
    */
   private Documento registrarDocumento() {
-    return new Documento(tipoDocumento, numeroDocumento.toString());
+    return new Documento(tipoDocumento, numeroDocumento);
   }
 }

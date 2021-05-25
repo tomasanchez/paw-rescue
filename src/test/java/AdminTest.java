@@ -1,4 +1,4 @@
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+/*import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +12,7 @@ public class AdminTest {
   }
   
   public static Administrador admindePrueba() {
-    return UsuarioTest.usuarioDePruebas("Admin", "Istrador").administrador();
+    return UsuariosTest.usuarioDePruebas("Admin", "Istrador").administrador();
   }
 }
+*/

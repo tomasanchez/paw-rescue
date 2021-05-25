@@ -16,28 +16,18 @@ public class RegistroUsuario extends RegistroPersona {
 
 
   public RegistroUsuario() {
-    this.mascotas = new ArrayList<Mascota>();
+    this.mascotas = new ArrayList<>();
   }
-
-  /**
-   * Agrega un listado de mascotas al owner de una mascota.
-   * 
-   * @param mascotas un listado de mascotas.
-   * @return el registro a continuar.
-   */
-  public RegistroUsuario mascotas(List<Mascota> mascotas) {
-    this.mascotas = Objects.requireNonNull(mascotas);
-    return this;
-  }
-
+  
   /**
    * Añade una mascota a un owner.
    * 
-   * @param mascota la mascota a registar.
+   * //@param mascota la mascota a registar.
    * @return el registro a continuar
    */
-  public RegistroUsuario mascota(Mascota mascota) {
-    this.mascotas.add(Objects.requireNonNull(mascota));
+  public RegistroUsuario mascota(List<Mascota> mascotas) {
+    this.mascotas = Objects.requireNonNull(mascotas);
+    //this.mascotas.add(Objects.requireNonNull(mascota));
     return this;
   }
 
@@ -65,15 +55,6 @@ public class RegistroUsuario extends RegistroPersona {
     this.password = password;
 
     return this;
-  }
-
-  /**
-   * Realiza el registro de un Usuario.
-   * 
-   * @return un nuevo Administrador
-   */
-  public Administrador administrador() {
-    return new Administrador(datosPeronales(), usuario, password);
   }
 
   /**

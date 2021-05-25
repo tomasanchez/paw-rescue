@@ -39,6 +39,7 @@ public class Rescatista {
    * 
    * @param 
    */
+  //Modificar
   void registrarMascotaEncontrada(MascotaEncontrada mascotaEncontrada,AdministracionUsers administracionUsers) {
     this.mascotaEncontrada = mascotaEncontrada;
    administracionUsers.notificarDuenioMascotaPerdida(mascotaEncontrada);

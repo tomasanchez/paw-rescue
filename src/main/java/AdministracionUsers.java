@@ -22,15 +22,17 @@ public class AdministracionUsers {
 
   public  void registrarAdministradores(Administrador administrador){ administradores.add(administrador); }
   
-  void notificarMascotaEncontrada(DuenioMascota duenioMascota){
+  //modificar
+  void notificarDuenioMascotaEncontrada(DuenioMascota duenioMascota){
   }
 
   DuenioMascota buscarDueño(MascotaEncontrada mascotaEncontrada){
     return (DuenioMascota) dueniosMascotas.stream().filter(duenio -> duenio.esDuenio(mascotaEncontrada));
   }
   
+  //modificar
   void notificarDuenioMascotaPerdida(MascotaEncontrada mascotaEncontrada){
-    notificarMascotaEncontrada(buscarDueño(mascotaEncontrada));
+    notificarDuenioMascotaEncontrada(buscarDueño(mascotaEncontrada));
   }
   
 }

@@ -20,6 +20,7 @@ public class DuenioMascota extends Usuario {
     this.mascotas = mascotas;
     this.datosPeronales = datosPeronales;
   }
+  
 
   /**
    * Asocia una mascota a un usuario.
@@ -39,7 +40,7 @@ public class DuenioMascota extends Usuario {
   }
 
   public Integer getCantidadMascotas() {
-    return this.mascotas.size();
+    return mascotas.size();
   }
 
   public Persona getDatosPeronales() {
