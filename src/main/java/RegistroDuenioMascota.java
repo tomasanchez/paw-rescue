@@ -63,6 +63,6 @@ public class RegistroDuenioMascota extends RegistroDatosPersonales {
    * @return un nuevo Mascota Owner.
    */
   public DuenioMascota mascotaOwner() {
-    return new DuenioMascota(datosPeronales(), usuario, password, mascotas);
+    return new DuenioMascota(datosPersonales(), usuario, password, mascotas);
   }
 }

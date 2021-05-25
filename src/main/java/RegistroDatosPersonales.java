@@ -53,7 +53,7 @@ public abstract class RegistroDatosPersonales {
    * @return Datos personales.
    * @since 2.0
    */
-  public Persona datosPeronales() {
+  public Persona datosPersonales() {
     return new Persona(nombre, apellido, registrarDocumento(), fechaNacimiento, contacto);
   }
 
@@ -67,3 +67,5 @@ public abstract class RegistroDatosPersonales {
     return new Documento(tipoDocumento, numeroDocumento);
   }
 }
+
+

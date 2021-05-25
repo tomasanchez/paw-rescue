@@ -14,7 +14,7 @@ public class Rescatista {
    *
    * @since 2.0
    */
-  Persona datosPeronales;
+  Persona datosPersonales;
 
   /**
    * Animal encontrado.
@@ -26,11 +26,11 @@ public class Rescatista {
   /**
    * Guarda cuenta de una persona que rescata una mascota.
    *
-   * @param datosPeronales los datos de Nombre, Apellido, Documento, etc.
+   * @param datosPersonales los datos de Nombre, Apellido, Documento, etc.
    * @param mascotaEncontrada el animal rescatado.
    */
-  public Rescatista(Persona datosPeronales, MascotaEncontrada mascotaEncontrada) {
-    this.datosPeronales = datosPeronales;
+  public Rescatista(Persona datosPersonales, MascotaEncontrada mascotaEncontrada) {
+    this.datosPersonales = datosPersonales;
     this.mascotaEncontrada = mascotaEncontrada;
   }
 
@@ -47,7 +47,7 @@ public class Rescatista {
   
 
   public Persona getDatosPeronales() {
-    return this.datosPeronales;
+    return this.datosPersonales;
   }
 
   public MascotaEncontrada getMascotaEncontrada() {

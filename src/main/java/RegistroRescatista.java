@@ -9,7 +9,7 @@ public class RegistroRescatista extends RegistroDatosPersonales {
   }
 
   public Rescatista rescatista() {
-    return new Rescatista(datosPeronales(), mascotaEncontrada);
+    return new Rescatista(datosPersonales(), mascotaEncontrada);
   }
 
 }
