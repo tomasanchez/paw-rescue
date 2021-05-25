@@ -1,3 +1,4 @@
+package Password;
 public interface CriterioPassword {
 
   /**

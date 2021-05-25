@@ -1,3 +1,4 @@
+package Password;
 import exeptions.InvalidPasswordException;
 
 public class CriterioLargoMinimo implements CriterioPassword {

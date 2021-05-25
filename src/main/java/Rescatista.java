@@ -45,6 +45,7 @@ public class Rescatista {
    administracionUsers.notificarDuenioMascotaPerdida(mascotaEncontrada);
   }
   
+  
 
   public Persona getDatosPeronales() {
     return this.datosPersonales;
