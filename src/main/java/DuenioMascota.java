@@ -4,7 +4,7 @@ import java.util.List;
 public class DuenioMascota extends Usuario {
 
   List<Mascota> mascotas;
-  Persona datosPersonales;
+  DatosPersonales datosPersonales;
   
   /**
    * Mascotas registadas.
@@ -14,7 +14,7 @@ public class DuenioMascota extends Usuario {
    * @param password password válida.
    * @param mascotas las mascotas registadas
    */
-  public DuenioMascota(Persona datosPersonales, String usuario, String password,
+  public DuenioMascota(DatosPersonales datosPersonales, String usuario, String password,
       List<Mascota> mascotas) {
     super(usuario, password);
     this.mascotas = mascotas;
@@ -43,7 +43,7 @@ public class DuenioMascota extends Usuario {
     return mascotas.size();
   }
 
-  public Persona getDatosPeronales() {
+  public DatosPersonales getDatosPeronales() {
     return this.datosPersonales;
   }
 

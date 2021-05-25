@@ -10,7 +10,7 @@ public class DuenioMascotaTest {
 
   @Test
   public void duenioMascotasTieneMasDeUnaMascota() {
-    Persona persona = new Persona("Julia","Perez",new Documento(TipoDocumento.DNI,56932156),
+    DatosPersonales persona = new DatosPersonales("Julia","Perez",new Documento(TipoDocumento.DNI,56932156),
       LocalDate.now(),contacto());
     List<Mascota> mascotas = new ArrayList<>();
     mascotas.add(perra());
@@ -21,7 +21,7 @@ public class DuenioMascotaTest {
 
   @Test
   public void duenioMascotasNoTieneNingunaMascotas() {//El duenio de mascotas puede no tener mascotas ??
-    Persona persona = new Persona("Juan","Dias",new Documento(TipoDocumento.DNI,56932786),
+    DatosPersonales persona = new DatosPersonales("Juan","Dias",new Documento(TipoDocumento.DNI,56932786),
       LocalDate.now(),contacto());
     List<Mascota> mascotas = new ArrayList<>();
     DuenioMascota duenio = crearDuenio("Duenio2","16f589k6t3f",persona,mascotas);
@@ -30,7 +30,7 @@ public class DuenioMascotaTest {
 
   @Test
   public void duenioMascotasRegistraUnaMascotaYAhoraTiene1MascotaMas() {
-    Persona persona = new Persona("Juan","Dias",new Documento(TipoDocumento.DNI,56932786),
+    DatosPersonales persona = new DatosPersonales("Juan","Dias",new Documento(TipoDocumento.DNI,56932786),
       LocalDate.now(),contacto());
     List<Mascota> mascotas = new ArrayList<>();
     DuenioMascota duenioGato = crearDuenio("Duenio2","16f589k6t3f",persona,mascotas);
@@ -49,7 +49,7 @@ public class DuenioMascotaTest {
       "Pelo corto y tamaño madiano",null, 586934);
   }
   
-     DuenioMascota crearDuenio(String usuario,String contraseña,Persona persona,List<Mascota> mascotas){
+     DuenioMascota crearDuenio(String usuario,String contraseña,DatosPersonales persona,List<Mascota> mascotas){
      RegistroDuenioMascota registroDuenio = new RegistroDuenioMascota();
      registroDuenio.nombre(persona.nombre);
      registroDuenio.usuario(usuario);

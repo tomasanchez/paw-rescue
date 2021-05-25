@@ -14,7 +14,7 @@ public class Rescatista {
    *
    * @since 2.0
    */
-  Persona datosPersonales;
+  DatosPersonales datosPersonales;
 
   /**
    * Animal encontrado.
@@ -29,7 +29,7 @@ public class Rescatista {
    * @param datosPersonales los datos de Nombre, Apellido, Documento, etc.
    * @param mascotaEncontrada el animal rescatado.
    */
-  public Rescatista(Persona datosPersonales, MascotaEncontrada mascotaEncontrada) {
+  public Rescatista(DatosPersonales datosPersonales, MascotaEncontrada mascotaEncontrada) {
     this.datosPersonales = datosPersonales;
     this.mascotaEncontrada = mascotaEncontrada;
   }
@@ -47,7 +47,7 @@ public class Rescatista {
   
   
 
-  public Persona getDatosPeronales() {
+  public DatosPersonales getDatosPeronales() {
     return this.datosPersonales;
   }
 

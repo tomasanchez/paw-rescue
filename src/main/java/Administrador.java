@@ -9,7 +9,7 @@ public class Administrador extends Usuario {
    * @param password password válida.
    * @since 1.0
    */
-  public Administrador(Persona persona, String usuario, String password) {
+  public Administrador(DatosPersonales persona, String usuario, String password) {
     super( usuario, password);
   }
 

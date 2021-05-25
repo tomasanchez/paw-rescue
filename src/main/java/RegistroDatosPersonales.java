@@ -53,8 +53,8 @@ public abstract class RegistroDatosPersonales {
    * @return Datos personales.
    * @since 2.0
    */
-  public Persona datosPersonales() {
-    return new Persona(nombre, apellido, registrarDocumento(), fechaNacimiento, contacto);
+  public DatosPersonales datosPersonales() {
+    return new DatosPersonales(nombre, apellido, registrarDocumento(), fechaNacimiento, contacto);
   }
 
   /**

@@ -8,7 +8,7 @@ import java.util.Objects;
  * @since 05.05.2021
  * @author Tomás Sánchez
  */
-public class Persona {
+public class DatosPersonales {
 
   /**
    * El nombre de una persona.
@@ -45,7 +45,7 @@ public class Persona {
    * @param contacto datos de un contacto
    */
 
-  public Persona(String nombre, String apellido, Documento documento, LocalDate fechaNacimiento,
+  public DatosPersonales(String nombre, String apellido, Documento documento, LocalDate fechaNacimiento,
       Contacto contacto) {
     this.nombre = Objects.requireNonNull(nombre);
     this.apellido = Objects.requireNonNull(apellido);

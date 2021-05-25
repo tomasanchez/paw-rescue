@@ -31,7 +31,7 @@ public class RescatistaTest {
       LocalDate.now(),8965);
   }
   
-     Rescatista crearRescatista(Persona persona,MascotaEncontrada mascota){
+     Rescatista crearRescatista(DatosPersonales persona,MascotaEncontrada mascota){
     
      RegistroRescatista registroRescatista = new RegistroRescatista();
      registroRescatista.nombre(persona.nombre);
