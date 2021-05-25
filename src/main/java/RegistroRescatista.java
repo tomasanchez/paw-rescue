@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class RegistroRescatista extends RegistroPersona {
+public class RegistroRescatista extends RegistroDatosPersonales {
 
   private MascotaEncontrada mascotaEncontrada;
 

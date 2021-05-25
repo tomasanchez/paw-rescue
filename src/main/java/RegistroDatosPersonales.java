@@ -8,7 +8,7 @@ import java.util.Objects;
  * @version 2.0
  * @author Kenti
  */
-public abstract class RegistroPersona {
+public abstract class RegistroDatosPersonales {
 
   protected String apellido;
   protected String nombre;
@@ -17,32 +17,32 @@ public abstract class RegistroPersona {
   protected Long numeroDocumento;
   protected Contacto contacto;
 
-  public RegistroPersona nombre(String nombre) {
+  public RegistroDatosPersonales nombre(String nombre) {
     this.nombre = Objects.requireNonNull(nombre);
     return this;
   }
 
-  public RegistroPersona apellido(String apellido) {
+  public RegistroDatosPersonales apellido(String apellido) {
     this.apellido = Objects.requireNonNull(nombre);
     return this;
   }
 
-  public RegistroPersona fechaNacimiento(LocalDate fechaNacimiento) {
+  public RegistroDatosPersonales fechaNacimiento(LocalDate fechaNacimiento) {
     this.fechaNacimiento = Objects.requireNonNull(fechaNacimiento);
     return this;
   }
 
-  public RegistroPersona tipoDocumento(TipoDocumento tipoDocumento) {
+  public RegistroDatosPersonales tipoDocumento(TipoDocumento tipoDocumento) {
     this.tipoDocumento = Objects.requireNonNull(tipoDocumento);
     return this;
   }
 
-  public RegistroPersona numeroDocumento(Long numeroDocumento) {
+  public RegistroDatosPersonales numeroDocumento(Long numeroDocumento) {
     this.numeroDocumento = Objects.requireNonNull(numeroDocumento);
     return this;
   }
 
-  public RegistroPersona contacto(Contacto contacto) {
+  public RegistroDatosPersonales contacto(Contacto contacto) {
     this.contacto = Objects.requireNonNull(contacto);
     return this;
   }

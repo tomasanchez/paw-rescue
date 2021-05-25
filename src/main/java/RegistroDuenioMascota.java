@@ -8,7 +8,7 @@ import java.util.Objects;
  * @author Kenti
  * @version 2.0
  */
-public class RegistroDuenioMascota extends RegistroPersona {
+public class RegistroDuenioMascota extends RegistroDatosPersonales {
 
   public String usuario;
   public String password;
