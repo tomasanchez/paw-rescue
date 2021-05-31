@@ -40,7 +40,7 @@ public class CriterioPeoresContrasenias implements CriterioPassword {
     peoresPasswords = new ArrayList<>();
     try (
         FileReader reader =
-            new FileReader(filePath + "10k-worst-passwords.txt"),StandardCharsets.UTF_8);
+            new FileReader(filePath + "10k-worst-passwords.txt");
         BufferedReader buffer = new BufferedReader(reader)) {
 
       while ((palabraLeida = buffer.readLine()) != null) {
