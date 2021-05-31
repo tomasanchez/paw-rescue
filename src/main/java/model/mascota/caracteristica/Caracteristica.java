@@ -1,5 +1,8 @@
 package model.mascota.caracteristica;
 
+import java.util.Objects;
+import exeptions.mascota.InvalidCaracteristicaException;
+
 /**
  * Caracteristicas de una Mascota.
  *
@@ -9,10 +12,52 @@ package model.mascota.caracteristica;
  */
 public class Caracteristica {
 
-  String valor;
+  private static CaracteristicasDisponible disponibles;
 
+  private String valor;
+
+  /**
+   * Instancia una caracteristica.
+   * 
+   * @param valor la caracteristica.
+   */
   public Caracteristica(String valor) {
+    validar(valor);
     this.valor = valor;
+  }
+
+  public static CaracteristicasDisponible getDisponibles() {
+    return disponibles;
+  }
+
+  public static void setDisponibles(CaracteristicasDisponible disponibles) {
+    Caracteristica.disponibles = disponibles;
+  }
+
+  public String getValor() {
+    return valor;
+  }
+
+  public void setValor(String valor) {
+    this.valor = valor;
+  }
+
+  /**
+   * Valida la caracteristica.
+   * 
+   * @param valor la caracteristica a validar.
+   * @throws InvalidCaracteristicaException si la caracteristica no existe
+   */
+  private static void validar(String valor) {
+
+    if (Objects.isNull(valor)) {
+      throw new InvalidCaracteristicaException("No puede quedar vacía");
+    }
+
+    if (!disponibles.isDisponible(valor)) {
+      throw new InvalidCaracteristicaException("La característica no existe");
+    }
+
   }
 
 }

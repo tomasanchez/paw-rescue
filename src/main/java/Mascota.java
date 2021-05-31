@@ -90,13 +90,11 @@ public class Mascota {
   /**
    * Busca si posee el tipo de caracteristica.
    * 
-   * @param tipo la caracteristica
+   * @param caracteristica la caracteristica
    * @return si posee o no la caracteristica.
    */
-
-  // TODO corregir
-  public Boolean poseeCaracteristica(TipoCaracteristica tipo) {
-    return caracteristicas.stream().anyMatch(c -> c.caracteristica == tipo);
+  public Boolean poseeCaracteristica(Caracteristica caracteristica) {
+    return caracteristicas.contains(caracteristica);
   }
 
   boolean esLaMismaMascota(MascotaEncontrada mascotaEncontrada) {

@@ -3,6 +3,7 @@ package model.mascota.caracteristica;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import exeptions.mascota.InvalidCaracteristicaException;
 
 /**
  * Repositorio de Caracteristicas.
@@ -20,7 +21,8 @@ public class CaracteristicasDisponible {
    * @param valor la caracteristica
    */
   public void agregar(String valor) {
-    caracteristicas.add(Objects.requireNonNull(valor));
+    validar(valor);
+    caracteristicas.add(valor);
   }
 
   /**
@@ -29,7 +31,8 @@ public class CaracteristicasDisponible {
    * @param valor la caracteristica
    */
   public void quitar(String valor) {
-    caracteristicas.remove(Objects.requireNonNull(valor));
+    validar(valor);
+    caracteristicas.remove(valor);
   }
 
   /**
@@ -40,5 +43,17 @@ public class CaracteristicasDisponible {
    */
   public boolean isDisponible(String valor) {
     return caracteristicas.contains(valor);
+  }
+
+  /**
+   * Valida la caracteristica.
+   * 
+   * @param valor la caracteristica a validar.
+   * @throws InvalidCaracteristicaException si la caracteristica no existe
+   */
+  private static void validar(String valor) {
+    if (Objects.isNull(valor)) {
+      throw new InvalidCaracteristicaException("No puede quedar vacía");
+    }
   }
 }
