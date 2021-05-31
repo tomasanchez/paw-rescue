@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import Password.ValidadorContrasenia;
+import tools.password.ValidadorContrasenia;
 
 /**
  * Builder de un Usuario.
@@ -20,16 +19,17 @@ public class RegistroDuenioMascota extends RegistroDatosPersonales {
   public RegistroDuenioMascota() {
     this.mascotas = new ArrayList<>();
   }
-  
+
   /**
    * Añade una mascota a un owner.
    * 
    * //@param mascota la mascota a registar.
+   * 
    * @return el registro a continuar
    */
   public RegistroDuenioMascota mascota(List<Mascota> mascotas) {
     this.mascotas = Objects.requireNonNull(mascotas);
-    //this.mascotas.add(Objects.requireNonNull(mascota));
+    // this.mascotas.add(Objects.requireNonNull(mascota));
     return this;
   }
 

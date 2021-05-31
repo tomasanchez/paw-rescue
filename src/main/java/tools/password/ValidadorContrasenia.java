@@ -1,4 +1,5 @@
-package Password;
+package tools.password;
+
 import java.util.ArrayList;
 import java.util.List;
 

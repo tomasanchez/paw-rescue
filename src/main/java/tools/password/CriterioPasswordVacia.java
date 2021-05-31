@@ -1,4 +1,5 @@
-package Password;
+package tools.password;
+
 import exeptions.InvalidPasswordException;
 import java.util.Objects;
 

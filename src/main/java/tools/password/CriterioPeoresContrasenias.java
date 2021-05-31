@@ -1,4 +1,5 @@
-package Password;
+package tools.password;
+
 import exeptions.InvalidPasswordException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -38,9 +39,7 @@ public class CriterioPeoresContrasenias implements CriterioPassword {
     String filePath = System.getProperty("user.dir") + "/src/files/";
     String palabraLeida;
     peoresPasswords = new ArrayList<>();
-    try (
-        FileReader reader =
-            new FileReader(filePath + "10k-worst-passwords.txt"),StandardCharsets.UTF_8);
+    try (FileReader reader = new FileReader(filePath + "10k-worst-passwords.txt");
         BufferedReader buffer = new BufferedReader(reader)) {
 
       while ((palabraLeida = buffer.readLine()) != null) {
