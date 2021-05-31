@@ -3,6 +3,7 @@ import java.util.Objects;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import model.mascota.caracteristica.Caracteristica;
 
 /**
  * Prueba de Caracteristicas

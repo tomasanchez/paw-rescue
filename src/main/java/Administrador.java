@@ -1,3 +1,5 @@
+import model.mascota.caracteristica.Caracteristica;
+
 public class Administrador extends Usuario {
 
   /**
@@ -10,7 +12,7 @@ public class Administrador extends Usuario {
    * @since 1.0
    */
   public Administrador(DatosPersonales persona, String usuario, String password) {
-    super( usuario, password);
+    super(usuario, password);
   }
 
   /**
@@ -23,6 +25,6 @@ public class Administrador extends Usuario {
   public Mascota caracterizar(Mascota mascota, Caracteristica caracteristica) {
     return mascota.agregarCaracteristica(caracteristica);
   }
-  
-  
+
+
 }

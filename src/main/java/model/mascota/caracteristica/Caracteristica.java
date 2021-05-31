@@ -1,3 +1,5 @@
+package model.mascota.caracteristica;
+
 /**
  * Caracteristicas de una Mascota.
  *

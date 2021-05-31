@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import model.mascota.caracteristica.Caracteristica;
 
 public class Mascota {
 
@@ -69,8 +70,10 @@ public class Mascota {
   public List<Caracteristica> getCaracteristicas() {
     return this.caracteristicas;
   }
-  
-  public int getIdChapita(){ return this.idChapita ; }
+
+  public int getIdChapita() {
+    return this.idChapita;
+  }
 
   /**
    * Añade una nueva caracteristica.
@@ -78,7 +81,7 @@ public class Mascota {
    * @param caracteristica nueva caracteristica.
    * @return la mascota modificada.
    */
-  //TODO corregir
+  // TODO corregir
   public Mascota agregarCaracteristica(Caracteristica caracteristica) {
     this.getCaracteristicas().add(caracteristica);
     return this;
@@ -90,13 +93,13 @@ public class Mascota {
    * @param tipo la caracteristica
    * @return si posee o no la caracteristica.
    */
-  
-  //TODO corregir 
+
+  // TODO corregir
   public Boolean poseeCaracteristica(TipoCaracteristica tipo) {
     return caracteristicas.stream().anyMatch(c -> c.caracteristica == tipo);
   }
 
-  boolean esLaMismaMascota(MascotaEncontrada mascotaEncontrada){
+  boolean esLaMismaMascota(MascotaEncontrada mascotaEncontrada) {
     return this.getIdChapita() == mascotaEncontrada.getChapita();
   }
 }
