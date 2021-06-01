@@ -1,12 +1,12 @@
 package tools.password;
 
-import exeptions.InvalidPasswordException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import exceptions.InvalidPasswordException;
 
 public class CriterioPeoresContrasenias implements CriterioPassword {
   private List<String> peoresPasswords;

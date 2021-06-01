@@ -1,4 +1,4 @@
-package exeptions.mascota;
+package exceptions.mascota;
 
 /**
  * Excepciones de Caracteristica.

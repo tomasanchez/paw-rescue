@@ -1,7 +1,7 @@
 package model.mascota.caracteristica;
 
 import java.util.Objects;
-import exeptions.mascota.InvalidCaracteristicaException;
+import exceptions.mascota.InvalidCaracteristicaException;
 
 /**
  * Caracteristicas de una Mascota.

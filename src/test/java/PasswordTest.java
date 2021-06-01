@@ -1,7 +1,5 @@
 import org.junit.jupiter.api.Test;
-
-import exeptions.InvalidPasswordException;
-
+import exceptions.InvalidPasswordException;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PasswordTest {

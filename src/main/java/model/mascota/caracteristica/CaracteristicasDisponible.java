@@ -3,7 +3,7 @@ package model.mascota.caracteristica;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import exeptions.mascota.InvalidCaracteristicaException;
+import exceptions.mascota.InvalidCaracteristicaException;
 
 /**
  * Repositorio de Caracteristicas.

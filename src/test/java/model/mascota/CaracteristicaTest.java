@@ -3,7 +3,7 @@ package model.mascota;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import exeptions.mascota.InvalidCaracteristicaException;
+import exceptions.mascota.InvalidCaracteristicaException;
 import model.mascota.caracteristica.Caracteristica;
 import model.mascota.caracteristica.CaracteristicasDisponible;
 
