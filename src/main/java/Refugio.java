@@ -10,6 +10,10 @@ public class Refugio {
   private int capacidad;
   @JsonProperty("lugares_disponibles")
   private int lugares_disponibles;
+  @JsonProperty("patio")
+  private Boolean patio;
+  //Lista caracteristicas
+  
   
   public Refugio(){
     
