@@ -1,19 +1,21 @@
+package model.mascota;
+
 import java.util.ArrayList;
 import java.util.List;
 import model.mascota.caracteristica.Caracteristica;
+import model.mascota.encontrada.MascotaEncontrada;
 
 public class Mascota {
 
-  private final String nombre;
-  private final String apodo;
-  private final int edad;
-  private final Sexo sexo;
-  private final String descripcionFisica;
-  private final List<String> fotos;
-  private final TipoMascota tipoMascota;
-  // Caracteristica a definir
-  private final List<Caracteristica> caracteristicas;
-  private final int idChapita;
+  private String nombre;
+  private String apodo;
+  private int edad;
+  private Sexo sexo;
+  private String descripcionFisica;
+  private List<String> fotos;
+  private TipoMascota tipoMascota;
+  private List<Caracteristica> caracteristicas;
+  private Chapita chapita;
 
   /**
    * Instancia una mascota.
@@ -27,7 +29,7 @@ public class Mascota {
    * @param fotos Lista de URLs de fotos.
    */
   public Mascota(String nombre, String apodo, TipoMascota tipoMascota, int edad, Sexo sexo,
-      String descripcionFisica, List<String> fotos, int idChapita) {
+      String descripcionFisica, List<String> fotos, Chapita chapita) {
     this.nombre = nombre;
     this.apodo = apodo;
     this.tipoMascota = tipoMascota;
@@ -36,7 +38,12 @@ public class Mascota {
     this.descripcionFisica = descripcionFisica;
     this.fotos = fotos;
     this.caracteristicas = new ArrayList<>();
-    this.idChapita = idChapita;
+    this.chapita = chapita;
+  }
+
+  public Mascota() {
+    this.caracteristicas = new ArrayList<Caracteristica>();
+    this.fotos = new ArrayList<String>();
   }
 
   public String getNombre() {
@@ -71,19 +78,12 @@ public class Mascota {
     return this.caracteristicas;
   }
 
-  public int getIdChapita() {
-    return this.idChapita;
+  public Chapita getChapita() {
+    return this.chapita;
   }
 
-  /**
-   * Añade una nueva caracteristica.
-   * 
-   * @param caracteristica nueva caracteristica.
-   * @return la mascota modificada.
-   */
-  // TODO corregir
-  public Mascota agregarCaracteristica(Caracteristica caracteristica) {
-    this.getCaracteristicas().add(caracteristica);
+  public Mascota addCaracteristica(Caracteristica caracteristica) {
+    this.caracteristicas.add(caracteristica);
     return this;
   }
 
@@ -94,10 +94,10 @@ public class Mascota {
    * @return si posee o no la caracteristica.
    */
   public Boolean poseeCaracteristica(Caracteristica caracteristica) {
-    return caracteristicas.contains(caracteristica);
+    return caracteristicas.stream().anyMatch(c -> c.equals(caracteristica));
   }
 
-  boolean esLaMismaMascota(MascotaEncontrada mascotaEncontrada) {
-    return this.getIdChapita() == mascotaEncontrada.getChapita();
+  public boolean esLaMismaMascota(MascotaEncontrada mascotaEncontrada) {
+    return this.chapita.equals(mascotaEncontrada.getChapita());
   }
 }

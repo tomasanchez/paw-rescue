@@ -1,14 +1,16 @@
+package model.mascota.encontrada;
+
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Stream;
+import model.mascota.Chapita;
 
 public class MascotaEncontrada {
 
-  List<String> foto;
-  String descripcion;
-  Coordenada lugar;
-  LocalDate fecha;
-  int chapita;
+  private List<String> foto;
+  private String descripcion;
+  private Coordenada lugar;
+  private LocalDate fecha;
+  private Chapita chapita;
 
   public String getDescripcion() {
     return this.descripcion;
@@ -17,11 +19,17 @@ public class MascotaEncontrada {
   public Coordenada getLugar() {
     return this.lugar;
   }
-  
-  public int getChapita(){ return this.chapita; }
+
+  public Chapita getChapita() {
+    return this.chapita;
+  }
 
   public List<String> getFoto() {
     return this.foto;
+  }
+
+  public LocalDate getFecha() {
+    return this.fecha;
   }
 
   /**
@@ -32,8 +40,8 @@ public class MascotaEncontrada {
    * @param lugar el lugar donde fue encotnrado.
    * @param fecha la fecha en la que fue encontrado.
    */
-  public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar,
-      LocalDate fecha, int chapita) {
+  public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar, LocalDate fecha,
+      Chapita chapita) {
     this.foto = foto;
     this.descripcion = descripcion;
     this.lugar = lugar;
@@ -41,6 +49,4 @@ public class MascotaEncontrada {
     this.chapita = chapita;
   }
 
- 
-  
 }
