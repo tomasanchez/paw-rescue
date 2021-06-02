@@ -28,8 +28,10 @@ public class RegistroRescatista extends RegistroDatosPersonales {
 
   private MascotaEncontrada mascotaEncontrada;
 
-  public RegistroRescatista(AdministracionRescates adminRescastes) {
+  public RegistroRescatista(AdministracionRescates adminRescastes,
+      AdministracionPublicaciones adminPublicaciones) {
     this.adminRescastes = adminRescastes;
+    this.adminPublicaciones = adminPublicaciones;
   }
 
   public void mascotaEncontrada(MascotaEncontrada mascotaEncontrada) {
