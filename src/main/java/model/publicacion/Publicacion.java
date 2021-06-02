@@ -18,19 +18,16 @@ public class Publicacion {
   public void setMascota(MascotaEncontrada mascota) {
     this.mascota = mascota;
   }
-  
+
   public boolean isActiva() {
     return this.activa;
   }
-/*
-  public boolean isNotAprobada() {
-    return !isAprobada;
-  }
 
-  public void setAprobada(boolean isAprobada) {
-    this.isAprobada = isAprobada;
-  }
-  */
+  /*
+   * public boolean isNotAprobada() { return !isAprobada; }
+   * 
+   * public void setAprobada(boolean isAprobada) { this.isAprobada = isAprobada; }
+   */
 
   public Publicacion activar() {
     this.activa = true;
