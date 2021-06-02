@@ -1,4 +1,8 @@
+package model.registro;
+
 import java.util.Objects;
+import model.mascota.encontrada.MascotaEncontrada;
+import model.usuario.Rescatista;
 
 public class RegistroRescatista extends RegistroDatosPersonales {
 

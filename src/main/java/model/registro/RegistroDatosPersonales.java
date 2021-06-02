@@ -1,5 +1,11 @@
+package model.registro;
+
 import java.time.LocalDate;
 import java.util.Objects;
+import model.usuario.Contacto;
+import model.usuario.datospersonales.DatosPersonales;
+import model.usuario.datospersonales.Documento;
+import model.usuario.datospersonales.TipoDocumento;
 
 /**
  * Builder de una Persona.

@@ -1,6 +1,10 @@
+package model.registro;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import model.mascota.Mascota;
+import model.usuario.DuenioMascota;
 import tools.password.ValidadorContrasenia;
 
 /**
