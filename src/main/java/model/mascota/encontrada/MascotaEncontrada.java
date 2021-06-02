@@ -1,6 +1,7 @@
 package model.mascota.encontrada;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import model.mascota.Chapita;
 
@@ -11,6 +12,36 @@ public class MascotaEncontrada {
   private Coordenada lugar;
   private LocalDate fecha;
   private Chapita chapita;
+
+  public MascotaEncontrada setFoto(List<String> foto) {
+    this.foto = foto;
+    return this;
+  }
+
+  public MascotaEncontrada setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+    return this;
+  }
+
+  public MascotaEncontrada setLugar(Coordenada lugar) {
+    this.lugar = lugar;
+    return this;
+  }
+
+  public MascotaEncontrada setFecha(LocalDate fecha) {
+    this.fecha = fecha;
+    return this;
+  }
+
+  public MascotaEncontrada setChapita(Chapita chapita) {
+    this.chapita = chapita;
+    return this;
+  }
+
+  public MascotaEncontrada addFoto(String foto) {
+    getFoto().add(foto);
+    return this;
+  }
 
   public String getDescripcion() {
     return this.descripcion;
@@ -30,6 +61,10 @@ public class MascotaEncontrada {
 
   public LocalDate getFecha() {
     return this.fecha;
+  }
+
+  public MascotaEncontrada() {
+    this.foto = new ArrayList<String>();
   }
 
   /**
