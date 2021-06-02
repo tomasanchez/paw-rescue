@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import model.mascota.Chapita;
 import model.mascota.Mascota;
-import model.mascota.encontrada.MascotaEncontrada;
 import model.usuario.datospersonales.DatosPersonales;
 
 public class DuenioMascota extends Usuario {

@@ -2,9 +2,7 @@ package model.registro;
 
 import java.util.Objects;
 import model.mascota.encontrada.MascotaEncontrada;
-import model.publicacion.Publicacion;
 import model.usuario.Rescatista;
-import repositories.AdministracionPublicaciones;
 import repositories.AdministracionRescates;
 
 /**
@@ -35,7 +33,6 @@ public class RegistroRescatista extends RegistroDatosPersonales {
     this.mascotaEncontrada = Objects.requireNonNull(mascotaEncontrada);
   }
 
-  
   public void generarRescate() {
     Rescatista rescatista = new Rescatista(datosPersonales(), mascotaEncontrada);
     adminRescastes.registrarRescate(rescatista);

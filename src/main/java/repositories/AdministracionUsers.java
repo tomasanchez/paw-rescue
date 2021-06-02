@@ -2,8 +2,6 @@ package repositories;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import model.mascota.Chapita;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.usuario.DuenioMascota;
 
@@ -21,11 +19,11 @@ public class AdministracionUsers {
   public void registrarDuenioMascota(DuenioMascota duenioMascota) {
     dueniosMascotas.add(duenioMascota);
   }
- 
+
 
   DuenioMascota buscarDuenio(MascotaEncontrada mascota) {
-    return dueniosMascotas.stream().filter(duenio -> duenio.equals(mascota.getChapita().getDuenio())).findFirst()
-        .orElse(null);
+    return dueniosMascotas.stream()
+        .filter(duenio -> duenio.equals(mascota.getChapita().getDuenio())).findFirst().orElse(null);
   }
 
 

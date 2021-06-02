@@ -3,7 +3,6 @@ package model.usuario;
 import java.time.LocalDate;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.usuario.datospersonales.DatosPersonales;
-import repositories.AdministracionUsers;
 
 /**
  * Datos de un Rescatista.
