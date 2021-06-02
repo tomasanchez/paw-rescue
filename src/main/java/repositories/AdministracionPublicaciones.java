@@ -41,11 +41,11 @@ public class AdministracionPublicaciones {
     return this.publicaciones;
   }
 
-  public List<Publicacion> getPublicacionesNoAprobadas() {
-    return publicaciones.stream().filter(Publicacion::isNotAprobada).collect(Collectors.toList());
+  public List<Publicacion> getPublicacionesInactivas() {
+    return publicaciones.stream().filter(publicacion-> !(publicacion.isActiva())).collect(Collectors.toList());
   }
 
-  public List<Publicacion> getPublicacionesAprobadas() {
-    return publicaciones.stream().filter(Publicacion::isAprobada).collect(Collectors.toList());
+  public List<Publicacion> getPublicacionesActivas() {
+    return publicaciones.stream().filter(publicacion-> publicacion.isActiva()).collect(Collectors.toList());
   }
 }
