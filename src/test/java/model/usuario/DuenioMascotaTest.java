@@ -38,6 +38,13 @@ public class DuenioMascotaTest {
     Assertions.assertTrue(adminUsers.existeUsuario(duenio));
   }
 
+  @Test
+  void duenioPoneChapitaAMascota() {
+    Mascota mascota = new Mascota();
+    duenio.registrarMascota(mascota);
+    Assertions.assertEquals(duenio, mascota.getChapita().getDuenio());
+  }
+
   DuenioMascota nuevoDuenio() {
     RegistroDuenioMascota registro = new RegistroDuenioMascota(adminUsers);
     registro.nombre("Lucas").apellido("Gonzalez");
