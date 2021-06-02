@@ -32,6 +32,10 @@ public class MascotaEncontrada {
     return this.fecha;
   }
 
+  public boolean tieneChapita() {
+    return this.chapita != null;
+  }
+  
   /**
    * Instancia una mascota encontrada.
    * 

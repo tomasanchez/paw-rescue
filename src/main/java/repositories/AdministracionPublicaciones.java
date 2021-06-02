@@ -1,5 +1,6 @@
 package repositories;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -19,11 +20,7 @@ public class AdministracionPublicaciones {
    * 
    * @since Entrega 2
    */
-  List<Publicacion> publicaciones;
-
-  public AdministracionPublicaciones(List<Publicacion> publicaciones) {
-    this.publicaciones = publicaciones;
-  }
+  private List<Publicacion> publicaciones= new ArrayList<Publicacion> ();
 
   /**
    * Agrega una publicacion al repositorio.

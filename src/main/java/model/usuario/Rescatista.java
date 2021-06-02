@@ -39,21 +39,8 @@ public class Rescatista {
     this.mascotaEncontrada = mascotaEncontrada;
   }
 
-  /**
-   * Registra una mascota encontrada.
-   * 
-   * @param
-   */
-  // Modificar
-  void registrarMascotaEncontrada(MascotaEncontrada mascotaEncontrada,
-      AdministracionUsers administracionUsers) {
-    this.mascotaEncontrada = mascotaEncontrada;
-    administracionUsers.notificarDuenioMascotaPerdida(mascotaEncontrada);
-  }
 
-
-
-  public DatosPersonales getDatosPeronales() {
+  public DatosPersonales getDatosPersonales() {
     return this.datosPersonales;
   }
 
