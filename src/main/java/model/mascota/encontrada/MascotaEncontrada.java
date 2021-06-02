@@ -3,6 +3,7 @@ package model.mascota.encontrada;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import model.mascota.Chapita;
 
 public class MascotaEncontrada {
@@ -65,6 +66,10 @@ public class MascotaEncontrada {
 
   public MascotaEncontrada() {
     this.foto = new ArrayList<String>();
+  }
+
+  public boolean tieneChapita() {
+    return Objects.isNull(getChapita());
   }
 
   /**

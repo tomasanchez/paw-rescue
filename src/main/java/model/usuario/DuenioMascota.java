@@ -40,8 +40,8 @@ public class DuenioMascota extends Usuario {
     mascotas.add(mascota.setChapita(new Chapita(this)));
   }
 
-  public boolean esDuenio(MascotaEncontrada mascotaEncontrada) {
-    return mascotas.stream().anyMatch(mascota -> mascota.esLaMismaMascota(mascotaEncontrada));
+  public boolean esDuenio(int id) {
+    return mascotas.stream().anyMatch(mascota -> mascota.getChapita().getId() == id);
   }
 
   public List<Mascota> getMascotas() {
@@ -55,5 +55,4 @@ public class DuenioMascota extends Usuario {
   public DatosPersonales getDatosPeronales() {
     return this.datosPersonales;
   }
-
 }

@@ -23,12 +23,6 @@ public class Publicacion {
     return this.activa;
   }
 
-  /*
-   * public boolean isNotAprobada() { return !isAprobada; }
-   * 
-   * public void setAprobada(boolean isAprobada) { this.isAprobada = isAprobada; }
-   */
-
   public Publicacion activar() {
     this.activa = true;
     return this;
