@@ -1,7 +1,9 @@
 package model.mascota.encontrada;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import model.mascota.Chapita;
 
 public class MascotaEncontrada {
@@ -11,6 +13,36 @@ public class MascotaEncontrada {
   private Coordenada lugar;
   private LocalDate fecha;
   private Chapita chapita;
+
+  public MascotaEncontrada setFoto(List<String> foto) {
+    this.foto = foto;
+    return this;
+  }
+
+  public MascotaEncontrada setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+    return this;
+  }
+
+  public MascotaEncontrada setLugar(Coordenada lugar) {
+    this.lugar = lugar;
+    return this;
+  }
+
+  public MascotaEncontrada setFecha(LocalDate fecha) {
+    this.fecha = fecha;
+    return this;
+  }
+
+  public MascotaEncontrada setChapita(Chapita chapita) {
+    this.chapita = chapita;
+    return this;
+  }
+
+  public MascotaEncontrada addFoto(String foto) {
+    getFoto().add(foto);
+    return this;
+  }
 
   public String getDescripcion() {
     return this.descripcion;
@@ -32,10 +64,14 @@ public class MascotaEncontrada {
     return this.fecha;
   }
 
-  public boolean tieneChapita() {
-    return this.chapita != null;
+  public MascotaEncontrada() {
+    this.foto = new ArrayList<String>();
   }
-  
+
+  public boolean tieneChapita() {
+    return Objects.isNull(getChapita());
+  }
+
   /**
    * Instancia una mascota encontrada.
    * 

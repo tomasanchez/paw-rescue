@@ -12,6 +12,10 @@ public class DuenioMascota extends Usuario {
   List<Mascota> mascotas = new ArrayList<Mascota>();
   DatosPersonales datosPersonales;
 
+  public DuenioMascota() {
+    super();
+  }
+
   /**
    * Mascotas registadas.
    *
@@ -26,7 +30,6 @@ public class DuenioMascota extends Usuario {
     this.mascotas = mascotas;
     this.datosPersonales = datosPersonales;
   }
-
 
   /**
    * Asocia una mascota a un usuario.
