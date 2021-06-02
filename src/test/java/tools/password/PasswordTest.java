@@ -3,6 +3,7 @@ package tools.password;
 import org.junit.jupiter.api.Test;
 import exceptions.InvalidPasswordException;
 import model.registro.RegistroDuenioMascota;
+import repositories.AdministracionUsers;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PasswordTest {
@@ -38,7 +39,7 @@ public class PasswordTest {
    * @return el Registro de usuario a continuar.
    */
   private static RegistroDuenioMascota generarPassword(String password) {
-    return new RegistroDuenioMascota().password(password);
+    return new RegistroDuenioMascota(new AdministracionUsers()).password(password);
   }
 
 }
