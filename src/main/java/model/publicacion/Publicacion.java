@@ -5,7 +5,7 @@ import model.mascota.encontrada.MascotaEncontrada;
 public class Publicacion {
 
   private MascotaEncontrada mascota;
-  private boolean isAprobada = false;
+  private boolean activa = false;
 
   public Publicacion(MascotaEncontrada mascota) {
     this.mascota = mascota;
@@ -18,11 +18,11 @@ public class Publicacion {
   public void setMascota(MascotaEncontrada mascota) {
     this.mascota = mascota;
   }
-
-  public boolean isAprobada() {
-    return isAprobada;
+  
+  public boolean isActiva() {
+    return this.activa;
   }
-
+/*
   public boolean isNotAprobada() {
     return !isAprobada;
   }
@@ -30,10 +30,15 @@ public class Publicacion {
   public void setAprobada(boolean isAprobada) {
     this.isAprobada = isAprobada;
   }
+  */
 
-  public Publicacion aprobar() {
-    this.isAprobada = true;
+  public Publicacion activar() {
+    this.activa = true;
     return this;
   }
 
+  public Publicacion inactivar() {
+    this.activa = false;
+    return this;
+  }
 }
