@@ -46,7 +46,7 @@ public class AdministracionRescates {
       
       this.adminPublicaciones.agregar(new Publicacion(mascota));
     }
-    
+        
   }
 
 
