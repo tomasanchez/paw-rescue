@@ -54,10 +54,6 @@ public class AdministracionRescates {
     return rescates;
   }
 
-  public void notificarDuenioMascotaPerdida(DuenioMascota duenio) {
-    
-  }
-  
-  
+
 }
 

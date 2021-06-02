@@ -29,4 +29,7 @@ public class AdministracionUsers {
   }
 
 
+  public boolean existeUsuario(DuenioMascota usuario) {
+    return getDueniosMascotas().contains(usuario);
+  }
 }

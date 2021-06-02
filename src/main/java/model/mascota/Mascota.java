@@ -78,6 +78,11 @@ public class Mascota {
     return this.caracteristicas;
   }
 
+  public Mascota setChapita(Chapita chapita) {
+    this.chapita = chapita;
+    return this;
+  }
+
   public Chapita getChapita() {
     return this.chapita;
   }
@@ -98,6 +103,6 @@ public class Mascota {
   }
 
   public boolean esLaMismaMascota(MascotaEncontrada mascotaEncontrada) {
-    return this.chapita.equals(mascotaEncontrada.getChapita());
+    return getChapita().equals(mascotaEncontrada.getChapita());
   }
 }

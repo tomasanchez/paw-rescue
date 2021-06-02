@@ -2,6 +2,7 @@ package model.usuario;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.mascota.Chapita;
 import model.mascota.Mascota;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.usuario.datospersonales.DatosPersonales;
@@ -33,7 +34,7 @@ public class DuenioMascota extends Usuario {
    * @param mascota la mascota a registrar
    */
   public void registrarMascota(Mascota mascota) {
-    mascotas.add(mascota);
+    mascotas.add(mascota.setChapita(new Chapita(this)));
   }
 
   public boolean esDuenio(int id) {

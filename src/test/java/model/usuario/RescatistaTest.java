@@ -1,3 +1,5 @@
+package model.usuario;
+
 import org.junit.jupiter.api.Test;
 import model.mascota.encontrada.Coordenada;
 import model.mascota.encontrada.MascotaEncontrada;

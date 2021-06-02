@@ -18,7 +18,7 @@ public class Publicacion {
   public void setMascota(MascotaEncontrada mascota) {
     this.mascota = mascota;
   }
-  
+
   public boolean isActiva() {
     return this.activa;
   }

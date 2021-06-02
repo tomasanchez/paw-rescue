@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import model.mascota.Mascota;
 import model.usuario.DuenioMascota;
+import repositories.AdministracionUsers;
 import tools.password.ValidadorContrasenia;
 
 /**
@@ -19,9 +20,11 @@ public class RegistroDuenioMascota extends RegistroDatosPersonales {
   public String password;
   List<Mascota> mascotas;
 
+  AdministracionUsers adminUsers;
 
-  public RegistroDuenioMascota() {
+  public RegistroDuenioMascota(AdministracionUsers adminUsers) {
     this.mascotas = new ArrayList<>();
+    this.adminUsers = adminUsers;
   }
 
   /**
@@ -69,6 +72,8 @@ public class RegistroDuenioMascota extends RegistroDatosPersonales {
    * @return un nuevo Mascota Owner.
    */
   public DuenioMascota mascotaOwner() {
-    return new DuenioMascota(datosPersonales(), usuario, password, mascotas);
+    DuenioMascota owner = new DuenioMascota(datosPersonales(), usuario, password, mascotas);
+    adminUsers.registrarDuenioMascota(owner);
+    return owner;
   }
 }
