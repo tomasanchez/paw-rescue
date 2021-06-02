@@ -25,6 +25,8 @@ public class RegistroRescatista extends RegistroDatosPersonales {
 
   private MascotaEncontrada mascotaEncontrada;
 
+  private Boolean albergaMascota;
+
   public RegistroRescatista(AdministracionRescates adminRescastes) {
     this.adminRescastes = adminRescastes;
   }
@@ -32,9 +34,13 @@ public class RegistroRescatista extends RegistroDatosPersonales {
   public void mascotaEncontrada(MascotaEncontrada mascotaEncontrada) {
     this.mascotaEncontrada = Objects.requireNonNull(mascotaEncontrada);
   }
+  
+  public void puedeAlbergarMascota(Boolean value) {
+    this.albergaMascota= value;
+  }
 
   public void generarRescate() {
-    Rescatista rescatista = new Rescatista(datosPersonales(), mascotaEncontrada);
+    Rescatista rescatista = new Rescatista(datosPersonales(), mascotaEncontrada, albergaMascota);
     adminRescastes.registrarRescate(rescatista);
   }
 

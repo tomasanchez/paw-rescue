@@ -36,7 +36,11 @@ public class AdministracionRescates {
    */
   public void registrarRescate(Rescatista rescatista) {
     rescates.add(rescatista);
-    tratarMascotaEncontrada(rescatista.getMascotaEncontrada());
+    identificarMascota(rescatista.getMascotaEncontrada());
+
+    if (!(rescatista.puedeAlbergarMascota())) {
+      buscarHogar(rescatista.getMascotaEncontrada());
+    }
   }
 
   /**
@@ -44,7 +48,7 @@ public class AdministracionRescates {
    * 
    * @param mascota la mascota encontrada
    */
-  private void tratarMascotaEncontrada(MascotaEncontrada mascota) {
+  private void identificarMascota(MascotaEncontrada mascota) {
     if (mascota.tieneChapita()) {
       notificarDuenioMascotaPerdida(adminUsers.buscarDuenio(mascota));
     } else {
@@ -52,7 +56,15 @@ public class AdministracionRescates {
     }
   }
 
-  private void notificarDuenioMascotaPerdida(DuenioMascota buscarDuenio) {}
+  private void buscarHogar(MascotaEncontrada mascota) {
+    // TODO Auto-generated method stub
+
+  }
+
+  private void notificarDuenioMascotaPerdida(DuenioMascota buscarDuenio) {
+    // TODO
+
+  }
 
   public List<Rescatista> getMascotasEncontradas() {
     return rescates;
