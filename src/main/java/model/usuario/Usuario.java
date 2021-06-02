@@ -30,6 +30,8 @@ public abstract class Usuario {
    */
   String password;
 
+  public Usuario() {}
+
   /**
    * Instancia un nuevo usuario.
    *
