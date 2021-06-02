@@ -1,3 +1,5 @@
+package model.usuario.datospersonales;
+
 import java.util.Objects;
 
 /**
@@ -29,9 +31,9 @@ public class Documento {
    * @param tipo el tipo de documento.
    * @param id el número de identificación.
    */
-  public Documento(TipoDocumento tipo,long id) {
+  public Documento(TipoDocumento tipo, long id) {
     this.tipo = Objects.requireNonNull(tipo);
-    this.id =Objects.requireNonNull(id);
+    this.id = Objects.requireNonNull(id);
   }
 
   /**
@@ -41,7 +43,7 @@ public class Documento {
    * @since 02.05.2021
    * @version 1.0
    */
-  
+
 
   public TipoDocumento getTipo() {
     return this.tipo;
@@ -50,7 +52,4 @@ public class Documento {
   public long getId() {
     return this.id;
   }
-}
-enum TipoDocumento {
-  DNI, CI, LC, LE
 }

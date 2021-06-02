@@ -1,3 +1,5 @@
+package model.usuario;
+
 import java.util.Objects;
 
 /**
@@ -34,7 +36,7 @@ public abstract class Usuario {
    * @param usuario nombre de usuario.
    * @param password una password válida.
    */
-  public Usuario( String usuario, String password) {
+  public Usuario(String usuario, String password) {
     this.usuario = Objects.requireNonNull(usuario);
     this.password = Objects.requireNonNull(password);
   }

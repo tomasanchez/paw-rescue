@@ -1,3 +1,5 @@
+package model.mascota.encontrada;
+
 public class Coordenada {
 
   String coordenadaX;

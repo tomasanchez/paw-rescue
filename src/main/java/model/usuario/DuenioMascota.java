@@ -1,11 +1,16 @@
+package model.usuario;
+
 import java.util.ArrayList;
 import java.util.List;
+import model.mascota.Mascota;
+import model.mascota.encontrada.MascotaEncontrada;
+import model.usuario.datospersonales.DatosPersonales;
 
 public class DuenioMascota extends Usuario {
 
-  List<Mascota> mascotas;
+  List<Mascota> mascotas = new ArrayList<Mascota>();
   DatosPersonales datosPersonales;
-  
+
   /**
    * Mascotas registadas.
    *
@@ -20,7 +25,7 @@ public class DuenioMascota extends Usuario {
     this.mascotas = mascotas;
     this.datosPersonales = datosPersonales;
   }
-  
+
 
   /**
    * Asocia una mascota a un usuario.
@@ -31,7 +36,7 @@ public class DuenioMascota extends Usuario {
     mascotas.add(mascota);
   }
 
-  boolean esDuenio(MascotaEncontrada mascotaEncontrada) {
+  public boolean esDuenio(MascotaEncontrada mascotaEncontrada) {
     return mascotas.stream().anyMatch(mascota -> mascota.esLaMismaMascota(mascotaEncontrada));
   }
 

@@ -1,5 +1,8 @@
+package model.usuario.datospersonales;
+
 import java.time.LocalDate;
 import java.util.Objects;
+import model.usuario.Contacto;
 
 /**
  * Abstraccion de datos personales.
@@ -13,27 +16,27 @@ public class DatosPersonales {
   /**
    * El nombre de una persona.
    */
-  String nombre;
+  private String nombre;
 
   /**
    * El apellido de una persona.
    */
-  String apellido;
+  private String apellido;
 
   /**
    * Tipo y Numero de Documento.
    */
-  Documento documento;
+  private Documento documento;
 
   /**
    * La fecha de nacimiento.
    */
-  LocalDate fechaNacimiento;
+  private LocalDate fechaNacimiento;
 
   /**
    * Datos de un contacto.
    */
-  Contacto contacto;
+  private Contacto contacto;
 
   /**
    * Instancia datos personales.
@@ -44,9 +47,8 @@ public class DatosPersonales {
    * @param fechaNacimiento dia del nacimiento
    * @param contacto datos de un contacto
    */
-
-  public DatosPersonales(String nombre, String apellido, Documento documento, LocalDate fechaNacimiento,
-      Contacto contacto) {
+  public DatosPersonales(String nombre, String apellido, Documento documento,
+      LocalDate fechaNacimiento, Contacto contacto) {
     this.nombre = Objects.requireNonNull(nombre);
     this.apellido = Objects.requireNonNull(apellido);
     this.documento = Objects.requireNonNull(documento);

@@ -1,3 +1,5 @@
+package model.usuario;
+
 import java.util.Objects;
 
 /**

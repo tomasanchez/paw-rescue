@@ -1,4 +1,9 @@
+package model.usuario;
+
 import java.time.LocalDate;
+import model.mascota.encontrada.MascotaEncontrada;
+import model.usuario.datospersonales.DatosPersonales;
+import repositories.AdministracionUsers;
 
 /**
  * Datos de un Rescatista.
@@ -37,15 +42,16 @@ public class Rescatista {
   /**
    * Registra una mascota encontrada.
    * 
-   * @param 
+   * @param
    */
-  //Modificar
-  void registrarMascotaEncontrada(MascotaEncontrada mascotaEncontrada,AdministracionUsers administracionUsers) {
+  // Modificar
+  void registrarMascotaEncontrada(MascotaEncontrada mascotaEncontrada,
+      AdministracionUsers administracionUsers) {
     this.mascotaEncontrada = mascotaEncontrada;
-   administracionUsers.notificarDuenioMascotaPerdida(mascotaEncontrada);
+    administracionUsers.notificarDuenioMascotaPerdida(mascotaEncontrada);
   }
-  
-  
+
+
 
   public DatosPersonales getDatosPeronales() {
     return this.datosPersonales;
@@ -55,7 +61,7 @@ public class Rescatista {
     return this.mascotaEncontrada;
   }
 
-  boolean compararFechaMascotaEncontrada(long dias){
-    return mascotaEncontrada.fecha.isAfter(LocalDate.now().minusDays(dias));
+  public boolean compararFechaMascotaEncontrada(long dias) {
+    return mascotaEncontrada.getFecha().isAfter(LocalDate.now().minusDays(dias));
   }
 }
