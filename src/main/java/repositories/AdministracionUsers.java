@@ -33,4 +33,7 @@ public class AdministracionUsers {
     notificarDuenioMascotaEncontrada(buscarDueño(mascotaEncontrada));
   }
 
+  public boolean existeUsuario(DuenioMascota usuario) {
+    return getDueniosMascotas().contains(usuario);
+  }
 }

@@ -38,7 +38,6 @@ public class AdministracionRescates {
     return rescates;
   }
 
-
 }
 
 
