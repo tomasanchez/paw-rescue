@@ -8,4 +8,8 @@ public class Chapita {
   public Chapita(DuenioMascota owner) {
     this.owner = owner;
   }
+
+  public DuenioMascota getDuenio() {
+    return owner;
+  }
 }
