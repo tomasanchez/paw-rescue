@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import model.mascota.Chapita;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.publicacion.Publicacion;
 import model.usuario.DuenioMascota;
@@ -46,9 +45,22 @@ public class AdministracionRescates {
       
       this.adminPublicaciones.agregar(new Publicacion(mascota));
     }
-        
+    
+    if(!(rescatista.puedeAlbergarMascota())) {
+      buscarHogar(mascota);
+    }        
   }
 
+
+  private void buscarHogar(MascotaEncontrada mascota) {
+    // TODO Auto-generated method stub
+    
+  }
+
+  private void notificarDuenioMascotaPerdida(DuenioMascota buscarDuenio) {
+    // TODO
+    
+  }
 
   public List<Rescatista> getMascotasEncontradas() {
     return rescates;
