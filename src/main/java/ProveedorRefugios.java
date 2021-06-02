@@ -10,6 +10,8 @@ import com.sun.jersey.api.json.JSONConfiguration;
 import exeptions.LogueoSinEmailException;
 import exeptions.UsuarioLogueadoException;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProveedorRefugios {
@@ -29,13 +31,14 @@ public class ProveedorRefugios {
 
   public ClientResponse getRefugios(String filter, String value) {
     ClientResponse response = this.client.resource(API_REFUGIOS).path(RESOURCE)
-      .queryParam("q", "offset" + ":" + "2").header("Authorization", "Bearer " + TOKEN)
+      .queryParam("offset", "2").header("Authorization", "Bearer " + TOKEN)
       .accept(MediaType.APPLICATION_JSON)
       .get(ClientResponse.class);
 
     JsonFactory jsonFactory = new JsonFactory();
     String responseBody = response.getEntity(String.class);
-    Refugio tokenResponse = jsonFactory.fromJson(responseBody, Refugio.class);
+    List<Refugio> a = new ArrayList<>();
+    List<Refugio> tokenResponse = jsonFactory.fromJson(responseBody, a.getClass());
     return response;
   }
 
@@ -43,7 +46,7 @@ public class ProveedorRefugios {
     WebResource recurso = this.client.resource(API_REFUGIOS).path("usuarios");
     WebResource.Builder builder = recurso.accept(MediaType.APPLICATION_JSON);
 
-    RequestBody requestBody = new RequestBody("mailprueba18@gmail.com");
+    RequestBody requestBody = new RequestBody("mailprueba23@gmail.com");
     JsonFactory jsonFactory = new JsonFactory();
     ClientResponse response = builder.type("application/json").post(ClientResponse.class, jsonFactory.toJson(requestBody));
     if (response.getStatus() == 409) {
