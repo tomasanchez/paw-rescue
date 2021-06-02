@@ -1,5 +1,8 @@
+package tools.password;
+
 import org.junit.jupiter.api.Test;
 import exceptions.InvalidPasswordException;
+import model.registro.RegistroDuenioMascota;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PasswordTest {
