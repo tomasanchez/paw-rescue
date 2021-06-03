@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/dds-utn/2021-vi-no-grupo-23/compare/v0.0.2...v0.0.3) (2021-06-03)
+
+
+### Features
+
+* **entrega_2:** agrego repos como dependencias ([7f739b2](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/7f739b239dca7a4db16e957670603390e2e64b0c))
+* **entrega_2:** publicaciones ([75ce0ab](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/75ce0ab4c71324de8b09812c64dd15f7158534de))
+
+
+### Bug Fixes
+
+* **mascota:** chapita vincula mascota con usuario [#3](https://github.com/dds-utn/2021-vi-no-grupo-23/issues/3) ([cb9cd20](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/cb9cd202e073f26a11f9a15dc9a0f103e09ec851))
+* **mvn:** arreglo bugs detectados por MVN ([10b3957](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/10b3957535721072da5b07421336f69c41a90031))
+* elimino clase administradores [#3](https://github.com/dds-utn/2021-vi-no-grupo-23/issues/3) ([bc2c676](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/bc2c6768d8a949accd166ce996b265ee46e50bec))
+* **caracteristica:** caracteristicas dinamicas [#1](https://github.com/dds-utn/2021-vi-no-grupo-23/issues/1) ([0db92b2](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/0db92b2a7f5521e9c130720b8b8d24a1a8245071))
+* **caracteristica:** no estaticas [#3](https://github.com/dds-utn/2021-vi-no-grupo-23/issues/3) ([4a26b05](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/4a26b059ee0d7a135782e6064f744537ffcd4370))
+
 ### [0.0.2](https://github.com/dds-utn/2021-vi-no-grupo-23/compare/v0.0.1...v0.0.2) (2021-05-07)
 
 
