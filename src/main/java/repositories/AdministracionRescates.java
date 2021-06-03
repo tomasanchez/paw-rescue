@@ -10,12 +10,16 @@ import model.usuario.Rescatista;
 
 public class AdministracionRescates {
 
-  List<Rescatista> rescates;
+  List<Rescatista> rescates = new ArrayList<>();
   AdministracionUsers adminUsers = new AdministracionUsers();
   AdministracionPublicaciones adminPublicaciones = new AdministracionPublicaciones();
 
-  public AdministracionRescates() {
-    this.rescates = new ArrayList<>();
+  public AdministracionRescates() {}
+
+  public AdministracionRescates(AdministracionUsers adminUsers,
+      AdministracionPublicaciones adminPublicaciones) {
+    this.adminUsers = adminUsers;
+    this.adminPublicaciones = adminPublicaciones;
   }
 
   /**

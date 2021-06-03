@@ -12,11 +12,13 @@ import java.time.LocalDate;
 public class RescateTest {
 
   private AdministracionRescates adminRescates;
+  private MascotaEncontrada mascota;
   private RegistroRescatista registro;
 
   @BeforeEach
   void initRescates() {
     adminRescates = new AdministracionRescates();
+    mascota = new MascotaEncontrada();
     registro = nuevoRescate();
   }
 
@@ -48,7 +50,6 @@ public class RescateTest {
     registroRescatista.numeroDocumento(132123412L).tipoDocumento(TipoDocumento.DNI);
     registroRescatista.fechaNacimiento(LocalDate.now());
     return registroRescatista;
-
   }
 
   private Contacto nuevoContato() {
@@ -57,9 +58,8 @@ public class RescateTest {
 
   private void encontrarMascota(final boolean PUEDE) {
     registro.puedeAlbergarMascota(PUEDE);
-    registro.mascotaEncontrada(new MascotaEncontrada());
+    registro.mascotaEncontrada(mascota);
   }
-
 
 }
 

@@ -40,11 +40,23 @@ public class RegistroRescatista extends RegistroDatosPersonales {
   }
 
   public Rescatista generarRescate() {
-    Rescatista rescatista = new Rescatista(datosPersonales(), mascotaEncontrada, albergaMascota);
-    adminRescastes.registrarRescate(rescatista);
+    Rescatista rescatista = instanciarRescatista();
+    getAdminRescastes().registrarRescate(rescatista);
     return rescatista;
   }
 
+  private Rescatista instanciarRescatista() {
+    return new Rescatista(datosPersonales(), mascotaEncontrada, albergaMascota);
+  }
+
+  public RegistroRescatista setAdminRescastes(AdministracionRescates adminRescastes) {
+    this.adminRescastes = adminRescastes;
+    return this;
+  }
+
+  public AdministracionRescates getAdminRescastes() {
+    return this.adminRescastes;
+  }
 }
 
 
