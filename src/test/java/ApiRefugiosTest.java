@@ -1,3 +1,4 @@
+import Rest.Response.HogaresResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -6,7 +7,8 @@ public class ApiRefugiosTest {
   void obtenerRefugios(){
     ProveedorRefugios proveedorRefugios = new ProveedorRefugios();
     proveedorRefugios.loginRefugios();
-    proveedorRefugios.getRefugios("a","a");
-    Assertions.assertEquals(1,1);
+    HogaresResponse hogaresResponse = proveedorRefugios.getRefugios("offset","2");
+    Assertions.assertEquals("2",hogaresResponse.getOffset());
+    Assertions.assertNotNull(hogaresResponse.getHogares());
   }
 }

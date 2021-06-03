@@ -2,9 +2,9 @@ package Rest.Response;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+
+
 public class TokenResponse {
 
   @JsonProperty("bearer_token")
