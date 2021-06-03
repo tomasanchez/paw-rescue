@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import model.mascota.encontrada.MascotaEncontrada;
+import model.publicacion.Asociacion;
 import model.publicacion.Publicacion;
 import model.usuario.Contacto;
 import model.usuario.DuenioMascota;
@@ -14,6 +15,7 @@ public class AdministracionRescates {
   List<Rescatista> rescates = new ArrayList<>();
   AdministracionUsers adminUsers = new AdministracionUsers();
   AdministracionPublicaciones adminPublicaciones = new AdministracionPublicaciones();
+  List<Asociacion> asociaciones = new ArrayList<>();
 
   public AdministracionRescates() {}
 
@@ -79,6 +81,9 @@ public class AdministracionRescates {
     return getMascotasEncontradas().stream().filter(r -> r.getMascotaEncontrada().equals(mascota))
         .findFirst().get().getDatosPersonales().getContacto();
   }
-
+  //TODO implementar
+  public void buscarAsociacion(MascotaEncontrada mascotaEncontrada){
+  }
+  
 }
 

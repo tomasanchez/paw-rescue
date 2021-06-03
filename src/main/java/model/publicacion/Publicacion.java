@@ -6,6 +6,7 @@ public class Publicacion {
 
   private MascotaEncontrada mascota;
   private boolean activa = false;
+  private Asociacion asociacion;
 
   public Publicacion(MascotaEncontrada mascota) {
     this.mascota = mascota;
@@ -31,5 +32,9 @@ public class Publicacion {
   public Publicacion inactivar() {
     this.activa = false;
     return this;
+  }
+
+  public Asociacion getAsociacion() {
+    return asociacion;
   }
 }
