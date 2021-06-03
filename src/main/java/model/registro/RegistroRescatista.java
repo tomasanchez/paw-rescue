@@ -34,14 +34,15 @@ public class RegistroRescatista extends RegistroDatosPersonales {
   public void mascotaEncontrada(MascotaEncontrada mascotaEncontrada) {
     this.mascotaEncontrada = Objects.requireNonNull(mascotaEncontrada);
   }
-  
+
   public void puedeAlbergarMascota(Boolean value) {
-    this.albergaMascota= value;
+    this.albergaMascota = value;
   }
 
-  public void generarRescate() {
+  public Rescatista generarRescate() {
     Rescatista rescatista = new Rescatista(datosPersonales(), mascotaEncontrada, albergaMascota);
     adminRescastes.registrarRescate(rescatista);
+    return rescatista;
   }
 
 }
