@@ -1,13 +1,17 @@
 package model.usuario;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import java.time.LocalDate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import model.mascota.Mascota;
+import model.mascota.encontrada.MascotaEncontrada;
 import model.registro.RegistroDuenioMascota;
 import model.usuario.datospersonales.TipoDocumento;
+import repositories.AdministracionRescates;
 import repositories.AdministracionUsers;
-import java.time.LocalDate;
 
 
 public class DuenioMascotaTest {
@@ -44,6 +48,18 @@ public class DuenioMascotaTest {
     duenio.registrarMascota(mascota);
     Assertions.assertEquals(duenio, mascota.getChapita().getDuenio());
   }
+
+  @Test
+  void duenioConctactaRescatista() {
+    AdministracionRescates adminRescates = mock(AdministracionRescates.class);
+    MascotaEncontrada mascota = new MascotaEncontrada();
+
+    when(adminRescates.getContactoRescatista(mascota)).thenReturn(nuevoContato());
+
+    Assertions.assertEquals(adminRescates.getContactoRescatista(mascota).getMail(),
+        "tomasDias@gmail.com");
+  }
+
 
   DuenioMascota nuevoDuenio() {
     RegistroDuenioMascota registro = new RegistroDuenioMascota(adminUsers);

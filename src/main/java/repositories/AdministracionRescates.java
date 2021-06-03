@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.publicacion.Publicacion;
+import model.usuario.Contacto;
 import model.usuario.DuenioMascota;
 import model.usuario.Rescatista;
 
@@ -72,6 +73,11 @@ public class AdministracionRescates {
 
   public List<Rescatista> getMascotasEncontradas() {
     return rescates;
+  }
+
+  public Contacto getContactoRescatista(MascotaEncontrada mascota) {
+    return getMascotasEncontradas().stream().filter(r -> r.getMascotaEncontrada().equals(mascota))
+        .findFirst().get().getDatosPersonales().getContacto();
   }
 
 }
