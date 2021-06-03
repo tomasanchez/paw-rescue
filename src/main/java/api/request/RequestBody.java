@@ -1,8 +1,8 @@
-package Rest.Request;
+package api.request;
 
 public class RequestBody {
   private String email;
-  
+
   public String getEmail() {
     return email;
   }

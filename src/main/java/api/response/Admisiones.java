@@ -1,10 +1,9 @@
-package Rest.Response;
-
+package api.response;
 
 
 
 public class Admisiones {
-  
+
   private Boolean perros;
   private Boolean gatos;
 

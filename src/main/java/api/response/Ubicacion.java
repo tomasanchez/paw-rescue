@@ -1,4 +1,4 @@
-package Rest.Response;
+package api.response;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
@@ -11,8 +11,7 @@ public class Ubicacion {
   Double coordenadaY;
 
 
-  public Ubicacion() {
-  }
+  public Ubicacion() {}
 
   public void setCoordenadaX(Double coordenadaX) {
     this.coordenadaX = coordenadaX;

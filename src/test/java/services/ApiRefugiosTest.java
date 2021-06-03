@@ -1,8 +1,8 @@
 package services;
 
-import Rest.Response.HogaresResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import api.response.HogaresResponse;
 
 public class ApiRefugiosTest {
   @Test

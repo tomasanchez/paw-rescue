@@ -1,9 +1,5 @@
 package services;
 
-import Rest.JsonFactory;
-import Rest.Request.RequestBody;
-import Rest.Response.HogaresResponse;
-import Rest.Response.TokenResponse;
 import exceptions.acceso.LogueoSinEmailException;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -11,7 +7,10 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.json.JSONConfiguration;
-
+import api.JsonFactory;
+import api.request.RequestBody;
+import api.response.HogaresResponse;
+import api.response.TokenResponse;
 import javax.ws.rs.core.MediaType;
 
 

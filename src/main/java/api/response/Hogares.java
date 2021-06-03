@@ -1,4 +1,4 @@
-package Rest.Response;
+package api.response;
 
 import java.util.List;
 

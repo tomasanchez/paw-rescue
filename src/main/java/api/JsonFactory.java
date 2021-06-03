@@ -1,4 +1,4 @@
-package Rest;
+package api;
 
 import java.io.IOException;
 
@@ -36,7 +36,7 @@ public class JsonFactory {
       throw new RuntimeException("Error reading a json", e);
     }
   }
-  
-  
+
+
 
 }

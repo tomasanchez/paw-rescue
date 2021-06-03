@@ -1,7 +1,6 @@
-package Rest.Response;
+package api.response;
 
 import org.codehaus.jackson.annotate.JsonProperty;
-
 
 
 
