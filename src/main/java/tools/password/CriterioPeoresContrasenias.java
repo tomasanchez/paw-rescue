@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import exceptions.InvalidPasswordException;
+import exceptions.acceso.InvalidPasswordException;
 
 public class CriterioPeoresContrasenias implements CriterioPassword {
   private List<String> peoresPasswords;

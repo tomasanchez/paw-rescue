@@ -1,4 +1,4 @@
-package exeptions;
+package exceptions.acceso;
 
 public class UsuarioLogueadoException extends RuntimeException {
   public UsuarioLogueadoException() {

@@ -1,4 +1,4 @@
-package exceptions;
+package exceptions.acceso;
 
 public class InvalidPasswordException extends RuntimeException {
   public InvalidPasswordException(String mensajeError) {

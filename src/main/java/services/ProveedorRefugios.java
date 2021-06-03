@@ -1,14 +1,16 @@
+package services;
+
 import Rest.JsonFactory;
 import Rest.Request.RequestBody;
 import Rest.Response.HogaresResponse;
 import Rest.Response.TokenResponse;
+import exceptions.acceso.LogueoSinEmailException;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.json.JSONConfiguration;
-import exeptions.LogueoSinEmailException;
 
 import javax.ws.rs.core.MediaType;
 
@@ -21,7 +23,7 @@ public class ProveedorRefugios {
   private static final String RESOURCE = "hogares";
   private static String TOKEN = "";
 
-  //Inicializacion del cliente.
+  // Inicializacion del cliente.
   public ProveedorRefugios() {
     ClientConfig clientConfig = new DefaultClientConfig();
     clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
@@ -31,9 +33,8 @@ public class ProveedorRefugios {
 
   public HogaresResponse getRefugios(String offset, String value) {
     ClientResponse response = this.client.resource(API_REFUGIOS).path(RESOURCE)
-      .queryParam(offset, value).header("Authorization", "Bearer " + TOKEN)
-      .accept(MediaType.APPLICATION_JSON)
-      .get(ClientResponse.class);
+        .queryParam(offset, value).header("Authorization", "Bearer " + TOKEN)
+        .accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 
     JsonFactory jsonFactory = new JsonFactory();
     String responseBody = response.getEntity(String.class);
@@ -47,8 +48,8 @@ public class ProveedorRefugios {
 
     RequestBody requestBody = new RequestBody("rescatepatitas@gmail.com");
     JsonFactory jsonFactory = new JsonFactory();
-    ClientResponse response = builder.type("application/json")
-      .post(ClientResponse.class, jsonFactory.toJson(requestBody));
+    ClientResponse response = builder.type("application/json").post(ClientResponse.class,
+        jsonFactory.toJson(requestBody));
     if (response.getStatus() == 409) {
       // throw new UsuarioLogueadoException();
       // Ya se encuentra logueado
@@ -64,5 +65,5 @@ public class ProveedorRefugios {
 
 
   }
-  
+
 }

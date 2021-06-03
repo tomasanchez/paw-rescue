@@ -1,6 +1,6 @@
 package tools.password;
 
-import exceptions.InvalidPasswordException;
+import exceptions.acceso.InvalidPasswordException;
 
 public class CriterioLargoMinimo implements CriterioPassword {
   private int longitudMinima;
