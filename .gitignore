@@ -39,3 +39,4 @@ target/**
 .idea/**
 /target/
 /bin/
+.vscode/settings.json
