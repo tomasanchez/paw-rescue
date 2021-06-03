@@ -13,6 +13,7 @@ public class Asociacion {
     this.direccion = direccion;
   }
 
+  
   public int getIdAsociacion() {
     return idAsociacion;
   }

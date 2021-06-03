@@ -45,4 +45,5 @@ public class AdministracionPublicaciones {
   public List<Publicacion> getPublicacionesActivas() {
     return publicaciones.stream().filter(publicacion-> publicacion.isActiva()).collect(Collectors.toList());
   }
+  
 }

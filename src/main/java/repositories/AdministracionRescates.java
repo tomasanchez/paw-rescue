@@ -15,7 +15,6 @@ public class AdministracionRescates {
   List<Rescatista> rescates = new ArrayList<>();
   AdministracionUsers adminUsers = new AdministracionUsers();
   AdministracionPublicaciones adminPublicaciones = new AdministracionPublicaciones();
-  List<Asociacion> asociaciones = new ArrayList<>();
 
   public AdministracionRescates() {}
 
@@ -82,7 +81,12 @@ public class AdministracionRescates {
         .findFirst().get().getDatosPersonales().getContacto();
   }
   //TODO implementar
-  public void buscarAsociacion(MascotaEncontrada mascotaEncontrada){
+  public void buscarAsociacion(MascotaEncontrada mascotaEncontrada) {
+  }
+
+  public Contacto duenioEncontroSuMascota(MascotaEncontrada mascota){
+    Rescatista rescate = (Rescatista) rescates.stream().filter(rescatista -> rescatista.getMascotaEncontrada() == mascota);
+    return rescate.getDatosPersonales().getContacto();
   }
   
 }

@@ -35,6 +35,6 @@ public class Publicacion {
   }
 
   public Asociacion getAsociacion() {
-    return asociacion;
+    return this.asociacion;
   }
 }
