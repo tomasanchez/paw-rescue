@@ -31,7 +31,7 @@ public class PublicacionTest {
   }
 
   @Test
-  void seCreaPublicacion() {
+  void seCreaPublicacionParaMascotaSinChapita() {
     prepararRegistro(false);
     registro.generarRescate();
     Assertions.assertFalse(adminPublicaciones.getPublicaciones().isEmpty());

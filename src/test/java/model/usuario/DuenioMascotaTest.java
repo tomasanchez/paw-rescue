@@ -57,7 +57,7 @@ public class DuenioMascotaTest {
     when(adminRescates.getContactoRescatista(mascota)).thenReturn(nuevoContato());
 
     Assertions.assertEquals(adminRescates.getContactoRescatista(mascota).getMail(),
-        "tomasDias@gmail.com");
+        nuevoContato().getMail());
   }
 
 

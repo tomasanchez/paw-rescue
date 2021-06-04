@@ -3,6 +3,7 @@ package model.usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import model.mascota.Chapita;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.registro.RegistroRescatista;
 import model.usuario.datospersonales.TipoDocumento;
@@ -41,6 +42,17 @@ public class RescateTest {
     encontrarMascota(true);
     Rescatista rescatista = registro.generarRescate();
     Assertions.assertTrue(adminRescates.getMascotasEncontradas().contains(rescatista));
+  }
+
+  @Test
+  void rescatistaEncuentraMascotaConChapita() {
+    Chapita chapita = new Chapita(null);
+    mascota.setChapita(chapita);
+    encontrarMascota(true);
+    registro.generarRescate();
+
+    Assertions.assertTrue(adminRescates.getMascotasEncontradas().stream()
+        .anyMatch(r -> r.getMascotaEncontrada().getChapita().equals(chapita)));
   }
 
   private RegistroRescatista nuevoRescate() {
