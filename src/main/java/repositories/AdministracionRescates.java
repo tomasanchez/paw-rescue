@@ -3,25 +3,32 @@ package repositories;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import model.mascota.encontrada.MascotaEncontrada;
 import model.publicacion.Asociacion;
 import model.publicacion.Publicacion;
+import model.refugio.Refugio;
 import model.usuario.Contacto;
 import model.usuario.DuenioMascota;
 import model.usuario.Rescatista;
+import services.ProveedorRefugios;
 
 public class AdministracionRescates {
 
   List<Rescatista> rescates = new ArrayList<>();
   AdministracionUsers adminUsers = new AdministracionUsers();
   AdministracionPublicaciones adminPublicaciones = new AdministracionPublicaciones();
+  ProveedorRefugios proveedorRefugios = ProveedorRefugios.instance();
 
-  public AdministracionRescates() {}
+  public AdministracionRescates() {
+    proveedorRefugios.loginRefugios();
+  }
 
   public AdministracionRescates(AdministracionUsers adminUsers,
-      AdministracionPublicaciones adminPublicaciones) {
+                                AdministracionPublicaciones adminPublicaciones) {
     this.adminUsers = adminUsers;
     this.adminPublicaciones = adminPublicaciones;
+    proveedorRefugios.loginRefugios();
   }
 
   /**
@@ -32,7 +39,7 @@ public class AdministracionRescates {
    */
   List<Rescatista> mascotasEncontradas(long dias) {
     return rescates.stream().filter(rescate -> rescate.compararFechaMascotaEncontrada(dias))
-        .collect(Collectors.toList());
+      .collect(Collectors.toList());
   }
 
   /**
@@ -51,7 +58,7 @@ public class AdministracionRescates {
 
   /**
    * Realiza la notificacion o publicacion de la mascota encontrada.
-   * 
+   *
    * @param mascota la mascota encontrada
    */
   private void identificarMascota(MascotaEncontrada mascota) {
@@ -62,8 +69,9 @@ public class AdministracionRescates {
     }
   }
 
-  private void buscarHogar(MascotaEncontrada mascota) {
-    // TODO Auto-generated method stub
+  private List<Refugio> buscarHogar(MascotaEncontrada mascota) {
+    List<Refugio> refugioList = proveedorRefugios.getAllRefugios();
+    return refugioList.stream().filter(cada -> cada.getAdmisiones().contains(mascota.getTipoMascota())).collect(Collectors.toList());
 
   }
 
@@ -78,16 +86,17 @@ public class AdministracionRescates {
 
   public Contacto getContactoRescatista(MascotaEncontrada mascota) {
     return getMascotasEncontradas().stream().filter(r -> r.getMascotaEncontrada().equals(mascota))
-        .findFirst().get().getDatosPersonales().getContacto();
+      .findFirst().get().getDatosPersonales().getContacto();
   }
+
   //TODO implementar
   public void buscarAsociacion(MascotaEncontrada mascotaEncontrada) {
   }
 
-  public Contacto duenioEncontroSuMascota(MascotaEncontrada mascota){
+  public Contacto duenioEncontroSuMascota(MascotaEncontrada mascota) {
     Rescatista rescate = (Rescatista) rescates.stream().filter(rescatista -> rescatista.getMascotaEncontrada() == mascota);
     return rescate.getDatosPersonales().getContacto();
   }
-  
+
 }
 

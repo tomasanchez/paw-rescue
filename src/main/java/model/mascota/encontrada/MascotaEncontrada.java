@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import model.mascota.Chapita;
+import model.mascota.TipoMascota;
 
 public class MascotaEncontrada {
 
@@ -13,6 +14,7 @@ public class MascotaEncontrada {
   private Coordenada lugar;
   private LocalDate fecha;
   private Chapita chapita;
+  private TipoMascota tipoMascota;
 
   public MascotaEncontrada setFoto(List<String> foto) {
     this.foto = foto;
@@ -72,16 +74,24 @@ public class MascotaEncontrada {
     return Objects.isNull(getChapita());
   }
 
+  public TipoMascota getTipoMascota() {
+    return tipoMascota;
+  }
+
+  public void setTipoMascota(TipoMascota tipoMascota) {
+    this.tipoMascota = tipoMascota;
+  }
+
   /**
    * Instancia una mascota encontrada.
-   * 
-   * @param foto la foto de la mascota
+   *
+   * @param foto        la foto de la mascota
    * @param descripcion la descripcion fisica.
-   * @param lugar el lugar donde fue encotnrado.
-   * @param fecha la fecha en la que fue encontrado.
+   * @param lugar       el lugar donde fue encotnrado.
+   * @param fecha       la fecha en la que fue encontrado.
    */
   public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar, LocalDate fecha,
-      Chapita chapita) {
+                           Chapita chapita) {
     this.foto = foto;
     this.descripcion = descripcion;
     this.lugar = lugar;
