@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/dds-utn/2021-vi-no-grupo-23/compare/v0.0.3...v0.1.0) (2021-06-04)
+
+
+### Features
+
+* **owner:** mascota owner contacta rescatista ([83cc2f2](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/83cc2f2416700960f6caf18cb066627e2999cf43))
+
+
+### Bug Fixes
+
+* **checkstyles:** organizo imports ([4965174](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/4965174550639e538c81622f61540af6263ca259))
+
 ### [0.0.3](https://github.com/dds-utn/2021-vi-no-grupo-23/compare/v0.0.2...v0.0.3) (2021-06-03)
 
 
