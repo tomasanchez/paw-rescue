@@ -1,6 +1,7 @@
 package model.usuario;
 
 import java.util.Objects;
+import model.usuario.datospersonales.DatosPersonales;
 
 /**
  * Usuario común.
@@ -15,6 +16,7 @@ public abstract class Usuario {
    * 
    * @since 2.0
    */
+  DatosPersonales datosPersonales;
 
   /**
    * Usuario de logging.
