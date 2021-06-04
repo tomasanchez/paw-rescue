@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import model.mascota.Chapita;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.registro.RegistroRescatista;
-import model.usuario.datospersonales.TipoDocumento;
+import model.usuario.datospersonales.Contacto;
+import model.usuario.datospersonales.documento.TipoDocumento;
 import repositories.AdministracionRescates;
 import java.time.LocalDate;
 

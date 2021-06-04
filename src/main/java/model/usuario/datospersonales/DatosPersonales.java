@@ -2,7 +2,7 @@ package model.usuario.datospersonales;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import model.usuario.Contacto;
+import model.usuario.datospersonales.documento.Documento;
 
 /**
  * Abstraccion de datos personales.
