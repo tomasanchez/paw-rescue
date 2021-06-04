@@ -50,7 +50,7 @@ public class AdministracionRescates {
     identificarMascota(rescatista.getMascotaEncontrada());
 
     if (!(rescatista.puedeAlbergarMascota())) {
-      buscarHogar(rescatista.getMascotaEncontrada());
+      buscarRefugio(rescatista.getMascotaEncontrada());
     }
   }
 
@@ -67,7 +67,7 @@ public class AdministracionRescates {
     }
   }
 
-  private List<Refugio> buscarHogar(MascotaEncontrada mascota) {
+  private List<Refugio> buscarRefugio(MascotaEncontrada mascota) {
     List<Refugio> refugioList = proveedorRefugios.getAllRefugios();
     return refugioList.stream().filter(cada -> cada.getAdmisiones().contains(mascota.getTipoMascota())).collect(Collectors.toList());
 
