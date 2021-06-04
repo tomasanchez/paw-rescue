@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import model.mascota.encontrada.MascotaEncontrada;
-import model.publicacion.Asociacion;
 import model.publicacion.Publicacion;
 import model.usuario.Contacto;
 import model.usuario.DuenioMascota;
@@ -69,7 +68,6 @@ public class AdministracionRescates {
 
   private void notificarDuenioMascotaPerdida(DuenioMascota buscarDuenio) {
     // TODO
-
   }
 
   public List<Rescatista> getMascotasEncontradas() {
@@ -80,14 +78,16 @@ public class AdministracionRescates {
     return getMascotasEncontradas().stream().filter(r -> r.getMascotaEncontrada().equals(mascota))
         .findFirst().get().getDatosPersonales().getContacto();
   }
-  //TODO implementar
+
   public void buscarAsociacion(MascotaEncontrada mascotaEncontrada) {
+    // TODO implementar
   }
 
-  public Contacto duenioEncontroSuMascota(MascotaEncontrada mascota){
-    Rescatista rescate = (Rescatista) rescates.stream().filter(rescatista -> rescatista.getMascotaEncontrada() == mascota);
+  public Contacto duenioEncontroSuMascota(MascotaEncontrada mascota) {
+    Rescatista rescate = (Rescatista) rescates.stream()
+        .filter(rescatista -> rescatista.getMascotaEncontrada() == mascota);
     return rescate.getDatosPersonales().getContacto();
   }
-  
+
 }
 
