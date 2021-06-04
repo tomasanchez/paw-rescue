@@ -18,9 +18,10 @@ public class Coordenada {
     return this.coordenadaY;
   }
   
-  public double distancia (){
+  public int distancia (){
     int x =  Integer.parseInt(coordenadaX);
     int y =  Integer.parseInt(coordenadaY);
-    return Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
+    return (int) Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
   }
+  
 }
