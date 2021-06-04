@@ -12,7 +12,7 @@ public class ApiRefugiosTest {
   void obtenerHogares() {
     ProveedorRefugios proveedorRefugios = ProveedorRefugios.instance();
     proveedorRefugios.loginRefugios();
-    HogaresResponse hogaresResponse = proveedorRefugios.getRefugios("offset", "2");
+    HogaresResponse hogaresResponse = proveedorRefugios.getHogares("offset", "2");
     Assertions.assertEquals("2", hogaresResponse.getOffset());
     Assertions.assertNotNull(hogaresResponse.getHogares());
   }

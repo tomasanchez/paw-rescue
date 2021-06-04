@@ -42,7 +42,7 @@ public class ProveedorRefugios {
     client = Client.create(clientConfig);
   }
   
-  public HogaresResponse getRefugios(String offset, String value) {
+  public HogaresResponse getHogares(String offset, String value) {
     ClientResponse response = this.client.resource(API_REFUGIOS).path(RESOURCE)
       .queryParam(offset, value).header("Authorization", "Bearer " + TOKEN)
       .accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
