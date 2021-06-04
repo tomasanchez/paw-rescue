@@ -23,7 +23,7 @@ public class AdministracionRescates {
   }
 
   public AdministracionRescates(AdministracionUsers adminUsers,
-                                AdministracionPublicaciones adminPublicaciones) {
+      AdministracionPublicaciones adminPublicaciones) {
     this.adminUsers = adminUsers;
     this.adminPublicaciones = adminPublicaciones;
     proveedorRefugios.loginRefugios();
@@ -37,7 +37,7 @@ public class AdministracionRescates {
    */
   List<Rescatista> mascotasEncontradas(long dias) {
     return rescates.stream().filter(rescate -> rescate.compararFechaMascotaEncontrada(dias))
-      .collect(Collectors.toList());
+        .collect(Collectors.toList());
   }
 
   /**
@@ -69,7 +69,9 @@ public class AdministracionRescates {
 
   private List<Refugio> buscarRefugio(MascotaEncontrada mascota) {
     List<Refugio> refugioList = proveedorRefugios.getAllRefugios();
-    return refugioList.stream().filter(cada -> cada.getAdmisiones().contains(mascota.getTipoMascota())).collect(Collectors.toList());
+    return refugioList.stream()
+        .filter(cada -> cada.getAdmisiones().contains(mascota.getTipoMascota()))
+        .collect(Collectors.toList());
 
   }
 
@@ -83,7 +85,7 @@ public class AdministracionRescates {
 
   public Contacto getContactoRescatista(MascotaEncontrada mascota) {
     return getMascotasEncontradas().stream().filter(r -> r.getMascotaEncontrada().equals(mascota))
-      .findFirst().get().getDatosPersonales().getContacto();
+        .findFirst().get().getDatosPersonales().getContacto();
   }
 
   public void buscarAsociacion(MascotaEncontrada mascotaEncontrada) {
@@ -95,6 +97,6 @@ public class AdministracionRescates {
         .filter(rescatista -> rescatista.getMascotaEncontrada() == mascota);
     return rescate.getDatosPersonales().getContacto();
   }
-  
+
 }
 
