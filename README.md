@@ -4,4 +4,4 @@
 
 ### Diagrama de Clases
 
-![Diagrama-de-Clases-I](images/dc-1.png)
+![Diagrama-de-Clases-I](images/01-entrega/dc-1.png)
