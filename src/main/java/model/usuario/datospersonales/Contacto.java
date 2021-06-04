@@ -1,4 +1,4 @@
-package model.usuario;
+package model.usuario.datospersonales;
 
 import java.util.Objects;
 

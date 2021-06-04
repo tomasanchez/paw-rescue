@@ -7,9 +7,9 @@ import model.mascota.encontrada.MascotaEncontrada;
 import model.publicacion.Asociacion;
 import model.publicacion.Publicacion;
 import model.refugio.Refugio;
-import model.usuario.Contacto;
 import model.usuario.DuenioMascota;
 import model.usuario.Rescatista;
+import model.usuario.datospersonales.Contacto;
 import services.ProveedorRefugios;
 
 public class AdministracionRescates {

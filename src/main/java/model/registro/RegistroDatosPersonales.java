@@ -2,10 +2,10 @@ package model.registro;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import model.usuario.Contacto;
+import model.usuario.datospersonales.Contacto;
 import model.usuario.datospersonales.DatosPersonales;
-import model.usuario.datospersonales.Documento;
-import model.usuario.datospersonales.TipoDocumento;
+import model.usuario.datospersonales.documento.Documento;
+import model.usuario.datospersonales.documento.TipoDocumento;
 
 /**
  * Builder de una Persona.
