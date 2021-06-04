@@ -8,6 +8,10 @@ public class Publicacion {
   private boolean activa = false;
   private Asociacion asociacion;
 
+  public void setAsociacion(Asociacion asociacion) {
+    this.asociacion = asociacion;
+  }
+
   public Publicacion(MascotaEncontrada mascota) {
     this.mascota = mascota;
   }

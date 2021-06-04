@@ -30,9 +30,9 @@ public class RegistroRescatista extends RegistroDatosPersonales {
 
   private MascotaEncontrada mascotaEncontrada;
   
-  private String direccion;
+  private String direccionHogarDeTransito;
 
-  private Boolean rescatistaAlbergaMascota;
+  private Boolean rescatistaAlbergaMascota= false;
   
   private Refugio refugioAsignado; 
   
@@ -46,14 +46,14 @@ public class RegistroRescatista extends RegistroDatosPersonales {
     this.mascotaEncontrada = Objects.requireNonNull(mascotaEncontrada);
   }
   
-  public void albergarMascota(String direccion) {
-    this.direccion= direccion;
+  public void albergarMascota(String direccionDelRescatista) {
+    this.direccionHogarDeTransito= direccionDelRescatista;
     this.rescatistaAlbergaMascota= true;
   }
   
   public void asignarRefugio(Refugio refugio) {
     this.refugioAsignado= refugio;
-    this.direccion= refugio.getDireccion();
+    this.direccionHogarDeTransito= refugio.getDireccion();
     this.rescatistaAlbergaMascota= false;
 ;  }
   
@@ -74,7 +74,7 @@ public class RegistroRescatista extends RegistroDatosPersonales {
   }
 
   private Rescatista instanciarRescatista() {
-    return new Rescatista(datosPersonales(), mascotaEncontrada, rescatistaAlbergaMascota);
+    return new Rescatista(datosPersonales(), mascotaEncontrada, rescatistaAlbergaMascota, direccionHogarDeTransito, refugioAsignado);
   }
 
   public RegistroRescatista setAdminRescastes(AdministracionRescates adminRescastes) {
@@ -87,7 +87,7 @@ public class RegistroRescatista extends RegistroDatosPersonales {
   }
 
   public String getHogarTransitorio() {
-    return direccion;
+    return direccionHogarDeTransito;
   }
 
   public Refugio getRefugioAsignado() {

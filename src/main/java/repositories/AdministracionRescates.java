@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.publicacion.Publicacion;
-import model.refugio.Refugio;
 import model.usuario.DuenioMascota;
 import model.usuario.Rescatista;
 import model.usuario.datospersonales.Contacto;
@@ -48,10 +47,6 @@ public class AdministracionRescates {
   public void registrarRescate(Rescatista rescatista) {
     rescates.add(rescatista);
     identificarMascota(rescatista.getMascotaEncontrada());
-
-    if (!(rescatista.puedeAlbergarMascota())) {
-      buscarRefugio(rescatista.getMascotaEncontrada());
-    }
   }
 
   /**
@@ -67,13 +62,6 @@ public class AdministracionRescates {
     }
   }
 
-  private List<Refugio> buscarRefugio(MascotaEncontrada mascota) {
-    List<Refugio> refugioList = proveedorRefugios.getAllRefugios();
-    return refugioList.stream()
-        .filter(cada -> cada.getAdmisiones().contains(mascota.getTipoMascota()))
-        .collect(Collectors.toList());
-
-  }
 
   private void notificarDuenioMascotaPerdida(DuenioMascota buscarDuenio) {
     // TODO

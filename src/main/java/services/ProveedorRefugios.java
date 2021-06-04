@@ -28,7 +28,7 @@ public class ProveedorRefugios {
   Client client;
   private static final String API_REFUGIOS = "https://api.refugiosdds.com.ar/api";
   private static final String RESOURCE = "hogares";
-  private static String TOKEN = "";
+  private String TOKEN = "";
 
   private static final ProveedorRefugios INSTANCE = new ProveedorRefugios();
 
