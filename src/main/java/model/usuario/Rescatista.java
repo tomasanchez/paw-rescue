@@ -27,12 +27,13 @@ public class Rescatista {
    * @since 1.0
    */
   MascotaEncontrada mascotaEncontrada;
-  
-  Boolean albergarMascota; 
+
+  Boolean albergarMascota;
 
   String direccion;
-  
-  Refugio refugioAsignado; 
+
+  Refugio refugioAsignado;
+
   public Boolean getAlbergarMascota() {
     return albergarMascota;
   }
@@ -62,21 +63,22 @@ public class Rescatista {
    *
    * @param datosPersonales los datos de Nombre, Apellido, Documento, etc.
    * @param mascotaEncontrada el animal rescatado.
-   * @param direccion TODO
-   * @param refugioAsignado TODO
+   * @param direccion la direccion donde fue encontrado
+   * @param refugioAsignado el refugio al que se asigno la mascota
    */
-  public Rescatista(DatosPersonales datosPersonales, MascotaEncontrada mascotaEncontrada, Boolean albergarMascota, String direccion, Refugio refugioAsignado) {
+  public Rescatista(DatosPersonales datosPersonales, MascotaEncontrada mascotaEncontrada,
+      Boolean albergarMascota, String direccion, Refugio refugioAsignado) {
     this.datosPersonales = datosPersonales;
     this.mascotaEncontrada = mascotaEncontrada;
-    this.albergarMascota= albergarMascota;
-    this.direccion= direccion;
-    this.refugioAsignado= refugioAsignado;
+    this.albergarMascota = albergarMascota;
+    this.direccion = direccion;
+    this.refugioAsignado = refugioAsignado;
   }
 
   public boolean puedeAlbergarMascota() {
     return this.albergarMascota;
   }
-  
+
 
   public DatosPersonales getDatosPersonales() {
     return this.datosPersonales;
