@@ -2,6 +2,7 @@ package model.usuario;
 
 import java.time.LocalDate;
 import model.mascota.encontrada.MascotaEncontrada;
+import model.refugio.Refugio;
 import model.usuario.datospersonales.DatosPersonales;
 
 /**
@@ -29,16 +30,47 @@ public class Rescatista {
   
   Boolean albergarMascota; 
 
+  String direccion;
+  
+  Refugio refugioAsignado; 
+  public Boolean getAlbergarMascota() {
+    return albergarMascota;
+  }
+
+  public String getDireccion() {
+    return direccion;
+  }
+
+  public Refugio getRefugioAsignado() {
+    return refugioAsignado;
+  }
+
+  public void setAlbergarMascota(Boolean albergarMascota) {
+    this.albergarMascota = albergarMascota;
+  }
+
+  public void setDireccion(String direccion) {
+    this.direccion = direccion;
+  }
+
+  public void setRefugioAsignado(Refugio refugioAsignado) {
+    this.refugioAsignado = refugioAsignado;
+  }
+
   /**
    * Guarda cuenta de una persona que rescata una mascota.
    *
    * @param datosPersonales los datos de Nombre, Apellido, Documento, etc.
    * @param mascotaEncontrada el animal rescatado.
+   * @param direccion TODO
+   * @param refugioAsignado TODO
    */
-  public Rescatista(DatosPersonales datosPersonales, MascotaEncontrada mascotaEncontrada, Boolean albergarMascota) {
+  public Rescatista(DatosPersonales datosPersonales, MascotaEncontrada mascotaEncontrada, Boolean albergarMascota, String direccion, Refugio refugioAsignado) {
     this.datosPersonales = datosPersonales;
     this.mascotaEncontrada = mascotaEncontrada;
     this.albergarMascota= albergarMascota;
+    this.direccion= direccion;
+    this.refugioAsignado= refugioAsignado;
   }
 
   public boolean puedeAlbergarMascota() {

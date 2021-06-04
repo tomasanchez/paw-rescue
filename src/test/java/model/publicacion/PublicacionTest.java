@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import model.mascota.encontrada.MascotaEncontrada;
+import model.refugio.Refugio;
 import model.registro.RegistroRescatista;
 import repositories.AdministracionPublicaciones;
 import repositories.AdministracionRescates;
@@ -20,6 +21,7 @@ public class PublicacionTest {
   private AdministracionPublicaciones adminPublicaciones;
   private RegistroRescatista registro;
   private MascotaEncontrada mascota;
+  private Refugio refugio;
 
   @BeforeEach
   void initPublicaciones() {
@@ -28,6 +30,7 @@ public class PublicacionTest {
     adminRescastes = new AdministracionRescates(adminUsers, adminPublicaciones);
     mascota = mock(MascotaEncontrada.class);
     registro = spy(new RegistroRescatista(adminRescastes));
+    refugio= mock(Refugio.class);
   }
 
   @Test
@@ -63,7 +66,7 @@ public class PublicacionTest {
 
   private void prepararRegistro(Boolean tieneChapita) {
     registro.mascotaEncontrada(mascota);
-    registro.puedeAlbergarMascota(false);
+    registro.asignarRefugio(refugio);;
     when(mascota.tieneChapita()).thenReturn(tieneChapita);
     doReturn(null).when(registro).datosPersonales();
   }

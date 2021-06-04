@@ -29,10 +29,12 @@ public class RegistroRescatista extends RegistroDatosPersonales {
    */
 
   private MascotaEncontrada mascotaEncontrada;
-
-  private Boolean albergaMascota;
   
-  private String hogarTransitorio;
+  private String direccionHogarDeTransito;
+
+  private Boolean rescatistaAlbergaMascota= false;
+  
+  private Refugio refugioAsignado; 
   
   ProveedorRefugios proveedorRefugios = ProveedorRefugios.instance();
 
@@ -43,19 +45,17 @@ public class RegistroRescatista extends RegistroDatosPersonales {
   public void mascotaEncontrada(MascotaEncontrada mascotaEncontrada) {
     this.mascotaEncontrada = Objects.requireNonNull(mascotaEncontrada);
   }
-
-  public void puedeAlbergarMascota(Boolean value) {
-    this.albergaMascota = value;
-  }
-
   
-  public void albergarMascota(String direccion) {
-    this.hogarTransitorio= direccion;
+  public void albergarMascota(String direccionDelRescatista) {
+    this.direccionHogarDeTransito= direccionDelRescatista;
+    this.rescatistaAlbergaMascota= true;
   }
   
   public void asignarRefugio(Refugio refugio) {
-    this.hogarTransitorio= refugio.getDireccion();
-  }
+    this.refugioAsignado= refugio;
+    this.direccionHogarDeTransito= refugio.getDireccion();
+    this.rescatistaAlbergaMascota= false;
+;  }
   
   public List<Refugio> buscarRefugios(MascotaEncontrada mascota) {
     List<Refugio> refugioList = proveedorRefugios.getAllRefugios();
@@ -74,7 +74,7 @@ public class RegistroRescatista extends RegistroDatosPersonales {
   }
 
   private Rescatista instanciarRescatista() {
-    return new Rescatista(datosPersonales(), mascotaEncontrada, albergaMascota);
+    return new Rescatista(datosPersonales(), mascotaEncontrada, rescatistaAlbergaMascota, direccionHogarDeTransito, refugioAsignado);
   }
 
   public RegistroRescatista setAdminRescastes(AdministracionRescates adminRescastes) {
@@ -87,7 +87,11 @@ public class RegistroRescatista extends RegistroDatosPersonales {
   }
 
   public String getHogarTransitorio() {
-    return hogarTransitorio;
+    return direccionHogarDeTransito;
+  }
+
+  public Refugio getRefugioAsignado() {
+    return refugioAsignado;
   }
 }
 
