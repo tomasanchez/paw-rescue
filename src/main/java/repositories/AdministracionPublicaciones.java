@@ -20,7 +20,7 @@ public class AdministracionPublicaciones {
    * 
    * @since Entrega 2
    */
-  private List<Publicacion> publicaciones= new ArrayList<Publicacion> ();
+  private List<Publicacion> publicaciones = new ArrayList<Publicacion>();
 
   /**
    * Agrega una publicacion al repositorio.
@@ -39,11 +39,13 @@ public class AdministracionPublicaciones {
   }
 
   public List<Publicacion> getPublicacionesInactivas() {
-    return publicaciones.stream().filter(publicacion-> !(publicacion.isActiva())).collect(Collectors.toList());
+    return publicaciones.stream().filter(publicacion -> !(publicacion.isActiva()))
+        .collect(Collectors.toList());
   }
 
   public List<Publicacion> getPublicacionesActivas() {
-    return publicaciones.stream().filter(publicacion-> publicacion.isActiva()).collect(Collectors.toList());
+    return publicaciones.stream().filter(publicacion -> publicacion.isActiva())
+        .collect(Collectors.toList());
   }
-  
+
 }
