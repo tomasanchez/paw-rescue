@@ -12,12 +12,12 @@ import model.refugio.Refugio;
 import model.registro.RegistroRescatista;
 import repositories.RepoPublicaciones;
 import repositories.AdministracionRescates;
-import repositories.AdministracionUsers;
+import repositories.RepoUsers;
 
 public class PublicacionTest {
 
   private AdministracionRescates adminRescastes;
-  private AdministracionUsers adminUsers;
+  private RepoUsers adminUsers;
   private RepoPublicaciones adminPublicaciones;
   private RegistroRescatista registro;
   private MascotaEncontrada mascota;
@@ -25,7 +25,7 @@ public class PublicacionTest {
 
   @BeforeEach
   void initPublicaciones() {
-    adminUsers = mock(AdministracionUsers.class);
+    adminUsers = mock(RepoUsers.class);
     adminPublicaciones = new RepoPublicaciones();
     adminRescastes = new AdministracionRescates(adminUsers, adminPublicaciones);
     mascota = mock(MascotaEncontrada.class);

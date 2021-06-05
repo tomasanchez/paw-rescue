@@ -5,10 +5,10 @@ import java.util.List;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.usuario.DuenioMascota;
 
-public class AdministracionUsers {
+public class RepoUsers {
   private List<DuenioMascota> dueniosMascotas;
 
-  public AdministracionUsers() {
+  public RepoUsers() {
     this.dueniosMascotas = new ArrayList<>();
   }
 

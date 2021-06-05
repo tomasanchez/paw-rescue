@@ -12,18 +12,18 @@ import model.registro.RegistroDuenioMascota;
 import model.usuario.datospersonales.Contacto;
 import model.usuario.datospersonales.documento.TipoDocumento;
 import repositories.AdministracionRescates;
-import repositories.AdministracionUsers;
+import repositories.RepoUsers;
 
 
 public class DuenioMascotaTest {
 
 
   private DuenioMascota duenio;
-  private AdministracionUsers adminUsers;
+  private RepoUsers adminUsers;
 
   @BeforeEach
   void iniciarDuenio() {
-    adminUsers = new AdministracionUsers();
+    adminUsers = new RepoUsers();
     duenio = nuevoDuenio();
   }
 

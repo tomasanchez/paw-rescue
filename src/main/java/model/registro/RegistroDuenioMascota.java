@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import model.mascota.Mascota;
 import model.usuario.DuenioMascota;
-import repositories.AdministracionUsers;
+import repositories.RepoUsers;
 import tools.password.ValidadorContrasenia;
 
 /**
@@ -20,9 +20,9 @@ public class RegistroDuenioMascota extends RegistroDatosPersonales {
   public String password;
   List<Mascota> mascotas;
 
-  AdministracionUsers adminUsers;
+  RepoUsers adminUsers;
 
-  public RegistroDuenioMascota(AdministracionUsers adminUsers) {
+  public RegistroDuenioMascota(RepoUsers adminUsers) {
     this.mascotas = new ArrayList<>();
     this.adminUsers = adminUsers;
   }
