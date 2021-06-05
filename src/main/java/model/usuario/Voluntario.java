@@ -1,25 +1,18 @@
 package model.usuario;
 
-import java.util.ArrayList;
-import java.util.List;
-import model.publicacion.Publicacion;
+import model.publicacion.Asociacion;
+
 
 public class Voluntario extends Usuario {
 
-  List<Publicacion> publicacionesGestionadas = new ArrayList<Publicacion>();
+  Asociacion asociacion;
 
-  public List<Publicacion> getPublicacionesGestionadas() {
-    return publicacionesGestionadas;
+  public Asociacion getAsociacion() {
+    return asociacion;
   }
 
-  public Voluntario addPublicacion(Publicacion publicacion) {
-    getPublicacionesGestionadas().add(publicacion);
-    return this;
-  }
-
-  public Voluntario setPublicacionesGestionadas(List<Publicacion> publicacionesGestionadas) {
-    this.publicacionesGestionadas = publicacionesGestionadas;
-    return this;
+  public void setAsociacion(Asociacion asociacion) {
+    this.asociacion = asociacion;
   }
 
 }
