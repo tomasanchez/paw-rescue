@@ -15,16 +15,16 @@ public class AdministracionRescates {
 
   List<Rescatista> rescates = new ArrayList<>();
   AdministracionUsers adminUsers = new AdministracionUsers();
-  AdministracionPublicaciones adminPublicaciones = new AdministracionPublicaciones();
+  RepoPublicaciones adminPublicaciones = new RepoPublicaciones();
   ProveedorRefugios proveedorRefugios = ProveedorRefugios.instance();
-  List<Asociacion> asociaciones =  new ArrayList<>();
-  
+  List<Asociacion> asociaciones = new ArrayList<>();
+
   public AdministracionRescates() {
     proveedorRefugios.loginRefugios();
   }
 
   public AdministracionRescates(AdministracionUsers adminUsers,
-      AdministracionPublicaciones adminPublicaciones) {
+      RepoPublicaciones adminPublicaciones) {
     this.adminUsers = adminUsers;
     this.adminPublicaciones = adminPublicaciones;
     proveedorRefugios.loginRefugios();
@@ -79,12 +79,12 @@ public class AdministracionRescates {
   }
 
   public Asociacion buscarAsociacion(MascotaEncontrada mascotaEncontrada) {
-   asociaciones.sort((asociacion1,asociacion2)-> 
-     asociacion1.compararAsociacionesPorDistancia(asociacion2,mascotaEncontrada));
-   
-   return asociaciones.get(1);
+    asociaciones.sort((asociacion1, asociacion2) -> asociacion1
+        .compararAsociacionesPorDistancia(asociacion2, mascotaEncontrada));
+
+    return asociaciones.get(1);
   }
-  
+
 
   public Contacto duenioEncontroSuMascota(MascotaEncontrada mascota) {
     Rescatista rescate = (Rescatista) rescates.stream()
