@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.refugio.Refugio;
 import model.registro.RegistroRescatista;
-import repositories.AdministracionPublicaciones;
+import repositories.RepoPublicaciones;
 import repositories.AdministracionRescates;
 import repositories.AdministracionUsers;
 
@@ -18,7 +18,7 @@ public class PublicacionTest {
 
   private AdministracionRescates adminRescastes;
   private AdministracionUsers adminUsers;
-  private AdministracionPublicaciones adminPublicaciones;
+  private RepoPublicaciones adminPublicaciones;
   private RegistroRescatista registro;
   private MascotaEncontrada mascota;
   private Refugio refugio;
@@ -26,11 +26,11 @@ public class PublicacionTest {
   @BeforeEach
   void initPublicaciones() {
     adminUsers = mock(AdministracionUsers.class);
-    adminPublicaciones = new AdministracionPublicaciones();
+    adminPublicaciones = new RepoPublicaciones();
     adminRescastes = new AdministracionRescates(adminUsers, adminPublicaciones);
     mascota = mock(MascotaEncontrada.class);
     registro = spy(new RegistroRescatista(adminRescastes));
-    refugio= mock(Refugio.class);
+    refugio = mock(Refugio.class);
   }
 
   @Test

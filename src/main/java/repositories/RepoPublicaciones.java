@@ -13,7 +13,7 @@ import model.publicacion.Publicacion;
  * @since 06.02.2021
  * @author Tomás Sánchez
  */
-public class AdministracionPublicaciones {
+public class RepoPublicaciones {
 
   /**
    * Listado de publicaciones.
@@ -29,7 +29,7 @@ public class AdministracionPublicaciones {
    * @return el repositorio
    * @since Entrega 2
    */
-  public AdministracionPublicaciones agregar(Publicacion publicacion) {
+  public RepoPublicaciones agregar(Publicacion publicacion) {
     this.publicaciones.add(Objects.requireNonNull(publicacion));
     return this;
   }
