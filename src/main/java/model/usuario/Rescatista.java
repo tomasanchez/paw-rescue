@@ -88,7 +88,14 @@ public class Rescatista {
     return this.mascotaEncontrada;
   }
 
+  /**
+   * Compara si la mascota fue encontrada dentro de los ultimos días.
+   * 
+   * @param dias los ultimos dias
+   * @return si fue encontrada
+   */
   public boolean compararFechaMascotaEncontrada(long dias) {
-    return mascotaEncontrada.getFecha().isAfter(LocalDate.now().minusDays(dias));
+    LocalDate fechaMascota = getMascotaEncontrada().getFecha();
+    return fechaMascota.isAfter(LocalDate.now().minusDays(dias));
   }
 }
