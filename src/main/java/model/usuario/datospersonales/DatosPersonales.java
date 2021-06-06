@@ -2,6 +2,7 @@ package model.usuario.datospersonales;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import model.usuario.datospersonales.contacto.DatosContacto;
 import model.usuario.datospersonales.documento.Documento;
 
 /**
@@ -36,7 +37,7 @@ public class DatosPersonales {
   /**
    * Datos de un contacto.
    */
-  private Contacto contacto;
+  private DatosContacto contacto;
 
   /**
    * Instancia datos personales.
@@ -48,7 +49,7 @@ public class DatosPersonales {
    * @param contacto datos de un contacto
    */
   public DatosPersonales(String nombre, String apellido, Documento documento,
-      LocalDate fechaNacimiento, Contacto contacto) {
+      LocalDate fechaNacimiento, DatosContacto contacto) {
     this.nombre = Objects.requireNonNull(nombre);
     this.apellido = Objects.requireNonNull(apellido);
     this.documento = Objects.requireNonNull(documento);
@@ -72,7 +73,7 @@ public class DatosPersonales {
     return this.fechaNacimiento;
   }
 
-  public Contacto getContacto() {
+  public DatosContacto getDatosContacto() {
     return this.contacto;
   }
 }

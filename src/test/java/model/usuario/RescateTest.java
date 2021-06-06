@@ -7,7 +7,7 @@ import model.mascota.Chapita;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.refugio.Refugio;
 import model.registro.RegistroRescatista;
-import model.usuario.datospersonales.Contacto;
+import model.usuario.datospersonales.contacto.DatosContacto;
 import model.usuario.datospersonales.documento.TipoDocumento;
 import repositories.AdministracionRescates;
 
@@ -27,7 +27,7 @@ public class RescateTest {
     adminRescates = new AdministracionRescates();
     mascota = new MascotaEncontrada();
     registro = nuevoRescate();
-    refugio= mock(Refugio.class);
+    refugio = mock(Refugio.class);
   }
 
   @Test
@@ -71,16 +71,15 @@ public class RescateTest {
     return registroRescatista;
   }
 
-  private Contacto nuevoContato() {
-    return new Contacto("Tomas", "Dias", null, "tomasDias@gmail.com");
+  private DatosContacto nuevoContato() {
+    return new DatosContacto("Tomas", "Dias", null, "tomasDias@gmail.com");
   }
 
   private void encontrarMascota(final boolean PUEDE) {
-    if(PUEDE) {
+    if (PUEDE) {
       registro.albergarMascota("calle falsa 123");
       registro.mascotaEncontrada(mascota);
-    }
-    else {
+    } else {
       registro.asignarRefugio(refugio);
     }
   }

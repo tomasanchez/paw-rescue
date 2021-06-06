@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.usuario.Rescatista;
-import model.usuario.datospersonales.Contacto;
+import model.usuario.datospersonales.contacto.DatosContacto;
 
 /**
  * Repositorio de Rescates
@@ -62,12 +62,12 @@ public class RepoRescates {
    * @param mascota la mascota encontrada
    * @return el contacto
    */
-  public Contacto getContactoRescatista(MascotaEncontrada mascota) {
+  public DatosContacto getContactoRescatista(MascotaEncontrada mascota) {
     Optional<Rescatista> rescatista =
         getRescates().stream().filter(r -> r.getMascotaEncontrada().equals(mascota)).findFirst();
 
     if (rescatista.isPresent()) {
-      return rescatista.get().getDatosPersonales().getContacto();
+      return rescatista.get().getDatosPersonales().getDatosContacto();
     } else {
       return null;
     }

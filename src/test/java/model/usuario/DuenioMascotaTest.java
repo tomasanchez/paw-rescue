@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import model.mascota.Mascota;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.registro.RegistroDuenioMascota;
-import model.usuario.datospersonales.Contacto;
+import model.usuario.datospersonales.contacto.DatosContacto;
 import model.usuario.datospersonales.documento.TipoDocumento;
 import repositories.AdministracionRescates;
 import repositories.RepoUsers;
@@ -72,8 +72,8 @@ public class DuenioMascotaTest {
     return registro.mascotaOwner();
   }
 
-  Contacto nuevoContato() {
-    return new Contacto("Tomas", "Dias", "324432", "tomasDias@gmail.com");
+  DatosContacto nuevoContato() {
+    return new DatosContacto("Tomas", "Dias", "324432", "tomasDias@gmail.com");
   }
 
 }

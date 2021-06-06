@@ -2,8 +2,8 @@ package model.registro;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import model.usuario.datospersonales.Contacto;
 import model.usuario.datospersonales.DatosPersonales;
+import model.usuario.datospersonales.contacto.DatosContacto;
 import model.usuario.datospersonales.documento.Documento;
 import model.usuario.datospersonales.documento.TipoDocumento;
 
@@ -21,7 +21,7 @@ public abstract class RegistroDatosPersonales {
   protected LocalDate fechaNacimiento;
   protected TipoDocumento tipoDocumento;
   protected Long numeroDocumento;
-  protected Contacto contacto;
+  protected DatosContacto contacto;
 
   public RegistroDatosPersonales nombre(String nombre) {
     this.nombre = Objects.requireNonNull(nombre);
@@ -48,7 +48,7 @@ public abstract class RegistroDatosPersonales {
     return this;
   }
 
-  public RegistroDatosPersonales contacto(Contacto contacto) {
+  public RegistroDatosPersonales contacto(DatosContacto contacto) {
     this.contacto = Objects.requireNonNull(contacto);
     return this;
   }
