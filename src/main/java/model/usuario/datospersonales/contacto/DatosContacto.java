@@ -1,4 +1,4 @@
-package model.usuario.datospersonales;
+package model.usuario.datospersonales.contacto;
 
 import java.util.Objects;
 
@@ -9,7 +9,7 @@ import java.util.Objects;
  * @since 05.02.2021
  * @version 1.0
  */
-public class Contacto {
+public class DatosContacto {
 
   /**
    * El nombre del contacto.
@@ -40,6 +40,13 @@ public class Contacto {
   String mail;
 
   /**
+   * El contacto propiamente dicho.
+   * 
+   * @since Entrega 2
+   */
+  Contacto contacto;
+
+  /**
    * Instancia un contacto.
    * 
    * @param nombre el nombre del contato.
@@ -47,11 +54,19 @@ public class Contacto {
    * @param telefono un número de telefono.
    * @param mail una direccion de email.
    */
-  public Contacto(String nombre, String apellido, String telefono, String mail) {
+  public DatosContacto(String nombre, String apellido, String telefono, String mail) {
     this.nombre = Objects.requireNonNull(nombre);
     this.apellido = Objects.requireNonNull(apellido);
     this.telefono = telefono;
     this.mail = mail;
+  }
+
+  public Contacto getContacto() {
+    return contacto;
+  }
+
+  public void setContacto(Contacto contacto) {
+    this.contacto = contacto;
   }
 
   public String getNombre() {
