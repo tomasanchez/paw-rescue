@@ -8,13 +8,13 @@ import model.publicacion.Asociacion;
 import model.publicacion.Publicacion;
 import model.usuario.DuenioMascota;
 import model.usuario.Rescatista;
-import model.usuario.datospersonales.Contacto;
+import model.usuario.datospersonales.contacto.DatosContacto;
 import services.ProveedorRefugios;
 
 public class AdministracionRescates {
 
   List<Rescatista> rescates = new ArrayList<>();
-  AdministracionUsers adminUsers = new AdministracionUsers();
+  RepoUsers adminUsers = new RepoUsers();
   RepoPublicaciones adminPublicaciones = new RepoPublicaciones();
   ProveedorRefugios proveedorRefugios = ProveedorRefugios.instance();
   List<Asociacion> asociaciones = new ArrayList<>();
@@ -23,8 +23,7 @@ public class AdministracionRescates {
     proveedorRefugios.loginRefugios();
   }
 
-  public AdministracionRescates(AdministracionUsers adminUsers,
-      RepoPublicaciones adminPublicaciones) {
+  public AdministracionRescates(RepoUsers adminUsers, RepoPublicaciones adminPublicaciones) {
     this.adminUsers = adminUsers;
     this.adminPublicaciones = adminPublicaciones;
     proveedorRefugios.loginRefugios();
@@ -37,7 +36,7 @@ public class AdministracionRescates {
    * @return las mascotas filtradas
    */
   List<Rescatista> mascotasEncontradas(long dias) {
-    return rescates.stream().filter(rescate -> rescate.compararFechaMascotaEncontrada(dias))
+    return rescates.stream().filter(rescate -> rescate.estaDentroDeUltimosDias(dias))
         .collect(Collectors.toList());
   }
 
@@ -73,9 +72,9 @@ public class AdministracionRescates {
     return rescates;
   }
 
-  public Contacto getContactoRescatista(MascotaEncontrada mascota) {
+  public DatosContacto getContactoRescatista(MascotaEncontrada mascota) {
     return getMascotasEncontradas().stream().filter(r -> r.getMascotaEncontrada().equals(mascota))
-        .findFirst().get().getDatosPersonales().getContacto();
+        .findFirst().get().getDatosPersonales().getDatosContacto();
   }
 
   public Asociacion buscarAsociacion(MascotaEncontrada mascotaEncontrada) {
@@ -86,10 +85,10 @@ public class AdministracionRescates {
   }
 
 
-  public Contacto duenioEncontroSuMascota(MascotaEncontrada mascota) {
+  public DatosContacto duenioEncontroSuMascota(MascotaEncontrada mascota) {
     Rescatista rescate = (Rescatista) rescates.stream()
         .filter(rescatista -> rescatista.getMascotaEncontrada() == mascota);
-    return rescate.getDatosPersonales().getContacto();
+    return rescate.getDatosPersonales().getDatosContacto();
   }
 
 }

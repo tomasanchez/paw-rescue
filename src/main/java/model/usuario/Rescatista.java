@@ -75,6 +75,8 @@ public class Rescatista {
     this.refugioAsignado = refugioAsignado;
   }
 
+  public Rescatista() {}
+
   public boolean puedeAlbergarMascota() {
     return this.albergarMascota;
   }
@@ -88,14 +90,22 @@ public class Rescatista {
     return this.mascotaEncontrada;
   }
 
+  public Rescatista setMascota(MascotaEncontrada mascota) {
+    this.mascotaEncontrada = mascota;
+    return this;
+  }
+
   /**
    * Compara si la mascota fue encontrada dentro de los ultimos días.
    * 
    * @param dias los ultimos dias
    * @return si fue encontrada
    */
-  public boolean compararFechaMascotaEncontrada(long dias) {
-    LocalDate fechaMascota = getMascotaEncontrada().getFecha();
-    return fechaMascota.isAfter(LocalDate.now().minusDays(dias));
+  public boolean estaDentroDeUltimosDias(long dias) {
+    return getFechaRescate().isAfter(LocalDate.now().minusDays(dias));
+  }
+
+  public LocalDate getFechaRescate() {
+    return getMascotaEncontrada().getFecha();
   }
 }

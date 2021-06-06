@@ -33,7 +33,7 @@ public class RepoRescates {
    * @return las mascotas filtradas
    */
   List<Rescatista> getRescatesEnLosUltimosDias(long dias) {
-    return getRescates().stream().filter(rescate -> rescate.compararFechaMascotaEncontrada(dias))
+    return getRescates().stream().filter(rescate -> rescate.estaDentroDeUltimosDias(dias))
         .collect(Collectors.toList());
   }
 
