@@ -6,28 +6,29 @@ import model.mascota.encontrada.MascotaEncontrada;
 import model.usuario.DuenioMascota;
 
 public class RepoUsers {
-  private List<DuenioMascota> dueniosMascotas;
+  private List<DuenioMascota> users = new ArrayList<>();
 
-  public RepoUsers() {
-    this.dueniosMascotas = new ArrayList<>();
+  public List<DuenioMascota> getUsers() {
+    return this.users;
   }
 
-  public List<DuenioMascota> getDueniosMascotas() {
-    return this.dueniosMascotas;
+  /**
+   * Registra un usuario en el repository.
+   * 
+   * @param duenioMascota el usuario aregistrar;
+   */
+  public RepoUsers registrarDuenioMascota(DuenioMascota duenioMascota) {
+    getUsers().add(duenioMascota);
+    return this;
   }
-
-  public void registrarDuenioMascota(DuenioMascota duenioMascota) {
-    dueniosMascotas.add(duenioMascota);
-  }
-
 
   DuenioMascota buscarDuenio(MascotaEncontrada mascota) {
-    return dueniosMascotas.stream()
-        .filter(duenio -> duenio.equals(mascota.getChapita().getDuenio())).findFirst().orElse(null);
+    return getUsers().stream().filter(duenio -> duenio.equals(mascota.getChapita().getDuenio()))
+        .findFirst().orElse(null);
   }
-
 
   public boolean existeUsuario(DuenioMascota usuario) {
-    return getDueniosMascotas().contains(usuario);
+    return getUsers().contains(usuario);
   }
+
 }
