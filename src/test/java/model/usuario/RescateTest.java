@@ -9,7 +9,7 @@ import model.refugio.Refugio;
 import model.registro.RegistroRescatista;
 import model.usuario.datospersonales.contacto.DatosContacto;
 import model.usuario.datospersonales.documento.TipoDocumento;
-import repositories.AdministracionRescates;
+import repositories.RepoRescates;
 
 import static org.mockito.Mockito.mock;
 
@@ -17,14 +17,14 @@ import java.time.LocalDate;
 
 public class RescateTest {
 
-  private AdministracionRescates adminRescates;
+  private RepoRescates adminRescates;
   private MascotaEncontrada mascota;
   private RegistroRescatista registro;
   private Refugio refugio;
 
   @BeforeEach
   void initRescates() {
-    adminRescates = new AdministracionRescates();
+    adminRescates = new RepoRescates();
     mascota = new MascotaEncontrada();
     registro = nuevoRescate();
     refugio = mock(Refugio.class);
@@ -59,7 +59,7 @@ public class RescateTest {
     registro.generarRescate();
 
     Assertions.assertTrue(adminRescates.getMascotasEncontradas().stream()
-        .anyMatch(r -> r.getMascotaEncontrada().getChapita().equals(chapita)));
+        .anyMatch(r -> r.getChapita().equals(chapita)));
   }
 
   private RegistroRescatista nuevoRescate() {

@@ -42,7 +42,7 @@ public class RepoRescatesTest {
     doReturn(mascota).when(rescatista).getMascotaEncontrada();
 
     Assertions.assertEquals(mockContacto().getMail(),
-        repo.getContactoRescatista(mascota).getMail());
+        repo.contactoRescatista(mascota).getMail());
   }
 
   @Test

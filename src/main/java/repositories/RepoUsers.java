@@ -22,7 +22,7 @@ public class RepoUsers {
     return this;
   }
 
-  DuenioMascota buscarDuenio(MascotaEncontrada mascota) {
+  public DuenioMascota buscarDuenio(MascotaEncontrada mascota) {
     return getUsers().stream().filter(duenio -> duenio.equals(mascota.getChapita().getDuenio()))
         .findFirst().orElse(null);
   }

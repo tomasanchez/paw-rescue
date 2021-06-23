@@ -12,7 +12,7 @@ public class Publicacion {
     this.asociacion = asociacion;
   }
 
-  public Publicacion(MascotaEncontrada mascota) {
+  public Publicacion(MascotaEncontrada mascota, Asociacion asociacion) {
     this.mascota = mascota;
   }
 

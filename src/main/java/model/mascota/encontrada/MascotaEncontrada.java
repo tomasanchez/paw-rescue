@@ -99,4 +99,5 @@ public class MascotaEncontrada {
     this.chapita = chapita;
   }
 
+  
 }

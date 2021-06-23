@@ -4,6 +4,7 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,25 +12,22 @@ import model.mascota.encontrada.MascotaEncontrada;
 import model.refugio.Refugio;
 import model.registro.RegistroRescatista;
 import repositories.RepoPublicaciones;
-import repositories.AdministracionRescates;
+import repositories.RepoRescates;
 import repositories.RepoUsers;
 
 public class PublicacionTest {
 
-  private AdministracionRescates adminRescastes;
-  private RepoUsers adminUsers;
-  private RepoPublicaciones adminPublicaciones;
+  private RepoPublicaciones adminPublicaciones = new RepoPublicaciones();
   private RegistroRescatista registro;
   private MascotaEncontrada mascota;
   private Refugio refugio;
 
   @BeforeEach
   void initPublicaciones() {
-    adminUsers = mock(RepoUsers.class);
-    adminPublicaciones = new RepoPublicaciones();
-    adminRescastes = new AdministracionRescates(adminUsers, adminPublicaciones);
+    RepoUsers adminUsers = mock(RepoUsers.class);
+    RepoRescates repoRescates = new RepoRescates(adminUsers, adminPublicaciones);
     mascota = mock(MascotaEncontrada.class);
-    registro = spy(new RegistroRescatista(adminRescastes));
+    registro = spy(new RegistroRescatista(repoRescates));
     refugio = mock(Refugio.class);
   }
 
@@ -53,7 +51,7 @@ public class PublicacionTest {
     registro.generarRescate();
     registro.generarRescate();
     Assertions.assertEquals(adminPublicaciones.getPublicacionesInactivas().size(),
-        adminPublicaciones.getPublicaciones().size());
+      adminPublicaciones.getPublicaciones().size());
   }
 
   @Test
@@ -66,7 +64,7 @@ public class PublicacionTest {
 
   private void prepararRegistro(Boolean tieneChapita) {
     registro.mascotaEncontrada(mascota);
-    registro.asignarRefugio(refugio);;
+    registro.asignarRefugio(refugio);
     when(mascota.tieneChapita()).thenReturn(tieneChapita);
     doReturn(null).when(registro).datosPersonales();
   }

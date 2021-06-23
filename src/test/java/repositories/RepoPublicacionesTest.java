@@ -16,7 +16,7 @@ public class RepoPublicacionesTest {
 
   @Test
   void testAgregar() {
-    repo.agregar(new Publicacion(null));
+    repo.agregar(new Publicacion(null, null));
     Assertions.assertFalse(repo.getPublicaciones().isEmpty());
   }
 
@@ -28,7 +28,7 @@ public class RepoPublicacionesTest {
 
   @Test
   void testGetPublicacionesActivas() {
-    Publicacion publicacion = new Publicacion(null);
+    Publicacion publicacion = new Publicacion(null, null);
     repo.agregar(publicacion);
     publicacion.activar();
     Assertions.assertTrue(repo.getPublicacionesActivas().contains(publicacion));
@@ -37,7 +37,7 @@ public class RepoPublicacionesTest {
 
   @Test
   void testGetPublicacionesInactivas() {
-    Publicacion publicacion = new Publicacion(null);
+    Publicacion publicacion = new Publicacion(null, null);
     repo.agregar(publicacion);
     Assertions.assertFalse(repo.getPublicacionesActivas().contains(publicacion));
     Assertions.assertTrue(repo.getPublicacionesInactivas().contains(publicacion));

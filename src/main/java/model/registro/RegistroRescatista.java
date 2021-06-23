@@ -1,26 +1,20 @@
 package model.registro;
 
-import java.util.List;
+
 import java.util.Objects;
-import java.util.stream.Collectors;
+
 
 import model.mascota.encontrada.MascotaEncontrada;
 import model.refugio.Refugio;
 import model.usuario.Rescatista;
-import repositories.AdministracionRescates;
-import services.ProveedorRefugios;
+import repositories.RepoRescates;
+import services.ServicioRescate;
+
 
 /**
  * Registro de Rescates - Builder de Rescatista.
  */
 public class RegistroRescatista extends RegistroDatosPersonales {
-
-  /**
-   * Dependencia de repositorio.
-   * 
-   * @since Entrega 2.
-   */
-  private AdministracionRescates adminRescastes;
 
   /**
    * Dependencia de repositorio.
@@ -35,11 +29,12 @@ public class RegistroRescatista extends RegistroDatosPersonales {
   private Boolean rescatistaAlbergaMascota = false;
 
   private Refugio refugioAsignado;
+  
+  private ServicioRescate servicioRescate;
 
-  ProveedorRefugios proveedorRefugios = ProveedorRefugios.instance();
-
-  public RegistroRescatista(AdministracionRescates adminRescastes) {
-    this.adminRescastes = adminRescastes;
+  //ProveedorRefugios proveedorRefugios = ProveedorRefugios.instance();
+  
+  public RegistroRescatista(RepoRescates rescatista){
   }
 
   public void mascotaEncontrada(MascotaEncontrada mascotaEncontrada) {
@@ -57,32 +52,15 @@ public class RegistroRescatista extends RegistroDatosPersonales {
     this.rescatistaAlbergaMascota = false;
   }
 
-  public List<Refugio> buscarRefugios(MascotaEncontrada mascota) {
-    List<Refugio> refugioList = proveedorRefugios.getAllRefugios();
-    return refugioList.stream()
-        .filter(cada -> cada.getAdmisiones().contains(mascota.getTipoMascota()))
-        .collect(Collectors.toList());
-
-  }
-
   public Rescatista generarRescate() {
     Rescatista rescatista = instanciarRescatista();
-    getAdminRescastes().registrarRescate(rescatista);
+    servicioRescate.registrarRescate(rescatista);
     return rescatista;
   }
 
   private Rescatista instanciarRescatista() {
     return new Rescatista(datosPersonales(), mascotaEncontrada, rescatistaAlbergaMascota,
-        direccionHogarDeTransito, refugioAsignado);
-  }
-
-  public RegistroRescatista setAdminRescastes(AdministracionRescates adminRescastes) {
-    this.adminRescastes = adminRescastes;
-    return this;
-  }
-
-  public AdministracionRescates getAdminRescastes() {
-    return this.adminRescastes;
+      direccionHogarDeTransito, refugioAsignado);
   }
 
   public String getHogarTransitorio() {

@@ -8,7 +8,7 @@ import model.usuario.datospersonales.DatosPersonales;
 
 public class DuenioMascota extends Usuario {
 
-  List<Mascota> mascotas = new ArrayList<Mascota>();
+  List<Mascota> mascotas = new ArrayList<>();
 
   public DuenioMascota() {
     super();
@@ -38,9 +38,7 @@ public class DuenioMascota extends Usuario {
     mascotas.add(mascota.setChapita(new Chapita(this)));
   }
 
-  public boolean esDuenio(int id) {
-    return mascotas.stream().anyMatch(mascota -> mascota.getChapita().getId() == id);
-  }
+  //public boolean esDuenio(int id) {return mascotas.stream().anyMatch(mascota -> mascota.getChapita().getId() == id);}
 
   public List<Mascota> getMascotas() {
     return this.mascotas;
