@@ -1,17 +1,16 @@
 package model.usuario;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+
 import java.time.LocalDate;
+import model.mascota.Sexo;
+import model.mascota.TipoMascota;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import model.mascota.Mascota;
-import model.mascota.encontrada.MascotaEncontrada;
 import model.registro.RegistroDuenioMascota;
 import model.usuario.datospersonales.contacto.DatosContacto;
 import model.usuario.datospersonales.documento.TipoDocumento;
-import repositories.AdministracionRescates;
 import repositories.RepoUsers;
 
 
@@ -42,26 +41,38 @@ public class DuenioMascotaTest {
   void duenioEstaRegistrado() {
     Assertions.assertTrue(adminUsers.existeUsuario(duenio));
   }
-
+  
   @Test
   void duenioPoneChapitaAMascota() {
     Mascota mascota = new Mascota();
     duenio.registrarMascota(mascota);
     Assertions.assertEquals(duenio, mascota.getChapita().getDuenio());
   }
-
+  
   @Test
-  void duenioConctactaRescatista() {
-    AdministracionRescates adminRescates = mock(AdministracionRescates.class);
-    MascotaEncontrada mascota = new MascotaEncontrada();
-
-    when(adminRescates.getContactoRescatista(mascota)).thenReturn(nuevoContato());
-
-    Assertions.assertEquals(adminRescates.getContactoRescatista(mascota).getMail(),
-        nuevoContato().getMail());
+  public void duenioMascotasRegistraUnaMascotaYAhoraTiene1MascotaMas() {
+    duenio.registrarMascota(gato());
+    Assertions.assertEquals(duenio.getCantidadMascotas(),1);
+  }
+  
+  @Test
+  public void duenioMascotasTieneMasDeUnaMascota() {
+    duenio.registrarMascota(perra());
+    duenio.registrarMascota(gato());
+    Assertions.assertEquals(duenio.getCantidadMascotas(),2);
+  }
+  
+  Mascota gato(){
+    return new Mascota("copito","copi", TipoMascota.GATO,6, Sexo.MACHO,
+      "Tamaño grande y de pelo largo",null,null);
   }
 
+  Mascota perra(){
+    return new Mascota("negra","negrita",TipoMascota.PERRO,2,Sexo.HEMBRA,
+      "Pelo corto y tamaño madiano",null, null);
+  }
 
+  
   DuenioMascota nuevoDuenio() {
     RegistroDuenioMascota registro = new RegistroDuenioMascota(adminUsers);
     registro.nombre("Lucas").apellido("Gonzalez");
