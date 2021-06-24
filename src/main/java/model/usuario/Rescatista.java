@@ -45,7 +45,6 @@ public class Rescatista {
   public Refugio getRefugioAsignado() {
     return refugioAsignado;
   }
-  
 
   public void setAlbergarMascota(Boolean albergarMascota) {
     this.albergarMascota = albergarMascota;
@@ -111,9 +110,7 @@ public class Rescatista {
   }
 
   public boolean esSuMascota(MascotaEncontrada mascota) {
-      return getMascotaEncontrada() == mascota;
+    return getMascotaEncontrada().equals(mascota);
   }
-  private void notificarDuenioMascotaPerdida(DuenioMascota buscarDuenio) {
-    // TODO
-  }
+
 }
