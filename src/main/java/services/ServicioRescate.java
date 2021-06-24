@@ -19,7 +19,7 @@ public class ServicioRescate {
     this.rescates = rescates;
     this.users = users;
   }
-  
+
   /**
    * Guarda la información de una mascota rescatada.
    *
@@ -29,6 +29,7 @@ public class ServicioRescate {
     rescates.addRescate(rescatista);
     identificarMascota(rescatista.getMascotaEncontrada());
   }
+
   /**
    * Realiza la notificacion o publicacion de la mascota encontrada.
    *
@@ -46,7 +47,7 @@ public class ServicioRescate {
     duenioMascota.getDatosPeronales().getDatosContacto().getContacto()
         .contactar("Su mascota ha sido encontrada");
   }
-  
+
   public RepoRescates getRescates() {
     return rescates;
   }
@@ -59,10 +60,10 @@ public class ServicioRescate {
     this.publicaciones = publicaciones;
     return this;
   }
-  
+
   public ServicioRescate setRescates(RepoRescates rescates) {
     this.rescates = rescates;
     return this;
   }
-  
+
 }

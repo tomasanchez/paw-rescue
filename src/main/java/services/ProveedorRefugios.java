@@ -41,11 +41,11 @@ public class ProveedorRefugios {
     clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
     client = Client.create(clientConfig);
   }
-  
+
   public HogaresResponse getHogares(String offset, String value) {
     ClientResponse response = this.client.resource(API_REFUGIOS).path(RESOURCE)
-      .queryParam(offset, value).header("Authorization", "Bearer " + TOKEN)
-      .accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+        .queryParam(offset, value).header("Authorization", "Bearer " + TOKEN)
+        .accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 
     JsonFactory jsonFactory = new JsonFactory();
     String responseBody = response.getEntity(String.class);
@@ -60,8 +60,8 @@ public class ProveedorRefugios {
     while (total / 10 >= offset) {
 
       ClientResponse response = this.client.resource(API_REFUGIOS).path(RESOURCE)
-        .queryParam("offset", String.valueOf(offset)).header("Authorization", "Bearer " + TOKEN)
-        .accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+          .queryParam("offset", String.valueOf(offset)).header("Authorization", "Bearer " + TOKEN)
+          .accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
       JsonFactory jsonFactory = new JsonFactory();
       String responseBody = response.getEntity(String.class);
       HogaresResponse hogaresResponse = jsonFactory.fromJson(responseBody, HogaresResponse.class);
@@ -73,15 +73,17 @@ public class ProveedorRefugios {
   }
 
   public Refugio hogarToRefugio(Hogares hogar) {
-    Coordenada coordenada = new Coordenada(hogar.getUbicacion().getCoordenadaX().toString(), hogar.getUbicacion().getCoordenadaY().toString());
+    Coordenada coordenada = new Coordenada(hogar.getUbicacion().getCoordenadaX().toString(),
+        hogar.getUbicacion().getCoordenadaY().toString());
     List<TipoMascota> admisiones = new ArrayList<>();
     Admisiones admisionesHogar = hogar.getAdmisiones();
     if (admisionesHogar.getGatos())
       admisiones.add(TipoMascota.GATO);
     if (admisionesHogar.getPerros())
       admisiones.add(TipoMascota.PERRO);
-    return new Refugio(hogar.getNombre(), hogar.getUbicacion().getDireccion(), coordenada, hogar.getTelefono(), admisiones,
-      hogar.getCapacidad(), hogar.getLugares_disponibles(), hogar.getPatio(), hogar.getCaracteristicas());
+    return new Refugio(hogar.getNombre(), hogar.getUbicacion().getDireccion(), coordenada,
+        hogar.getTelefono(), admisiones, hogar.getCapacidad(), hogar.getLugares_disponibles(),
+        hogar.getPatio(), hogar.getCaracteristicas());
   }
 
   public void loginRefugios() {
@@ -91,7 +93,7 @@ public class ProveedorRefugios {
     RequestBody requestBody = new RequestBody("rescatepatitas@gmail.com");
     JsonFactory jsonFactory = new JsonFactory();
     ClientResponse response = builder.type("application/json").post(ClientResponse.class,
-      jsonFactory.toJson(requestBody));
+        jsonFactory.toJson(requestBody));
     if (response.getStatus() == 409) {
       // throw new UsuarioLogueadoException();
       // Ya se encuentra logueado
