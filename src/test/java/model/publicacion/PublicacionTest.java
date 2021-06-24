@@ -27,7 +27,7 @@ public class PublicacionTest {
     RepoUsers adminUsers = mock(RepoUsers.class);
     RepoRescates repoRescates = new RepoRescates(adminUsers, adminPublicaciones);
     mascota = mock(MascotaEncontrada.class);
-    registro = spy(new RegistroRescatista(repoRescates));
+    registro = spy(new RegistroRescatista());
     refugio = mock(Refugio.class);
   }
 
@@ -51,7 +51,7 @@ public class PublicacionTest {
     registro.generarRescate();
     registro.generarRescate();
     Assertions.assertEquals(adminPublicaciones.getPublicacionesInactivas().size(),
-      adminPublicaciones.getPublicaciones().size());
+        adminPublicaciones.getPublicaciones().size());
   }
 
   @Test
