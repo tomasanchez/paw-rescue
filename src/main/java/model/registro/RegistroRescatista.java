@@ -2,14 +2,9 @@ package model.registro;
 
 
 import java.util.Objects;
-
-
 import model.mascota.encontrada.MascotaEncontrada;
 import model.refugio.Refugio;
 import model.usuario.Rescatista;
-import repositories.RepoRescates;
-import services.ServicioRescate;
-
 
 /**
  * Registro de Rescates - Builder de Rescatista.
@@ -29,13 +24,6 @@ public class RegistroRescatista extends RegistroDatosPersonales {
   private Boolean rescatistaAlbergaMascota = false;
 
   private Refugio refugioAsignado;
-  
-  private ServicioRescate servicioRescate;
-
-  //ProveedorRefugios proveedorRefugios = ProveedorRefugios.instance();
-  
-  public RegistroRescatista(RepoRescates rescatista){
-  }
 
   public void mascotaEncontrada(MascotaEncontrada mascotaEncontrada) {
     this.mascotaEncontrada = Objects.requireNonNull(mascotaEncontrada);
@@ -54,13 +42,12 @@ public class RegistroRescatista extends RegistroDatosPersonales {
 
   public Rescatista generarRescate() {
     Rescatista rescatista = instanciarRescatista();
-    servicioRescate.registrarRescate(rescatista);
     return rescatista;
   }
 
   private Rescatista instanciarRescatista() {
     return new Rescatista(datosPersonales(), mascotaEncontrada, rescatistaAlbergaMascota,
-      direccionHogarDeTransito, refugioAsignado);
+        direccionHogarDeTransito, refugioAsignado);
   }
 
   public String getHogarTransitorio() {
