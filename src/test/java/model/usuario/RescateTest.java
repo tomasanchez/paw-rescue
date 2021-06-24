@@ -17,14 +17,14 @@ import java.time.LocalDate;
 
 public class RescateTest {
 
-  private RepoRescates adminRescates;
+  private RepoRescates repoRescates;
   private MascotaEncontrada mascota;
   private RegistroRescatista registro;
   private Refugio refugio;
 
   @BeforeEach
   void initRescates() {
-    adminRescates = new RepoRescates();
+    repoRescates = new RepoRescates();
     mascota = new MascotaEncontrada();
     registro = nuevoRescate();
     refugio = mock(Refugio.class);
@@ -33,7 +33,7 @@ public class RescateTest {
   @Test
   void noSeGeneraRescateSinMascota() {
     Assertions.assertThrows(NullPointerException.class, () -> {
-      registro.generarRescate();
+      repoRescates.addRescate(registro.generarRescate());
     });
   }
 
@@ -48,7 +48,7 @@ public class RescateTest {
   void rescatistaQuedaRegistrado() {
     encontrarMascota(true);
     Rescatista rescatista = registro.generarRescate();
-    Assertions.assertTrue(adminRescates.getMascotasEncontradas().contains(rescatista));
+    Assertions.assertNotNull(rescatista);
   }
 
   @Test
@@ -56,14 +56,14 @@ public class RescateTest {
     Chapita chapita = new Chapita(null);
     mascota.setChapita(chapita);
     encontrarMascota(true);
-    registro.generarRescate();
+    repoRescates.addRescate(registro.generarRescate());
 
-    Assertions.assertTrue(adminRescates.getMascotasEncontradas().stream()
+    Assertions.assertTrue(repoRescates.getMascotasEncontradas().stream()
         .anyMatch(r -> r.getChapita().equals(chapita)));
   }
 
   private RegistroRescatista nuevoRescate() {
-    RegistroRescatista registroRescatista = new RegistroRescatista(adminRescates);
+    RegistroRescatista registroRescatista = new RegistroRescatista();
     registroRescatista.nombre("Lucas").apellido("Gonzalez");
     registroRescatista.contacto(nuevoContato());
     registroRescatista.numeroDocumento(132123412L).tipoDocumento(TipoDocumento.DNI);
