@@ -26,6 +26,7 @@ public class RepoRescatesTest {
 
   @Test
   void testAddRescate() {
+    when(rescatista.getMascotaEncontrada()).thenReturn(spy(new MascotaEncontrada()));
     repo.addRescate(rescatista);
     Assertions.assertTrue(repo.getRescates().contains(rescatista));
   }
@@ -48,8 +49,8 @@ public class RepoRescatesTest {
   @Test
   void testGetMascotasEncontradas() {
     MascotaEncontrada mascota = new MascotaEncontrada();
-    repo.addRescate(rescatista);
     doReturn(mascota).when(rescatista).getMascotaEncontrada();
+    repo.addRescate(rescatista);
     Assertions.assertTrue(repo.getMascotasEncontradas().contains(mascota));
   }
 
@@ -60,6 +61,7 @@ public class RepoRescatesTest {
 
   @Test
   void testGetRescatesEnLosUltimosDias() {
+    when(rescatista.getMascotaEncontrada()).thenReturn(spy(new MascotaEncontrada()));
     repo.addRescate(rescatista);
     doReturn(LocalDate.now()).when(rescatista).getFechaRescate();
     Assertions.assertTrue(repo.getRescatesEnLosUltimosDias(10).contains(rescatista));
