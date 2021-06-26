@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import model.mascota.Chapita;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.refugio.Refugio;
-import model.registro.RegistroRescatista;
+import model.registro.RegistroRescate;
 import model.usuario.datospersonales.contacto.DatosContacto;
 import model.usuario.datospersonales.documento.TipoDocumento;
 import repositories.RepoRescates;
@@ -19,7 +19,7 @@ public class RescateTest {
 
   private RepoRescates repoRescates;
   private MascotaEncontrada mascota;
-  private RegistroRescatista registro;
+  private RegistroRescate registro;
   private Refugio refugio;
 
   @BeforeEach
@@ -41,13 +41,13 @@ public class RescateTest {
   void rescatistaAlbergaMascota() {
     final boolean PUEDE = true;
     encontrarMascota(PUEDE);
-    Assertions.assertEquals(registro.generarRescate().albergarMascota, PUEDE);
+    Assertions.assertEquals(registro.generarRescate().albergaMascota, PUEDE);
   }
 
   @Test
   void rescatistaQuedaRegistrado() {
     encontrarMascota(true);
-    Rescatista rescatista = registro.generarRescate();
+    Rescate rescatista = registro.generarRescate();
     Assertions.assertNotNull(rescatista);
   }
 
@@ -62,8 +62,8 @@ public class RescateTest {
         .anyMatch(r -> r.getChapita().equals(chapita)));
   }
 
-  private RegistroRescatista nuevoRescate() {
-    RegistroRescatista registroRescatista = new RegistroRescatista();
+  private RegistroRescate nuevoRescate() {
+    RegistroRescate registroRescatista = new RegistroRescate();
     registroRescatista.nombre("Lucas").apellido("Gonzalez");
     registroRescatista.contacto(nuevoContato());
     registroRescatista.numeroDocumento(132123412L).tipoDocumento(TipoDocumento.DNI);
@@ -77,7 +77,7 @@ public class RescateTest {
 
   private void encontrarMascota(final boolean PUEDE) {
     if (PUEDE) {
-      registro.albergarMascota("calle falsa 123");
+      registro.albergaMascota("calle falsa 123");
       registro.mascotaEncontrada(mascota);
     } else {
       registro.asignarRefugio(refugio);

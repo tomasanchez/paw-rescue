@@ -3,7 +3,7 @@ package services;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.publicacion.Publicacion;
 import model.usuario.DuenioMascota;
-import model.usuario.Rescatista;
+import model.usuario.Rescate;
 import repositories.RepoPublicaciones;
 import repositories.RepoRescates;
 import repositories.RepoUsers;
@@ -25,7 +25,7 @@ public class ServicioRescate {
    *
    * @param rescatista el rescatista rescatada
    */
-  public void registrarRescate(Rescatista rescatista) {
+  public void registrarRescate(Rescate rescatista) {
     rescates.addRescate(rescatista);
     identificarMascota(rescatista.getMascotaEncontrada());
   }

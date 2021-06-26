@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Objects;
 import model.mascota.Chapita;
 import model.mascota.TipoMascota;
+import model.mascota.caracteristica.Caracteristica;
+import model.mascota.caracteristica.TamanioMascota;
 
 public class MascotaEncontrada {
 
@@ -15,6 +17,8 @@ public class MascotaEncontrada {
   private LocalDate fecha = LocalDate.now();
   private Chapita chapita;
   private TipoMascota tipoMascota;
+  private List<Caracteristica> caracteristicas;
+  private TamanioMascota tamanio;
 
   public MascotaEncontrada setFoto(List<String> foto) {
     this.foto = foto;
@@ -65,6 +69,7 @@ public class MascotaEncontrada {
   public LocalDate getFecha() {
     return this.fecha;
   }
+  
 
   public MascotaEncontrada() {
     this.foto = new ArrayList<String>();
@@ -82,6 +87,15 @@ public class MascotaEncontrada {
     this.tipoMascota = tipoMascota;
   }
 
+
+  public List<Caracteristica> getCaracteristicas() {
+    return caracteristicas;
+  }
+
+  public void setCaracteristicas(List<Caracteristica> caracteristicas) {
+    this.caracteristicas = caracteristicas;
+  }
+  
   /**
    * Instancia una mascota encontrada.
    *
@@ -89,15 +103,25 @@ public class MascotaEncontrada {
    * @param descripcion la descripcion fisica.
    * @param lugar el lugar donde fue encotnrado.
    * @param fecha la fecha en la que fue encontrado.
+   * @param caracteristicas TODO
+   * @param tamanio TODO
    */
   public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar, LocalDate fecha,
-      Chapita chapita) {
+      Chapita chapita, List<Caracteristica> caracteristicas, TamanioMascota tamanio) {
     this.foto = foto;
     this.descripcion = descripcion;
     this.lugar = lugar;
     this.fecha = fecha;
     this.chapita = chapita;
+    this.caracteristicas=caracteristicas;
+    this.tamanio=tamanio;
   }
+
+  public TamanioMascota getTamanio() {
+    return this.tamanio;
+  }
+
+ 
 
   
 }

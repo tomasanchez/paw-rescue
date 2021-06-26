@@ -9,19 +9,19 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import model.mascota.encontrada.MascotaEncontrada;
-import model.usuario.Rescatista;
+import model.usuario.Rescate;
 import model.usuario.datospersonales.DatosPersonales;
 import model.usuario.datospersonales.contacto.DatosContacto;
 
 public class RepoRescatesTest {
 
   private RepoRescates repo;
-  private Rescatista rescatista;
+  private Rescate rescatista;
 
   @BeforeEach
   void initRepo() {
     repo = new RepoRescates();
-    rescatista = spy(new Rescatista());
+    rescatista = spy(new Rescate());
   }
 
   @Test

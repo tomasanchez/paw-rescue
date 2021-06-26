@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.publicacion.Asociacion;
 import model.refugio.Refugio;
-import model.usuario.Rescatista;
+import model.usuario.Rescate;
 import model.usuario.datospersonales.contacto.DatosContacto;
 import services.ProveedorRefugios;
 
 public class RepoRescates {
 
-  List<Rescatista> rescates = new ArrayList<>();
+  List<Rescate> rescates = new ArrayList<>();
   RepoUsers adminUsers = new RepoUsers();
   RepoPublicaciones adminPublicaciones = new RepoPublicaciones();
   ProveedorRefugios proveedorRefugios = ProveedorRefugios.instance();
@@ -35,7 +35,7 @@ public class RepoRescates {
    * @param dias ultimos días en los que filtrar
    * @return las mascotas filtradas
    */
-  List<Rescatista> mascotasEncontradas(long dias) {
+  List<Rescate> mascotasEncontradas(long dias) {
     return rescates.stream().filter(rescate -> rescate.estaDentroDeUltimosDias(dias))
         .collect(Collectors.toList());
   }
@@ -45,7 +45,7 @@ public class RepoRescates {
    *
    * @param rescate el rescatista rescatada
    */
-  public void addRescate(Rescatista rescate) {
+  public void addRescate(Rescate rescate) {
     Objects.requireNonNull(rescate.getMascotaEncontrada());
     rescates.add(rescate);
   }
@@ -69,11 +69,11 @@ public class RepoRescates {
    */
 
   public DatosContacto contactoRescatista(MascotaEncontrada mascota) {
-    return buscarRescatista(mascota).getDatosPersonales().getDatosContacto();
+    return buscarRescatista(mascota).getDatosRescatista().getDatosContacto();
   }
 
-  private Rescatista buscarRescatista(MascotaEncontrada mascota) {
-    return (Rescatista) rescates.stream().filter(rescatista -> rescatista.esSuMascota(mascota));
+  private Rescate buscarRescatista(MascotaEncontrada mascota) {
+    return (Rescate) rescates.stream().filter(rescatista -> rescatista.getMascotaEncontrada().equals(mascota));
   }
 
   public List<Refugio> buscarRefugios(MascotaEncontrada mascota) {
@@ -83,11 +83,11 @@ public class RepoRescates {
         .collect(Collectors.toList());
   }
 
-  public List<Rescatista> getRescates() {
+  public List<Rescate> getRescates() {
     return rescates;
   }
 
-  public void setRescates(List<Rescatista> rescates) {
+  public void setRescates(List<Rescate> rescates) {
     this.rescates = rescates;
   }
 
@@ -97,7 +97,7 @@ public class RepoRescates {
    * @param dias ultimos días en los que filtrar
    * @return las mascotas filtradas
    */
-  List<Rescatista> getRescatesEnLosUltimosDias(long dias) {
+  List<Rescate> getRescatesEnLosUltimosDias(long dias) {
     return getRescates().stream().filter(rescate -> rescate.estaDentroDeUltimosDias(dias))
         .collect(Collectors.toList());
   }
@@ -108,7 +108,7 @@ public class RepoRescates {
    * @return un listado de mascotas.
    */
   public List<MascotaEncontrada> getMascotasEncontradas() {
-    return rescates.stream().map(Rescatista::getMascotaEncontrada).collect(Collectors.toList());
+    return rescates.stream().map(Rescate::getMascotaEncontrada).collect(Collectors.toList());
   }
 
 

@@ -2,9 +2,13 @@ package model.refugio;
 
 
 import model.mascota.TipoMascota;
+import model.mascota.caracteristica.Caracteristica;
+import model.mascota.caracteristica.TamanioMascota;
 import model.mascota.encontrada.Coordenada;
+import model.mascota.encontrada.MascotaEncontrada;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Refugio {
   private String nombre;
@@ -66,4 +70,27 @@ public class Refugio {
   public List<String> getCaracteristicas() {
     return caracteristicas;
   }
+
+  public boolean admiteA(MascotaEncontrada mascota) {
+    return admiteTipoDeMascota(mascota.getTipoMascota()) && hayLugarDisponible() && 
+        admiteCaracteristicas(mascota.getCaracteristicas()) && admiteTamanio(mascota.getTamanio()); 
+  }
+  
+  public boolean admiteTipoDeMascota(TipoMascota tipo) {
+   return getAdmisiones().isEmpty() ? true : getAdmisiones().contains(tipo);
+  }
+  
+  public boolean hayLugarDisponible() {
+    return this.capacidad > this.lugares_disponibles;
+  }
+  
+  public boolean admiteCaracteristicas(List<Caracteristica> caracteristicas) {
+    return getCaracteristicas().containsAll(caracteristicas.stream().
+        map(c -> c.toString()).collect(Collectors.toList()));
+  }
+  
+  public boolean admiteTamanio(TamanioMascota t) {
+    return getPatio()? true : t.equals(TamanioMascota.PEQUEÑA);
+  }
+ 
 }
