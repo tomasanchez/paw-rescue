@@ -73,7 +73,8 @@ public class RepoRescates {
   }
 
   private Rescate buscarRescatista(MascotaEncontrada mascota) {
-    return (Rescate) rescates.stream().filter(rescatista -> rescatista.getMascotaEncontrada().equals(mascota));
+    return (Rescate) rescates.stream().filter(rescatista -> rescatista.getMascotaEncontrada().equals(mascota)).
+        collect(Collectors.toList()).get(0);
   }
 
   public List<Refugio> buscarRefugios(MascotaEncontrada mascota) {

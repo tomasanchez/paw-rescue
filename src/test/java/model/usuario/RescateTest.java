@@ -5,18 +5,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import model.mascota.Chapita;
 import model.mascota.encontrada.MascotaEncontrada;
-import model.refugio.Refugio;
 import model.registro.RegistroRescate;
-import model.usuario.datospersonales.contacto.DatosContacto;
-import model.usuario.datospersonales.documento.TipoDocumento;
 import repositories.RepoRescates;
 import services.ServicioRescate;
 
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 
-import java.time.LocalDate;
 
 public class RescateTest {
 

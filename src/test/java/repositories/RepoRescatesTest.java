@@ -1,5 +1,6 @@
 package repositories;
 
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -12,45 +13,42 @@ import model.mascota.encontrada.MascotaEncontrada;
 import model.usuario.Rescate;
 import model.usuario.datospersonales.DatosPersonales;
 import model.usuario.datospersonales.contacto.DatosContacto;
+import services.ServicioRescate;
 
 public class RepoRescatesTest {
 
-  private RepoRescates repo;
-  private Rescate rescatista;
-
+  private RepoRescates repo= spy(RepoRescates.class);
+  private Rescate rescate= spy(new Rescate());
+  private ServicioRescate servicioRescate= spy(new ServicioRescate(null, repo, null));
+  private MascotaEncontrada mascota= mock(MascotaEncontrada.class);
+  
   @BeforeEach
   void initRepo() {
-    repo = new RepoRescates();
-    rescatista = spy(new Rescate());
+    when(rescate.getMascotaEncontrada()).thenReturn(mascota);
+    doNothing().when(servicioRescate).identificarMascota(mascota);
   }
 
   @Test
   void testAddRescate() {
-    when(rescatista.getMascotaEncontrada()).thenReturn(spy(new MascotaEncontrada()));
-    repo.addRescate(rescatista);
-    Assertions.assertTrue(repo.getRescates().contains(rescatista));
+    servicioRescate.registrarRescate(rescate);
+    Assertions.assertTrue(repo.getRescates().contains(rescate));
   }
+
 
   @Test
   void testGetContactoRescatista() {
-    repo.addRescate(rescatista);
-    MascotaEncontrada mascota = new MascotaEncontrada();
-
     DatosPersonales datos = mock(DatosPersonales.class);
     when(datos.getDatosContacto()).thenReturn(mockContacto());
-
-    doReturn(datos).when(rescatista).getDatosPersonales();
-    doReturn(mascota).when(rescatista).getMascotaEncontrada();
-
+    doReturn(datos).when(rescate).getDatosRescatista();
+    servicioRescate.registrarRescate(rescate);
     Assertions.assertEquals(mockContacto().getMail(),
         repo.contactoRescatista(mascota).getMail());
   }
 
+  
   @Test
   void testGetMascotasEncontradas() {
-    MascotaEncontrada mascota = new MascotaEncontrada();
-    doReturn(mascota).when(rescatista).getMascotaEncontrada();
-    repo.addRescate(rescatista);
+    servicioRescate.registrarRescate(rescate);
     Assertions.assertTrue(repo.getMascotasEncontradas().contains(mascota));
   }
 
@@ -61,13 +59,14 @@ public class RepoRescatesTest {
 
   @Test
   void testGetRescatesEnLosUltimosDias() {
-    when(rescatista.getMascotaEncontrada()).thenReturn(spy(new MascotaEncontrada()));
-    repo.addRescate(rescatista);
-    doReturn(LocalDate.now()).when(rescatista).getFechaRescate();
-    Assertions.assertTrue(repo.getRescatesEnLosUltimosDias(10).contains(rescatista));
+    when(rescate.getMascotaEncontrada()).thenReturn(spy(new MascotaEncontrada()));
+    repo.addRescate(rescate);
+    doReturn(LocalDate.now()).when(rescate).getFechaRescate();
+    Assertions.assertTrue(repo.getRescatesEnLosUltimosDias(10).contains(rescate));
   }
-
+  
   DatosContacto mockContacto() {
     return new DatosContacto("Tomas", "Dias", "324432", "tomasDias@gmail.com");
   }
+ 
 }
