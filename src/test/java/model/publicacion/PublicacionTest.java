@@ -1,6 +1,6 @@
 package model.publicacion;
 
-import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
@@ -9,64 +9,71 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import model.mascota.encontrada.MascotaEncontrada;
-import model.refugio.Refugio;
 import model.registro.RegistroRescate;
+import model.usuario.DuenioMascota;
+import model.usuario.Rescate;
 import repositories.RepoPublicaciones;
 import repositories.RepoRescates;
 import repositories.RepoUsers;
+import services.ServicioRescate;
 
 public class PublicacionTest {
-
-  private RepoPublicaciones adminPublicaciones = new RepoPublicaciones();
-  private RegistroRescate registro;
-  private MascotaEncontrada mascota;
-  private Refugio refugio;
-
+  private RegistroRescate registroRescate= spy(new RegistroRescate());
+  private Rescate rescate;
+  private RepoPublicaciones repoPublicaciones= new RepoPublicaciones();
+  private RepoRescates repoRescates= mock(RepoRescates.class);
+  private RepoUsers repoUsers= mock(RepoUsers.class);
+  private ServicioRescate servicioRescate= spy(new ServicioRescate(repoPublicaciones, repoRescates, repoUsers));
+  private MascotaEncontrada mascota= mock(MascotaEncontrada.class);
+  private DuenioMascota duenio= mock(DuenioMascota.class);
+  
   @BeforeEach
   void initPublicaciones() {
-    RepoUsers adminUsers = mock(RepoUsers.class);
-    RepoRescates repoRescates = new RepoRescates(adminUsers, adminPublicaciones);
-    mascota = mock(MascotaEncontrada.class);
-    registro = spy(new RegistroRescate());
-    refugio = mock(Refugio.class);
+    registroRescate.mascotaEncontrada(mascota);
+    rescate= registroRescate.generarRescate();
   }
 
   @Test
   void seCreaPublicacionParaMascotaSinChapita() {
     prepararRegistro(false);
-    registro.generarRescate();
-    Assertions.assertFalse(adminPublicaciones.getPublicaciones().isEmpty());
+    servicioRescate.registrarRescate(rescate);
+    Assertions.assertFalse(repoPublicaciones.getPublicaciones().isEmpty());
   }
 
+  
   @Test
   void noSeCreaPublicacionParaMascotaConChapita() {
     prepararRegistro(true);
-    registro.generarRescate();
-    Assertions.assertTrue(adminPublicaciones.getPublicaciones().isEmpty());
+    when(repoUsers.buscarDuenio(mascota)).thenReturn(duenio);
+    doNothing().when(servicioRescate).notificarDuenioMascotaPerdida(duenio);
+    servicioRescate.registrarRescate(rescate);
+    Assertions.assertTrue(repoPublicaciones.getPublicaciones().isEmpty());
   }
+
 
   @Test
   void lasPublicacionesRequierenAprobacion() {
     prepararRegistro(true);
-    registro.generarRescate();
-    registro.generarRescate();
-    Assertions.assertEquals(adminPublicaciones.getPublicacionesInactivas().size(),
-        adminPublicaciones.getPublicaciones().size());
+    servicioRescate.registrarRescate(rescate);
+    Assertions.assertEquals(repoPublicaciones.getPublicacionesInactivas().size(),
+        repoPublicaciones.getPublicaciones().size());
   }
 
+  
   @Test
   void voluntarioPuedeModificarPublicaciones() {
     prepararRegistro(false);
-    registro.generarRescate();
-    adminPublicaciones.getPublicaciones().forEach(Publicacion::activar);
-    Assertions.assertTrue(adminPublicaciones.getPublicacionesInactivas().isEmpty());
+    servicioRescate.registrarRescate(rescate);
+    repoPublicaciones.getPublicaciones().forEach(Publicacion::activar);
+    Assertions.assertTrue(repoPublicaciones.getPublicacionesInactivas().isEmpty());
   }
 
   private void prepararRegistro(Boolean tieneChapita) {
-    registro.mascotaEncontrada(mascota);
-    registro.asignarRefugio(refugio);
     when(mascota.tieneChapita()).thenReturn(tieneChapita);
-    doReturn(null).when(registro.datosRescatista());
+    if(tieneChapita) {
+      when(repoUsers.buscarDuenio(mascota)).thenReturn(duenio);
+      doNothing().when(servicioRescate).notificarDuenioMascotaPerdida(duenio);
+    }
   }
 
 }

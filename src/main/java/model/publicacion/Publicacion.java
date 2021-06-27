@@ -14,6 +14,7 @@ public class Publicacion {
 
   public Publicacion(MascotaEncontrada mascota, Asociacion asociacion) {
     this.mascota = mascota;
+    this.asociacion=asociacion;
   }
 
   public MascotaEncontrada getMascota() {
