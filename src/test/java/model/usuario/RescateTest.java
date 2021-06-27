@@ -10,26 +10,29 @@ import model.registro.RegistroRescate;
 import model.usuario.datospersonales.contacto.DatosContacto;
 import model.usuario.datospersonales.documento.TipoDocumento;
 import repositories.RepoRescates;
+import services.ServicioRescate;
 
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 
 import java.time.LocalDate;
 
 public class RescateTest {
 
-  private RepoRescates repoRescates;
+  private RepoRescates repoRescates= spy(new RepoRescates());
   private MascotaEncontrada mascota;
-  private RegistroRescate registro;
-  private Refugio refugio;
+  private RegistroRescate registro=  spy(new RegistroRescate());
+  private Rescate rescate;
+  private ServicioRescate servicioRescate= spy(new ServicioRescate(null, repoRescates, null));
 
   @BeforeEach
   void initRescates() {
-    repoRescates = new RepoRescates();
     mascota = new MascotaEncontrada();
-    registro = nuevoRescate();
-    refugio = mock(Refugio.class);
+    doNothing().when(servicioRescate).identificarMascota(mascota);
   }
 
+  
   @Test
   void noSeGeneraRescateSinMascota() {
     Assertions.assertThrows(NullPointerException.class, () -> {
@@ -39,49 +42,33 @@ public class RescateTest {
 
   @Test
   void rescatistaAlbergaMascota() {
-    final boolean PUEDE = true;
-    encontrarMascota(PUEDE);
-    Assertions.assertEquals(registro.generarRescate().albergaMascota, PUEDE);
+    encontrarMascota(true);
+    Assertions.assertEquals(rescate.getRescatistaAlbergaMascota(), true);
   }
 
   @Test
   void rescatistaQuedaRegistrado() {
     encontrarMascota(true);
-    Rescate rescatista = registro.generarRescate();
-    Assertions.assertNotNull(rescatista);
+    servicioRescate.registrarRescate(rescate);
+    Assertions.assertTrue(repoRescates.getRescates().contains(rescate));
   }
 
+  
   @Test
   void rescatistaEncuentraMascotaConChapita() {
     Chapita chapita = new Chapita(null);
     mascota.setChapita(chapita);
     encontrarMascota(true);
-    repoRescates.addRescate(registro.generarRescate());
-
+    servicioRescate.registrarRescate(rescate);
     Assertions.assertTrue(repoRescates.getMascotasEncontradas().stream()
         .anyMatch(r -> r.getChapita().equals(chapita)));
   }
 
-  private RegistroRescate nuevoRescate() {
-    RegistroRescate registroRescatista = new RegistroRescate();
-    registroRescatista.nombre("Lucas").apellido("Gonzalez");
-    registroRescatista.contacto(nuevoContato());
-    registroRescatista.numeroDocumento(132123412L).tipoDocumento(TipoDocumento.DNI);
-    registroRescatista.fechaNacimiento(LocalDate.now());
-    return registroRescatista;
-  }
-
-  private DatosContacto nuevoContato() {
-    return new DatosContacto("Tomas", "Dias", null, "tomasDias@gmail.com");
-  }
 
   private void encontrarMascota(final boolean PUEDE) {
-    if (PUEDE) {
-      registro.albergaMascota("calle falsa 123");
+      registro.albergaMascota(PUEDE);
       registro.mascotaEncontrada(mascota);
-    } else {
-      registro.asignarRefugio(refugio);
-    }
+      rescate= registro.generarRescate();
   }
 
 }

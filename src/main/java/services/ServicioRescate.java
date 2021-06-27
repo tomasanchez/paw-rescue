@@ -35,7 +35,7 @@ public class ServicioRescate {
    *
    * @param mascota la mascota encontrada
    */
-  void identificarMascota(MascotaEncontrada mascota) {
+  public void identificarMascota(MascotaEncontrada mascota) {
     if (mascota.tieneChapita()) {
       notificarDuenioMascotaPerdida(users.buscarDuenio(mascota));
     } else {
