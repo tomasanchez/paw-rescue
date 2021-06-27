@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import model.mascota.encontrada.MascotaEncontrada;
-import model.publicacion.Asociacion;
 import model.refugio.Refugio;
 import model.usuario.Rescatista;
 import model.usuario.datospersonales.contacto.DatosContacto;
@@ -17,8 +16,16 @@ public class RepoRescates {
   RepoUsers adminUsers = new RepoUsers();
   RepoPublicaciones adminPublicaciones = new RepoPublicaciones();
   ProveedorRefugios proveedorRefugios = ProveedorRefugios.instance();
-  List<Asociacion> asociaciones = new ArrayList<>();
 
+  private static RepoRescates instancia;
+
+  public static RepoRescates getInstance() {
+    if (instancia == null) {
+      instancia = new RepoRescates();
+    }
+    return instancia;
+  }  
+  
   public RepoRescates() {
     proveedorRefugios.loginRefugios();
   }
@@ -51,15 +58,6 @@ public class RepoRescates {
   }
 
 
-  public Asociacion buscarAsociacion(MascotaEncontrada mascotaEncontrada) {
-    ordenarAsociacionesPorDistancia(mascotaEncontrada);
-    return asociaciones.get(1);
-  }
-
-  private void ordenarAsociacionesPorDistancia(MascotaEncontrada mascotaEncontrada) {
-    asociaciones.sort((asociacion1, asociacion2) -> asociacion1
-        .compararAsociacionesPorDistancia(asociacion2, mascotaEncontrada));
-  }
 
   /**
    * Recupera el contancto de un rescate registrado.

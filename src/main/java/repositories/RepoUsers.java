@@ -8,6 +8,15 @@ import model.usuario.DuenioMascota;
 public class RepoUsers {
   private List<DuenioMascota> users = new ArrayList<>();
 
+  private static RepoUsers instancia;
+
+  public static RepoUsers getInstance() {
+    if (instancia == null) {
+      instancia = new RepoUsers();
+    }
+    return instancia;
+  }
+
   public List<DuenioMascota> getUsers() {
     return this.users;
   }

@@ -17,7 +17,7 @@ import repositories.RepoUsers;
 
 public class PublicacionTest {
 
-  private RepoPublicaciones adminPublicaciones = new RepoPublicaciones();
+  private RepoPublicaciones adminPublicaciones = RepoPublicaciones.getInstance();
   private RegistroRescatista registro;
   private MascotaEncontrada mascota;
   private Refugio refugio;

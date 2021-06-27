@@ -4,6 +4,7 @@ import model.mascota.encontrada.MascotaEncontrada;
 import model.publicacion.Publicacion;
 import model.usuario.DuenioMascota;
 import model.usuario.Rescatista;
+import repositories.RepoAsociaciones;
 import repositories.RepoPublicaciones;
 import repositories.RepoRescates;
 import repositories.RepoUsers;
@@ -39,7 +40,7 @@ public class ServicioRescate {
     if (mascota.tieneChapita()) {
       notificarDuenioMascotaPerdida(users.buscarDuenio(mascota));
     } else {
-      publicaciones.agregar(new Publicacion(mascota, rescates.buscarAsociacion(mascota)));
+      publicaciones.agregar(new Publicacion(mascota, RepoAsociaciones.getInstance().buscarAsociacion(mascota)));
     }
   }
 

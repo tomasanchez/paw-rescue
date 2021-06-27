@@ -13,17 +13,18 @@ public class Asociacion {
     this.coordenada = coordenada;
     this.direccion = direccion;
   }
-  public int compararDistanciaConMascota(MascotaEncontrada mascotaEncontrada){
-    return this.getCoordenada().distancia() - mascotaEncontrada.getLugar().distancia();
+  
+  public Double compararDistanciaConMascota(MascotaEncontrada mascotaEncontrada){
+    return this.getCoordenada().distancia(mascotaEncontrada.getLugar());
   }
   
-  public int compararAsociacionesPorDistancia(Asociacion asociacion,MascotaEncontrada mascotaEncontrada){
+  public int compararAsociacionesPorDistancia(Asociacion asociacion, MascotaEncontrada mascotaEncontrada){
     
     if (asociacion.compararDistanciaConMascota(mascotaEncontrada) <
       this.compararDistanciaConMascota(mascotaEncontrada)){
-      return asociacion.getCoordenada().distancia();
+      return Integer.parseInt(asociacion.getCoordenada().distancia(mascotaEncontrada.getLugar()).toString());
     }else {
-      return this.getCoordenada().distancia();
+      return Integer.parseInt(this.getCoordenada().distancia(mascotaEncontrada.getLugar()).toString());
     }
     
   }

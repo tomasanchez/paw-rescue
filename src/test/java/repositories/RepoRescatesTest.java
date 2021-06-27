@@ -15,12 +15,11 @@ import model.usuario.datospersonales.contacto.DatosContacto;
 
 public class RepoRescatesTest {
 
-  private RepoRescates repo;
+  private RepoRescates repo = RepoRescates.getInstance();
   private Rescatista rescatista;
 
   @BeforeEach
   void initRepo() {
-    repo = new RepoRescates();
     rescatista = spy(new Rescatista());
   }
 

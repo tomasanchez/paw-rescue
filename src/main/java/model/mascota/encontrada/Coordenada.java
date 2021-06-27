@@ -18,10 +18,19 @@ public class Coordenada {
     return this.coordenadaY;
   }
   
-  public int distancia (){
-    int x =  Integer.parseInt(coordenadaX);
-    int y =  Integer.parseInt(coordenadaY);
-    return (int) Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
+  public Double distancia (Coordenada otraCoordenada){
+    Integer earthRadius = 6371;
+
+    Double deltaLatitude = Math.toRadians(Double.parseDouble(otraCoordenada.getCoordenadaX()) - Double.parseDouble(this.getCoordenadaX()));
+
+    Double deltaLongitude = Math.toRadians(Double.parseDouble(otraCoordenada.getCoordenadaY()) - Double.parseDouble(this.getCoordenadaY()));
+
+    Double a = Math.sin(deltaLatitude / 2) * Math.sin(deltaLatitude / 2) + Math.cos(Math.toRadians(Double.parseDouble(this.getCoordenadaY()))) *
+      Math.cos(Math.toRadians(Double.parseDouble(otraCoordenada.getCoordenadaX()))) * Math.sin(deltaLongitude / 2) * Math.sin(deltaLongitude / 2);
+
+    Double distanceAngular = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return earthRadius * distanceAngular;
   }
   
 }
