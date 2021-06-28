@@ -12,6 +12,7 @@ import model.mascota.encontrada.MascotaEncontrada;
 import model.registro.RegistroRescate;
 import model.usuario.DuenioMascota;
 import model.usuario.Rescate;
+import repositories.RepoAsociaciones;
 import repositories.RepoPublicaciones;
 import repositories.RepoRescates;
 import repositories.RepoUsers;
@@ -21,8 +22,8 @@ public class PublicacionTest {
   
   private RegistroRescate registroRescate= spy(new RegistroRescate());
   private Rescate rescate;
-  private RepoPublicaciones repoPublicaciones = new RepoPublicaciones();
-  private RepoRescates repoRescates= mock(RepoRescates.class);
+  private RepoPublicaciones repoPublicaciones = spy(new RepoPublicaciones());
+  private RepoRescates repoRescates= spy(RepoRescates.class);
   private RepoUsers repoUsers= mock(RepoUsers.class);
   private ServicioRescate servicioRescate= spy(new ServicioRescate(repoPublicaciones, repoRescates, repoUsers));
   private MascotaEncontrada mascota= mock(MascotaEncontrada.class);
@@ -33,6 +34,7 @@ public class PublicacionTest {
   void initPublicaciones() {
     registroRescate.mascotaEncontrada(mascota);
     rescate= registroRescate.generarRescate();
+    RepoAsociaciones.getInstance().nuevaAsociacion(mock(Asociacion.class));
   }
 
   @Test

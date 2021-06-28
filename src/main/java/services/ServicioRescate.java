@@ -12,9 +12,9 @@ import repositories.RepoUsers;
 
 public class ServicioRescate {
 
-  RepoPublicaciones publicaciones = new RepoPublicaciones();
-  RepoRescates rescates = new RepoRescates();
-  RepoUsers users = new RepoUsers();
+  private RepoPublicaciones publicaciones;
+  private RepoRescates rescates;
+  private RepoUsers users;
 
   public ServicioRescate(RepoPublicaciones publicaciones, RepoRescates rescates, RepoUsers users) {
     this.publicaciones = publicaciones;
