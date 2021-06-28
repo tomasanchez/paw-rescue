@@ -15,6 +15,7 @@ import api.response.HogaresResponse;
 import api.response.TokenResponse;
 import model.mascota.TipoMascota;
 import model.mascota.encontrada.Coordenada;
+import model.mascota.encontrada.MascotaEncontrada;
 import model.refugio.Refugio;
 
 import javax.ws.rs.core.MediaType;
@@ -107,7 +108,11 @@ public class ProveedorRefugios {
     TokenResponse tokenResponse = jsonFactory.fromJson(responseBody, TokenResponse.class);
     TOKEN = tokenResponse.getBearer_token();
 
-
+  }
+  
+  public List<Refugio> obtenerRefugiosQueAdmitenA(MascotaEncontrada mascota){
+    return getAllRefugios().stream().filter(refugio -> refugio.admiteA(mascota))
+    .collect(Collectors.toList());
   }
 
 }
