@@ -22,6 +22,17 @@ public class RepoPublicaciones {
    */
   private List<Publicacion> publicaciones = new ArrayList<Publicacion>();
 
+
+  private static RepoPublicaciones instancia;
+
+  public static RepoPublicaciones getInstance() {
+    if (instancia == null) {
+      instancia = new RepoPublicaciones();
+    }
+    return instancia;
+  }
+  
+  
   /**
    * Agrega una publicacion al repositorio.
    * 

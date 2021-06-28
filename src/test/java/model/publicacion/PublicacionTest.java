@@ -18,15 +18,17 @@ import repositories.RepoUsers;
 import services.ServicioRescate;
 
 public class PublicacionTest {
+  
   private RegistroRescate registroRescate= spy(new RegistroRescate());
   private Rescate rescate;
-  private RepoPublicaciones repoPublicaciones= new RepoPublicaciones();
+  private RepoPublicaciones repoPublicaciones = new RepoPublicaciones();
   private RepoRescates repoRescates= mock(RepoRescates.class);
   private RepoUsers repoUsers= mock(RepoUsers.class);
   private ServicioRescate servicioRescate= spy(new ServicioRescate(repoPublicaciones, repoRescates, repoUsers));
   private MascotaEncontrada mascota= mock(MascotaEncontrada.class);
   private DuenioMascota duenio= mock(DuenioMascota.class);
   
+
   @BeforeEach
   void initPublicaciones() {
     registroRescate.mascotaEncontrada(mascota);

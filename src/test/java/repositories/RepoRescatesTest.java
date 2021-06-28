@@ -26,6 +26,7 @@ public class RepoRescatesTest {
   void initRepo() {
     when(rescate.getMascotaEncontrada()).thenReturn(mascota);
     doNothing().when(servicioRescate).identificarMascota(mascota);
+
   }
 
   @Test
