@@ -15,4 +15,7 @@ public class RecomendadorDeAdopcion {
     this.repoUsers = repoUsers;
   }
 
+  public void recomendarAdopcion() {
+    System.out.println("Ejecuta una vez");
+  }
 }
