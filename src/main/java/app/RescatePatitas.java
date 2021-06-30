@@ -1,13 +1,13 @@
 package app;
 
-import repositories.RepoUsers;
+import repositories.RepoInteresados;
 import services.mascota.RecomendadorDeAdopcion;
 
 public class RescatePatitas {
 
   public static void main(String[] args) {
-    RepoUsers repoUsers = new RepoUsers();
-    RecomendadorDeAdopcion recomendador = new RecomendadorDeAdopcion(repoUsers);
+    RepoInteresados repoInteresados = new RepoInteresados();
+    RecomendadorDeAdopcion recomendador = new RecomendadorDeAdopcion(repoInteresados);
     recomendador.recomendarAdopcion();
   }
 }

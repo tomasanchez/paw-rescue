@@ -1,6 +1,6 @@
 package services.mascota;
 
-import repositories.RepoUsers;
+import repositories.RepoInteresados;
 
 public class RecomendadorDeAdopcion {
 
@@ -9,10 +9,10 @@ public class RecomendadorDeAdopcion {
    */
   private Object repoMascotas;
 
-  private RepoUsers repoUsers = RepoUsers.getInstance();
+  private RepoInteresados repoInteresados;
 
-  public RecomendadorDeAdopcion(RepoUsers repoUsers) {
-    this.repoUsers = repoUsers;
+  public RecomendadorDeAdopcion(RepoInteresados repoInteresados) {
+    this.repoInteresados = repoInteresados;
   }
 
   public void recomendarAdopcion() {
