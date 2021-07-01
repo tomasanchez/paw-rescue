@@ -3,9 +3,9 @@ package services.mascota;
 import repositories.RepoPubParaAdoptar;
 
 /**
- * Servicio de Recomendacion Semanal
+ * Servicio de Recomendacion Semanal.
  *
- * @version 1.0
+ * @version 1.1
  * @since Entrega III
  * @author Tomás Sánchez
  */
