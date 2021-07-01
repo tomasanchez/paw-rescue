@@ -1,7 +1,11 @@
 package model.usuario;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import model.usuario.datospersonales.DatosPersonales;
+import model.usuario.datospersonales.contacto.DatosContacto;
+import services.usuario.contacto.notificaciones.NotificadorAPI;
 
 /**
  * Usuario común.
@@ -32,6 +36,13 @@ public abstract class Usuario {
    */
   String password;
 
+  /**
+   * Medios de comunicación preferidos por el usuario.
+   * 
+   * @since 3.0
+   */
+  private List<NotificadorAPI> notificadorAPIs = new ArrayList<>();
+
   public Usuario() {}
 
   /**
@@ -53,4 +64,24 @@ public abstract class Usuario {
     return this.password;
   }
 
+  public void notificar(String msg) {
+    for (NotificadorAPI api : notificadorAPIs) {
+      api.notificar(datosPersonales.getDatosContacto(), msg);
+    }
+  }
+
+  public void contactar(DatosContacto contacto2, String msg) {
+    for (NotificadorAPI api : notificadorAPIs) {
+      api.contactar(datosPersonales.getDatosContacto(), contacto2, msg);
+    }
+  }
+  
+  public void agregarNotificador(NotificadorAPI notificador){
+    notificadorAPIs.add(notificador);
+  }
+
+  public void eliminarNotificador(NotificadorAPI notificador){
+    notificadorAPIs.remove(notificador);
+  }
+  
 }
