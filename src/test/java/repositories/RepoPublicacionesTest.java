@@ -17,13 +17,13 @@ public class RepoPublicacionesTest {
   @Test
   void testAgregar() {
     repo.agregar(new PublicacionRescate(null, null));
-    Assertions.assertFalse(repo.getPublicaciones().isEmpty());
+    Assertions.assertFalse(repo.getPublicacionesRescates().isEmpty());
   }
 
   @Test
   void testGetPublicaciones() {
-    Assertions.assertNotEquals(null, repo.getPublicaciones());
-    Assertions.assertEquals(0, repo.getPublicaciones().size());
+    Assertions.assertNotEquals(null, repo.getPublicacionesRescates());
+    Assertions.assertEquals(0, repo.getPublicacionesRescates().size());
   }
 
   @Test

@@ -3,11 +3,13 @@ package repositories;
 import java.util.ArrayList;
 import java.util.List;
 import model.pregunta.Pregunta;
+import model.publicacion.Asociacion;
 
 
 public class RepoPreguntas {
   // Es un repo con las preguntas generales, que son comunes a todas las asociaciones
   List<Pregunta> preguntas = new ArrayList<>();
+  Asociacion asociacion;
 
   private static RepoPreguntas instancia;
 

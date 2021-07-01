@@ -13,6 +13,10 @@ public class Pregunta {
   public String getEncuesta() {
     return encuesta;
   }
+  
+  public void agregarRespuestaposible(String respuesta){
+    posiblesRespuestas.add(respuesta);
+  }
 
   public List<String> getPosiblesRespuestas() {
     return posiblesRespuestas;

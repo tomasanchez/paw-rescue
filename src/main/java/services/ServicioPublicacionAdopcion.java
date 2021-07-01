@@ -9,10 +9,14 @@ import repositories.RepoPublicaciones;
 import java.util.List;
 
 
-public class ServicioPreguntas {
+public class ServicioPublicacionAdopcion {
   private RepoPublicaciones publicaciones;
+  
+  public ServicioPublicacionAdopcion(RepoPublicaciones publicaciones){
+    this.publicaciones = publicaciones;
+  }
 
-  void generarPublicacionMascotaEnAdopcion(Mascota mascota, List<Respuesta> respuestas) {
+  public void generarPublicacionMascotaEnAdopcion(Mascota mascota, List<Respuesta> respuestas) {
     publicaciones.agregarPublicacionAdopcion(new PublicacionAdopcion(mascota, respuestas));
   }
 }

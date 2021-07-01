@@ -52,9 +52,11 @@ public class RepoPublicaciones {
     return this;
   }
 
-  public List<PublicacionRescate> getPublicaciones() {
+  public List<PublicacionRescate> getPublicacionesRescates() {
     return this.publicaciones;
   }
+  
+  public List<PublicacionAdopcion> getPublicacionesAdopciones(){return this.publicacionAdopciones; }
 
   public List<PublicacionRescate> getPublicacionesInactivas() {
     return publicaciones.stream().filter(publicacion -> !(publicacion.isActiva()))

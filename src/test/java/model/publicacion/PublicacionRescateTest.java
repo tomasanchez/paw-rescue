@@ -19,7 +19,7 @@ import repositories.RepoRescates;
 import repositories.RepoUsers;
 import services.ServicioRescate;
 
-public class PublicacionTest {
+public class PublicacionRescateTest {
   
   private RegistroRescate registroRescate= spy(new RegistroRescate());
   private Rescate rescate;
@@ -42,7 +42,7 @@ public class PublicacionTest {
   void seCreaPublicacionParaMascotaSinChapita() {
     prepararRegistro(false);
     servicioRescate.registrarRescate(rescate);
-    Assertions.assertFalse(repoPublicaciones.getPublicaciones().isEmpty());
+    Assertions.assertFalse(repoPublicaciones.getPublicacionesRescates().isEmpty());
   }
 
   
@@ -52,7 +52,7 @@ public class PublicacionTest {
     when(repoUsers.buscarDuenio(mascota)).thenReturn(duenio);
     doNothing().when(servicioRescate).notificarDuenioMascotaPerdida(duenio);
     servicioRescate.registrarRescate(rescate);
-    Assertions.assertTrue(repoPublicaciones.getPublicaciones().isEmpty());
+    Assertions.assertTrue(repoPublicaciones.getPublicacionesRescates().isEmpty());
   }
 
 
@@ -61,7 +61,7 @@ public class PublicacionTest {
     prepararRegistro(true);
     servicioRescate.registrarRescate(rescate);
     Assertions.assertEquals(repoPublicaciones.getPublicacionesInactivas().size(),
-        repoPublicaciones.getPublicaciones().size());
+        repoPublicaciones.getPublicacionesRescates().size());
   }
 
   
@@ -69,7 +69,7 @@ public class PublicacionTest {
   void voluntarioPuedeModificarPublicaciones() {
     prepararRegistro(false);
     servicioRescate.registrarRescate(rescate);
-    repoPublicaciones.getPublicaciones().forEach(PublicacionRescate::activar);
+    repoPublicaciones.getPublicacionesRescates().forEach(PublicacionRescate::activar);
     Assertions.assertTrue(repoPublicaciones.getPublicacionesInactivas().isEmpty());
   }
 
@@ -81,4 +81,5 @@ public class PublicacionTest {
     }
   }
 
+  
 }
