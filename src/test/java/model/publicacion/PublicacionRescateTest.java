@@ -18,6 +18,7 @@ import repositories.RepoPublicaciones;
 import repositories.RepoRescates;
 import repositories.RepoUsers;
 import services.ServicioRescate;
+import services.usuario.contacto.ServicioNotificacion;
 
 public class PublicacionRescateTest {
   
@@ -29,7 +30,7 @@ public class PublicacionRescateTest {
   private ServicioRescate servicioRescate= spy(new ServicioRescate(repoPublicaciones, repoRescates, repoUsers));
   private MascotaEncontrada mascota= mock(MascotaEncontrada.class);
   private DuenioMascota duenio= mock(DuenioMascota.class);
-  
+  private ServicioNotificacion servicioNotificacion = spy(ServicioNotificacion.getInstance());
 
   @BeforeEach
   void initPublicaciones() {
@@ -44,17 +45,16 @@ public class PublicacionRescateTest {
     servicioRescate.registrarRescate(rescate);
     Assertions.assertFalse(repoPublicaciones.getPublicacionesRescates().isEmpty());
   }
-
   
   @Test
   void noSeCreaPublicacionParaMascotaConChapita() {
     prepararRegistro(true);
     when(repoUsers.buscarDuenio(mascota)).thenReturn(duenio);
-    doNothing().when(servicioRescate).notificarDuenioMascotaPerdida(duenio);
+    
+    doNothing().when(servicioNotificacion).notificarDuenioMascotaPerdida(duenio);
     servicioRescate.registrarRescate(rescate);
     Assertions.assertTrue(repoPublicaciones.getPublicacionesRescates().isEmpty());
   }
-
 
   @Test
   void lasPublicacionesRequierenAprobacion() {
@@ -63,7 +63,6 @@ public class PublicacionRescateTest {
     Assertions.assertEquals(repoPublicaciones.getPublicacionesInactivas().size(),
         repoPublicaciones.getPublicacionesRescates().size());
   }
-
   
   @Test
   void voluntarioPuedeModificarPublicaciones() {
@@ -77,7 +76,7 @@ public class PublicacionRescateTest {
     when(mascota.tieneChapita()).thenReturn(tieneChapita);
     if(tieneChapita) {
       when(repoUsers.buscarDuenio(mascota)).thenReturn(duenio);
-      doNothing().when(servicioRescate).notificarDuenioMascotaPerdida(duenio);
+      doNothing().when(servicioNotificacion).notificarDuenioMascotaPerdida(duenio);
     }
   }
 

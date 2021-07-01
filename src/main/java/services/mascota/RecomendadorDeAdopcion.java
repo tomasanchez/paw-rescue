@@ -1,7 +1,14 @@
 package services.mascota;
 
-import repositories.RepoInteresados;
+import repositories.RepoPubParaAdoptar;
 
+/**
+ * Servicio de Recomendacion Semanal.
+ *
+ * @version 1.1
+ * @since Entrega III
+ * @author Tomás Sánchez
+ */
 public class RecomendadorDeAdopcion {
 
   /**
@@ -9,13 +16,13 @@ public class RecomendadorDeAdopcion {
    */
   private Object repoMascotas;
 
-  private RepoInteresados repoInteresados;
+  private RepoPubParaAdoptar repoPublicaciones;
 
-  public RecomendadorDeAdopcion(RepoInteresados repoInteresados) {
-    this.repoInteresados = repoInteresados;
+  public RecomendadorDeAdopcion(RepoPubParaAdoptar repoPublicaciones) {
+    this.repoPublicaciones = repoPublicaciones;
   }
 
   public void recomendarAdopcion() {
-    System.out.println("Ejecuta una vez");
+    repoPublicaciones.getInteresados().forEach(e -> System.out.println("Ejecuto una vez"));
   }
 }

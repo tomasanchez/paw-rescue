@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import model.publicacion.PublicacionRescate;
-import model.publicacion.PublicacionAdopcion;
+import model.publicacion.PublicacionDarEnAdopcion;
 
 /**
  * Repositorio de Publicaciones
@@ -22,7 +22,7 @@ public class RepoPublicaciones {
    * @since Entrega 2
    */
   private List<PublicacionRescate> publicaciones = new ArrayList<PublicacionRescate>();
-  private List<PublicacionAdopcion> publicacionAdopciones = new ArrayList<>();
+  private List<PublicacionDarEnAdopcion> publicacionAdopciones = new ArrayList<>();
 
 
   private static RepoPublicaciones instancia;
@@ -47,7 +47,7 @@ public class RepoPublicaciones {
     return this;
   }
 
-  public RepoPublicaciones agregarPublicacionAdopcion(PublicacionAdopcion publicacion) {
+  public RepoPublicaciones agregarPublicacionAdopcion(PublicacionDarEnAdopcion publicacion) {
     this.publicacionAdopciones.add(Objects.requireNonNull(publicacion));
     return this;
   }
