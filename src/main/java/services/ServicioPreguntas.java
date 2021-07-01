@@ -2,17 +2,17 @@ package services;
 
 
 import model.mascota.Mascota;
+import model.pregunta.Respuesta;
 import model.publicacion.PublicacionAdopcion;
-import model.publicacion.Respuestas;
 import repositories.RepoPublicaciones;
 
 import java.util.List;
 
 
-public class ServicioPreguntas{
+public class ServicioPreguntas {
   private RepoPublicaciones publicaciones;
 
-  void generarPublicacionMascotaEnAdopcion(Mascota mascota, List<Respuestas> respuestas) {
-      publicaciones.agregarPublicacionAdopcion(new PublicacionAdopcion(mascota,respuestas ));
-    }
+  void generarPublicacionMascotaEnAdopcion(Mascota mascota, List<Respuesta> respuestas) {
+    publicaciones.agregarPublicacionAdopcion(new PublicacionAdopcion(mascota, respuestas));
   }
+}
