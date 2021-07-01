@@ -8,7 +8,7 @@ import model.usuario.datospersonales.DatosPersonales;
 
 public class DuenioMascota extends Usuario {
 
-  List<Mascota> mascotas = new ArrayList<>();
+  private List<Mascota> mascotas = new ArrayList<>();
 
   public DuenioMascota() {
     super();

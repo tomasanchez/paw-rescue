@@ -1,23 +1,24 @@
 package services.usuario.contacto;
 
-import java.util.Properties;
+import model.usuario.DuenioMascota;
 
 public class ServicioNotificacion {
 
-  Properties properties = new Properties();
+  private static ServicioNotificacion instance;
 
-  public ServicioNotificacion() {
-    initProperties();
+  public static ServicioNotificacion getInstance() {
+    if (instance == null) {
+      return new ServicioNotificacion();
+    }
+    return instance;
   }
 
-  private ServicioNotificacion initProperties() {
-    properties.put("mail.smpt.auth", "true");
-    properties.put("mail.smpt.starttls.enable", "true");
-    properties.put("mail.smpt.host", "smtp.gmail.com");
-    properties.put("mail.smpt.port", "587");
-    return this;
+  public void notificarDuenioMascotaPerdida(DuenioMascota duenioMascota) {
+    duenioMascota.notificar("Su mascota ha sido encontrada.");
   }
 
-  public void sendMail() {}
+  public void notificarDuenioMascotaAdopcion(DuenioMascota duenioMascota) {
+    duenioMascota.notificar("Ha aparecido alguien que quiere adoptar su mascota.");
+  }
 
 }
