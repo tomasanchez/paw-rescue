@@ -7,12 +7,12 @@ import model.mascota.Mascota;
 import model.pregunta.Respuesta;
 
 
-public class PublicacionAdopcion {
+public class PublicacionDarEnAdopcion {
   private Mascota mascota;
   private boolean activa = false;
   List<Respuesta> respuestas = new ArrayList<>();
 
-  public PublicacionAdopcion(Mascota mascota, List<Respuesta> respuestas) {
+  public PublicacionDarEnAdopcion(Mascota mascota, List<Respuesta> respuestas) {
     this.mascota = mascota;
     this.respuestas = respuestas;
   }
