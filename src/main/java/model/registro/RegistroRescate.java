@@ -14,12 +14,12 @@ public class RegistroRescate{
 
   /**
    * Dependencia de repositorio.
-   * 
+   *
    * @since Entrega 2.
    */
 
   private DatosPersonales datosRescatista;
-  
+
   private String domicilioRescatista;
 
   private MascotaEncontrada mascotaEncontrada;
@@ -27,18 +27,18 @@ public class RegistroRescate{
   private Boolean rescatistaAlbergaMascota;
 
   private Refugio refugioAsignado;
-  
+
 
   public RegistroRescate datosRescatista(DatosPersonales datosRescatista) {
     this.datosRescatista= Objects.requireNonNull(datosRescatista);
     return this;
   }
-  
+
   public RegistroRescate domicilioRescatista(String domicilio) {
     this.domicilioRescatista= Objects.requireNonNull(domicilio);
     return this;
   }
- 
+
   public RegistroRescate mascotaEncontrada(MascotaEncontrada mascotaEncontrada) {
     this.mascotaEncontrada = Objects.requireNonNull(mascotaEncontrada);
     return this;
@@ -53,14 +53,12 @@ public class RegistroRescate{
     this.refugioAsignado = refugio;
     return this;
   }
-  
+
   //
 
   public Rescate generarRescate() {
     return new Rescate(this.datosRescatista,this.domicilioRescatista,this.mascotaEncontrada,
-        this.rescatistaAlbergaMascota,this.refugioAsignado);
+      this.rescatistaAlbergaMascota,this.refugioAsignado);
   }
 
 }
-
-

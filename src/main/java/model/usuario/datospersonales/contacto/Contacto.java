@@ -9,5 +9,5 @@ package model.usuario.datospersonales.contacto;
  */
 @FunctionalInterface
 public interface Contacto {
-  public void contactar(String mensaje);
+   void contactar(String mensaje);
 }

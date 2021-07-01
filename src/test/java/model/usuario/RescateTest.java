@@ -1,11 +1,11 @@
 package model.usuario;
 
+import model.registro.RegistroRescate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import model.mascota.Chapita;
 import model.mascota.encontrada.MascotaEncontrada;
-import model.registro.RegistroRescate;
 import repositories.RepoRescates;
 import services.ServicioRescate;
 

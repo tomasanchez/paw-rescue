@@ -92,5 +92,5 @@ public class Refugio {
   public boolean admiteTamanio(TamanioMascota t) {
     return getPatio()? true : t.equals(TamanioMascota.PEQUEÑA);
   }
- 
+  
 }

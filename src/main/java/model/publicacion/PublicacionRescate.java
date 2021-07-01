@@ -2,7 +2,7 @@ package model.publicacion;
 
 import model.mascota.encontrada.MascotaEncontrada;
 
-public class Publicacion {
+public class PublicacionRescate {
 
   private MascotaEncontrada mascota;
   private boolean activa = false;
@@ -12,7 +12,7 @@ public class Publicacion {
     this.asociacion = asociacion;
   }
 
-  public Publicacion(MascotaEncontrada mascota, Asociacion asociacion) {
+  public PublicacionRescate(MascotaEncontrada mascota, Asociacion asociacion) {
     this.mascota = mascota;
     this.asociacion=asociacion;
   }
@@ -29,12 +29,12 @@ public class Publicacion {
     return this.activa;
   }
 
-  public Publicacion activar() {
+  public PublicacionRescate activar() {
     this.activa = true;
     return this;
   }
 
-  public Publicacion inactivar() {
+  public PublicacionRescate inactivar() {
     this.activa = false;
     return this;
   }

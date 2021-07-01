@@ -9,7 +9,6 @@ public class Asociacion {
   Coordenada coordenada;
   String direccion;
   int idAsociacion;
-  List<Pregunta> preguntas;
 
   public Asociacion(Coordenada coordenada,String direccion,int idAsociacion){
     this.idAsociacion = idAsociacion;

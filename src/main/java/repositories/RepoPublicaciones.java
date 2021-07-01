@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import model.publicacion.Publicacion;
+import model.publicacion.PublicacionRescate;
+import model.publicacion.PublicacionAdopcion;
 
 /**
  * Repositorio de Publicaciones
- * 
+ *
  * @version 1.0
  * @since 06.02.2021
  * @author Tomás Sánchez
@@ -17,10 +18,11 @@ public class RepoPublicaciones {
 
   /**
    * Listado de publicaciones.
-   * 
+   *
    * @since Entrega 2
    */
-  private List<Publicacion> publicaciones = new ArrayList<Publicacion>();
+  private List<PublicacionRescate> publicaciones = new ArrayList<PublicacionRescate>();
+  private List<PublicacionAdopcion> publicacionAdopciones = new ArrayList<>();
 
 
   private static RepoPublicaciones instancia;
@@ -31,32 +33,37 @@ public class RepoPublicaciones {
     }
     return instancia;
   }
-  
-  
+
+
   /**
    * Agrega una publicacion al repositorio.
-   * 
+   *
    * @param publicacion la publicacion a añadir
    * @return el repositorio
    * @since Entrega 2
    */
-  public RepoPublicaciones agregar(Publicacion publicacion) {
+  public RepoPublicaciones agregar(PublicacionRescate publicacion) {
     this.publicaciones.add(Objects.requireNonNull(publicacion));
     return this;
   }
 
-  public List<Publicacion> getPublicaciones() {
+  public RepoPublicaciones agregarPublicacionAdopcion(PublicacionAdopcion publicacion) {
+    this.publicacionAdopciones.add(Objects.requireNonNull(publicacion));
+    return this;
+  }
+
+  public List<PublicacionRescate> getPublicaciones() {
     return this.publicaciones;
   }
 
-  public List<Publicacion> getPublicacionesInactivas() {
+  public List<PublicacionRescate> getPublicacionesInactivas() {
     return publicaciones.stream().filter(publicacion -> !(publicacion.isActiva()))
-        .collect(Collectors.toList());
+      .collect(Collectors.toList());
   }
 
-  public List<Publicacion> getPublicacionesActivas() {
+  public List<PublicacionRescate> getPublicacionesActivas() {
     return publicaciones.stream().filter(publicacion -> publicacion.isActiva())
-        .collect(Collectors.toList());
+      .collect(Collectors.toList());
   }
 
 }

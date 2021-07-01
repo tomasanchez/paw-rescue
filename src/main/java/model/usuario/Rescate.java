@@ -73,7 +73,7 @@ public class Rescate {
    *
    * @param datosPersonales los datos de Nombre, Apellido, Documento, etc.
    * @param mascotaEncontrada el animal rescatado.
-   * @param direccion la direccion donde fue encontrado
+   * @param domicilioRescatista
    * @param refugioAsignado el refugio al que se asigno la mascota
    */
   public Rescate(DatosPersonales datosPersonales, String domicilioRescatista, MascotaEncontrada mascotaEncontrada,

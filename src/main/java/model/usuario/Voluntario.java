@@ -1,7 +1,7 @@
 package model.usuario;
 
-import model.publicacion.Asociacion;
 
+import model.publicacion.Asociacion;
 
 public class Voluntario extends Usuario {
 

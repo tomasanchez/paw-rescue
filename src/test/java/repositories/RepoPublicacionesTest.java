@@ -3,7 +3,7 @@ package repositories;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import model.publicacion.Publicacion;
+import model.publicacion.PublicacionRescate;
 
 public class RepoPublicacionesTest {
 
@@ -16,7 +16,7 @@ public class RepoPublicacionesTest {
 
   @Test
   void testAgregar() {
-    repo.agregar(new Publicacion(null, null));
+    repo.agregar(new PublicacionRescate(null, null));
     Assertions.assertFalse(repo.getPublicaciones().isEmpty());
   }
 
@@ -28,7 +28,7 @@ public class RepoPublicacionesTest {
 
   @Test
   void testGetPublicacionesActivas() {
-    Publicacion publicacion = new Publicacion(null, null);
+    PublicacionRescate publicacion = new PublicacionRescate(null, null);
     repo.agregar(publicacion);
     publicacion.activar();
     Assertions.assertTrue(repo.getPublicacionesActivas().contains(publicacion));
@@ -37,7 +37,7 @@ public class RepoPublicacionesTest {
 
   @Test
   void testGetPublicacionesInactivas() {
-    Publicacion publicacion = new Publicacion(null, null);
+    PublicacionRescate publicacion = new PublicacionRescate(null, null);
     repo.agregar(publicacion);
     Assertions.assertFalse(repo.getPublicacionesActivas().contains(publicacion));
     Assertions.assertTrue(repo.getPublicacionesInactivas().contains(publicacion));

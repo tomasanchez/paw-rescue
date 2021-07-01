@@ -5,14 +5,15 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
+import model.registro.RegistroRescate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import model.mascota.encontrada.MascotaEncontrada;
-import model.registro.RegistroRescate;
 import model.usuario.DuenioMascota;
 import model.usuario.Rescate;
 import repositories.RepoAsociaciones;
+
 import repositories.RepoPublicaciones;
 import repositories.RepoRescates;
 import repositories.RepoUsers;
@@ -68,7 +69,7 @@ public class PublicacionTest {
   void voluntarioPuedeModificarPublicaciones() {
     prepararRegistro(false);
     servicioRescate.registrarRescate(rescate);
-    repoPublicaciones.getPublicaciones().forEach(Publicacion::activar);
+    repoPublicaciones.getPublicaciones().forEach(PublicacionRescate::activar);
     Assertions.assertTrue(repoPublicaciones.getPublicacionesInactivas().isEmpty());
   }
 
