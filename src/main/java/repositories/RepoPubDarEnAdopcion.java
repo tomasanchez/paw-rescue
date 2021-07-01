@@ -23,4 +23,8 @@ public class RepoPubDarEnAdopcion {
   }
 
 
+  public PublicacionDarEnAdopcion getPublicacionRandom() {
+    return getPublicaciones().stream().findAny().orElse(null);
+  }
+
 }
