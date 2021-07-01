@@ -47,6 +47,13 @@ public class RespuestaTest {
     Assertions.assertEquals("gordo", respuesta2.getRespuesta());
   }
 
+  @Test
+  void RespestaVaciaEnVOF() {
+    Pregunta pregunta = nuevaPreguntaVOF("Es cariñoso");
+    assertThrows(RespuestaInvalida.class, () -> nuevaRespuesta(pregunta, ""));
+    assertThrows(RespuestaInvalida.class, () -> nuevaRespuesta(pregunta, null));
+  }
+
   private PreguntaVOF nuevaPreguntaVOF(String encuesta) {
     return new PreguntaVOF(encuesta);
   }
