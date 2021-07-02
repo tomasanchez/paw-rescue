@@ -27,3 +27,7 @@ El enunciado para esta entrega puede verse en [este docs](https://docs.google.co
 > Enviar una notificación al dueño actual de la mascota cuando aparezca algún interesado en adoptarla
 
 ![Requerimiento 3](images/03-entrega/03-req.png)
+
+> Permitir que una persona genere una publicación que demuestre su intención de adoptar una mascota
+
+![Requerimiento 4](images/03-entrega/04-req.png)
