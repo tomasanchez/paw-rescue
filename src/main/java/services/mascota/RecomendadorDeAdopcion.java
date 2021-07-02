@@ -1,6 +1,9 @@
 package services.mascota;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import model.preferencia.Preferencia;
+import model.publicacion.PublicacionAdoptar;
 import model.publicacion.PublicacionDarEnAdopcion;
 import repositories.RepoPubDarEnAdopcion;
 import repositories.RepoPubParaAdoptar;
@@ -31,33 +34,43 @@ public class RecomendadorDeAdopcion {
   }
 
   public void recomendarAdopcion() {
-    repoAdoptar.getInteresados().forEach(e -> {
-      PublicacionDarEnAdopcion match = matchConMascota(e);
-      System.out.println("Ejecuto una vez");
+    repoAdoptar.getInteresados().forEach(publicacion -> {
+      publicacion.getInteresado().recomendarAdopcion(matchConMascota(publicacion));
     });
   }
 
-
-  private List<PublicacionDarEnAdopcion> matchConPosiblesMascota(Object object) {
+  private List<PublicacionDarEnAdopcion> matchConPosiblesMascota(PublicacionAdoptar interesado) {
     List<PublicacionDarEnAdopcion> match = this.repoDarEnAdopcion.getPublicaciones();
-    return match;
+    List<Preferencia> preferencias = interesado.getPreferencias();
+
+    return match.stream()
+        .filter(pub -> preferencias.stream().anyMatch(pref -> pref.puedeRecomendarse(pub)))
+        .collect(Collectors.toList());
   }
 
-  private PublicacionDarEnAdopcion matchConMascota(Object object) {
-    List<PublicacionDarEnAdopcion> match = matchConPosiblesMascota(object);
+  private PublicacionDarEnAdopcion matchConMascota(PublicacionAdoptar interesado) {
+    List<PublicacionDarEnAdopcion> matches = matchConPosiblesMascota(interesado);
 
-    if (match.isEmpty()) {
+    if (matches.isEmpty()) {
       return this.repoDarEnAdopcion.getPublicacionRandom();
     }
 
-    match.sort((pub1, pub2) -> {
+    matches.sort((pub1, pub2) -> {
 
-      int count1 = 1, count2 = 0;
+      List<Preferencia> preferencias = interesado.getPreferencias();
+      long count1 = contarPreferenciasCumplidas(pub1, preferencias);
+      long count2 = contarPreferenciasCumplidas(pub2, preferencias);
 
-      return count1 - count2;
+      return (int) (count1 - count2);
     });
 
-    return match.stream().findFirst().get();
+    return matches.stream().findFirst().get();
+  }
+
+  private static long contarPreferenciasCumplidas(PublicacionDarEnAdopcion publicacion,
+      List<Preferencia> preferencias) {
+    return preferencias.stream().map(p -> p.puedeRecomendarse(publicacion)).filter(self -> self)
+        .count();
   }
 
 }
