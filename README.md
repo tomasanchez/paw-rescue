@@ -31,3 +31,17 @@ El enunciado para esta entrega puede verse en [este docs](https://docs.google.co
 > Permitir que una persona genere una publicación que demuestre su intención de adoptar una mascota
 
 ![Requerimiento 4](images/03-entrega/04-req.png)
+
+> Generar y enviar recomendaciones semanales de adopción de mascotas.
+
+Podemos generar un `crontab`
+
+```
+> crontab -e
+```
+
+```
+0 0 12 ? * WED *  java -jar ABSOLUTE_PATH/snapshot.jar
+```
+
+![Requerimiento 5](images/03-entrega/05-req.png)
