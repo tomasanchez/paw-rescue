@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/dds-utn/2021-vi-no-grupo-23/compare/v0.1.0...v0.2.0) (2021-07-02)
+
+
+### Features
+
+* **mascota:** fluent setter ([9c58435](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/9c584350f5bbe83f28d590018f6de419ebfaf5ed))
+* **preg-rta:** de que trata/ que respondio ([5b54b00](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/5b54b0005c6d28035a0974ea19290d1eff79de5e))
+* **publicaciones:** repo de 'interesados' ([5f7f7bb](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/5f7f7bbbc4cf26b10e67108a7efffe32b16872fe))
+* **repo:** publicacion random ([7d3541d](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/7d3541d21c8fafeafb9802a298f842a8673a118a))
+* **req-4:**  publicaciones para adoptar ([a273ef3](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/a273ef34aedd0c537f180560be4615c1b6f61ff0))
+* **req-4/5:** repo de publicaciones ([7982555](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/7982555fff4d845edf7a0d168ccd3bc4b5e53407))
+* **req-5:** main app ([2fbddb8](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/2fbddb8c70d1c4fcdcddf58121e606967490d7e4))
+* **req-5:** preferencias ([37cdf60](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/37cdf607c3ef77c523f1a779d7ecf60d44339163))
+* **req-5:** recomendacion de adopcion ([8cbff43](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/8cbff436185b60af04f2a90edf15eecafae6b685))
+* **req-5:** recomendador de adopciones ([2760e04](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/2760e04617a7403c968f403c02f9b96e7de05931))
+* **req-5:** recomendador de adopciones ([150c680](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/150c680e9ff67aef660fd6edbfe7566b1e172bc1))
+
+
+### Bug Fixes
+
+* **preferencia:** recomendar siempre que no se prefiera ([083dee0](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/083dee0bddf116111e8f721351e09303dfcc32f8))
+* **repos:** add de entries ([e0df975](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/e0df97554db3e7a877c6a3128c85cde3e9fbb2d3))
+* **spotbugs:** corrijo los unused ([12c6a45](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/12c6a45d542daee5095e6d5579e9264ced666472))
+* **voluntario:** elimino publicaciones [#5](https://github.com/dds-utn/2021-vi-no-grupo-23/issues/5) ([7c176b5](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/7c176b5cd10f1ba10bd980a77a826872d0acecb8))
+
 ## [0.1.0](https://github.com/dds-utn/2021-vi-no-grupo-23/compare/v0.0.3...v0.1.0) (2021-06-04)
 
 
