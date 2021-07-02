@@ -1,25 +1,21 @@
 package services;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import java.time.LocalDate;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import model.registro.RegistroDuenioMascota;
 import model.usuario.DuenioMascota;
 import model.usuario.datospersonales.contacto.DatosContacto;
 import model.usuario.datospersonales.documento.TipoDocumento;
-import repositories.RepoPublicaciones;
-import repositories.RepoRescates;
 import repositories.RepoUsers;
 import services.usuario.contacto.ServicioNotificacion;
 import services.usuario.contacto.notificaciones.NotificadorMail;
 import services.usuario.contacto.notificaciones.NotificadorSMS;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-
-import java.time.LocalDate;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 
 public class NotifiacionesTest {
 
@@ -59,13 +55,13 @@ public class NotifiacionesTest {
 
     verify(duenioMascota, times(1)).notificar(any());
   }
-  
+
   @Test
   public void enviarNotificacionesDesdeServicio() {
     doNothing().when(duenioMascota).notificar(any());
     ServicioNotificacion.getInstance().notificarDuenioMascotaAdopcion(duenioMascota);
     ServicioNotificacion.getInstance().notificarDuenioMascotaPerdida(duenioMascota);
-    
+
     verify(duenioMascota, times(2)).notificar(any());
   }
 
