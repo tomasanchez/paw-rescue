@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import model.mascota.Chapita;
 import model.mascota.Mascota;
+import model.publicacion.PublicacionDarEnAdopcion;
 import model.usuario.datospersonales.DatosPersonales;
 
 public class DuenioMascota extends Usuario {
 
   private List<Mascota> mascotas = new ArrayList<>();
+
+  private PublicacionDarEnAdopcion recomendacion;
+
 
   public DuenioMascota() {
     super();
@@ -52,5 +56,15 @@ public class DuenioMascota extends Usuario {
   public DatosPersonales getDatosPeronales() {
     return this.datosPersonales;
   }
+
+  public PublicacionDarEnAdopcion getRecomendacion() {
+    return recomendacion;
+  }
+
+  public DuenioMascota recomendarAdopcion(PublicacionDarEnAdopcion recomendacion) {
+    this.recomendacion = recomendacion;
+    return this;
+  }
+
 
 }
