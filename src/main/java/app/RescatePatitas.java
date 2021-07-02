@@ -14,6 +14,7 @@ import services.mascota.RecomendadorDeAdopcion;
 public class RescatePatitas {
 
   public static void main(String[] args) {
+    System.out.println("Iniciando tareas programadas.");
     RepoPubParaAdoptar repoInteresados = new RepoPubParaAdoptar();
     RepoPubDarEnAdopcion repoPubDarEnAdopcion = new RepoPubDarEnAdopcion();
     RecomendadorDeAdopcion recomendador =
