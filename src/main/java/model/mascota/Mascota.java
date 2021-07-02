@@ -105,4 +105,9 @@ public class Mascota {
   public boolean esLaMismaMascota(MascotaEncontrada mascotaEncontrada) {
     return getChapita().equals(mascotaEncontrada.getChapita());
   }
+
+  public Mascota setTipo(TipoMascota tipo) {
+    this.tipoMascota = tipo;
+    return this;
+  }
 }
