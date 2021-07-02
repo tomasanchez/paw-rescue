@@ -23,7 +23,7 @@ public class Respuesta {
   }
 
   /**
-   * Valida si la respuesta es admitida
+   * Valida si la respuesta es admitida.
    * 
    * @param pregunta la pregunta
    * @param respuesta la respuesta contestada
