@@ -22,6 +22,10 @@ public class Respuesta {
     return respuesta;
   }
 
+  public boolean isSobre(String keyword) {
+    return getPregunta().isSobre(keyword);
+  }
+
   public boolean isRespuesta(String keyword) {
     return getRespuesta().toLowerCase().contains(keyword);
   }
