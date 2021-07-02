@@ -1,17 +1,16 @@
 package model.pregunta;
 
-import exceptions.RespuestaInvalida;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import exceptions.RespuestaInvalida;
 
 public class RespuestaTest {
   @Test
   void RespuestaVerdadera() {
     Pregunta pregunta = nuevaPreguntaVOF("Es cariñoso");
-    Respuesta respuesta = nuevaRespuesta(pregunta, "Verdadero");
-    Assertions.assertEquals("Verdadero", respuesta.getRespuesta());
+    Respuesta respuesta = nuevaRespuesta(pregunta, "true");
+    Assertions.assertEquals("true", respuesta.getRespuesta());
   }
 
   @Test

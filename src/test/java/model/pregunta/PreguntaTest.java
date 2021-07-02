@@ -1,10 +1,7 @@
 package model.pregunta;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 public class PreguntaTest {
   @Test
@@ -16,7 +13,7 @@ public class PreguntaTest {
     preguntaOpciones.agregarOpcion("4 o mas veces al dia");
     Assertions.assertEquals(4, preguntaOpciones.getPosiblesRespuestas().size());
   }
-  
+
   @Test
   void PreguntaOpcionesQuitar() {
     PreguntaOpciones preguntaOpciones = new PreguntaOpciones("Cuantas veces sale a pasear");
@@ -27,10 +24,10 @@ public class PreguntaTest {
   }
 
   @Test
-  void PreguntaVOFdosOpciones(){
+  void PreguntaVOFdosOpciones() {
     PreguntaVOF preguntaVOF = new PreguntaVOF("Es cariñoso");
-    Assertions.assertEquals(2,preguntaVOF.posiblesRespuestas.size());
-    Assertions.assertTrue(preguntaVOF.getPosiblesRespuestas().contains("Verdadero"));
-    Assertions.assertTrue(preguntaVOF.getPosiblesRespuestas().contains("Falso"));
+    Assertions.assertEquals(2, preguntaVOF.posiblesRespuestas.size());
+    Assertions.assertTrue(preguntaVOF.getPosiblesRespuestas().contains(Boolean.toString(true)));
+    Assertions.assertTrue(preguntaVOF.getPosiblesRespuestas().contains(Boolean.toString(false)));
   }
 }
