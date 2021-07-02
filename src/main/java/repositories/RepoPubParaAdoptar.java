@@ -2,17 +2,21 @@ package repositories;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.publicacion.PublicacionAdoptar;
 
 public class RepoPubParaAdoptar {
 
-  private List<Object> publicaciones = new ArrayList<Object>();
+  private List<PublicacionAdoptar> publicaciones = new ArrayList<PublicacionAdoptar>();
 
-  public List<Object> getInteresados() {
+  public List<PublicacionAdoptar> getInteresados() {
     return publicaciones;
   }
 
-  public void setInteresados(List<Object> interesados) {
+  public void setInteresados(List<PublicacionAdoptar> interesados) {
     this.publicaciones = interesados;
   }
 
+  public void addPublicacion(PublicacionAdoptar pub) {
+    getInteresados().add(pub);
+  }
 }

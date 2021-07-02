@@ -27,4 +27,7 @@ public class RepoPubDarEnAdopcion {
     return getPublicaciones().stream().findAny().orElse(null);
   }
 
+  public void addPublicacion(PublicacionDarEnAdopcion pub) {
+    getPublicaciones().add(pub);
+  }
 }
