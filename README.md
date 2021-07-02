@@ -23,3 +23,7 @@ El enunciado para esta entrega puede verse en [este docs](https://docs.google.co
 > Permitir que cada organización defina las preguntas que le realizará al dueño cuando éste quiera dar en adopción a su mascota.
 
 ![Requerimiento 2](images/03-entrega/02-req.png)
+
+> Enviar una notificación al dueño actual de la mascota cuando aparezca algún interesado en adoptarla
+
+![Requerimiento 3](images/03-entrega/03-req.png)
