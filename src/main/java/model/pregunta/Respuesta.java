@@ -22,6 +22,10 @@ public class Respuesta {
     return respuesta;
   }
 
+  public boolean isRespuesta(String keyword) {
+    return getRespuesta().toLowerCase().contains(keyword);
+  }
+
   /**
    * Valida si la respuesta es admitida.
    * 

@@ -13,12 +13,16 @@ public class Pregunta {
   public String getEncuesta() {
     return encuesta;
   }
-  
-  public void agregarRespuestaposible(String respuesta){
+
+  public void agregarRespuestaposible(String respuesta) {
     posiblesRespuestas.add(respuesta);
   }
 
   public List<String> getPosiblesRespuestas() {
     return posiblesRespuestas;
+  }
+
+  public boolean isSobre(String keyword) {
+    return getEncuesta().toLowerCase().contains(keyword);
   }
 }
