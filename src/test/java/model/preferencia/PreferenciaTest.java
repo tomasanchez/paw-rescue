@@ -48,6 +48,16 @@ public class PreferenciaTest {
   }
 
 
+  @Test
+  void seRecomiendaPerroYGatoSinPreferencias() {
+    preferencia = new PreferenciaDeMascota(null);
+    publicarPerro();
+    Assertions.assertTrue(preferencia.puedeRecomendarse(publicacion));
+    publicarGato();
+    Assertions.assertTrue(preferencia.puedeRecomendarse(publicacion));
+  }
+
+
   private void preferirGato() {
     preferencia = new PreferenciaDeMascota(TipoMascota.GATO);
   }
