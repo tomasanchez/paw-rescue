@@ -1,5 +1,6 @@
 package model.preferencia;
 
+import java.util.Objects;
 import model.mascota.TipoMascota;
 import model.publicacion.PublicacionDarEnAdopcion;
 
@@ -13,7 +14,8 @@ public class PreferenciaDeMascota implements Preferencia {
 
   @Override
   public boolean puedeRecomendarse(PublicacionDarEnAdopcion publicacion) {
-    return tipo.equals(publicacion.getMascota().getTipoMascota());
+
+    return !Objects.isNull(tipo) ? tipo.equals(publicacion.getMascota().getTipoMascota()) : true;
   }
 
 }
