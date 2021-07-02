@@ -19,3 +19,7 @@ El enunciado para esta entrega puede verse en [este docs](https://docs.google.co
 > Permitir que una persona genere una publicación para dar en adopción
 
 ![Requerimiento 1](images/03-entrega/01-req.png)
+
+> Permitir que cada organización defina las preguntas que le realizará al dueño cuando éste quiera dar en adopción a su mascota.
+
+![Requerimiento 2](images/03-entrega/02-req.png)
