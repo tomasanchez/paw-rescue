@@ -1,5 +1,6 @@
 package app;
 
+import repositories.RepoPubDarEnAdopcion;
 import repositories.RepoPubParaAdoptar;
 import services.mascota.RecomendadorDeAdopcion;
 
@@ -14,7 +15,8 @@ public class RescatePatitas {
 
   public static void main(String[] args) {
     RepoPubParaAdoptar repoInteresados = new RepoPubParaAdoptar();
-    RecomendadorDeAdopcion recomendador = new RecomendadorDeAdopcion(repoInteresados);
+    RepoPubDarEnAdopcion repoPubDarEnAdopcion = new RepoPubDarEnAdopcion();
+    RecomendadorDeAdopcion recomendador = new RecomendadorDeAdopcion(repoPubDarEnAdopcion,repoInteresados);
     recomendador.recomendarAdopcion();
   }
 }

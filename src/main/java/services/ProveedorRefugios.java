@@ -2,8 +2,8 @@ package services;
 
 import api.response.Admisiones;
 import api.response.Hogares;
-import exceptions.acceso.LogueoSinEmailException;
 import com.sun.jersey.api.client.Client;
+import exceptions.acceso.LogueoSinEmailException;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
@@ -17,7 +17,6 @@ import model.mascota.TipoMascota;
 import model.mascota.encontrada.Coordenada;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.refugio.Refugio;
-
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;

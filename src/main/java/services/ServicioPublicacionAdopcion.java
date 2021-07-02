@@ -3,7 +3,7 @@ package services;
 
 import model.mascota.Mascota;
 import model.pregunta.Respuesta;
-import model.publicacion.PublicacionAdopcion;
+import model.publicacion.PublicacionDarEnAdopcion;
 import repositories.RepoPublicaciones;
 
 import java.util.List;
@@ -17,6 +17,6 @@ public class ServicioPublicacionAdopcion {
   }
 
   public void generarPublicacionMascotaEnAdopcion(Mascota mascota, List<Respuesta> respuestas) {
-    publicaciones.agregarPublicacionAdopcion(new PublicacionAdopcion(mascota, respuestas));
+    publicaciones.agregarPublicacionAdopcion(new PublicacionDarEnAdopcion(mascota, respuestas));
   }
 }
