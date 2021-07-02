@@ -45,7 +45,8 @@ public class NotificadorMail implements NotificadorAPI {
 
     try {
       message.setFrom(new InternetAddress(remitente));
-      message.addRecipient(Message.RecipientType.TO, direccion);   //Se pueden añadir varios de la misma manera
+      message.addRecipient(Message.RecipientType.TO, direccion); // Se pueden añadir varios de la
+                                                                 // misma manera
       message.setSubject("Hay novedades!!");
       message.setText(msg);
       Transport transport = session.getTransport("smtp");
@@ -61,7 +62,9 @@ public class NotificadorMail implements NotificadorAPI {
 
   @Override
   public void contactar(DatosContacto contacto1, DatosContacto contacto2, String msg) {
-    notificar(contacto1, msg + " Por favor ponganse en contacto con  "+contacto2.getNombre() +" mediante su telefono ("+ contacto2.getTelefono()
-        +") o su correo ("+contacto2.getMail()+")");
+    notificar(contacto1,
+        msg + " Por favor ponganse en contacto con  " + contacto2.getNombre()
+            + " mediante su telefono (" + contacto2.getTelefono() + ") o su correo ("
+            + contacto2.getMail() + ")");
   }
 }

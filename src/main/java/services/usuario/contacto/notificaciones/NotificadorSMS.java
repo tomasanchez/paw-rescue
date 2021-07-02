@@ -16,15 +16,15 @@ public class NotificadorSMS implements NotificadorAPI {
 
     Twilio.init(acc, token);
 
-    Message message = Message
-        .creator(
-            new PhoneNumber("+" + contacto.getTelefono()), new PhoneNumber(telefono), msg)
+    Message.creator(new PhoneNumber("+" + contacto.getTelefono()), new PhoneNumber(telefono), msg)
         .create();
   }
 
   @Override
   public void contactar(DatosContacto contacto1, DatosContacto contacto2, String msg) {
-      notificar(contacto1, msg + " Por favor ponganse en contacto con "+contacto2.getNombre() +" mediante su telefono ("+ contacto2.getTelefono()
-      +") o su correo ("+contacto2.getMail()+")");
+    notificar(contacto1,
+        msg + " Por favor ponganse en contacto con " + contacto2.getNombre()
+            + " mediante su telefono (" + contacto2.getTelefono() + ") o su correo ("
+            + contacto2.getMail() + ")");
   }
 }
