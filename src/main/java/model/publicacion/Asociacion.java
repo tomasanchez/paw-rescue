@@ -14,7 +14,6 @@ public class Asociacion {
   String direccion;
   int idAsociacion;
   List<Pregunta> preguntas = new ArrayList<>();
-  RepoPreguntas repoPreguntas = RepoPreguntas.getInstance();
 
   public Asociacion(Coordenada coordenada, String direccion, int idAsociacion, List<Pregunta> preguntas) {
     this.idAsociacion = idAsociacion;
@@ -52,6 +51,7 @@ public class Asociacion {
 
   public List<Pregunta> getPreguntas() {
     List<Pregunta> todasPreguntas = new ArrayList<>();
+    RepoPreguntas repoPreguntas = RepoPreguntas.getInstance();
     todasPreguntas.addAll(repoPreguntas.getPreguntas());
     todasPreguntas.addAll(preguntas);
     return todasPreguntas;
