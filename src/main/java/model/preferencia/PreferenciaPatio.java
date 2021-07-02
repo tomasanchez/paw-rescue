@@ -8,6 +8,10 @@ public class PreferenciaPatio implements Preferencia {
 
   boolean patioGrande;
 
+  public PreferenciaPatio(boolean patioGrande) {
+    this.patioGrande = patioGrande;
+  }
+
   @Override
   public boolean puedeRecomendarse(PublicacionDarEnAdopcion publicacion) {
 
@@ -17,7 +21,7 @@ public class PreferenciaPatio implements Preferencia {
       return true;
     }
 
-    if (!respuestas.stream().map(Respuesta::getPregunta).anyMatch(p -> p.isSobre("patio"))) {
+    if (!respuestas.stream().anyMatch(p -> p.isSobre("patio"))) {
       return true;
     }
 
@@ -26,7 +30,7 @@ public class PreferenciaPatio implements Preferencia {
   }
 
   private boolean contienePatio(Respuesta respuesta) {
-    return respuesta.getPregunta().isSobre("patio");
+    return respuesta.isSobre("patio");
   }
 
 }
