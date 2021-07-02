@@ -16,7 +16,8 @@ public class RescatePatitas {
   public static void main(String[] args) {
     RepoPubParaAdoptar repoInteresados = new RepoPubParaAdoptar();
     RepoPubDarEnAdopcion repoPubDarEnAdopcion = new RepoPubDarEnAdopcion();
-    RecomendadorDeAdopcion recomendador = new RecomendadorDeAdopcion(repoPubDarEnAdopcion,repoInteresados);
-    recomendador.recomendarAdopcion();
+    RecomendadorDeAdopcion recomendador =
+        new RecomendadorDeAdopcion(repoPubDarEnAdopcion, repoInteresados);
+    recomendador.recomendarAdopciones();
   }
 }

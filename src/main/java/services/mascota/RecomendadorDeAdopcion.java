@@ -33,10 +33,12 @@ public class RecomendadorDeAdopcion {
     this.repoAdoptar = repoAdoptar;
   }
 
-  public void recomendarAdopcion() {
-    repoAdoptar.getInteresados().forEach(publicacion -> {
-      publicacion.getInteresado().recomendarAdopcion(matchConMascota(publicacion));
-    });
+  public void recomendarAdopciones() {
+    repoAdoptar.getInteresados().forEach(publicacion -> recomendarAdopcion(publicacion));
+  }
+
+  public void recomendarAdopcion(PublicacionAdoptar publicacion) {
+    publicacion.getInteresado().recomendarAdopcion(matchConMascota(publicacion));
   }
 
   private List<PublicacionDarEnAdopcion> matchConPosiblesMascota(PublicacionAdoptar interesado) {
