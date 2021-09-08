@@ -7,18 +7,30 @@ import model.mascota.caracteristica.TamanioMascota;
 import model.mascota.encontrada.Coordenada;
 import model.mascota.encontrada.MascotaEncontrada;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Entity
 public class Refugio {
+
+  @Id
+  @GeneratedValue
+  private Long id;
+  
   private String nombre;
   private String direccion;
+  @Transient
   private Coordenada coordenada;
   private String telefono;
+  @Transient
   private List<TipoMascota> admisiones;
   private int capacidad;
   private int lugares_disponibles;
   private Boolean patio;
+  @Transient
   private List<String> caracteristicas;
 
   public Refugio(String nombre, String direccion, Coordenada coordenada, String telefono,
