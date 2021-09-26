@@ -1,25 +1,21 @@
 package model.refugio;
 
+import java.util.List;
+import java.util.stream.Collectors;
 
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+import db.PersistentEntity;
 import model.mascota.TipoMascota;
 import model.mascota.caracteristica.Caracteristica;
 import model.mascota.caracteristica.TamanioMascota;
 import model.mascota.encontrada.Coordenada;
 import model.mascota.encontrada.MascotaEncontrada;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-import java.util.List;
-import java.util.stream.Collectors;
 @Entity
-public class Refugio {
+public class Refugio extends PersistentEntity {
 
-  @Id
-  @GeneratedValue
-  private Long id;
-  
   private String nombre;
   private String direccion;
   @Transient
@@ -33,8 +29,8 @@ public class Refugio {
   @Transient
   private List<String> caracteristicas;
 
-  public Refugio(String nombre, String direccion, Coordenada coordenada, String telefono,
-                 List<TipoMascota> admisiones, int capacidad, int lugares_disponibles, Boolean patio, List<String> caracteristicas) {
+  public Refugio(String nombre, String direccion, Coordenada coordenada, String telefono, List<TipoMascota> admisiones,
+      int capacidad, int lugares_disponibles, Boolean patio, List<String> caracteristicas) {
     this.nombre = nombre;
     this.direccion = direccion;
     this.coordenada = coordenada;
@@ -84,25 +80,25 @@ public class Refugio {
   }
 
   public boolean admiteA(MascotaEncontrada mascota) {
-    return admiteTipoDeMascota(mascota.getTipoMascota()) && hayLugarDisponible() && 
-        admiteCaracteristicas(mascota.getCaracteristicas()) && admiteTamanio(mascota.getTamanio()); 
+    return admiteTipoDeMascota(mascota.getTipoMascota()) && hayLugarDisponible()
+        && admiteCaracteristicas(mascota.getCaracteristicas()) && admiteTamanio(mascota.getTamanio());
   }
-  
+
   public boolean admiteTipoDeMascota(TipoMascota tipo) {
-   return getAdmisiones().isEmpty() ? true : getAdmisiones().contains(tipo);
+    return getAdmisiones().isEmpty() ? true : getAdmisiones().contains(tipo);
   }
-  
+
   public boolean hayLugarDisponible() {
     return this.capacidad > this.lugares_disponibles;
   }
-  
+
   public boolean admiteCaracteristicas(List<Caracteristica> caracteristicas) {
-    return getCaracteristicas().containsAll(caracteristicas.stream().
-        map(c -> c.toString()).collect(Collectors.toList()));
+    return getCaracteristicas()
+        .containsAll(caracteristicas.stream().map(c -> c.toString()).collect(Collectors.toList()));
   }
-  
+
   public boolean admiteTamanio(TamanioMascota t) {
-    return getPatio()? true : t.equals(TamanioMascota.PEQUEÑA);
+    return getPatio() ? true : t.equals(TamanioMascota.PEQUEÑA);
   }
-  
+
 }
