@@ -2,6 +2,10 @@ package model.usuario.datospersonales;
 
 import java.time.LocalDate;
 import java.util.Objects;
+
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+
 import model.usuario.datospersonales.contacto.DatosContacto;
 import model.usuario.datospersonales.documento.Documento;
 
@@ -12,6 +16,7 @@ import model.usuario.datospersonales.documento.Documento;
  * @since 05.05.2021
  * @author Tomás Sánchez
  */
+@Embeddable
 public class DatosPersonales {
 
   /**
@@ -27,6 +32,7 @@ public class DatosPersonales {
   /**
    * Tipo y Numero de Documento.
    */
+  @Embedded
   private Documento documento;
 
   /**
@@ -37,19 +43,20 @@ public class DatosPersonales {
   /**
    * Datos de un contacto.
    */
+  @Embedded
   private DatosContacto contacto;
 
   /**
    * Instancia datos personales.
    * 
-   * @param nombre el nombre de la persona
-   * @param apellido su apellido
-   * @param documento tipo documento y numerodocumento
+   * @param nombre          el nombre de la persona
+   * @param apellido        su apellido
+   * @param documento       tipo documento y numerodocumento
    * @param fechaNacimiento dia del nacimiento
-   * @param contacto datos de un contacto
+   * @param contacto        datos de un contacto
    */
-  public DatosPersonales(String nombre, String apellido, Documento documento,
-      LocalDate fechaNacimiento, DatosContacto contacto) {
+  public DatosPersonales(String nombre, String apellido, Documento documento, LocalDate fechaNacimiento,
+      DatosContacto contacto) {
     this.nombre = Objects.requireNonNull(nombre);
     this.apellido = Objects.requireNonNull(apellido);
     this.documento = Objects.requireNonNull(documento);

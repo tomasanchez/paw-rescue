@@ -2,6 +2,8 @@ package model.usuario.datospersonales.contacto;
 
 import java.util.Objects;
 
+import javax.persistence.Embeddable;
+
 /**
  * Datos de Contacto.
  * 
@@ -9,6 +11,7 @@ import java.util.Objects;
  * @since 05.02.2021
  * @version 1.0
  */
+@Embeddable
 public class DatosContacto {
 
   /**
@@ -49,10 +52,10 @@ public class DatosContacto {
   /**
    * Instancia un contacto.
    * 
-   * @param nombre el nombre del contato.
+   * @param nombre   el nombre del contato.
    * @param apellido el apellido del contacto.
    * @param telefono un número de telefono.
-   * @param mail una direccion de email.
+   * @param mail     una direccion de email.
    */
   public DatosContacto(String nombre, String apellido, String telefono, String mail) {
     this.nombre = Objects.requireNonNull(nombre);
