@@ -1,4 +1,6 @@
 {
-    "java.checkstyle.configuration": "${workspaceFolder}/target/checkstyle-checker.xml",
-    "java.configuration.updateBuildConfiguration": "automatic"
+  "java.checkstyle.configuration": "${workspaceFolder}/target/checkstyle-checker.xml",
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 100
 }
