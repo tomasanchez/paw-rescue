@@ -1,10 +1,18 @@
 package model.pregunta;
 
-import java.util.Objects;
+import db.PersistentEntity;
 import exceptions.RespuestaInvalida;
+import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-
-public class Respuesta {
+@Entity
+@Table(name = "Respuestas")
+public class Respuesta extends PersistentEntity {
+  @ManyToOne
+  @JoinColumn(name = "pregunta_id")
   private Pregunta pregunta;
   private String respuesta;
 
@@ -12,6 +20,10 @@ public class Respuesta {
     estaDentroDeLasRespuestas(pregunta, respuesta);
     this.pregunta = pregunta;
     this.respuesta = respuesta;
+  }
+
+  private Respuesta() {
+
   }
 
   public Pregunta getPregunta() {
@@ -32,16 +44,16 @@ public class Respuesta {
 
   /**
    * Valida si la respuesta es admitida.
-   * 
-   * @param pregunta la pregunta
+   *
+   * @param pregunta  la pregunta
    * @param respuesta la respuesta contestada
    * @throws RespuestaInvalida si las posibles respues no son nulas, y la respuesta no esta incluida
    */
   private void estaDentroDeLasRespuestas(Pregunta pregunta, String respuesta) {
     if (!Objects.isNull(pregunta.getPosiblesRespuestas())
-        && !pregunta.getPosiblesRespuestas().contains(respuesta)) {
+      && !pregunta.getPosiblesRespuestas().contains(respuesta)) {
       throw new RespuestaInvalida(
-          "La respuesta no se encuentra entre las posibles respuestas de la pregunta");
+        "La respuesta no se encuentra entre las posibles respuestas de la pregunta");
     }
   }
 

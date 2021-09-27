@@ -1,10 +1,27 @@
 package model.pregunta;
 
+import db.PersistentEntity;
 import java.util.List;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
-public class Pregunta {
+@Entity
+@Table(name = "Preguntas")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo")
+@DiscriminatorValue("L")
+public class Pregunta extends PersistentEntity {
   String encuesta;
+  @ElementCollection
   List<String> posiblesRespuestas = null;
+
+  private Pregunta() {
+  }
 
   public Pregunta(String encuesta) {
     this.encuesta = encuesta;

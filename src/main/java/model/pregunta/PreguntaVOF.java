@@ -2,7 +2,11 @@ package model.pregunta;
 
 
 import java.util.ArrayList;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
+@DiscriminatorValue("VOF")
 public class PreguntaVOF extends Pregunta {
   public PreguntaVOF(String encuesta) {
     super(encuesta);
