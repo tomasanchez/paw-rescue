@@ -2,6 +2,9 @@ package model.usuario.datospersonales.documento;
 
 import java.util.Objects;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+
 /**
  * Documento de una Persona.
  * 
@@ -9,6 +12,7 @@ import java.util.Objects;
  * @since 05.02.2021
  * @version 1.0
  */
+@Embeddable
 public class Documento {
 
   /**
@@ -16,6 +20,7 @@ public class Documento {
    * 
    * @since 1.0
    */
+  @Embedded
   TipoDocumento tipo;
 
   /**
@@ -29,7 +34,7 @@ public class Documento {
    * Instancia un nuevo documento.
    * 
    * @param tipo el tipo de documento.
-   * @param id el número de identificación.
+   * @param id   el número de identificación.
    */
   public Documento(TipoDocumento tipo, long id) {
     this.tipo = Objects.requireNonNull(tipo);
@@ -43,7 +48,6 @@ public class Documento {
    * @since 02.05.2021
    * @version 1.0
    */
-
 
   public TipoDocumento getTipo() {
     return this.tipo;

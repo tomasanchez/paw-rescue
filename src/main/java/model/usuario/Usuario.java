@@ -3,6 +3,11 @@ package model.usuario;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import javax.persistence.Embedded;
+import javax.persistence.MappedSuperclass;
+
+import db.PersistentEntity;
 import model.usuario.datospersonales.DatosPersonales;
 import model.usuario.datospersonales.contacto.DatosContacto;
 import services.usuario.contacto.notificaciones.NotificadorAPI;
@@ -13,13 +18,15 @@ import services.usuario.contacto.notificaciones.NotificadorAPI;
  * @author Kenti
  * @version 2.0
  */
-public abstract class Usuario {
+@MappedSuperclass
+public abstract class Usuario extends PersistentEntity {
 
   /**
    * Los datos relacionados al nombre, apellido, documento, contacto.
    * 
    * @since 2.0
    */
+  @Embedded
   DatosPersonales datosPersonales;
 
   /**
@@ -43,12 +50,13 @@ public abstract class Usuario {
    */
   private List<NotificadorAPI> notificadorAPIs = new ArrayList<>();
 
-  public Usuario() {}
+  public Usuario() {
+  }
 
   /**
    * Instancia un nuevo usuario.
    *
-   * @param usuario nombre de usuario.
+   * @param usuario  nombre de usuario.
    * @param password una password válida.
    */
   public Usuario(String usuario, String password) {
@@ -75,13 +83,13 @@ public abstract class Usuario {
       api.contactar(datosPersonales.getDatosContacto(), contacto2, msg);
     }
   }
-  
-  public void agregarNotificador(NotificadorAPI notificador){
+
+  public void agregarNotificador(NotificadorAPI notificador) {
     notificadorAPIs.add(notificador);
   }
 
-  public void eliminarNotificador(NotificadorAPI notificador){
+  public void eliminarNotificador(NotificadorAPI notificador) {
     notificadorAPIs.remove(notificador);
   }
-  
+
 }
