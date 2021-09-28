@@ -2,17 +2,27 @@ package model.usuario;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import model.mascota.Chapita;
 import model.mascota.Mascota;
 import model.publicacion.PublicacionDarEnAdopcion;
 import model.usuario.datospersonales.DatosPersonales;
 
+@Entity
 public class DuenioMascota extends Usuario {
 
+  @OneToMany
+  @JoinColumn(name = "mascota_id")
   private List<Mascota> mascotas = new ArrayList<>();
 
+  @ManyToOne
+  @JoinColumn(name = "recomendacion_id")
   private PublicacionDarEnAdopcion recomendacion;
-
 
   public DuenioMascota() {
     super();
@@ -22,12 +32,11 @@ public class DuenioMascota extends Usuario {
    * Mascotas registadas.
    *
    * @param datosPersonales los datos relacionados al Nombre, DNI, etc.
-   * @param usuario el nombre de usuario
-   * @param password password válida.
-   * @param mascotas las mascotas registadas
+   * @param usuario         el nombre de usuario
+   * @param password        password válida.
+   * @param mascotas        las mascotas registadas
    */
-  public DuenioMascota(DatosPersonales datosPersonales, String usuario, String password,
-      List<Mascota> mascotas) {
+  public DuenioMascota(DatosPersonales datosPersonales, String usuario, String password, List<Mascota> mascotas) {
     super(usuario, password);
     this.mascotas = mascotas;
     this.datosPersonales = datosPersonales;
@@ -65,6 +74,5 @@ public class DuenioMascota extends Usuario {
     this.recomendacion = recomendacion;
     return this;
   }
-
 
 }
