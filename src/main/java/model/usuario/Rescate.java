@@ -1,6 +1,14 @@
 package model.usuario;
 
 import java.time.LocalDate;
+
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import db.PersistentEntity;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.refugio.Refugio;
 import model.usuario.datospersonales.DatosPersonales;
@@ -12,21 +20,27 @@ import model.usuario.datospersonales.DatosPersonales;
  * @version 2.0
  * @author Kenti
  */
-public class Rescate {
+@Entity
+public class Rescate extends PersistentEntity {
 
   /**
    * Nombre, Apellido, Documento, etc.
    *
    * @since 2.0
    */
+  @Embedded
   private DatosPersonales datosRescatista;
-  
+
   private String domicilioRescatista;
 
+  @OneToOne
+  @JoinColumn(name = "mascota_id")
   private MascotaEncontrada mascotaEncontrada;
 
   private Boolean rescatistaAlbergaMascota;
 
+  @ManyToOne
+  @JoinColumn(name = "refugio_id")
   private Refugio refugioAsignado;
 
   public DatosPersonales getDatosRescatista() {
@@ -36,10 +50,11 @@ public class Rescate {
   public String getDomicilioRescatista() {
     return domicilioRescatista;
   }
-  
-  public MascotaEncontrada getMascotaEncontrada(){
+
+  public MascotaEncontrada getMascotaEncontrada() {
     return this.mascotaEncontrada;
   }
+
   public Boolean getRescatistaAlbergaMascota() {
     return rescatistaAlbergaMascota;
   }
@@ -71,23 +86,23 @@ public class Rescate {
   /**
    * Guarda cuenta de una persona que rescata una mascota.
    *
-   * @param datosPersonales los datos de Nombre, Apellido, Documento, etc.
-   * @param mascotaEncontrada el animal rescatado.
+   * @param datosPersonales     los datos de Nombre, Apellido, Documento, etc.
+   * @param mascotaEncontrada   el animal rescatado.
    * @param domicilioRescatista
-   * @param refugioAsignado el refugio al que se asigno la mascota
+   * @param refugioAsignado     el refugio al que se asigno la mascota
    */
   public Rescate(DatosPersonales datosPersonales, String domicilioRescatista, MascotaEncontrada mascotaEncontrada,
       Boolean albergaMascota, Refugio refugioAsignado) {
     this.datosRescatista = datosPersonales;
-    this.domicilioRescatista= domicilioRescatista;
+    this.domicilioRescatista = domicilioRescatista;
     this.mascotaEncontrada = mascotaEncontrada;
     this.rescatistaAlbergaMascota = albergaMascota;
     this.refugioAsignado = refugioAsignado;
   }
 
-  public Rescate() {}
+  public Rescate() {
+  }
 
- 
   /**
    * Compara si la mascota fue encontrada dentro de los ultimos días.
    * 
@@ -102,6 +117,4 @@ public class Rescate {
     return getMascotaEncontrada().getFecha();
   }
 
-  
-  
 }
