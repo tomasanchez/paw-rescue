@@ -3,6 +3,7 @@ package model.usuario.datospersonales.contacto;
 import java.util.Objects;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 
 /**
  * Datos de Contacto.
@@ -47,6 +48,7 @@ public class DatosContacto {
    * 
    * @since Entrega 2
    */
+  @Transient
   Contacto contacto;
 
   /**
