@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.usuario.DuenioMascota;
 
-public class MascotaEncotnradaTest {
+public class MascotaEncontradaTest {
 
   private MascotaEncontrada mascota;
   private DuenioMascota duenio;

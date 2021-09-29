@@ -2,9 +2,9 @@ package model.mascota.caracteristica;
 
 import java.util.Objects;
 
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 
-import db.PersistentEntity;
 import exceptions.mascota.InvalidCaracteristicaException;
 
 /**
@@ -15,9 +15,10 @@ import exceptions.mascota.InvalidCaracteristicaException;
  * @author Tomás Sánchez
  */
 
-
+@Embeddable
 public class Caracteristica{
 
+  @Transient
   private static CaracteristicasDisponible disponibles;
 
   private String valor;

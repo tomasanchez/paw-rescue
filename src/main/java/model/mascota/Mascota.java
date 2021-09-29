@@ -3,14 +3,13 @@ package model.mascota;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Transient;
-
 import db.PersistentEntity;
 import model.mascota.caracteristica.Caracteristica;
 import model.mascota.encontrada.MascotaEncontrada;
@@ -31,7 +30,7 @@ public class Mascota extends PersistentEntity{
   
   @Enumerated(EnumType.STRING)
   private TipoMascota tipoMascota;
-  @Transient
+  @ElementCollection
   private List<Caracteristica> caracteristicas;
   @OneToOne
   private Chapita chapita;
