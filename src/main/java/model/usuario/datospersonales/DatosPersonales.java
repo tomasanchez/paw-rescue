@@ -30,15 +30,15 @@ public class DatosPersonales {
   private String apellido;
 
   /**
+   * La fecha de nacimiento.
+   */
+  private LocalDate fechaNacimiento;
+
+  /**
    * Tipo y Numero de Documento.
    */
   @Embedded
   private Documento documento;
-
-  /**
-   * La fecha de nacimiento.
-   */
-  private LocalDate fechaNacimiento;
 
   /**
    * Datos de un contacto.

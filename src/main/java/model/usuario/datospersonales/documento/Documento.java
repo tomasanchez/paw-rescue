@@ -2,8 +2,10 @@ package model.usuario.datospersonales.documento;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 /**
  * Documento de una Persona.
@@ -20,7 +22,7 @@ public class Documento {
    * 
    * @since 1.0
    */
-  @Embedded
+  @Enumerated(EnumType.STRING)
   TipoDocumento tipo;
 
   /**
@@ -28,6 +30,7 @@ public class Documento {
    * 
    * @since 1.0
    */
+  @Column(name = "document_id")
   long id;
 
   /**

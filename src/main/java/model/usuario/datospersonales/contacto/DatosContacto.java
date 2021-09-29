@@ -2,6 +2,7 @@ package model.usuario.datospersonales.contacto;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 
@@ -20,6 +21,7 @@ public class DatosContacto {
    * 
    * @since 1.0
    */
+  @Column(name = "contacto_nombre")
   String nombre;
 
   /**
@@ -27,6 +29,7 @@ public class DatosContacto {
    * 
    * @since 1.0
    */
+  @Column(name = "contacto_apellido")
   String apellido;
 
   /**
