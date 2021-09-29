@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import model.mascota.Chapita;
 import model.mascota.Mascota;
@@ -20,8 +20,9 @@ public class DuenioMascota extends Usuario {
   @JoinColumn(name = "mascota_id")
   private List<Mascota> mascotas = new ArrayList<>();
 
-  @ManyToOne
-  @JoinColumn(name = "recomendacion_id")
+  // @ManyToOne
+  // @JoinColumn(name = "recomendacion_id")
+  @Transient
   private PublicacionDarEnAdopcion recomendacion;
 
   public DuenioMascota() {
