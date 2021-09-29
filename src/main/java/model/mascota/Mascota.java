@@ -7,27 +7,23 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import db.PersistentEntity;
 import model.mascota.caracteristica.Caracteristica;
 import model.mascota.encontrada.MascotaEncontrada;
 
 @Entity
-public class Mascota extends PersistentEntity{
+public class Mascota extends PersistentEntity {
 
   private String nombre;
   private String apodo;
   private int edad;
-  
+  private String descripcionFisica;
+
   @Enumerated(EnumType.STRING)
   private Sexo sexo;
-  private String descripcionFisica;
-  @OneToMany
-  @JoinColumn(name = "mascota_id")
+  @ElementCollection
   private List<String> fotos;
-  
   @Enumerated(EnumType.STRING)
   private TipoMascota tipoMascota;
   @ElementCollection
@@ -38,17 +34,16 @@ public class Mascota extends PersistentEntity{
   /**
    * Instancia una mascota.
    * 
-   * @param nombre el nombre de la mascota.
-   * @param apodo un apodo.
-   * @param tipoMascota el tipo de animal.
-   * @param edad su edad en años.
-   * @param sexo el sexo del animal.
+   * @param nombre            el nombre de la mascota.
+   * @param apodo             un apodo.
+   * @param tipoMascota       el tipo de animal.
+   * @param edad              su edad en años.
+   * @param sexo              el sexo del animal.
    * @param descripcionFisica una descripción física.
-   * @param fotos Lista de URLs de fotos.
+   * @param fotos             Lista de URLs de fotos.
    */
-  
-  public Mascota(String nombre, String apodo, TipoMascota tipoMascota, int edad, Sexo sexo,
-      String descripcionFisica, List<String> fotos, Chapita chapita) {
+  public Mascota(String nombre, String apodo, TipoMascota tipoMascota, int edad, Sexo sexo, String descripcionFisica,
+      List<String> fotos, Chapita chapita) {
     this.nombre = nombre;
     this.apodo = apodo;
     this.tipoMascota = tipoMascota;

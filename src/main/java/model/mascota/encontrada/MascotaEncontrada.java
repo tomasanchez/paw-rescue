@@ -10,8 +10,6 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import db.PersistentEntity;
@@ -21,16 +19,15 @@ import model.mascota.caracteristica.Caracteristica;
 import model.mascota.caracteristica.TamanioMascota;
 
 @Entity
-public class MascotaEncontrada extends PersistentEntity{
+public class MascotaEncontrada extends PersistentEntity {
 
-  @OneToMany
-  @JoinColumn(name= "mascotaEntcontrada_id")
-  private List<String> foto;
   private String descripcion;
+  private LocalDate fecha = LocalDate.now();
+
   @Embedded
   private Coordenada lugar;
-  
-  private LocalDate fecha = LocalDate.now();
+  @ElementCollection
+  private List<String> foto;
   @OneToOne
   private Chapita chapita;
   @Enumerated(EnumType.STRING)
@@ -39,7 +36,7 @@ public class MascotaEncontrada extends PersistentEntity{
   private List<Caracteristica> caracteristicas;
   @Enumerated(EnumType.STRING)
   private TamanioMascota tamanio;
-  
+
   public MascotaEncontrada setFoto(List<String> foto) {
     this.foto = foto;
     return this;
@@ -89,7 +86,6 @@ public class MascotaEncontrada extends PersistentEntity{
   public LocalDate getFecha() {
     return this.fecha;
   }
-  
 
   public MascotaEncontrada() {
     this.foto = new ArrayList<String>();
@@ -107,7 +103,6 @@ public class MascotaEncontrada extends PersistentEntity{
     this.tipoMascota = tipoMascota;
   }
 
-
   public List<Caracteristica> getCaracteristicas() {
     return caracteristicas;
   }
@@ -115,33 +110,30 @@ public class MascotaEncontrada extends PersistentEntity{
   public void setCaracteristicas(List<Caracteristica> caracteristicas) {
     this.caracteristicas = caracteristicas;
   }
-  
+
   /**
    * Instancia una mascota encontrada.
    *
-   * @param foto la foto de la mascota
-   * @param descripcion la descripcion fisica.
-   * @param lugar el lugar donde fue encotnrado.
-   * @param fecha la fecha en la que fue encontrado.
+   * @param foto            la foto de la mascota
+   * @param descripcion     la descripcion fisica.
+   * @param lugar           el lugar donde fue encotnrado.
+   * @param fecha           la fecha en la que fue encontrado.
    * @param caracteristicas TODO
-   * @param tamanio TODO
+   * @param tamanio         TODO
    */
-  public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar, LocalDate fecha,
-      Chapita chapita, List<Caracteristica> caracteristicas, TamanioMascota tamanio) {
+  public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar, LocalDate fecha, Chapita chapita,
+      List<Caracteristica> caracteristicas, TamanioMascota tamanio) {
     this.foto = foto;
     this.descripcion = descripcion;
     this.lugar = lugar;
     this.fecha = fecha;
     this.chapita = chapita;
-    this.caracteristicas=caracteristicas;
-    this.tamanio=tamanio;
+    this.caracteristicas = caracteristicas;
+    this.tamanio = tamanio;
   }
 
   public TamanioMascota getTamanio() {
     return this.tamanio;
   }
 
- 
-
-  
 }
