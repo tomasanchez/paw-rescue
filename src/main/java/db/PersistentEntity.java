@@ -1,11 +1,12 @@
 package db;
 
+import java.io.Serializable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class PersistentEntity {
+public abstract class PersistentEntity implements Serializable {
 
   @Id
   @GeneratedValue

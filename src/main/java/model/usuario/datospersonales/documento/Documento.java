@@ -33,6 +33,9 @@ public class Documento {
   @Column(name = "document_id")
   long id;
 
+  public Documento() {
+  }
+
   /**
    * Instancia un nuevo documento.
    * 

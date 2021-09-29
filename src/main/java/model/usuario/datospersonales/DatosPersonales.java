@@ -46,6 +46,9 @@ public class DatosPersonales {
   @Embedded
   private DatosContacto contacto;
 
+  public DatosPersonales() {
+  }
+
   /**
    * Instancia datos personales.
    * 

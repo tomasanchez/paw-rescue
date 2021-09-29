@@ -1,29 +1,36 @@
 package model.usuario;
 
-
 import java.time.LocalDate;
-import model.mascota.Sexo;
-import model.mascota.TipoMascota;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+
 import model.mascota.Mascota;
+import model.mascota.Sexo;
+import model.mascota.TipoMascota;
 import model.registro.RegistroDuenioMascota;
 import model.usuario.datospersonales.contacto.DatosContacto;
 import model.usuario.datospersonales.documento.TipoDocumento;
 import repositories.RepoUsers;
 
-
-public class DuenioMascotaTest {
-
+public class DuenioMascotaTest implements WithGlobalEntityManager {
 
   private DuenioMascota duenio;
   private RepoUsers adminUsers;
 
   @BeforeEach
   void iniciarDuenio() {
+    entityManager().getTransaction().begin();
     adminUsers = new RepoUsers();
     duenio = nuevoDuenio();
+  }
+
+  @AfterEach
+  void endTransaction() {
+    entityManager().getTransaction().rollback();
   }
 
   @Test
@@ -41,38 +48,36 @@ public class DuenioMascotaTest {
   void duenioEstaRegistrado() {
     Assertions.assertTrue(adminUsers.existeUsuario(duenio));
   }
-  
+
   @Test
   void duenioPoneChapitaAMascota() {
     Mascota mascota = new Mascota();
     duenio.registrarMascota(mascota);
     Assertions.assertEquals(duenio, mascota.getChapita().getDuenio());
   }
-  
+
   @Test
   public void duenioMascotasRegistraUnaMascotaYAhoraTiene1MascotaMas() {
     duenio.registrarMascota(gato());
-    Assertions.assertEquals(duenio.getCantidadMascotas(),1);
+    Assertions.assertEquals(duenio.getCantidadMascotas(), 1);
   }
-  
+
   @Test
   public void duenioMascotasTieneMasDeUnaMascota() {
     duenio.registrarMascota(perra());
     duenio.registrarMascota(gato());
-    Assertions.assertEquals(duenio.getCantidadMascotas(),2);
-  }
-  
-  Mascota gato(){
-    return new Mascota("copito","copi", TipoMascota.GATO,6, Sexo.MACHO,
-      "Tamaño grande y de pelo largo",null,null);
+    Assertions.assertEquals(duenio.getCantidadMascotas(), 2);
   }
 
-  Mascota perra(){
-    return new Mascota("negra","negrita",TipoMascota.PERRO,2,Sexo.HEMBRA,
-      "Pelo corto y tamaño madiano",null, null);
+  Mascota gato() {
+    return new Mascota("copito", "copi", TipoMascota.GATO, 6, Sexo.MACHO, "Tamaño grande y de pelo largo", null, null);
   }
 
-  
+  Mascota perra() {
+    return new Mascota("negra", "negrita", TipoMascota.PERRO, 2, Sexo.HEMBRA, "Pelo corto y tamaño madiano", null,
+        null);
+  }
+
   DuenioMascota nuevoDuenio() {
     RegistroDuenioMascota registro = new RegistroDuenioMascota(adminUsers);
     registro.nombre("Lucas").apellido("Gonzalez");
@@ -88,4 +93,3 @@ public class DuenioMascotaTest {
   }
 
 }
-

@@ -54,6 +54,9 @@ public class DatosContacto {
   @Transient
   Contacto contacto;
 
+  public DatosContacto() {
+  }
+
   /**
    * Instancia un contacto.
    * 
