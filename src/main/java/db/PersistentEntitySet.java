@@ -4,6 +4,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.MappedSuperclass;
+import javax.persistence.NoResultException;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
@@ -40,5 +41,30 @@ public abstract class PersistentEntitySet<T> implements WithGlobalEntityManager 
   public T createEntity(T entity) {
     entityManager().persist(entity);
     return entity;
+  }
+
+  /**
+   * Realiza una consulta para obtener una entidad en particular.
+   * 
+   * @param id el identificador de la entidad
+   * @return la entidad o NULL
+   */
+  @SuppressWarnings("unchecked")
+  public T getEntity(long id) {
+
+    try {
+      return (T) entityManager().createQuery("FROM " + getTableName() + " T WHERE T.id LIKE :id").setParameter("id", id)
+          .getSingleResult();
+    } catch (NoResultException exception) {
+      return null;
+    }
+  }
+
+  public T updateEntity(T entity) {
+    return entityManager().merge(entity);
+  }
+
+  public void deleteEntity(T entity) {
+    entityManager().remove(entity);
   }
 }
