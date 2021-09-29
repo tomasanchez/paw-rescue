@@ -4,22 +4,42 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import db.PersistentEntity;
 import model.mascota.Chapita;
 import model.mascota.TipoMascota;
 import model.mascota.caracteristica.Caracteristica;
 import model.mascota.caracteristica.TamanioMascota;
 
-public class MascotaEncontrada {
+@Entity
+public class MascotaEncontrada extends PersistentEntity{
 
+  @OneToMany
+  @JoinColumn(name= "mascotaEntcontrada_id")
   private List<String> foto;
   private String descripcion;
+  @Embedded
   private Coordenada lugar;
+  
   private LocalDate fecha = LocalDate.now();
+  @OneToOne
   private Chapita chapita;
+  @Enumerated(EnumType.STRING)
   private TipoMascota tipoMascota;
+  @ElementCollection
   private List<Caracteristica> caracteristicas;
+  @Enumerated(EnumType.STRING)
   private TamanioMascota tamanio;
-
+  
   public MascotaEncontrada setFoto(List<String> foto) {
     this.foto = foto;
     return this;

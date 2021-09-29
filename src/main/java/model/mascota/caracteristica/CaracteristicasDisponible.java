@@ -12,6 +12,7 @@ import exceptions.mascota.InvalidCaracteristicaException;
  * @version 1.0
  * @author Tomás Sánchez
  */
+
 public class CaracteristicasDisponible {
   private Set<String> caracteristicas = new HashSet<>();
 

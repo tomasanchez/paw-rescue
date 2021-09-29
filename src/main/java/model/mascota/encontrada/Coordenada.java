@@ -1,5 +1,8 @@
 package model.mascota.encontrada;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Coordenada {
 
   String coordenadaX;
