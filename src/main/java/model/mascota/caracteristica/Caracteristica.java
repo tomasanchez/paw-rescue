@@ -1,6 +1,10 @@
 package model.mascota.caracteristica;
 
 import java.util.Objects;
+
+import javax.persistence.Entity;
+
+import db.PersistentEntity;
 import exceptions.mascota.InvalidCaracteristicaException;
 
 /**
@@ -10,7 +14,9 @@ import exceptions.mascota.InvalidCaracteristicaException;
  * @version 2.0
  * @author Tomás Sánchez
  */
-public class Caracteristica {
+
+
+public class Caracteristica{
 
   private static CaracteristicasDisponible disponibles;
 

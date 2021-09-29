@@ -7,6 +7,8 @@
 
   <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>model.mascota.Chapita</class>
+    <class>model.mascota.Mascota</class>
 
     <!--class>utn.dds.persistencia.futbol.persistence.Jugador</class-->
 
