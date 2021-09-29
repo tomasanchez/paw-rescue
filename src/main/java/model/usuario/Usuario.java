@@ -94,4 +94,13 @@ public abstract class Usuario extends PersistentEntity {
     notificadorAPIs.remove(notificador);
   }
 
+  public Usuario setUsuario(String usuario) {
+    this.usuario = usuario;
+    return this;
+  }
+
+  public Usuario setPassword(String password) {
+    this.password = password;
+    return this;
+  }
 }
