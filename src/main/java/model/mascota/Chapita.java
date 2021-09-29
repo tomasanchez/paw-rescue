@@ -1,10 +1,14 @@
 package model.mascota;
 
+import javax.persistence.ManyToOne;
+
+import db.PersistentEntity;
 import model.usuario.DuenioMascota;
 
-public class Chapita {
+public class Chapita extends PersistentEntity{
+  @ManyToOne
   DuenioMascota owner;
-  int id;
+  /*int id;*/
 
   public Chapita(DuenioMascota owner) {
     this.owner = owner;
@@ -14,7 +18,8 @@ public class Chapita {
     return owner;
   }
   
-  public int getId() {
+  /*public int getId() {
     return this.id;
   }
+  */
 }
