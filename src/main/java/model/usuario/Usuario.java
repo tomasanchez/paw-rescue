@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javax.persistence.Embedded;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 
 import db.PersistentEntity;
 import model.usuario.datospersonales.DatosPersonales;
@@ -22,14 +23,6 @@ import services.usuario.contacto.notificaciones.NotificadorAPI;
 public abstract class Usuario extends PersistentEntity {
 
   /**
-   * Los datos relacionados al nombre, apellido, documento, contacto.
-   * 
-   * @since 2.0
-   */
-  @Embedded
-  DatosPersonales datosPersonales;
-
-  /**
    * Usuario de logging.
    * 
    * @since 1.0
@@ -44,10 +37,19 @@ public abstract class Usuario extends PersistentEntity {
   String password;
 
   /**
+   * Los datos relacionados al nombre, apellido, documento, contacto.
+   * 
+   * @since 2.0
+   */
+  @Embedded
+  DatosPersonales datosPersonales;
+
+  /**
    * Medios de comunicación preferidos por el usuario.
    * 
    * @since 3.0
    */
+  @Transient
   private List<NotificadorAPI> notificadorAPIs = new ArrayList<>();
 
   public Usuario() {
