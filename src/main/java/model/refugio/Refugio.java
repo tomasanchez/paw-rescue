@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import db.PersistentEntity;
@@ -14,6 +15,7 @@ import model.mascota.encontrada.Coordenada;
 import model.mascota.encontrada.MascotaEncontrada;
 
 @Entity
+@Table(name = "Refugios")
 public class Refugio extends PersistentEntity {
 
   private String nombre;
@@ -23,8 +25,11 @@ public class Refugio extends PersistentEntity {
   private String telefono;
   @Transient
   private List<TipoMascota> admisiones;
+  @Transient
   private int capacidad;
+  @Transient
   private int lugares_disponibles;
+  @Transient
   private Boolean patio;
   @Transient
   private List<String> caracteristicas;
