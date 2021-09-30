@@ -8,6 +8,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import db.PersistentEntity;
 import exceptions.mascota.InvalidCaracteristicaException;
 import model.mascota.Mascota;
 
@@ -21,7 +22,7 @@ import model.mascota.Mascota;
 
 @Entity
 @Table(name = "Caracteristicas")
-public class Caracteristica {
+public class Caracteristica extends PersistentEntity {
 
   @Transient
   private static CaracteristicasDisponible disponibles;

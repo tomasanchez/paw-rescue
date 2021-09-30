@@ -16,6 +16,10 @@ public class PreguntaOpciones extends Pregunta {
     this.posiblesRespuestas.add(posibleRespuesta);
   }
 
+  void agregarOpcion(String posibleRespuesta) {
+    this.posiblesRespuestas.add(new Respuesta(posibleRespuesta));
+  }
+
   void quitarOpcion(Respuesta posibleRespuesta) {
     this.posiblesRespuestas.remove(posibleRespuesta);
   }
