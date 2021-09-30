@@ -1,31 +1,32 @@
 package model.asociacion;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+
 import model.mascota.encontrada.Coordenada;
 import model.pregunta.Pregunta;
 import model.pregunta.PreguntaVOF;
 import model.publicacion.Asociacion;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import repositories.RepoPreguntas;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class AsociacionTest {
+public class AsociacionTest implements WithGlobalEntityManager {
   RepoPreguntas repoPreguntas;
 
   @BeforeEach
   void init() {
-    repoPreguntas = RepoPreguntas.getInstance();
-    Pregunta pregunta1 = new Pregunta("id chapita");
-    Pregunta pregunta2 = new Pregunta("Porque motivo desea darlo en adopcion");
-    repoPreguntas.agregarPregunta(pregunta1);
-    repoPreguntas.agregarPregunta(pregunta2);
-    if(repoPreguntas.getPreguntas().size() != 2){
-      repoPreguntas.quitarPregunta(pregunta1);
-      repoPreguntas.quitarPregunta(pregunta2);
-    }
+    entityManager().getTransaction().begin();
+    repoPreguntas = new RepoPreguntas();
+  }
+
+  @AfterEach
+  void endTransaction() {
+    entityManager().getTransaction().rollback();
   }
 
   @Test
@@ -33,8 +34,9 @@ public class AsociacionTest {
     Pregunta pregunta = new PreguntaVOF("Necesita patio");
     List<Pregunta> preguntasAsociacion = new ArrayList<>();
     preguntasAsociacion.add(pregunta);
-    Asociacion asociacion = new Asociacion(new Coordenada("-10", "10"), "Calle falsa 123",  preguntasAsociacion);
-    Assertions.assertEquals(3, asociacion.getPreguntas().size());
+    Asociacion asociacion = new Asociacion(new Coordenada("-10", "10"), "Calle falsa 123", preguntasAsociacion);
+    repoPreguntas.createEntity(new Pregunta("id chapita"));
+    Assertions.assertEquals(2, asociacion.getPreguntas().size());
 
   }
 
@@ -43,9 +45,11 @@ public class AsociacionTest {
     Pregunta pregunta = new PreguntaVOF("Necesita patio");
     List<Pregunta> preguntasAsociacion = new ArrayList<>();
     preguntasAsociacion.add(pregunta);
-    Asociacion asociacion = new Asociacion(new Coordenada("-10", "10"), "Calle falsa 123",  preguntasAsociacion);
-    Assertions.assertEquals(3, asociacion.getPreguntas().size());
-    asociacion.quitarPregunta(pregunta);
+    Asociacion asociacion = new Asociacion(new Coordenada("-10", "10"), "Calle falsa 123", preguntasAsociacion);
+    repoPreguntas.createEntity(new Pregunta("id chapita"));
     Assertions.assertEquals(2, asociacion.getPreguntas().size());
+    repoPreguntas.deleteEntity(pregunta);
+    Assertions.assertEquals(1, repoPreguntas.getEntitySet().size());
   }
+
 }
