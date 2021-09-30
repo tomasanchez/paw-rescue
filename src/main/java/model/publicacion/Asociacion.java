@@ -1,22 +1,31 @@
 package model.publicacion;
 
+import db.PersistentEntity;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import model.mascota.encontrada.Coordenada;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.pregunta.Pregunta;
 import repositories.RepoPreguntas;
 
-import java.util.List;
-import java.util.ArrayList;
 
-
-public class Asociacion {
+@Entity
+@Table(name = "Asociaciones")
+public class Asociacion extends PersistentEntity {
+  @Embedded
   Coordenada coordenada;
   String direccion;
-  int idAsociacion;
+
+  @OneToMany
+  @JoinColumn(name = "pregunta_id")
   List<Pregunta> preguntas = new ArrayList<>();
 
-  public Asociacion(Coordenada coordenada, String direccion, int idAsociacion, List<Pregunta> preguntas) {
-    this.idAsociacion = idAsociacion;
+  public Asociacion(Coordenada coordenada, String direccion, List<Pregunta> preguntas) {
     this.coordenada = coordenada;
     this.direccion = direccion;
     this.preguntas = preguntas;
@@ -27,8 +36,7 @@ public class Asociacion {
   }
 
   public int compararAsociacionesPorDistancia(Asociacion asociacion, MascotaEncontrada mascotaEncontrada) {
-
-    if (asociacion.compararDistanciaConMascota(mascotaEncontrada) <
+    if (asociacion.compararDistanciaConMascota(mascotaEncontrada) < 
       this.compararDistanciaConMascota(mascotaEncontrada)) {
       return Integer.parseInt(asociacion.getCoordenada().distancia(mascotaEncontrada.getLugar()).toString());
     } else {
@@ -36,10 +44,7 @@ public class Asociacion {
     }
 
   }
-
-  public int getIdAsociacion() {
-    return idAsociacion;
-  }
+  
 
   public Coordenada getCoordenada() {
     return coordenada;

@@ -33,7 +33,7 @@ public class AsociacionTest {
     Pregunta pregunta = new PreguntaVOF("Necesita patio");
     List<Pregunta> preguntasAsociacion = new ArrayList<>();
     preguntasAsociacion.add(pregunta);
-    Asociacion asociacion = new Asociacion(new Coordenada("-10", "10"), "Calle falsa 123", 5, preguntasAsociacion);
+    Asociacion asociacion = new Asociacion(new Coordenada("-10", "10"), "Calle falsa 123",  preguntasAsociacion);
     Assertions.assertEquals(3, asociacion.getPreguntas().size());
 
   }
@@ -43,7 +43,7 @@ public class AsociacionTest {
     Pregunta pregunta = new PreguntaVOF("Necesita patio");
     List<Pregunta> preguntasAsociacion = new ArrayList<>();
     preguntasAsociacion.add(pregunta);
-    Asociacion asociacion = new Asociacion(new Coordenada("-10", "10"), "Calle falsa 123", 5, preguntasAsociacion);
+    Asociacion asociacion = new Asociacion(new Coordenada("-10", "10"), "Calle falsa 123",  preguntasAsociacion);
     Assertions.assertEquals(3, asociacion.getPreguntas().size());
     asociacion.quitarPregunta(pregunta);
     Assertions.assertEquals(2, asociacion.getPreguntas().size());
