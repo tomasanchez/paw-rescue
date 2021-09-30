@@ -1,47 +1,27 @@
 # Rescate de Patitas
 
-## Entrega III (2021-07-02)
+## Entrega IV (2021-10-01): Persistencia
 
 ### Enunciado
 
-El enunciado para esta entrega puede verse en [este docs](https://docs.google.com/document/d/1VIW_oYMI213rGapRtj3srDHwxm9OXfN9X-826hyXUv4/edit#heading=h.8an72nimoc9j)
+El enunciado para esta entrega puede verse en [este docs](https://docs.google.com/document/d/e/2PACX-1vRvFTDJ2FMiWZR7jHuhYcZatwLPLP5Xj8yEmv17ArmJbW4TNI6arvpi1X7DSmUEcAswwBBB82O0KT2V/pub)
 
 ### Requerimientos
 
-1. Se debe permitir que una persona genere una publicación para dar en adopción a su mascota.
-2. Se debe permitir que cada organización defina las preguntas que le realizará al dueño cuando éste quiera dar en adopción a su mascota. Se debe tener en cuenta que las preguntas podrían llegar a variar en cualquier momento.
-3. Se debe enviar una notificación al dueño actual de la mascota cuando aparezca algún interesado en adoptarla.
-4. Se debe permitir que una persona genere una publicación que demuestre su intención de adoptar una mascota, teniendo en cuenta sus preferencias y comodidades.
-5. Se deben generar y enviar recomendaciones semanales de adopción de mascotas.
+1. Se deberán persistir las entidades del modelo planteado. Para ello se debe utilizar un ORM. 
 
-### Solución por Requerimientos
+### Entregables Requeridos
 
-> Permitir que una persona genere una publicación para dar en adopción
+> Modelo de objetos: diagrama de clases actualizado según las modificaciones que haya sufrido por  la técnica de mapeo objeto – relacional. 
 
 ![Requerimiento 1](images/03-entrega/01-req.png)
 
-> Permitir que cada organización defina las preguntas que le realizará al dueño cuando éste quiera dar en adopción a su mascota.
+> Modelo de datos: diagrama de entidad relación físico
 
 ![Requerimiento 2](images/03-entrega/02-req.png)
 
-> Enviar una notificación al dueño actual de la mascota cuando aparezca algún interesado en adoptarla
+> Implementacion
 
-![Requerimiento 3](images/03-entrega/03-req.png)
+Ver [Changelog](./CHANGELOG.md) de cambios que refieran a _ORM_ y aquellas que involucren _Tests_
 
-> Permitir que una persona genere una publicación que demuestre su intención de adoptar una mascota
-
-![Requerimiento 4](images/03-entrega/04-req.png)
-
-> Generar y enviar recomendaciones semanales de adopción de mascotas.
-
-Podemos generar un `crontab`
-
-```
-> crontab -e
-```
-
-```
-0 0 12 ? * WED *  java -jar ABSOLUTE_PATH/snapshot.jar
-```
-
-![Requerimiento 5](images/03-entrega/05-req.png)
+> Justificaciones
