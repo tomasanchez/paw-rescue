@@ -8,7 +8,7 @@ import exceptions.RespuestaInvalida;
 public class RespuestaTest {
   @Test
   void RespuestaVerdadera() {
-    Pregunta pregunta = nuevaPreguntaVOF("Es cariñoso");
+    // Pregunta pregunta = nuevaPreguntaVOF("Es cariñoso");
     Respuesta respuesta = new Respuesta("true");
     Assertions.assertEquals("true", respuesta.getRespuesta().toString());
   }
