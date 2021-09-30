@@ -1,14 +1,12 @@
 package repositories;
 
-import java.util.ArrayList;
-import java.util.List;
+import db.PersistentEntitySet;
 import model.pregunta.Pregunta;
 import model.publicacion.Asociacion;
 
-
-public class RepoPreguntas {
-  // Es un repo con las preguntas generales, que son comunes a todas las asociaciones
-  List<Pregunta> preguntas = new ArrayList<>();
+public class RepoPreguntas extends PersistentEntitySet<Pregunta> {
+  // Es un repo con las preguntas generales, que son comunes a todas las
+  // asociaciones
   Asociacion asociacion;
 
   private static RepoPreguntas instancia;
@@ -18,17 +16,5 @@ public class RepoPreguntas {
       instancia = new RepoPreguntas();
     }
     return instancia;
-  }
-
-  public List<Pregunta> getPreguntas() {
-    return preguntas;
-  }
-
-  public void agregarPregunta(Pregunta pregunta) {
-    preguntas.add(pregunta);
-  }
-
-  public void quitarPregunta(Pregunta pregunta) {
-    preguntas.remove(pregunta);
   }
 }
