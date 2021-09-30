@@ -16,13 +16,13 @@ import model.usuario.DuenioMascota;
 public class RepoUsersTest implements WithGlobalEntityManager {
 
   private DuenioMascota owner;
-  private RepoUsers set;
+  private RepoUsers repository;
 
   @BeforeEach
   void startTransaction() {
     entityManager().getTransaction().begin();
     owner = new DuenioMascota();
-    set = new RepoUsers();
+    repository = new RepoUsers();
   }
 
   @AfterEach
@@ -32,55 +32,55 @@ public class RepoUsersTest implements WithGlobalEntityManager {
 
   @Test
   void sePersisteUnUsuario() {
-    set.createEntity(owner);
+    repository.createEntity(owner);
     assertSame(owner, entityManager().find(DuenioMascota.class, owner.getId()));
   }
 
   @Test
   void seRecuperaUnUsuario() {
-    set.createEntity(owner);
+    repository.createEntity(owner);
     entityManager().flush();
-    assertEquals(owner.getId(), set.getEntity(owner.getId()).getId());
+    assertEquals(owner.getId(), repository.getEntity(owner.getId()).getId());
   }
 
   @Test
   void seRecuperaNULLSiNoExisteUsuario() {
-    assertNull(set.getEntity(-1));
+    assertNull(repository.getEntity(-1));
   }
 
   @Test
   void seRecuperaListadoDeUsuarios() {
-    set.createEntity(owner);
-    set.createEntity(new DuenioMascota());
+    repository.createEntity(owner);
+    repository.createEntity(new DuenioMascota());
     entityManager().flush();
-    assertEquals(2, set.getEntitySet().size());
+    assertEquals(2, repository.getEntitySet().size());
   }
 
   @Test
   void seUpdateaUnUsuario() {
-    set.createEntity(owner);
+    repository.createEntity(owner);
     entityManager().flush();
     owner.setUsuario("@desktop");
-    set.updateEntity(owner);
+    repository.updateEntity(owner);
     entityManager().flush();
-    assertEquals("@desktop", set.getEntity(owner.getId()).getUsuario());
+    assertEquals("@desktop", repository.getEntity(owner.getId()).getUsuario());
   }
 
   @Test
   void seEliminaUnUsuario() {
-    set.createEntity(owner);
+    repository.createEntity(owner);
     entityManager().flush();
-    set.deleteEntity(owner);
+    repository.deleteEntity(owner);
     entityManager().flush();
-    assertEquals(0, set.getEntitySet().size());
+    assertEquals(0, repository.getEntitySet().size());
   }
 
   @Test
   void testBuscarDuenio() {
     MascotaEncontrada mascota = new MascotaEncontrada();
     mascota.setChapita(new Chapita(owner));
-    set.createEntity(owner);
+    repository.createEntity(owner);
     entityManager().flush();
-    Assertions.assertEquals(owner.getId(), set.buscarDuenio(mascota).getId());
+    Assertions.assertEquals(owner.getId(), repository.buscarDuenio(mascota).getId());
   }
 }
