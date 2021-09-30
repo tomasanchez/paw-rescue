@@ -11,6 +11,7 @@ import javax.persistence.Transient;
 import db.PersistentEntity;
 import exceptions.mascota.InvalidCaracteristicaException;
 import model.mascota.Mascota;
+import model.mascota.encontrada.MascotaEncontrada;
 
 /**
  * Caracteristicas de una Mascota.
@@ -31,6 +32,9 @@ public class Caracteristica extends PersistentEntity {
 
   @ManyToMany(mappedBy = "caracteristicas")
   private List<Mascota> mascotas;
+
+  @ManyToMany(mappedBy = "caracteristicas")
+  private List<MascotaEncontrada> mascotasEntradas;
 
   /**
    * Instancia una caracteristica.

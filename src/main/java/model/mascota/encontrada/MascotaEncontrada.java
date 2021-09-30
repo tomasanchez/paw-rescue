@@ -10,7 +10,11 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import db.PersistentEntity;
 import model.mascota.Chapita;
@@ -19,6 +23,7 @@ import model.mascota.caracteristica.Caracteristica;
 import model.mascota.caracteristica.TamanioMascota;
 
 @Entity
+@Table(name = "Mascotas_Encontradas")
 public class MascotaEncontrada extends PersistentEntity {
 
   private String descripcion;
@@ -32,7 +37,8 @@ public class MascotaEncontrada extends PersistentEntity {
   private Chapita chapita;
   @Enumerated(EnumType.STRING)
   private TipoMascota tipoMascota;
-  @ElementCollection
+  @ManyToMany
+  @JoinTable(name = "Caracteristicas_By_MascotaEncontrada", joinColumns = @JoinColumn(name = "caracteritsitca_id"), inverseJoinColumns = @JoinColumn(name = "mascota_id"))
   private List<Caracteristica> caracteristicas;
   @Enumerated(EnumType.STRING)
   private TamanioMascota tamanio;

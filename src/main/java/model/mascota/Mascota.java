@@ -32,7 +32,7 @@ public class Mascota extends PersistentEntity {
   private TipoMascota tipoMascota;
 
   @ManyToMany
-  @JoinTable(name = "CaracteristicasXMascota", joinColumns = @JoinColumn(name = "caracteritsitca_id"), inverseJoinColumns = @JoinColumn(name = "mascota_id"))
+  @JoinTable(name = "Caracteristicas_By_Mascota", joinColumns = @JoinColumn(name = "caracteritsitca_id"), inverseJoinColumns = @JoinColumn(name = "mascota_id"))
   private List<Caracteristica> caracteristicas;
 
   @OneToOne
