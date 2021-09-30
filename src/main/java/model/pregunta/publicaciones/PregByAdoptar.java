@@ -1,5 +1,6 @@
 package model.pregunta.publicaciones;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,6 +15,9 @@ import model.publicacion.PublicacionAdoptar;
 @Entity
 @Table(name = "Preguntas_by_Adoptar")
 public class PregByAdoptar {
+
+  @EmbeddedId
+  PregPubKey id;
 
   @ManyToOne
   @MapsId("pregId")
