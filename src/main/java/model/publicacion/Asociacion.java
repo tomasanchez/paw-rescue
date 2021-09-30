@@ -24,6 +24,9 @@ public class Asociacion extends PersistentEntity {
   @JoinColumn(name = "pregunta_id")
   List<Pregunta> preguntas = new ArrayList<>();
 
+  public Asociacion() {
+  }
+
   public Asociacion(Coordenada coordenada, String direccion, List<Pregunta> preguntas) {
     this.coordenada = coordenada;
     this.direccion = direccion;
