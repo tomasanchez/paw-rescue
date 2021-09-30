@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import db.PersistentEntity;
-import model.pregunta.publicaciones.PregByPub;
+import model.pregunta.publicaciones.PregByDarAdopcion;
 
 @Entity
 @Table(name = "Preguntas")
@@ -31,7 +31,10 @@ public class Pregunta extends PersistentEntity {
   List<Respuesta> posiblesRespuestas = null;
 
   @OneToMany(mappedBy = "pregunta")
-  Set<PregByPub> publicaciones;
+  Set<PregByDarAdopcion> publicacionesDar;
+
+  @OneToMany(mappedBy = "pregunta")
+  Set<PregByDarAdopcion> publicacionesAdoptar;
 
   public Pregunta() {
   }

@@ -1,12 +1,26 @@
 package model.publicacion;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import db.PersistentEntity;
 import model.mascota.encontrada.MascotaEncontrada;
 
-public class PublicacionRescate {
+@Entity
+@Table(name = "Publicaciones_Rescates")
+public class PublicacionRescate extends PersistentEntity {
 
-  private MascotaEncontrada mascota;
   private boolean activa = false;
+
+  @ManyToOne
+  @JoinColumn(name = "asociacion_id")
   private Asociacion asociacion;
+  @OneToOne
+  @JoinColumn(name = "mascota_id")
+  private MascotaEncontrada mascota;
 
   public void setAsociacion(Asociacion asociacion) {
     this.asociacion = asociacion;
@@ -14,7 +28,7 @@ public class PublicacionRescate {
 
   public PublicacionRescate(MascotaEncontrada mascota, Asociacion asociacion) {
     this.mascota = mascota;
-    this.asociacion=asociacion;
+    this.asociacion = asociacion;
   }
 
   public MascotaEncontrada getMascota() {

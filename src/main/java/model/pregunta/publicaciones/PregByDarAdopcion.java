@@ -12,8 +12,8 @@ import model.pregunta.Respuesta;
 import model.publicacion.PublicacionDarEnAdopcion;
 
 @Entity
-@Table(name = "PregByPub")
-public class PregByPub {
+@Table(name = "Preguntas_by_Dar_Adopcion")
+public class PregByDarAdopcion {
 
   @EmbeddedId
   PregPubKey id;
