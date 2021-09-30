@@ -3,13 +3,14 @@ package model.pregunta;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,9 +26,9 @@ public class Pregunta extends PersistentEntity {
 
   String encuesta;
 
-  @ElementCollection
-  @CollectionTable(name = "Pregunta_Posibles_Respuestas")
-  List<String> posiblesRespuestas = null;
+  @ManyToMany
+  @JoinTable(name = "Preg_Posibles_Respuestas", joinColumns = @JoinColumn(name = "pregunta_id"), inverseJoinColumns = @JoinColumn(name = "rta_id"))
+  List<Respuesta> posiblesRespuestas = null;
 
   @OneToMany(mappedBy = "pregunta")
   Set<PregByPub> publicaciones;
@@ -43,11 +44,11 @@ public class Pregunta extends PersistentEntity {
     return encuesta;
   }
 
-  public void agregarRespuestaposible(String respuesta) {
+  public void agregarRespuestaposible(Respuesta respuesta) {
     posiblesRespuestas.add(respuesta);
   }
 
-  public List<String> getPosiblesRespuestas() {
+  public List<Respuesta> getPosiblesRespuestas() {
     return posiblesRespuestas;
   }
 

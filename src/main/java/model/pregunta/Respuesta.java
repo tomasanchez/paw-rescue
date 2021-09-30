@@ -1,33 +1,41 @@
 package model.pregunta;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 import db.PersistentEntity;
 import exceptions.RespuestaInvalida;
-import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "Respuestas")
 public class Respuesta extends PersistentEntity {
-  @ManyToOne
-  @JoinColumn(name = "pregunta_id")
-  private Pregunta pregunta;
+
   private String respuesta;
 
-  public Respuesta(Pregunta pregunta, String respuesta) {
-    estaDentroDeLasRespuestas(pregunta, respuesta);
-    this.pregunta = pregunta;
+  @ManyToMany(mappedBy = "posiblesRespuestas")
+  private List<Pregunta> preguntas;
+
+  public Respuesta() {
+  }
+
+  public Respuesta(String respuesta) {
     this.respuesta = respuesta;
   }
 
-  private Respuesta() {
-
+  public Respuesta(Pregunta pregunta, String respuesta) {
+    estaDentroDeLasRespuestas(pregunta, respuesta);
+    this.preguntas = new ArrayList<>();
+    this.preguntas.add(pregunta);
+    this.respuesta = respuesta;
   }
 
   public Pregunta getPregunta() {
-    return pregunta;
+    return preguntas.get(0);
   }
 
   public String getRespuesta() {
@@ -47,13 +55,13 @@ public class Respuesta extends PersistentEntity {
    *
    * @param pregunta  la pregunta
    * @param respuesta la respuesta contestada
-   * @throws RespuestaInvalida si las posibles respues no son nulas, y la respuesta no esta incluida
+   * @throws RespuestaInvalida si las posibles respues no son nulas, y la
+   *                           respuesta no esta incluida
    */
   private void estaDentroDeLasRespuestas(Pregunta pregunta, String respuesta) {
     if (!Objects.isNull(pregunta.getPosiblesRespuestas())
-      && !pregunta.getPosiblesRespuestas().contains(respuesta)) {
-      throw new RespuestaInvalida(
-        "La respuesta no se encuentra entre las posibles respuestas de la pregunta");
+        && !pregunta.getPosiblesRespuestas().contains(new Respuesta(respuesta))) {
+      throw new RespuestaInvalida("La respuesta no se encuentra entre las posibles respuestas de la pregunta");
     }
   }
 

@@ -12,11 +12,11 @@ public class PreguntaOpciones extends Pregunta {
     this.posiblesRespuestas = new ArrayList<>();
   }
 
-  void agregarOpcion(String posibleRespuesta) {
+  void agregarOpcion(Respuesta posibleRespuesta) {
     this.posiblesRespuestas.add(posibleRespuesta);
   }
 
-  void quitarOpcion(String posibleRespuesta) {
+  void quitarOpcion(Respuesta posibleRespuesta) {
     this.posiblesRespuestas.remove(posibleRespuesta);
   }
 }

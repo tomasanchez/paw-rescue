@@ -1,7 +1,7 @@
 package model.pregunta;
 
-
 import java.util.ArrayList;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -11,7 +11,7 @@ public class PreguntaVOF extends Pregunta {
   public PreguntaVOF(String encuesta) {
     super(encuesta);
     this.posiblesRespuestas = new ArrayList<>();
-    this.posiblesRespuestas.add(Boolean.toString(true));
-    this.posiblesRespuestas.add(Boolean.toString(false));
+    this.posiblesRespuestas.add(new Respuesta(Boolean.toString(true)));
+    this.posiblesRespuestas.add(new Respuesta(Boolean.toString(false)));
   }
 }
