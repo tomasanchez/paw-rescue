@@ -26,7 +26,7 @@ public class Pregunta extends PersistentEntity {
   String encuesta;
 
   @ElementCollection
-  @CollectionTable(name = "RtasByPregunta")
+  @CollectionTable(name = "Pregunta_Posibles_Respuestas")
   List<String> posiblesRespuestas = null;
 
   @OneToMany(mappedBy = "pregunta")
