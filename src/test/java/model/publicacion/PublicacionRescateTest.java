@@ -39,7 +39,7 @@ public class PublicacionRescateTest implements WithGlobalEntityManager {
     entityManager().getTransaction().begin();
     registroRescate.mascotaEncontrada(mascota);
     rescate = registroRescate.generarRescate();
-    RepoAsociaciones.getInstance().createEntity(mock(Asociacion.class));
+    RepoAsociaciones.getInstance().createEntity(new Asociacion());
   }
 
   @AfterEach
