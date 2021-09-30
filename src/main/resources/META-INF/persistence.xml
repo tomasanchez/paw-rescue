@@ -8,8 +8,27 @@
   <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-    <!--class>utn.dds.persistencia.futbol.persistence.Jugador</class-->
-    <class>model.refugio.Refugio</class>
+    <class>model.usuario.DuenioMascota</class>
+    <class>model.usuario.Voluntario</class>
+
+    <class>model.mascota.Chapita</class>
+    <class>model.mascota.Mascota</class>
+    <class>model.mascota.caracteristica.Caracteristica</class>
+    <class>model.mascota.encontrada.MascotaEncontrada</class>
+
+    <class>model.publicacion.Asociacion</class>
+    <class>model.publicacion.PublicacionAdoptar</class>
+    <class>model.publicacion.PublicacionDarEnAdopcion</class>
+    <class>model.publicacion.PublicacionRescate</class>
+
+    <class>model.pregunta.publicaciones.PregByAdoptar</class>
+    <class>model.pregunta.publicaciones.PregByDarAdopcion</class>
+
+    <class>model.pregunta.Pregunta</class>
+    <class>model.pregunta.PreguntaOpciones</class>
+    <class>model.pregunta.PreguntaVOF</class>
+    <class>model.pregunta.Respuesta</class>
+     
 
     <properties>
       <property name="hibernate.archive.autodetection" value="class"/>
