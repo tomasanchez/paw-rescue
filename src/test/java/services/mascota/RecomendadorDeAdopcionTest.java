@@ -1,11 +1,14 @@
 package services.mascota;
 
-import static org.mockito.Mockito.spy;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+
 import model.mascota.Mascota;
 import model.mascota.TipoMascota;
 import model.preferencia.PreferenciaDeMascota;
@@ -16,7 +19,7 @@ import model.usuario.DuenioMascota;
 import repositories.RepoPubDarEnAdopcion;
 import repositories.RepoPubParaAdoptar;
 
-public class RecomendadorDeAdopcionTest {
+public class RecomendadorDeAdopcionTest implements WithGlobalEntityManager {
 
   private RecomendadorDeAdopcion service;
   private RepoPubDarEnAdopcion repoDarAdopcion;
@@ -25,15 +28,20 @@ public class RecomendadorDeAdopcionTest {
   private DuenioMascota owner;
   PublicacionAdoptar pubAdoptar;
 
-
   @BeforeEach
   void initService() {
+    entityManager().getTransaction().begin();
     repoAdoptar = new RepoPubParaAdoptar();
     repoDarAdopcion = new RepoPubDarEnAdopcion();
     service = new RecomendadorDeAdopcion(repoDarAdopcion, repoAdoptar);
     rtas = new ArrayList<Respuesta>();
     owner = new DuenioMascota();
     pubAdoptar = new PublicacionAdoptar().setInteresado(owner);
+  }
+
+  @AfterEach
+  void endTransaction() {
+    entityManager().getTransaction().rollback();
   }
 
   @Test
@@ -43,6 +51,7 @@ public class RecomendadorDeAdopcionTest {
     pubAdoptar.getPreferencias().add(new PreferenciaDeMascota(TipoMascota.PERRO));
     service.recomendarAdopcion(pubAdoptar);
     Assertions.assertEquals(pubEnAdopcion, owner.getRecomendacion());
+
   }
 
   @Test
@@ -58,11 +67,10 @@ public class RecomendadorDeAdopcionTest {
     Assertions.assertEquals(gatoEnAdopcion, owner.getRecomendacion());
   }
 
-
   private PublicacionDarEnAdopcion publicarEnAdopcion(TipoMascota tipo) {
-    PublicacionDarEnAdopcion pub =
-        spy(new PublicacionDarEnAdopcion(new Mascota().setTipo(tipo), rtas));
-    repoDarAdopcion.addPublicacion(pub);
+    PublicacionDarEnAdopcion pub = new PublicacionDarEnAdopcion(new Mascota().setTipo(tipo), rtas);
+    repoDarAdopcion.createEntity(pub);
+    entityManager().flush();
     return pub;
   }
 

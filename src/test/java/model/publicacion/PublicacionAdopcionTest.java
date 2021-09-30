@@ -1,48 +1,55 @@
 package model.publicacion;
 
-import model.mascota.Mascota;
-import model.pregunta.Pregunta;
-import model.pregunta.Respuesta;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import repositories.RepoAsociaciones;
-import repositories.RepoPublicaciones;
-import services.ServicioPublicacionAdopcion;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
-public class PublicacionAdopcionTest {
-  private RepoPublicaciones repoPublicaciones = spy(new RepoPublicaciones());
-  private ServicioPublicacionAdopcion servicioPublicacionAdopcion =
-      spy(new ServicioPublicacionAdopcion(repoPublicaciones));
-  private Mascota mascota = mock(Mascota.class);
-  private List<Respuesta> respuestas = new ArrayList<>();
-  private List<Respuesta> respuestas2 = null;
+import model.mascota.Mascota;
+import model.pregunta.Pregunta;
+import model.pregunta.Respuesta;
+import repositories.RepoPubDarEnAdopcion;
+import services.ServicioPublicacionAdopcion;
+
+public class PublicacionAdopcionTest implements WithGlobalEntityManager {
+  private RepoPubDarEnAdopcion repo;
+  private ServicioPublicacionAdopcion servicioPublicacionAdopcion;
+  private Mascota mascota;
+  private List<Respuesta> respuestas;
 
   @BeforeEach
   void initPublicaciones() {
+    entityManager().getTransaction().begin();
+    repo = new RepoPubDarEnAdopcion();
+    respuestas = new ArrayList<Respuesta>();
+    mascota = new Mascota();
+    servicioPublicacionAdopcion = new ServicioPublicacionAdopcion(repo);
     Respuesta respuesta = new Respuesta(new Pregunta("¿Es tranquilo?"), "si");
     Respuesta respuesta2 = new Respuesta(new Pregunta("¿Ladra mucho?"), "no");
+
     respuestas.add(respuesta);
     respuestas.add(respuesta2);
-    RepoAsociaciones.getInstance().nuevaAsociacion(mock(Asociacion.class));
+  }
+
+  @AfterEach
+  void endTransaction() {
+    entityManager().getTransaction().rollback();
   }
 
   @Test
-  void seCreaPublicacionParaMascotaEnAdopcionConTodasSusPReguntasRespondidas() {
+  void seCreaPublicacionParaMascotaEnAdopcionConTodasSusPreguntasRespondidas() {
     servicioPublicacionAdopcion.generarPublicacionMascotaEnAdopcion(mascota, respuestas);
-    Assertions.assertFalse(repoPublicaciones.getPublicacionesAdopciones().isEmpty());
+    Assertions.assertFalse(repo.getEntitySet().isEmpty());
   }
 
   @Test
-  void noSeCreaPublicacionParaMascotaEnAdopcionSiNoHayRespuestas() {
-    doNothing().when(servicioPublicacionAdopcion).generarPublicacionMascotaEnAdopcion(mascota,
-        respuestas2);
-    Assertions.assertTrue(repoPublicaciones.getPublicacionesAdopciones().isEmpty());
+  void noSeCreaPublicacionSiNoHayRespuestas() {
+    servicioPublicacionAdopcion.generarPublicacionMascotaEnAdopcion(mascota, new ArrayList<>());
+    Assertions.assertTrue(repo.getEntitySet().isEmpty());
   }
+
 }
