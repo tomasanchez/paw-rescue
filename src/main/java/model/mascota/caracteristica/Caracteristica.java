@@ -1,11 +1,15 @@
 package model.mascota.caracteristica;
 
+import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import exceptions.mascota.InvalidCaracteristicaException;
+import model.mascota.Mascota;
 
 /**
  * Caracteristicas de una Mascota.
@@ -15,13 +19,17 @@ import exceptions.mascota.InvalidCaracteristicaException;
  * @author Tomás Sánchez
  */
 
-@Embeddable
-public class Caracteristica{
+@Entity
+@Table(name = "Caracteristicas")
+public class Caracteristica {
 
   @Transient
   private static CaracteristicasDisponible disponibles;
 
   private String valor;
+
+  @ManyToMany(mappedBy = "caracteristicas")
+  private List<Mascota> mascotas;
 
   /**
    * Instancia una caracteristica.
