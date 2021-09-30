@@ -1,41 +1,33 @@
 package repositories;
 
+import java.util.List;
+
+import db.PersistentEntitySet;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.publicacion.Asociacion;
 
-import java.util.ArrayList;
-import java.util.List;
+public class RepoAsociaciones extends PersistentEntitySet<Asociacion> {
 
-public class RepoAsociaciones {
-
-  List<Asociacion> asociaciones = new ArrayList<>();
   private static RepoAsociaciones instancia;
-  
+
   public static RepoAsociaciones getInstance() {
     if (instancia == null) {
       instancia = new RepoAsociaciones();
     }
     return instancia;
   }
-  
+
   public Asociacion buscarAsociacion(MascotaEncontrada mascotaEncontrada) {
-    ordenarAsociacionesPorDistancia(mascotaEncontrada);
-    return asociaciones.get(0);
+    return ordenarAsociacionesPorDistancia(mascotaEncontrada).get(0);
   }
 
-  public void nuevaAsociacion(Asociacion asociacion){
-    asociaciones.add(asociacion);
-  }
+  private List<Asociacion> ordenarAsociacionesPorDistancia(MascotaEncontrada mascotaEncontrada) {
+    List<Asociacion> asociaciones = getEntitySet();
 
-  public List<Asociacion> getAsociaciones(){
+    asociaciones.sort(
+        (asociacion1, asociacion2) -> asociacion1.compararAsociacionesPorDistancia(asociacion2, mascotaEncontrada));
+
     return asociaciones;
   }
 
-
-  private void ordenarAsociacionesPorDistancia(MascotaEncontrada mascotaEncontrada) {
-    asociaciones.sort((asociacion1, asociacion2) -> asociacion1
-      .compararAsociacionesPorDistancia(asociacion2, mascotaEncontrada));
-  }
-  
-  
 }

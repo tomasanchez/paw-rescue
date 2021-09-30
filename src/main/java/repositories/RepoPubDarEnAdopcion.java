@@ -1,7 +1,6 @@
 package repositories;
 
-import java.util.ArrayList;
-import java.util.List;
+import db.PersistentEntitySet;
 import model.publicacion.PublicacionDarEnAdopcion;
 
 /**
@@ -11,23 +10,9 @@ import model.publicacion.PublicacionDarEnAdopcion;
  * @since Entrega III
  * @author Tomás Sánchez
  */
-public class RepoPubDarEnAdopcion {
-  private List<PublicacionDarEnAdopcion> publicaciones = new ArrayList<>();
-
-  public List<PublicacionDarEnAdopcion> getPublicaciones() {
-    return publicaciones;
-  }
-
-  public void setPublicaciones(List<PublicacionDarEnAdopcion> publicaciones) {
-    this.publicaciones = publicaciones;
-  }
-
+public class RepoPubDarEnAdopcion extends PersistentEntitySet<PublicacionDarEnAdopcion> {
 
   public PublicacionDarEnAdopcion getPublicacionRandom() {
-    return getPublicaciones().stream().findAny().orElse(null);
-  }
-
-  public void addPublicacion(PublicacionDarEnAdopcion pub) {
-    getPublicaciones().add(pub);
+    return getEntitySet().stream().findAny().orElse(null);
   }
 }

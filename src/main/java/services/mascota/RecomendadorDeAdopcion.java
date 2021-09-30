@@ -27,8 +27,7 @@ public class RecomendadorDeAdopcion {
    */
   private RepoPubParaAdoptar repoAdoptar;
 
-  public RecomendadorDeAdopcion(RepoPubDarEnAdopcion repoDarEnAdopcion,
-      RepoPubParaAdoptar repoAdoptar) {
+  public RecomendadorDeAdopcion(RepoPubDarEnAdopcion repoDarEnAdopcion, RepoPubParaAdoptar repoAdoptar) {
     this.repoDarEnAdopcion = repoDarEnAdopcion;
     this.repoAdoptar = repoAdoptar;
   }
@@ -42,11 +41,10 @@ public class RecomendadorDeAdopcion {
   }
 
   private List<PublicacionDarEnAdopcion> matchConPosiblesMascota(PublicacionAdoptar interesado) {
-    List<PublicacionDarEnAdopcion> match = this.repoDarEnAdopcion.getPublicaciones();
+    List<PublicacionDarEnAdopcion> match = this.repoDarEnAdopcion.getEntitySet();
     List<Preferencia> preferencias = interesado.getPreferencias();
 
-    return match.stream()
-        .filter(pub -> preferencias.stream().anyMatch(pref -> pref.puedeRecomendarse(pub)))
+    return match.stream().filter(pub -> preferencias.stream().anyMatch(pref -> pref.puedeRecomendarse(pub)))
         .collect(Collectors.toList());
   }
 
@@ -71,8 +69,7 @@ public class RecomendadorDeAdopcion {
 
   private static long contarPreferenciasCumplidas(PublicacionDarEnAdopcion publicacion,
       List<Preferencia> preferencias) {
-    return preferencias.stream().map(p -> p.puedeRecomendarse(publicacion)).filter(self -> self)
-        .count();
+    return preferencias.stream().map(p -> p.puedeRecomendarse(publicacion)).filter(self -> self).count();
   }
 
 }
