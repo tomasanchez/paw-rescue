@@ -98,7 +98,7 @@ public class MascotaEncontrada extends PersistentEntity {
   }
 
   public boolean tieneChapita() {
-    return Objects.isNull(getChapita());
+    return !Objects.isNull(getChapita());
   }
 
   public TipoMascota getTipoMascota() {
