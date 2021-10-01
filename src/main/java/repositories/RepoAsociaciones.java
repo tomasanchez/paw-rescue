@@ -18,7 +18,7 @@ public class RepoAsociaciones extends PersistentEntitySet<Asociacion> {
   }
 
   public Asociacion buscarAsociacion(MascotaEncontrada mascotaEncontrada) {
-    return ordenarAsociacionesPorDistancia(mascotaEncontrada).get(0);
+    return getEntitySet().isEmpty() ? null : ordenarAsociacionesPorDistancia(mascotaEncontrada).get(0);
   }
 
   private List<Asociacion> ordenarAsociacionesPorDistancia(MascotaEncontrada mascotaEncontrada) {
