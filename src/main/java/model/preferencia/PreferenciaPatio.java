@@ -17,7 +17,7 @@ public class PreferenciaPatio extends Preferencia {
   public PreferenciaPatio(boolean patioGrande) {
     this.patioGrande = patioGrande;
   }
-
+  @Override
   public boolean puedeRecomendarse(PublicacionDarEnAdopcion publicacion) {
 
     List<Respuesta> respuestas = publicacion.getRespuestas();

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import db.PersistentEntity;
+import model.publicacion.PublicacionDarEnAdopcion;
 
 /**
  * Preferencias de Adopcion
@@ -17,5 +18,7 @@ import db.PersistentEntity;
 @DiscriminatorColumn(name= "tipo")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE )
 public abstract class Preferencia extends PersistentEntity{
+  
+  public abstract boolean puedeRecomendarse(PublicacionDarEnAdopcion publicacion);
   
 }
