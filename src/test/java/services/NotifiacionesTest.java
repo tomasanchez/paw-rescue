@@ -59,10 +59,10 @@ public class NotifiacionesTest {
   @Test
   public void enviarNotificacionesDesdeServicio() {
     doNothing().when(duenioMascota).notificar(any());
-    ServicioNotificacion.getInstance().notificarDuenioMascotaAdopcion(duenioMascota);
-    ServicioNotificacion.getInstance().notificarDuenioMascotaPerdida(duenioMascota);
+    ServicioNotificacion.getInstance().contactarDuenioMascotaAdopcion(duenioMascota, nuevoContato());
+    ServicioNotificacion.getInstance().contactarDuenioMascotaPerdida(duenioMascota,  nuevoContato());
 
-    verify(duenioMascota, times(2)).notificar(any());
+    verify(duenioMascota, times(2)).contactar(any(),any());
   }
 
 

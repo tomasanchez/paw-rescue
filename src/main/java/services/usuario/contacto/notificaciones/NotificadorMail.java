@@ -13,7 +13,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class NotificadorMail implements NotificadorAPI {
+public class NotificadorMail extends NotificadorAPI {
 
 
   @Override
@@ -59,12 +59,5 @@ public class NotificadorMail implements NotificadorAPI {
 
 
   }
-
-  @Override
-  public void contactar(DatosContacto contacto1, DatosContacto contacto2, String msg) {
-    notificar(contacto1,
-        msg + " Por favor ponganse en contacto con  " + contacto2.getNombre()
-            + " mediante su telefono (" + contacto2.getTelefono() + ") o su correo ("
-            + contacto2.getMail() + ")");
-  }
+  
 }

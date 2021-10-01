@@ -2,6 +2,8 @@ package model.usuario;
 
 import static org.mockito.Mockito.spy;
 
+import model.usuario.datospersonales.DatosPersonales;
+import model.usuario.datospersonales.contacto.DatosContacto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -54,6 +56,7 @@ public class RescateTest implements WithGlobalEntityManager {
   @Test
   void rescatistaQuedaRegistrado() {
     encontrarMascota(true);
+    mockContacto();
     servicioRescate.registrarRescate(rescate);
     entityManager().flush();
     Assertions.assertFalse(repoRescates.getEntitySet().isEmpty());
@@ -66,6 +69,7 @@ public class RescateTest implements WithGlobalEntityManager {
     entityManager().persist(owner);
     entityManager().persist(chapita);
     encontrarMascota(true);
+    mockContacto();
     servicioRescate.registrarRescate(rescate);
     entityManager().flush();
     Assertions.assertTrue(
@@ -78,4 +82,10 @@ public class RescateTest implements WithGlobalEntityManager {
     rescate = registro.generarRescate();
   }
 
+  void mockContacto() {
+    DatosPersonales datos = new DatosPersonales();
+    datos.setContacto(new DatosContacto("Tomas", "Dias", "324432", "tomasDias@gmail.com"));
+    rescate.setDatosRescatista(datos);
+  }
+  
 }

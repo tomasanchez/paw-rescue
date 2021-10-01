@@ -6,7 +6,7 @@ import com.twilio.type.PhoneNumber;
 import model.usuario.datospersonales.contacto.DatosContacto;
 import tools.configuracion.Configuracion;
 
-public class NotificadorSMS implements NotificadorAPI {
+public class NotificadorSMS extends NotificadorAPI {
 
   @Override
   public void notificar(DatosContacto contacto, String msg) {
@@ -19,12 +19,5 @@ public class NotificadorSMS implements NotificadorAPI {
     Message.creator(new PhoneNumber("+" + contacto.getTelefono()), new PhoneNumber(telefono), msg)
         .create();
   }
-
-  @Override
-  public void contactar(DatosContacto contacto1, DatosContacto contacto2, String msg) {
-    notificar(contacto1,
-        msg + " Por favor ponganse en contacto con " + contacto2.getNombre()
-            + " mediante su telefono (" + contacto2.getTelefono() + ") o su correo ("
-            + contacto2.getMail() + ")");
-  }
+  
 }

@@ -12,6 +12,7 @@ import model.mascota.Chapita;
 import model.mascota.Mascota;
 import model.publicacion.PublicacionDarEnAdopcion;
 import model.usuario.datospersonales.DatosPersonales;
+import services.usuario.contacto.ServicioNotificacion;
 
 @Entity
 public class DuenioMascota extends Usuario {
@@ -73,6 +74,7 @@ public class DuenioMascota extends Usuario {
 
   public DuenioMascota recomendarAdopcion(PublicacionDarEnAdopcion recomendacion) {
     this.recomendacion = recomendacion;
+    ServicioNotificacion.getInstance().notificarPosibleAdopcion(this, recomendacion);
     return this;
   }
 

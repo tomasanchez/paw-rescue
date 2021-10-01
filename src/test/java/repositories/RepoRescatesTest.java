@@ -42,6 +42,9 @@ public class RepoRescatesTest implements WithGlobalEntityManager {
 
   @Test
   void testAddRescate() {
+    DatosPersonales datos = new DatosPersonales();
+    datos.setContacto(mockContacto());
+    rescate.setDatosRescatista(datos);
     servicioRescate.registrarRescate(rescate);
     entityManager().flush();
     Assertions.assertFalse(repo.getEntitySet().isEmpty());
@@ -58,6 +61,9 @@ public class RepoRescatesTest implements WithGlobalEntityManager {
 
   @Test
   void testGetMascotasEncontradas() {
+    DatosPersonales datos = new DatosPersonales();
+    datos.setContacto(mockContacto());
+    rescate.setDatosRescatista(datos);
     servicioRescate.registrarRescate(rescate);
     Assertions.assertTrue(repo.getMascotasEncontradas().contains(mascota));
   }

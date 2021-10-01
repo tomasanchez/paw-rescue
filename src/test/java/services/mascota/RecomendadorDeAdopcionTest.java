@@ -1,5 +1,6 @@
 package services.mascota;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,10 @@ import model.publicacion.PublicacionDarEnAdopcion;
 import model.usuario.DuenioMascota;
 import repositories.RepoPubDarEnAdopcion;
 import repositories.RepoPubParaAdoptar;
+import services.usuario.contacto.ServicioNotificacion;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 public class RecomendadorDeAdopcionTest implements WithGlobalEntityManager {
 
@@ -26,6 +31,7 @@ public class RecomendadorDeAdopcionTest implements WithGlobalEntityManager {
   private RepoPubParaAdoptar repoAdoptar;
   private List<Respuesta> rtas;
   private DuenioMascota owner;
+  private ServicioNotificacion notificador;
   PublicacionAdoptar pubAdoptar;
 
   @BeforeEach
@@ -37,6 +43,8 @@ public class RecomendadorDeAdopcionTest implements WithGlobalEntityManager {
     rtas = new ArrayList<Respuesta>();
     owner = new DuenioMascota();
     pubAdoptar = new PublicacionAdoptar().setInteresado(owner);
+    notificador = mock(ServicioNotificacion.class);
+    setMock(notificador);
   }
 
   @AfterEach
@@ -46,7 +54,7 @@ public class RecomendadorDeAdopcionTest implements WithGlobalEntityManager {
 
   @Test
   void recomiendaPerroAlQueQuierePerro() {
-
+    doNothing().when(notificador).notificarPosibleAdopcion(any(),any());
     PublicacionDarEnAdopcion pubEnAdopcion = publicarEnAdopcion(TipoMascota.PERRO);
     pubAdoptar.getPreferencias().add(new PreferenciaDeMascota(TipoMascota.PERRO));
     service.recomendarAdopcion(pubAdoptar);
@@ -56,7 +64,7 @@ public class RecomendadorDeAdopcionTest implements WithGlobalEntityManager {
 
   @Test
   void recomiendaGatoYNoPerro() {
-
+    doNothing().when(notificador).notificarPosibleAdopcion(any(),any());
     publicarEnAdopcion(TipoMascota.PERRO);
     publicarEnAdopcion(TipoMascota.PERRO);
     publicarEnAdopcion(TipoMascota.PERRO);
@@ -74,4 +82,20 @@ public class RecomendadorDeAdopcionTest implements WithGlobalEntityManager {
     return pub;
   }
 
+  private void setMock(ServicioNotificacion mock) {
+    try {
+      Field instance = ServicioNotificacion.class.getDeclaredField("instance");
+      instance.setAccessible(true);
+      instance.set(instance, mock);
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @AfterEach
+  public void resetSingleton() throws Exception {
+    Field instance = ServicioNotificacion.class.getDeclaredField("instance");
+    instance.setAccessible(true);
+    instance.set(null, null);
+  }
 }

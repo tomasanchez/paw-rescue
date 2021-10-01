@@ -3,6 +3,7 @@ package services;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.publicacion.PublicacionRescate;
 import model.usuario.Rescate;
+import model.usuario.datospersonales.contacto.DatosContacto;
 import repositories.RepoAsociaciones;
 import repositories.RepoPubRescate;
 import repositories.RepoRescates;
@@ -28,7 +29,7 @@ public class ServicioRescate {
    */
   public void registrarRescate(Rescate rescatista) {
     rescates.addRescate(rescatista);
-    identificarMascota(rescatista.getMascotaEncontrada());
+    identificarMascota(rescatista.getMascotaEncontrada(), rescatista.getDatosRescatista().getDatosContacto());
   }
 
   /**
@@ -36,10 +37,13 @@ public class ServicioRescate {
    *
    * @param mascota la mascota encontrada
    */
-  public void identificarMascota(MascotaEncontrada mascota) {
+  public void identificarMascota(MascotaEncontrada mascota, DatosContacto datosContacto) {
     if (mascota.tieneChapita()) {
-      ServicioNotificacion.getInstance().notificarDuenioMascotaPerdida(users.buscarDuenio(mascota));
-    } else {
+      ServicioNotificacion.getInstance().contactarDuenioMascotaPerdida(
+        users.buscarDuenio(mascota),
+        datosContacto);
+    }
+    else {
       publicaciones
           .createEntity(new PublicacionRescate(mascota, RepoAsociaciones.getInstance().buscarAsociacion(mascota)));
     }

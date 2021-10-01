@@ -1,10 +1,12 @@
 package model.publicacion;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
+import model.usuario.datospersonales.contacto.DatosContacto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,7 +58,7 @@ public class PublicacionRescateTest implements WithGlobalEntityManager {
     prepararRegistro(true);
     when(repoUsers.buscarDuenio(mascota)).thenReturn(duenio);
 
-    doNothing().when(servicioNotificacion).notificarDuenioMascotaPerdida(duenio);
+    doNothing().when(servicioNotificacion).contactarDuenioMascotaPerdida(duenio, any(DatosContacto.class));
     servicioRescate.registrarRescate(rescate);
     Assertions.assertTrue(repoPublicaciones.getEntitySet().isEmpty());
   }
@@ -79,7 +81,7 @@ public class PublicacionRescateTest implements WithGlobalEntityManager {
     when(mascota.tieneChapita()).thenReturn(tieneChapita);
     if (tieneChapita) {
       when(repoUsers.buscarDuenio(mascota)).thenReturn(duenio);
-      doNothing().when(servicioNotificacion).notificarDuenioMascotaPerdida(duenio);
+      doNothing().when(servicioNotificacion).contactarDuenioMascotaPerdida(duenio, any(DatosContacto.class));
     }
   }
 
