@@ -13,6 +13,9 @@ public class Coordenada {
     this.coordenadaY = coordenadaY;
   }
 
+  public Coordenada() {
+  }
+
   public String getCoordenadaX() {
     return this.coordenadaX;
   }
@@ -20,8 +23,8 @@ public class Coordenada {
   public String getCoordenadaY() {
     return this.coordenadaY;
   }
-  
-  public Double distancia (Coordenada otraCoordenada){
+
+  public Double distancia(Coordenada otraCoordenada) {
     Integer earthRadius = 6371;
 
     Double deltaLatitude = Math.toRadians(Double.parseDouble(otraCoordenada.getCoordenadaX()) - Double.parseDouble(this.getCoordenadaX()));
@@ -35,5 +38,5 @@ public class Coordenada {
 
     return earthRadius * distanceAngular;
   }
-  
+
 }
