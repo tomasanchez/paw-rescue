@@ -24,6 +24,11 @@
     <class>model.publicacion.PublicacionAdoptar</class>
     <class>model.publicacion.PublicacionDarEnAdopcion</class>
     <class>model.publicacion.PublicacionRescate</class>
+     <!-- Preferencias -->
+    <class>model.preferencia.Preferencia</class>
+    <class>model.preferencia.PreferenciaDeMascota</class>
+    <class>model.preferencia.PreferenciaPatio</class>
+    
     <!-- Publicaciones By Preguntas -->
     <class>model.pregunta.publicaciones.PregByAdoptar</class>
     <class>model.pregunta.publicaciones.PregByDarAdopcion</class>

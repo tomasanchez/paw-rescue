@@ -1,6 +1,10 @@
 package model.preferencia;
 
-import model.publicacion.PublicacionDarEnAdopcion;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import db.PersistentEntity;
 
 /**
  * Preferencias de Adopcion
@@ -9,6 +13,9 @@ import model.publicacion.PublicacionDarEnAdopcion;
  * @since Entrega III
  * @author Tomás Sánchez
  */
-public interface Preferencia {
-  public boolean puedeRecomendarse(PublicacionDarEnAdopcion publicacion);
+@Entity
+@DiscriminatorColumn(name= "tipo")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE )
+public abstract class Preferencia extends PersistentEntity{
+  
 }
