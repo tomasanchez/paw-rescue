@@ -1,33 +1,43 @@
 package model.usuario;
 
-import model.registro.RegistroRescate;
+import static org.mockito.Mockito.spy;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+
 import model.mascota.Chapita;
 import model.mascota.encontrada.MascotaEncontrada;
+import model.registro.RegistroRescate;
+import repositories.RepoPubRescate;
 import repositories.RepoRescates;
+import repositories.RepoUsers;
 import services.ServicioRescate;
 
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.spy;
+public class RescateTest implements WithGlobalEntityManager {
 
-
-public class RescateTest {
-
-  private RepoRescates repoRescates= spy(new RepoRescates());
+  private RepoRescates repoRescates;
+  private DuenioMascota owner = new DuenioMascota();
   private MascotaEncontrada mascota;
-  private RegistroRescate registro=  spy(new RegistroRescate());
+  private RegistroRescate registro = spy(new RegistroRescate());
   private Rescate rescate;
-  private ServicioRescate servicioRescate= spy(new ServicioRescate(null, repoRescates, null));
+  private ServicioRescate servicioRescate;
 
   @BeforeEach
   void initRescates() {
+    entityManager().getTransaction().begin();
     mascota = new MascotaEncontrada();
-    doNothing().when(servicioRescate).identificarMascota(mascota);
+    repoRescates = new RepoRescates();
+    servicioRescate = new ServicioRescate(new RepoPubRescate(), repoRescates, new RepoUsers());
   }
 
-  
+  @AfterEach
+  void endTransaction() {
+    entityManager().getTransaction().rollback();
+  }
+
   @Test
   void noSeGeneraRescateSinMascota() {
     Assertions.assertThrows(NullPointerException.class, () -> {
@@ -45,26 +55,27 @@ public class RescateTest {
   void rescatistaQuedaRegistrado() {
     encontrarMascota(true);
     servicioRescate.registrarRescate(rescate);
-    Assertions.assertTrue(repoRescates.getRescates().contains(rescate));
+    entityManager().flush();
+    Assertions.assertFalse(repoRescates.getEntitySet().isEmpty());
   }
 
-  
   @Test
   void rescatistaEncuentraMascotaConChapita() {
-    Chapita chapita = new Chapita(null);
+    Chapita chapita = new Chapita(owner);
     mascota.setChapita(chapita);
+    entityManager().persist(owner);
+    entityManager().persist(chapita);
     encontrarMascota(true);
     servicioRescate.registrarRescate(rescate);
-    Assertions.assertTrue(repoRescates.getMascotasEncontradas().stream()
-        .anyMatch(r -> r.getChapita().equals(chapita)));
+    entityManager().flush();
+    Assertions.assertTrue(
+        repoRescates.getMascotasEncontradas().stream().anyMatch(r -> r.getChapita().getId() == chapita.getId()));
   }
 
-
   private void encontrarMascota(final boolean PUEDE) {
-      registro.albergaMascota(PUEDE);
-      registro.mascotaEncontrada(mascota);
-      rescate= registro.generarRescate();
+    registro.albergaMascota(PUEDE);
+    registro.mascotaEncontrada(mascota);
+    rescate = registro.generarRescate();
   }
 
 }
-
