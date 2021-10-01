@@ -1,9 +1,12 @@
 package model.asociacion;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import model.usuario.DuenioMascota;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,9 +19,6 @@ import model.pregunta.PreguntaVOF;
 import model.publicacion.Asociacion;
 import repositories.RepoAsociaciones;
 import repositories.RepoPreguntas;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AsociacionTest implements WithGlobalEntityManager {
   RepoPreguntas repoPreguntas;
@@ -59,7 +59,6 @@ public class AsociacionTest implements WithGlobalEntityManager {
     Assertions.assertEquals(1, repoPreguntas.getEntitySet().size());
   }
 
-
   @Test
   void sePersisteUnaAsociacion() {
     Pregunta pregunta = new PreguntaVOF("Necesita patio");
@@ -89,7 +88,6 @@ public class AsociacionTest implements WithGlobalEntityManager {
   void seRecuperaNULLSiNoExisteUsuario() {
     assertNull(repoAsociaciones.getEntity(-1));
   }
-
 
   @Test
   void seEliminaUnUsuario() {
