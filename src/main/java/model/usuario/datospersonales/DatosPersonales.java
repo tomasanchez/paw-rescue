@@ -86,4 +86,13 @@ public class DatosPersonales {
   public DatosContacto getDatosContacto() {
     return this.contacto;
   }
+
+  public DatosContacto getContacto() {
+    return contacto;
+  }
+
+  public void setContacto(DatosContacto contacto) {
+    this.contacto = contacto;
+  }
+
 }
