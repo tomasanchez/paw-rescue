@@ -33,3 +33,6 @@ Notamos conveniente el uso de una clase abstracta `@MappedSupperClass Persistent
 Como ya poseiamos nuestras clases divididas en varios `packages`, notamos que los que séan necesarios persistir se encontraban dentro del package `model.*`, dado que el resto hace referencia a _servicios_ y _API connectors_
 
 
+Para el manejo de herencias, en el caso de `Preguntas` optamos por realizar el _approach_ `SINGLE TABLE`, ya que compartian la mayoría de los campos, una de las diferencias era la lista de respuestas, las cuales fueron mapeadas como un `@ElementCollection` por lo cual ya existiria otra tabla para las mismas.
+
+Por otro lado, para los `Usuarios`, `DuenioMascota` y `Voluntario` optamos por `@MappedSuperclass` ya que a pesar de compartir datos, optamos por que cada entidad tenga su propia tabla, por cuestiones de facilidad, y teniendo en cuenta que los voluntarios se relacionan mas con las asociaciones que con las mascotas, de momento pronosticamos que incluirlos con los `Dueños` impactaria en la _performance_.

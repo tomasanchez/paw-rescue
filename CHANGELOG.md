@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/dds-utn/2021-vi-no-grupo-23/compare/v0.2.0...v0.2.1) (2021-10-01)
+
+
+### Features
+
+* **db:** agrego persistent entity ([5c7ac37](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/5c7ac3708153dbce74f70bf114625a3faa113936))
+* **dueniomascota:** orm ([830dec4](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/830dec4c742a857eeefc84a579bd44da3d72cbc0))
+* **entityset:** CRUD operations ([e668566](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/e668566fa336c8c331458ccd4e9c7a0cf9d5816c))
+* **publicaciones:** ORM ([fe43579](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/fe43579925b5849759a02198eac976bad1ad0f0e))
+* **repo:** nuevo repo pubs rescates ([516d9d3](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/516d9d3736be8fc0b6b513c636db00c8ed49c1d0))
+* **rescate:** ORM ([50706e7](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/50706e747d967f6aada54692fc33fd307112d224))
+* **voluntario:** ORM ([21386ad](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/21386ad0ca0b452f187fdd9eb62092fdae1ed54a))
+
+
+### Bug Fixes
+
+* **datos:** transient concatco ([5abd2f7](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/5abd2f72802bcc5d7cf822315b3affe34e0eb4a8))
+* **mascota:** list<string> a element collection ([c8c66b5](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/c8c66b5ee5f341110a35af646a2259b04ab9854d))
+* **mascota:** orm de caracateristicas ([6a2ecf0](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/6a2ecf05ea989cfe129f26f191baa4cde3dbfeef))
+* **mascota:** orm de caracteristicas ([a816113](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/a816113bb13f0154189d1c2fcb963943a3f0832d))
+* **mascota:** wrong boolean ([002be9d](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/002be9d67084ad54a0308e09d555aef5eddd19ff))
+* **ORM:** agrego missing default constructor ([5a73905](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/5a73905fcb3cebfacd6602a0cc010faad1fcd276))
+* persistence test ([fc8f0e0](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/fc8f0e08ac2ee163f5b36156fd170fa5f60cd6d5))
+* **persistence:** ORM de entidades ([8e9da9d](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/8e9da9dca6a27b7e0d02314115d175ce2923dac4))
+* **pregunta:** orm ([3cf6d6e](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/3cf6d6e8f7ed564a2775ad1f4b9b29e5b05acde1))
+* **pregunta:** set pub incorrecto ([4bdd81d](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/4bdd81d0512b80998aadbbc3f47cd28c238249be))
+* **pub:** ORM ([f86a49c](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/f86a49cbacfc9d630c349e343445884344a6f2de))
+* **repo:** null si no existe ([0b39c5e](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/0b39c5eb8116b8528aa26f1c8094f1f3fa2c287d))
+* **rtas:** orm ([bed8cf0](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/bed8cf09776cd347651e3188438681578c6b2fc2))
+* **usuario:** nombes que dan quilombos ([6f14302](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/6f14302d1531ed5e5c43c301f535246b73e9f536))
+* **usuario:** ORM transient por ahora ([da5eed3](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/da5eed3810d5f2ab588737fba7cf20db0edb2f98))
+
 ## [0.2.0](https://github.com/dds-utn/2021-vi-no-grupo-23/compare/v0.1.0...v0.2.0) (2021-07-02)
 
 
