@@ -1,15 +1,11 @@
 package model.preferencia;
 
 import java.util.List;
-
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
 import model.pregunta.Respuesta;
 import model.publicacion.PublicacionDarEnAdopcion;
 
 @Entity
-@DiscriminatorValue("Patio")
 public class PreferenciaPatio extends Preferencia {
 
   boolean patioGrande;

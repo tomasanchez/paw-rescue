@@ -1,6 +1,5 @@
 package model.preferencia;
 
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -15,7 +14,6 @@ import model.publicacion.PublicacionDarEnAdopcion;
  * @author Tomás Sánchez
  */
 @Entity
-@DiscriminatorColumn(name= "tipo")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE )
 public abstract class Preferencia extends PersistentEntity{
   
