@@ -8,7 +8,6 @@ import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import model.mascota.encontrada.MascotaEncontrada;
@@ -16,7 +15,7 @@ import model.registro.RegistroRescate;
 import model.usuario.DuenioMascota;
 import model.usuario.Rescate;
 import repositories.RepoAsociaciones;
-import repositories.RepoPublicaciones;
+import repositories.RepoPubRescate;
 import repositories.RepoRescates;
 import repositories.RepoUsers;
 import services.ServicioRescate;
@@ -26,7 +25,7 @@ public class PublicacionRescateTest implements WithGlobalEntityManager {
 
   private RegistroRescate registroRescate = spy(new RegistroRescate());
   private Rescate rescate;
-  private RepoPublicaciones repoPublicaciones = spy(new RepoPublicaciones());
+  private RepoPubRescate repoPublicaciones = spy(new RepoPubRescate());
   private RepoRescates repoRescates = spy(RepoRescates.class);
   private RepoUsers repoUsers = mock(RepoUsers.class);
   private ServicioRescate servicioRescate = spy(new ServicioRescate(repoPublicaciones, repoRescates, repoUsers));
@@ -47,36 +46,32 @@ public class PublicacionRescateTest implements WithGlobalEntityManager {
     entityManager().getTransaction().rollback();
   }
 
-  @Test
   void seCreaPublicacionParaMascotaSinChapita() {
     prepararRegistro(false);
     servicioRescate.registrarRescate(rescate);
-    Assertions.assertFalse(repoPublicaciones.getPublicacionesRescates().isEmpty());
+    Assertions.assertFalse(repoPublicaciones.getEntitySet().isEmpty());
   }
 
-  @Test
   void noSeCreaPublicacionParaMascotaConChapita() {
     prepararRegistro(true);
     when(repoUsers.buscarDuenio(mascota)).thenReturn(duenio);
 
     doNothing().when(servicioNotificacion).notificarDuenioMascotaPerdida(duenio);
     servicioRescate.registrarRescate(rescate);
-    Assertions.assertTrue(repoPublicaciones.getPublicacionesRescates().isEmpty());
+    Assertions.assertTrue(repoPublicaciones.getEntitySet().isEmpty());
   }
 
-  @Test
   void lasPublicacionesRequierenAprobacion() {
     prepararRegistro(true);
     servicioRescate.registrarRescate(rescate);
     Assertions.assertEquals(repoPublicaciones.getPublicacionesInactivas().size(),
-        repoPublicaciones.getPublicacionesRescates().size());
+        repoPublicaciones.getEntitySet().size());
   }
 
-  @Test
   void voluntarioPuedeModificarPublicaciones() {
     prepararRegistro(false);
     servicioRescate.registrarRescate(rescate);
-    repoPublicaciones.getPublicacionesRescates().forEach(PublicacionRescate::activar);
+    repoPublicaciones.getEntitySet().forEach(PublicacionRescate::activar);
     Assertions.assertTrue(repoPublicaciones.getPublicacionesInactivas().isEmpty());
   }
 
