@@ -1,18 +1,18 @@
 package repositories;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import db.PersistentEntitySet;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.refugio.Refugio;
 import model.usuario.Rescate;
 import model.usuario.datospersonales.contacto.DatosContacto;
 import services.ProveedorRefugios;
 
-public class RepoRescates {
+public class RepoRescates extends PersistentEntitySet<Rescate> {
 
-  List<Rescate> rescates = new ArrayList<>();
   RepoUsers adminUsers = new RepoUsers();
   RepoPublicaciones adminPublicaciones = new RepoPublicaciones();
   ProveedorRefugios proveedorRefugios = ProveedorRefugios.instance();
@@ -24,8 +24,8 @@ public class RepoRescates {
       instancia = new RepoRescates();
     }
     return instancia;
-  }  
-  
+  }
+
   public RepoRescates() {
     proveedorRefugios.loginRefugios();
   }
@@ -43,8 +43,14 @@ public class RepoRescates {
    * @return las mascotas filtradas
    */
   List<Rescate> mascotasEncontradas(long dias) {
-    return rescates.stream().filter(rescate -> rescate.estaDentroDeUltimosDias(dias))
+    return getEntitySet().stream().filter(rescate -> rescate.estaDentroDeUltimosDias(dias))
         .collect(Collectors.toList());
+  }
+
+  @Override
+  public Rescate createEntity(Rescate rescate) {
+    entityManager().persist(rescate.getMascotaEncontrada());
+    return super.createEntity(rescate);
   }
 
   /**
@@ -54,10 +60,8 @@ public class RepoRescates {
    */
   public void addRescate(Rescate rescate) {
     Objects.requireNonNull(rescate.getMascotaEncontrada());
-    rescates.add(rescate);
+    createEntity(rescate);
   }
-
-
 
   /**
    * Recupera el contancto de un rescate registrado.
@@ -71,23 +75,18 @@ public class RepoRescates {
   }
 
   private Rescate buscarRescatista(MascotaEncontrada mascota) {
-    return (Rescate) rescates.stream().filter(rescatista -> rescatista.getMascotaEncontrada().equals(mascota)).
-        collect(Collectors.toList()).get(0);
+    return (Rescate) getEntitySet().stream().filter(rescatista -> rescatista.getMascotaEncontrada().equals(mascota))
+        .collect(Collectors.toList()).get(0);
   }
 
   public List<Refugio> buscarRefugios(MascotaEncontrada mascota) {
     List<Refugio> refugioList = proveedorRefugios.getAllRefugios();
-    return refugioList.stream()
-        .filter(cada -> cada.getAdmisiones().contains(mascota.getTipoMascota()))
+    return refugioList.stream().filter(cada -> cada.getAdmisiones().contains(mascota.getTipoMascota()))
         .collect(Collectors.toList());
   }
 
   public List<Rescate> getRescates() {
-    return rescates;
-  }
-
-  public void setRescates(List<Rescate> rescates) {
-    this.rescates = rescates;
+    return getEntitySet();
   }
 
   /**
@@ -97,8 +96,7 @@ public class RepoRescates {
    * @return las mascotas filtradas
    */
   List<Rescate> getRescatesEnLosUltimosDias(long dias) {
-    return getRescates().stream().filter(rescate -> rescate.estaDentroDeUltimosDias(dias))
-        .collect(Collectors.toList());
+    return getRescates().stream().filter(rescate -> rescate.estaDentroDeUltimosDias(dias)).collect(Collectors.toList());
   }
 
   /**
@@ -107,11 +105,7 @@ public class RepoRescates {
    * @return un listado de mascotas.
    */
   public List<MascotaEncontrada> getMascotasEncontradas() {
-    return rescates.stream().map(Rescate::getMascotaEncontrada).collect(Collectors.toList());
+    return getEntitySet().stream().map(Rescate::getMascotaEncontrada).collect(Collectors.toList());
   }
 
-
-
 }
-
-

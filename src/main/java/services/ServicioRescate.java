@@ -2,21 +2,20 @@ package services;
 
 import model.mascota.encontrada.MascotaEncontrada;
 import model.publicacion.PublicacionRescate;
-
 import model.usuario.Rescate;
 import repositories.RepoAsociaciones;
-import repositories.RepoPublicaciones;
+import repositories.RepoPubRescate;
 import repositories.RepoRescates;
 import repositories.RepoUsers;
 import services.usuario.contacto.ServicioNotificacion;
 
 public class ServicioRescate {
 
-  private RepoPublicaciones publicaciones;
-  private RepoRescates rescates;
-  private RepoUsers users;
+  private RepoPubRescate publicaciones = new RepoPubRescate();
+  private RepoRescates rescates = new RepoRescates();
+  private RepoUsers users = new RepoUsers();
 
-  public ServicioRescate(RepoPublicaciones publicaciones, RepoRescates rescates, RepoUsers users) {
+  public ServicioRescate(RepoPubRescate publicaciones, RepoRescates rescates, RepoUsers users) {
     this.publicaciones = publicaciones;
     this.rescates = rescates;
     this.users = users;
@@ -39,10 +38,10 @@ public class ServicioRescate {
    */
   public void identificarMascota(MascotaEncontrada mascota) {
     if (mascota.tieneChapita()) {
-      ServicioNotificacion.getInstance().
-        notificarDuenioMascotaPerdida(users.buscarDuenio(mascota));
+      ServicioNotificacion.getInstance().notificarDuenioMascotaPerdida(users.buscarDuenio(mascota));
     } else {
-      publicaciones.agregar(new PublicacionRescate(mascota, RepoAsociaciones.getInstance().buscarAsociacion(mascota)));
+      publicaciones
+          .createEntity(new PublicacionRescate(mascota, RepoAsociaciones.getInstance().buscarAsociacion(mascota)));
     }
   }
 
@@ -50,11 +49,11 @@ public class ServicioRescate {
     return rescates;
   }
 
-  public RepoPublicaciones getPublicaciones() {
+  public RepoPubRescate getPublicaciones() {
     return publicaciones;
   }
 
-  public ServicioRescate setPublicaciones(RepoPublicaciones publicaciones) {
+  public ServicioRescate setPublicaciones(RepoPubRescate publicaciones) {
     this.publicaciones = publicaciones;
     return this;
   }
