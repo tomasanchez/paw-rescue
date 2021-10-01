@@ -8,22 +8,26 @@
   <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
+    <!-- Usuario -->
     <class>model.usuario.DuenioMascota</class>
     <class>model.usuario.Voluntario</class>
-
+    <class>model.usuario.Rescate</class>
+    <!-- Mascota -->
     <class>model.mascota.Chapita</class>
     <class>model.mascota.Mascota</class>
     <class>model.mascota.caracteristica.Caracteristica</class>
     <class>model.mascota.encontrada.MascotaEncontrada</class>
-
+    <!-- Refugios -->
+    <class>model.refugio.Refugio</class>
+    <!-- Publicacion -->
     <class>model.publicacion.Asociacion</class>
     <class>model.publicacion.PublicacionAdoptar</class>
     <class>model.publicacion.PublicacionDarEnAdopcion</class>
     <class>model.publicacion.PublicacionRescate</class>
-
+    <!-- Publicaciones By Preguntas -->
     <class>model.pregunta.publicaciones.PregByAdoptar</class>
     <class>model.pregunta.publicaciones.PregByDarAdopcion</class>
-
+     <!-- Preguntas -->
     <class>model.pregunta.Pregunta</class>
     <class>model.pregunta.PreguntaOpciones</class>
     <class>model.pregunta.PreguntaVOF</class>
