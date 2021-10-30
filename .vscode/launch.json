@@ -6,7 +6,7 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Launch Router",
+      "name": "Server",
       "request": "launch",
       "mainClass": "app.Router",
       "projectName": "ejercicio"
