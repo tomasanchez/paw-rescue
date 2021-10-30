@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Launch Router",
+      "request": "launch",
+      "mainClass": "app.Router",
+      "projectName": "ejercicio"
+    },
+    {
+      "type": "java",
       "name": "Schema Export",
       "request": "launch",
       "mainClass": "org.uqbarproject.jpa.java8.extras.export.JpaSchemaExport",
