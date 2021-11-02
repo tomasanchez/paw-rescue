@@ -2,12 +2,9 @@ package model.mascota.caracteristica;
 
 import java.util.List;
 import java.util.Objects;
-
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 import javax.persistence.Transient;
-
 import db.PersistentEntity;
 import exceptions.mascota.InvalidCaracteristicaException;
 import model.mascota.Mascota;
@@ -22,7 +19,6 @@ import model.mascota.encontrada.MascotaEncontrada;
  */
 
 @Entity
-@Table(name = "Caracteristicas")
 public class Caracteristica extends PersistentEntity {
 
   @Transient
