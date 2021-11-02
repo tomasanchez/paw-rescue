@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/dds-utn/2021-vi-no-grupo-23/compare/v0.2.1...v0.3.0) (2021-11-02)
+
+
+### Features
+
+* **controller:** login ([ecdb5dc](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/ecdb5dc5c506b3ed5253f202d32cc89ed96cffb0))
+* **controller:** superclass controller ([39ca302](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/39ca302fb5dafecd9cb508a29e317dcb27cc9132))
+* **entrega_v:** router ([e9bd395](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/e9bd3959eaefd28d8ec28805b79ceef0073a1f3a))
+* **view:** login view ([5c7ce3a](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/5c7ce3ae379fc88de28f24f0992cdaec584c91f2))
+
 ### [0.2.1](https://github.com/dds-utn/2021-vi-no-grupo-23/compare/v0.2.0...v0.2.1) (2021-10-01)
 
 
