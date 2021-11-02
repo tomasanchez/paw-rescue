@@ -18,8 +18,8 @@ public abstract class PersistentEntitySet<T> implements WithGlobalEntityManager 
    */
   @SuppressWarnings("unchecked")
   protected String getTableName() {
-    return ((Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0])
-        .getSimpleName();
+    return ((Class<T>) ((ParameterizedType) getClass().getGenericSuperclass())
+        .getActualTypeArguments()[0]).getSimpleName();
   }
 
   /**
@@ -53,8 +53,8 @@ public abstract class PersistentEntitySet<T> implements WithGlobalEntityManager 
   public T getEntity(long id) {
 
     try {
-      return (T) entityManager().createQuery("FROM " + getTableName() + " T WHERE T.id LIKE :id").setParameter("id", id)
-          .getSingleResult();
+      return (T) entityManager().createQuery("FROM " + getTableName() + " T WHERE T.id LIKE :id")
+          .setParameter("id", id).getSingleResult();
     } catch (NoResultException exception) {
       return null;
     }
