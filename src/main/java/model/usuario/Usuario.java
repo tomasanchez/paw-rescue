@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 import db.PersistentEntity;
 import model.mascota.Chapita;
 import model.mascota.Mascota;
@@ -26,6 +28,7 @@ import services.usuario.contacto.notificaciones.NotificadorAPI;
  * @version 2.0
  */
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario", "mail"})})
 public class Usuario extends PersistentEntity {
 
   /**
