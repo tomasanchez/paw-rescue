@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import model.registro.RegistroDuenioMascota;
-import model.usuario.DuenioMascota;
+import model.usuario.Usuario;
 import model.usuario.datospersonales.contacto.DatosContacto;
 import model.usuario.datospersonales.documento.TipoDocumento;
 import repositories.RepoUsers;
@@ -21,7 +21,7 @@ public class NotifiacionesTest {
 
   private NotificadorMail gmail;
   private NotificadorSMS sms;
-  private DuenioMascota duenioMascota;
+  private Usuario duenioMascota;
 
   @BeforeEach
   void init() {
@@ -59,14 +59,15 @@ public class NotifiacionesTest {
   @Test
   public void enviarNotificacionesDesdeServicio() {
     doNothing().when(duenioMascota).notificar(any());
-    ServicioNotificacion.getInstance().contactarDuenioMascotaAdopcion(duenioMascota, nuevoContato());
-    ServicioNotificacion.getInstance().contactarDuenioMascotaPerdida(duenioMascota,  nuevoContato());
+    ServicioNotificacion.getInstance().contactarDuenioMascotaAdopcion(duenioMascota,
+        nuevoContato());
+    ServicioNotificacion.getInstance().contactarDuenioMascotaPerdida(duenioMascota, nuevoContato());
 
-    verify(duenioMascota, times(2)).contactar(any(),any());
+    verify(duenioMascota, times(2)).contactar(any(), any());
   }
 
 
-  DuenioMascota nuevoDuenio() {
+  Usuario nuevoDuenio() {
     RegistroDuenioMascota registro = new RegistroDuenioMascota(new RepoUsers());
     registro.nombre("Lucas").apellido("Gonzalez");
     registro.contacto(nuevoContato());

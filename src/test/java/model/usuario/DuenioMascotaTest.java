@@ -18,7 +18,7 @@ import repositories.RepoUsers;
 
 public class DuenioMascotaTest implements WithGlobalEntityManager {
 
-  private DuenioMascota duenio;
+  private Usuario duenio;
   private RepoUsers adminUsers;
 
   @BeforeEach
@@ -70,15 +70,16 @@ public class DuenioMascotaTest implements WithGlobalEntityManager {
   }
 
   Mascota gato() {
-    return new Mascota("copito", "copi", TipoMascota.GATO, 6, Sexo.MACHO, "Tamaño grande y de pelo largo", null, null);
+    return new Mascota("copito", "copi", TipoMascota.GATO, 6, Sexo.MACHO,
+        "Tamaño grande y de pelo largo", null, null);
   }
 
   Mascota perra() {
-    return new Mascota("negra", "negrita", TipoMascota.PERRO, 2, Sexo.HEMBRA, "Pelo corto y tamaño madiano", null,
-        null);
+    return new Mascota("negra", "negrita", TipoMascota.PERRO, 2, Sexo.HEMBRA,
+        "Pelo corto y tamaño madiano", null, null);
   }
 
-  DuenioMascota nuevoDuenio() {
+  Usuario nuevoDuenio() {
     RegistroDuenioMascota registro = new RegistroDuenioMascota(adminUsers);
     registro.nombre("Lucas").apellido("Gonzalez");
     registro.contacto(nuevoContato());

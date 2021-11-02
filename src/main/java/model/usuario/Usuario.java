@@ -3,14 +3,20 @@ package model.usuario;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 import javax.persistence.Embedded;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
-
 import db.PersistentEntity;
+import model.mascota.Chapita;
+import model.mascota.Mascota;
+import model.publicacion.Asociacion;
+import model.publicacion.PublicacionDarEnAdopcion;
 import model.usuario.datospersonales.DatosPersonales;
 import model.usuario.datospersonales.contacto.DatosContacto;
+import services.usuario.contacto.ServicioNotificacion;
 import services.usuario.contacto.notificaciones.NotificadorAPI;
 
 /**
@@ -19,8 +25,8 @@ import services.usuario.contacto.notificaciones.NotificadorAPI;
  * @author Kenti
  * @version 2.0
  */
-@MappedSuperclass
-public abstract class Usuario extends PersistentEntity {
+@Entity
+public class Usuario extends PersistentEntity {
 
   /**
    * Usuario de logging.
@@ -52,18 +58,55 @@ public abstract class Usuario extends PersistentEntity {
   @Transient
   private List<NotificadorAPI> notificadorAPIs = new ArrayList<>();
 
-  public Usuario() {
-  }
+  @ManyToOne
+  @JoinColumn(name = "asociacion_id")
+  Asociacion asociacion;
+
+
+  @OneToMany
+  @JoinColumn(name = "mascota_id")
+  private List<Mascota> mascotas = new ArrayList<>();
+
+  // @ManyToOne
+  // @JoinColumn(name = "recomendacion_id")
+  @Transient
+  private PublicacionDarEnAdopcion recomendacion;
+
+
+  public Usuario() {}
 
   /**
    * Instancia un nuevo usuario.
    *
-   * @param usuario  nombre de usuario.
+   * @param usuario nombre de usuario.
    * @param password una password válida.
    */
   public Usuario(String usuario, String password) {
+    this(usuario, password, null, new ArrayList<>());
+  }
+
+  /**
+   * Mascotas registadas.
+   *
+   * @param datosPersonales los datos relacionados al Nombre, DNI, etc.
+   * @param usuario el nombre de usuario
+   * @param password password válida.
+   * @param mascotas las mascotas registadas
+   */
+  public Usuario(String usuario, String password, DatosPersonales datosPersonales,
+      List<Mascota> mascotas) {
     this.usuario = Objects.requireNonNull(usuario);
     this.password = Objects.requireNonNull(password);
+    this.mascotas = mascotas;
+    this.datosPersonales = datosPersonales;
+  }
+
+  public Asociacion getAsociacion() {
+    return asociacion;
+  }
+
+  public void setAsociacion(Asociacion asociacion) {
+    this.asociacion = asociacion;
   }
 
   public String getUsuario() {
@@ -101,6 +144,40 @@ public abstract class Usuario extends PersistentEntity {
 
   public Usuario setPassword(String password) {
     this.password = password;
+    return this;
+  }
+
+  /**
+   * Asocia una mascota a un usuario.
+   * 
+   * @param mascota la mascota a registrar
+   */
+  public void registrarMascota(Mascota mascota) {
+    mascotas.add(mascota.setChapita(new Chapita(this)));
+  }
+
+  // public boolean esDuenio(int id) {return mascotas.stream().anyMatch(mascota ->
+  // mascota.getChapita().getId() == id);}
+
+  public List<Mascota> getMascotas() {
+    return this.mascotas;
+  }
+
+  public Integer getCantidadMascotas() {
+    return mascotas.size();
+  }
+
+  public DatosPersonales getDatosPeronales() {
+    return this.datosPersonales;
+  }
+
+  public PublicacionDarEnAdopcion getRecomendacion() {
+    return recomendacion;
+  }
+
+  public Usuario recomendarAdopcion(PublicacionDarEnAdopcion recomendacion) {
+    this.recomendacion = recomendacion;
+    ServicioNotificacion.getInstance().notificarPosibleAdopcion(this, recomendacion);
     return this;
   }
 }

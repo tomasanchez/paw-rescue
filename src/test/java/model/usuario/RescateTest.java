@@ -21,7 +21,7 @@ import services.ServicioRescate;
 public class RescateTest implements WithGlobalEntityManager {
 
   private RepoRescates repoRescates;
-  private DuenioMascota owner = new DuenioMascota();
+  private Usuario owner = new Usuario();
   private MascotaEncontrada mascota;
   private RegistroRescate registro = spy(new RegistroRescate());
   private Rescate rescate;
@@ -72,8 +72,8 @@ public class RescateTest implements WithGlobalEntityManager {
     mockContacto();
     servicioRescate.registrarRescate(rescate);
     entityManager().flush();
-    Assertions.assertTrue(
-        repoRescates.getMascotasEncontradas().stream().anyMatch(r -> r.getChapita().getId() == chapita.getId()));
+    Assertions.assertTrue(repoRescates.getMascotasEncontradas().stream()
+        .anyMatch(r -> r.getChapita().getId() == chapita.getId()));
   }
 
   private void encontrarMascota(final boolean PUEDE) {
@@ -87,5 +87,5 @@ public class RescateTest implements WithGlobalEntityManager {
     datos.setContacto(new DatosContacto("Tomas", "Dias", "324432", "tomasDias@gmail.com"));
     rescate.setDatosRescatista(datos);
   }
-  
+
 }

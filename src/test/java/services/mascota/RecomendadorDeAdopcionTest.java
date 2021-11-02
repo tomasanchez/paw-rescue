@@ -16,7 +16,7 @@ import model.preferencia.PreferenciaDeMascota;
 import model.pregunta.Respuesta;
 import model.publicacion.PublicacionAdoptar;
 import model.publicacion.PublicacionDarEnAdopcion;
-import model.usuario.DuenioMascota;
+import model.usuario.Usuario;
 import repositories.RepoPubDarEnAdopcion;
 import repositories.RepoPubParaAdoptar;
 import services.usuario.contacto.ServicioNotificacion;
@@ -30,7 +30,7 @@ public class RecomendadorDeAdopcionTest implements WithGlobalEntityManager {
   private RepoPubDarEnAdopcion repoDarAdopcion;
   private RepoPubParaAdoptar repoAdoptar;
   private List<Respuesta> rtas;
-  private DuenioMascota owner;
+  private Usuario owner;
   private ServicioNotificacion notificador;
   PublicacionAdoptar pubAdoptar;
 
@@ -41,7 +41,7 @@ public class RecomendadorDeAdopcionTest implements WithGlobalEntityManager {
     repoDarAdopcion = new RepoPubDarEnAdopcion();
     service = new RecomendadorDeAdopcion(repoDarAdopcion, repoAdoptar);
     rtas = new ArrayList<Respuesta>();
-    owner = new DuenioMascota();
+    owner = new Usuario();
     pubAdoptar = new PublicacionAdoptar().setInteresado(owner);
     notificador = mock(ServicioNotificacion.class);
     setMock(notificador);
@@ -54,7 +54,7 @@ public class RecomendadorDeAdopcionTest implements WithGlobalEntityManager {
 
   @Test
   void recomiendaPerroAlQueQuierePerro() {
-    doNothing().when(notificador).notificarPosibleAdopcion(any(),any());
+    doNothing().when(notificador).notificarPosibleAdopcion(any(), any());
     PublicacionDarEnAdopcion pubEnAdopcion = publicarEnAdopcion(TipoMascota.PERRO);
     pubAdoptar.getPreferencias().add(new PreferenciaDeMascota(TipoMascota.PERRO));
     service.recomendarAdopcion(pubAdoptar);
@@ -64,7 +64,7 @@ public class RecomendadorDeAdopcionTest implements WithGlobalEntityManager {
 
   @Test
   void recomiendaGatoYNoPerro() {
-    doNothing().when(notificador).notificarPosibleAdopcion(any(),any());
+    doNothing().when(notificador).notificarPosibleAdopcion(any(), any());
     publicarEnAdopcion(TipoMascota.PERRO);
     publicarEnAdopcion(TipoMascota.PERRO);
     publicarEnAdopcion(TipoMascota.PERRO);

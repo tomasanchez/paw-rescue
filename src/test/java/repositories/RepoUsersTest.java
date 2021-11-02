@@ -11,17 +11,17 @@ import org.junit.jupiter.api.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import model.mascota.Chapita;
 import model.mascota.encontrada.MascotaEncontrada;
-import model.usuario.DuenioMascota;
+import model.usuario.Usuario;
 
 public class RepoUsersTest implements WithGlobalEntityManager {
 
-  private DuenioMascota owner;
+  private Usuario owner;
   private RepoUsers repository;
 
   @BeforeEach
   void startTransaction() {
     entityManager().getTransaction().begin();
-    owner = new DuenioMascota();
+    owner = new Usuario();
     repository = new RepoUsers();
   }
 
@@ -33,7 +33,7 @@ public class RepoUsersTest implements WithGlobalEntityManager {
   @Test
   void sePersisteUnUsuario() {
     repository.createEntity(owner);
-    assertSame(owner, entityManager().find(DuenioMascota.class, owner.getId()));
+    assertSame(owner, entityManager().find(Usuario.class, owner.getId()));
   }
 
   @Test
@@ -51,7 +51,7 @@ public class RepoUsersTest implements WithGlobalEntityManager {
   @Test
   void seRecuperaListadoDeUsuarios() {
     repository.createEntity(owner);
-    repository.createEntity(new DuenioMascota());
+    repository.createEntity(new Usuario());
     entityManager().flush();
     assertEquals(2, repository.getEntitySet().size());
   }

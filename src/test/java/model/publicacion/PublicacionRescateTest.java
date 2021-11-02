@@ -14,7 +14,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import model.mascota.encontrada.MascotaEncontrada;
 import model.registro.RegistroRescate;
-import model.usuario.DuenioMascota;
+import model.usuario.Usuario;
 import model.usuario.Rescate;
 import repositories.RepoAsociaciones;
 import repositories.RepoPubRescate;
@@ -30,9 +30,10 @@ public class PublicacionRescateTest implements WithGlobalEntityManager {
   private RepoPubRescate repoPublicaciones = spy(new RepoPubRescate());
   private RepoRescates repoRescates = spy(RepoRescates.class);
   private RepoUsers repoUsers = mock(RepoUsers.class);
-  private ServicioRescate servicioRescate = spy(new ServicioRescate(repoPublicaciones, repoRescates, repoUsers));
+  private ServicioRescate servicioRescate =
+      spy(new ServicioRescate(repoPublicaciones, repoRescates, repoUsers));
   private MascotaEncontrada mascota = mock(MascotaEncontrada.class);
-  private DuenioMascota duenio = mock(DuenioMascota.class);
+  private Usuario duenio = mock(Usuario.class);
   private ServicioNotificacion servicioNotificacion = spy(ServicioNotificacion.getInstance());
 
   @BeforeEach
@@ -58,7 +59,8 @@ public class PublicacionRescateTest implements WithGlobalEntityManager {
     prepararRegistro(true);
     when(repoUsers.buscarDuenio(mascota)).thenReturn(duenio);
 
-    doNothing().when(servicioNotificacion).contactarDuenioMascotaPerdida(duenio, any(DatosContacto.class));
+    doNothing().when(servicioNotificacion).contactarDuenioMascotaPerdida(duenio,
+        any(DatosContacto.class));
     servicioRescate.registrarRescate(rescate);
     Assertions.assertTrue(repoPublicaciones.getEntitySet().isEmpty());
   }
@@ -81,7 +83,8 @@ public class PublicacionRescateTest implements WithGlobalEntityManager {
     when(mascota.tieneChapita()).thenReturn(tieneChapita);
     if (tieneChapita) {
       when(repoUsers.buscarDuenio(mascota)).thenReturn(duenio);
-      doNothing().when(servicioNotificacion).contactarDuenioMascotaPerdida(duenio, any(DatosContacto.class));
+      doNothing().when(servicioNotificacion).contactarDuenioMascotaPerdida(duenio,
+          any(DatosContacto.class));
     }
   }
 

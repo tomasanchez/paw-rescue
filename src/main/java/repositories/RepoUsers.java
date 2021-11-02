@@ -3,9 +3,9 @@ package repositories;
 import db.PersistentEntitySet;
 import model.mascota.Mascota;
 import model.mascota.encontrada.MascotaEncontrada;
-import model.usuario.DuenioMascota;
+import model.usuario.Usuario;
 
-public class RepoUsers extends PersistentEntitySet<DuenioMascota> {
+public class RepoUsers extends PersistentEntitySet<Usuario> {
 
   private static RepoUsers instancia;
 
@@ -16,15 +16,15 @@ public class RepoUsers extends PersistentEntitySet<DuenioMascota> {
     return instancia;
   }
 
-  public DuenioMascota buscarDuenio(MascotaEncontrada mascota) {
+  public Usuario buscarDuenio(MascotaEncontrada mascota) {
     return getEntity(mascota.getChapita().getDuenio().getId());
   }
 
-  public DuenioMascota buscarDuenio(Mascota mascota) {
+  public Usuario buscarDuenio(Mascota mascota) {
     return getEntity(mascota.getChapita().getDuenio().getId());
   }
-  
-  public boolean existeUsuario(DuenioMascota usuario) {
+
+  public boolean existeUsuario(Usuario usuario) {
     return getEntitySet().contains(usuario);
   }
 }

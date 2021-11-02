@@ -6,28 +6,28 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import model.mascota.encontrada.MascotaEncontrada;
-import model.usuario.DuenioMascota;
+import model.usuario.Usuario;
 
-public class MascotaEncontradaTest implements WithGlobalEntityManager{
+public class MascotaEncontradaTest implements WithGlobalEntityManager {
 
   private MascotaEncontrada mascota;
-  private DuenioMascota duenio;
+  private Usuario duenio;
   private Chapita chapita;
 
   @BeforeEach
   void initMascota() {
     entityManager().getTransaction().begin();
     this.mascota = new MascotaEncontrada();
-    this.duenio = new DuenioMascota();
+    this.duenio = new Usuario();
     this.chapita = new Chapita(duenio);
   }
-  
+
   @AfterEach
   void endTransaction() {
     entityManager().getTransaction().rollback();
   }
 
-  
+
   @Test
   void mascotaSinChapita() {
     Assertions.assertEquals(mascota.getChapita(), null);
@@ -41,6 +41,6 @@ public class MascotaEncontradaTest implements WithGlobalEntityManager{
     Assertions.assertTrue(perdida.esLaMismaMascota(mascota));
   }
 
-  
-  
+
+
 }

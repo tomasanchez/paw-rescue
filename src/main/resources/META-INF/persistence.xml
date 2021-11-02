@@ -9,8 +9,7 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
     <!-- Usuario -->
-    <class>model.usuario.DuenioMascota</class>
-    <class>model.usuario.Voluntario</class>
+    <class>model.usuario.Usuario</class>
     <class>model.usuario.Rescate</class>
     <!-- Mascota -->
     <class>model.mascota.Chapita</class>

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import model.mascota.Mascota;
-import model.usuario.DuenioMascota;
+import model.usuario.Usuario;
 import repositories.RepoUsers;
 import tools.password.ValidadorContrasenia;
 
@@ -71,8 +71,8 @@ public class RegistroDuenioMascota extends RegistroDatosPersonales {
    * 
    * @return un nuevo Mascota Owner.
    */
-  public DuenioMascota mascotaOwner() {
-    DuenioMascota owner = new DuenioMascota(datosPersonales(), usuario, password, mascotas);
+  public Usuario mascotaOwner() {
+    Usuario owner = new Usuario(usuario, password, datosPersonales(), mascotas);
     adminUsers.createEntity(owner);
     return owner;
   }

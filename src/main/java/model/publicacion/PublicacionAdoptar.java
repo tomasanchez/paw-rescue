@@ -5,20 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 import db.PersistentEntity;
 import model.preferencia.Preferencia;
 import model.pregunta.Pregunta;
 import model.pregunta.Respuesta;
 import model.pregunta.publicaciones.PregByAdoptar;
-import model.usuario.DuenioMascota;
+import model.usuario.Usuario;
 
 @Entity
 @Table(name = "Publicaciones_De_Adoptar")
@@ -40,7 +38,7 @@ public class PublicacionAdoptar extends PersistentEntity {
 
   @OneToOne
   @JoinColumn(name = "interesado_id")
-  private DuenioMascota interesado;
+  private Usuario interesado;
 
   public PublicacionAdoptar() {
     setActiva(false);
@@ -86,11 +84,11 @@ public class PublicacionAdoptar extends PersistentEntity {
     return preferencias;
   }
 
-  public DuenioMascota getInteresado() {
+  public Usuario getInteresado() {
     return interesado;
   }
 
-  public PublicacionAdoptar setInteresado(DuenioMascota interesado) {
+  public PublicacionAdoptar setInteresado(Usuario interesado) {
     this.interesado = interesado;
     return this;
   }
