@@ -10,6 +10,7 @@ public class Router {
   private static final HandlebarsTemplateEngine ENGINE = new HandlebarsTemplateEngine();
 
   public static void main(String[] args) {
+    new SetUp().bootStrap();
     run();
   }
 
