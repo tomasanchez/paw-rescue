@@ -19,6 +19,10 @@ public class Router {
     startRoutes();
   }
 
+  public static HandlebarsTemplateEngine getEngine() {
+    return ENGINE;
+  }
+
   private static void startRoutes() {
     ControllerService controllerService = ControllerService.getInstance();
 
@@ -31,6 +35,7 @@ public class Router {
     // !IMPORTANT: Todos los controladores deben añadire al controller service
     controllerService.getControllersList()
         .forEach(controller -> Spark.get(controller.getPath(), controller::getViewModel, ENGINE));
+
 
     System.out.println("Server Initialized!");
   }
