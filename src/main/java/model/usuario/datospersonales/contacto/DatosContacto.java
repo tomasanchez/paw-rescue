@@ -54,16 +54,15 @@ public class DatosContacto {
   @Transient
   Contacto contacto;
 
-  public DatosContacto() {
-  }
+  public DatosContacto() {}
 
   /**
    * Instancia un contacto.
    * 
-   * @param nombre   el nombre del contato.
+   * @param nombre el nombre del contato.
    * @param apellido el apellido del contacto.
    * @param telefono un número de telefono.
-   * @param mail     una direccion de email.
+   * @param mail una direccion de email.
    */
   public DatosContacto(String nombre, String apellido, String telefono, String mail) {
     this.nombre = Objects.requireNonNull(nombre);
@@ -94,6 +93,10 @@ public class DatosContacto {
 
   public String getMail() {
     return this.mail;
+  }
+
+  public void setMail(String mail) {
+    this.mail = mail;
   }
 
 }
