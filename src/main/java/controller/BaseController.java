@@ -2,6 +2,7 @@ package controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -12,6 +13,20 @@ public abstract class BaseController {
    * View Model.
    */
   private Map<String, Object> model = new HashMap<String, Object>();
+
+  private static volatile Map<String, Object> baseModel;
+
+  /**
+   * Obtiene el modelo compartido entre todos los controllers.
+   * 
+   * @return el modelo compartido
+   */
+  public static Map<String, Object> getBaseModel() {
+    if (Objects.isNull(baseModel)) {
+      baseModel = new HashMap<String, Object>();
+    }
+    return baseModel;
+  }
 
   /**
    * Obtiene el nombre del controlador.
@@ -63,7 +78,9 @@ public abstract class BaseController {
    * @return el ViewModel
    */
   public ModelAndView getViewModel(Request request, Response response) {
+    getBaseModel().replace("loggedIn", isLogged(request));
     this.onInit(request, response);
+    this.getModel().putAll(getBaseModel());
     return new ModelAndView(this.getModel(), this.getViewName());
   }
 
@@ -73,6 +90,7 @@ public abstract class BaseController {
    * @return el nuevo model and view;
    */
   public ModelAndView getViewModel() {
+    this.getModel().putAll(getBaseModel());
     return new ModelAndView(this.getModel(), this.getViewName());
   }
 
@@ -83,5 +101,24 @@ public abstract class BaseController {
    * @param response la HTTP response.
    */
   protected abstract void onInit(Request request, Response response);
+
+
+  public static void initBaseModel() {
+    getBaseModel().put("loggedIn", false);
+  }
+
+  /**
+   * Chequea si hay un usuario loggeado.
+   * 
+   * @param request
+   * @return
+   */
+  protected boolean isLogged(Request request) {
+    return !Objects.isNull(request.session().attribute("uid"));
+  }
+
+  protected boolean isLogged() {
+    return (boolean) getBaseModel().get("loggedIn");
+  }
 
 }
