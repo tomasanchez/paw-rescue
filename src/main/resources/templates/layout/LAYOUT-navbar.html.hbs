@@ -57,24 +57,22 @@
             <li class="nav-item">
               <a class="nav-link" href="#">About</a>
             </li>
-            {{#if loggedIn}}
-              <form method="POST" action="/login" class="inline">
-                <li class="nav-item">
+            <li class="nav-item">
+              {{#if loggedIn}}
+                <form method="POST" action="/login" class="mt-0 mb-0">
                   <button
                     type="submit"
                     name="uid"
                     value="false"
-                    class="nav-link"
+                    class="btn btn-light nav-link mx-auto"
                   >
                     Log Out
                   </button>
-                </li>
-              </form>
-            {{else}}
-              <li class="nav-item">
+                </form>
+              {{else}}
                 <a class="nav-link" href="/login">Log In</a>
-              </li>
-            {{/if}}
+              {{/if}}
+            </li>
           </ul>
         </div>
       </div>
