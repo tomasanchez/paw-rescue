@@ -1,5 +1,6 @@
 package repositories;
 
+import javax.persistence.NoResultException;
 import db.PersistentEntitySet;
 import model.mascota.Mascota;
 import model.mascota.encontrada.MascotaEncontrada;
@@ -27,4 +28,17 @@ public class RepoUsers extends PersistentEntitySet<Usuario> {
   public boolean existeUsuario(Usuario usuario) {
     return getEntitySet().contains(usuario);
   }
+
+  public Usuario getLogin(String user, String password) {
+
+    try {
+      return (Usuario) entityManager()
+          .createQuery("FROM " + getTableName()
+              + " U WHERE U.usuario LIKE :user AND U.password LIKE :password")
+          .setParameter("user", user).setParameter("password", password).getSingleResult();
+    } catch (NoResultException exception) {
+      return null;
+    }
+  }
+
 }
