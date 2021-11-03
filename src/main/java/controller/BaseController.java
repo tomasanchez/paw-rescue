@@ -68,12 +68,20 @@ public abstract class BaseController {
   }
 
   /**
+   * Redibuja un ModelAndView.
+   * 
+   * @return el nuevo model and view;
+   */
+  public ModelAndView getViewModel() {
+    return new ModelAndView(this.getModel(), this.getViewName());
+  }
+
+  /**
    * Funcion llamada antes de obtener el View Model.
    * 
    * @param request la HTTP request.
    * @param response la HTTP response.
    */
   protected abstract void onInit(Request request, Response response);
-
 
 }
