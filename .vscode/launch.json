@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Boostrap",
+      "request": "launch",
+      "mainClass": "app.SetUp",
+      "projectName": "ejercicio"
+    },
+    {
+      "type": "java",
       "name": "Server",
       "request": "launch",
       "mainClass": "app.Router",
