@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import controller.BaseController;
+import controller.HomeController;
 import controller.LoginController;
 
 public class ControllerService {
@@ -52,9 +53,13 @@ public class ControllerService {
    * Inicializar todos los controllers.
    */
   private static void initControllers() {
+    // * Inicializo el modelo compartido entre los controllers
+    BaseController.initBaseModel();
+
     // ! Todos los controladores deben estar aquí
     // TODO: Agregar controllers
     addController(new LoginController());
+    addController(new HomeController());
   }
 
 }

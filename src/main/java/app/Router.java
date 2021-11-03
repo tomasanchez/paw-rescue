@@ -28,7 +28,7 @@ public class Router {
 
     // TODO: Home Page
     Spark.get("/", (req, res) -> {
-      res.redirect(controllerService.getController("login").getPath());
+      res.redirect(controllerService.getController("home").getPath());
       return null;
     });
 
