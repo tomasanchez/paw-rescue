@@ -82,7 +82,13 @@ public abstract class BaseController {
    */
   public ModelAndView getViewModel(Request request, Response response) {
     this.checkLogUser(request);
-    resourceBundle.updateMap(request.headers("Accept-Language"), getBaseModel());
+
+    if (Objects.isNull(getBaseModel().get("language"))) {
+      resourceBundle.updateMap(request.headers("Accept-Language"), getBaseModel());
+    } else {
+      resourceBundle.updateMap(String.valueOf(getBaseModel().get("language")), getBaseModel());
+    }
+
     this.onInit(request, response);
     this.getModel().putAll(getBaseModel());
     return new ModelAndView(this.getModel(), this.getViewName());
@@ -102,7 +108,7 @@ public abstract class BaseController {
     getBaseModel().put("loggedIn", false);
     getBaseModel().put("user", null);
     getBaseModel().put("userPrivilege", 0);
-    getBaseModel().put("test", "This is a test");
+    getBaseModel().put("language", null);
     getBaseModel().put("i18n", resourceBundle.getModel());
   }
 
