@@ -25,7 +25,7 @@ public class SetUp implements WithGlobalEntityManager, EntityManagerOps, Transac
     Usuario admin = newAdmin();
     admin.setPassword("admin");
 
-    if (!Objects.isNull(RepoUsers.getInstance().getEntity(1L))) {
+    if (Objects.isNull(RepoUsers.getInstance().getEntity(1L))) {
       withTransaction(() -> {
         persist(admin);
       });
