@@ -190,6 +190,11 @@ public class Usuario extends PersistentEntity {
   }
 
   public Usuario setPrivilege(Privilegio privilegios) {
+    this.privilegio = privilegios;
     return this;
+  }
+
+  public Privilegio getPrivileges() {
+    return this.privilegio;
   }
 }
