@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -52,6 +54,9 @@ public class Usuario extends PersistentEntity {
    */
   @Embedded
   DatosPersonales datosPersonales;
+
+  @Enumerated(EnumType.ORDINAL)
+  Privilegio privilegio;
 
   /**
    * Medios de comunicación preferidos por el usuario.
@@ -181,6 +186,10 @@ public class Usuario extends PersistentEntity {
   public Usuario recomendarAdopcion(PublicacionDarEnAdopcion recomendacion) {
     this.recomendacion = recomendacion;
     ServicioNotificacion.getInstance().notificarPosibleAdopcion(this, recomendacion);
+    return this;
+  }
+
+  public Usuario setPrivilege(Privilegio privilegios) {
     return this;
   }
 }
