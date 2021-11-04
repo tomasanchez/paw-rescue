@@ -3,6 +3,9 @@ package controller;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import i18n.ResourceBundle;
+import model.usuario.Usuario;
+import repositories.RepoUsers;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -13,7 +16,7 @@ public abstract class BaseController {
    * View Model.
    */
   private Map<String, Object> model = new HashMap<String, Object>();
-
+  private static volatile ResourceBundle resourceBundle = new ResourceBundle();
   private static volatile Map<String, Object> baseModel;
 
   /**
@@ -78,7 +81,8 @@ public abstract class BaseController {
    * @return el ViewModel
    */
   public ModelAndView getViewModel(Request request, Response response) {
-    getBaseModel().replace("loggedIn", isLogged(request));
+    this.checkLogUser(request);
+    resourceBundle.updateMap(request.headers("Accept-Language"), getBaseModel());
     this.onInit(request, response);
     this.getModel().putAll(getBaseModel());
     return new ModelAndView(this.getModel(), this.getViewName());
@@ -94,6 +98,25 @@ public abstract class BaseController {
     return new ModelAndView(this.getModel(), this.getViewName());
   }
 
+  public static void initBaseModel() {
+    getBaseModel().put("loggedIn", false);
+    getBaseModel().put("user", null);
+    getBaseModel().put("userPrivilege", 0);
+    getBaseModel().put("test", "This is a test");
+    getBaseModel().put("i18n", resourceBundle.getModel());
+  }
+
+  private void checkLogUser(Request request) {
+    getBaseModel().replace("loggedIn", isLogged(request));
+
+    if (this.isLogged()) {
+      Usuario user = this.getLoggedUser(request);
+      getBaseModel().replace("userPrivilege", user.getPrivileges().ordinal());
+      getBaseModel().replace("user", user);
+    }
+
+  }
+
   /**
    * Funcion llamada antes de obtener el View Model.
    * 
@@ -101,11 +124,6 @@ public abstract class BaseController {
    * @param response la HTTP response.
    */
   protected abstract void onInit(Request request, Response response);
-
-
-  public static void initBaseModel() {
-    getBaseModel().put("loggedIn", false);
-  }
 
   /**
    * Chequea si hay un usuario loggeado.
@@ -119,6 +137,10 @@ public abstract class BaseController {
 
   protected boolean isLogged() {
     return (boolean) getBaseModel().get("loggedIn");
+  }
+
+  protected Usuario getLoggedUser(Request request) {
+    return RepoUsers.getInstance().getEntity(request.session().attribute("uid"));
   }
 
 }
