@@ -38,16 +38,18 @@
           </thead>
           <tbody>
             <!-- Data rows -->
+            {{#caracteristicas}}
             <tr>
-              <form class="form-horizontal">
+              <form class="form-horizontal" id="form-feature-{{id}}" action="/features/{{id}}" method="POST">
                 <td>
                   <div class="form-floating input-group">
+                    <input name="delete" type="hidden" value="false" id="delete-{{id}}">
                     <input
                       name="valor"
                       type="text"
                       class="form-control"
                       placeholder="An existing feature"
-                      value=""
+                      value="{{valor}}"
                       required="true"
                     />
                     <label for="newFeature">{{i18n.edit}} {{i18n.feature}}</label>
@@ -56,7 +58,7 @@
                         <i class="fa fa-edit" aria-hidden="true"></i></button
                     ></span>
                     <span class="input-group-text">
-                      <button class="btn btn-outline-danger" type="submit">
+                      <button class="btn btn-outline-danger" type="submit" onclick="onBeforeSubmit({id}})">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                       </button>
                     </span>
@@ -64,6 +66,7 @@
                 </td>
               </form>
             </tr>
+            {{/caracteristicas}}
           </tbody>
         </table>
         <form class="mt-5">
@@ -101,15 +104,20 @@
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <!-- Mandatory DataTable Start-->
     <script>
-      $("#dataTable").DataTable();
-
       $(document).ready(function () {
-        $("#example").DataTable({
+        $("#dataTable").DataTable({
           language: {
             url: "dataTables.spanish.json",
           },
         });
       });
+
+      onBeforeSubmit = function(id){
+        if(true){
+          document.getElementById(`delete-${id}`).setValue(true);
+        }
+        $(`#form-feature-${id}`).submit();
+      }
     </script>
 {{/partial}}
 
