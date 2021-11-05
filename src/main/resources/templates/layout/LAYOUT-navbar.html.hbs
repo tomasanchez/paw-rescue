@@ -32,10 +32,11 @@
     {{#block "pageTitle"}}{{/block}}
   </head>
   <!-- Body -->
-  <body class="text-center">
-    <!-- Main Body -->
+  <body class="text-center pt-4">
+    <!-- Navbar Body -->
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
       <div class="container-fluid">
+        <!-- Brand Name -->
         <a class="navbar-brand" href="#">Rescate de Patitas</a>
         <button
           class="navbar-toggler"
@@ -48,8 +49,10 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+        <!-- Collapsable menu -->
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <!-- Home -->
             <li class="nav-item">
               <a
                 class="nav-link active"
@@ -59,11 +62,14 @@
             </li>
             {{#if loggedIn}}
               {{#if userPrivilege=2}}
+                <!-- Features -->
                 <li class="nav-item">
-                  <a class="nav-link" href="#">{{i18n.manageFeatures}}</a>
+                  <a
+                    class="nav-link"
+                    href="/features"
+                  >{{i18n.manageFeatures}}</a>
                 </li>
               {{/if}}
-
               <li class="dropdown nav-item">
                 <a
                   href="#"
@@ -106,7 +112,6 @@
                 <a class="nav-link" href="/login">Log In</a>
               </li>
             {{/if}}
-
           </ul>
         </div>
       </div>
@@ -120,6 +125,7 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    {{#block "customJS"}}{{/block}}
   </body>
 
 </html>

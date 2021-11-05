@@ -1,4 +1,11 @@
+
 {{#partial "customCSS"}}
+    <!-- Data Tables -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css"
+      crossorigin="anonymous"
+    />
 {{/partial}}
 
 
@@ -8,274 +15,102 @@
 {{/partial}}
 
 {{#partial "content"}}
-  <main class="container mt-auto overflow-auto">
-    <div class="container-patitas bg-light">
-      <div class="container mb-3">
-        <h1 class="h1">Panel de Caracteristicas</h1>
-      </div>
-      <div class="container">
-        <table class="table table-light table-hover table-responsive">
+  <main class="pt-3 mt-3 overflow-auto">
+      <!-- Panel Toolbar-->
+    <div class="mb-4 bg-light rounded-3 align-content-center text-center">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold">Ajsute de Características</h1>
+          <p>{{i18n.lorem}}</p>
+        </div>
+    </div>
+     <div class="container">
+       <!-- Table -->
+        <table
+          id="dataTable"
+          class="table table-striped table-borderless mt-3 mb-3"
+          style="width: 100%"
+        >
+         <!-- Column Headers -->
           <thead>
             <tr>
-              <th scope="col">Feature</th>
-              <th scope="col" />
-              <th scope="col" />
+              <th scope="col">Name</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>
-
-            <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>
-
-
-                        <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>
-
-
-                        <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>
-
-            <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>
-
-                        <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>
-
-                        <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>
-
-                        <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>
-
-
-                        <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>
-
-
-                        <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>
-
-                        <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>
-
-
-                        <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>
-
-                        <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>            <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>
-                        <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>            <tr>
-              <td><input class="form-control" type="text" value="Una caraceristica" /></td>
-              <td class="text-center">
-                <button class="btn btn-outline-primary">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-outline-danger">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-              </td>
-            </tr>
-
-
+            <!-- Data rows -->
             <tr>
               <form class="form-horizontal">
                 <td>
-                  <div class="form-floating">
+                  <div class="form-floating input-group">
                     <input
-                      name="password"
+                      name="valor"
                       type="text"
                       class="form-control"
-                      id="newFeature"
-                      placeholder="New Feature"
+                      placeholder="An existing feature"
+                      value="A Feature"
                       required="true"
                     />
-                    <label for="newFeature">Add a new feature...</label>
+                    <label for="newFeature">Edit this feature</label>
+                    <span class="input-group-text">
+                      <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-edit" aria-hidden="true"></i></button
+                    ></span>
+                    <span class="input-group-text">
+                      <button class="btn btn-outline-danger" type="submit">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                    </span>
                   </div>
-                </td>
-                <td class="text-center" />
-                <td class="text-center">
-                  <button class="btn btn-primary mt-2">
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                  </button>
                 </td>
               </form>
             </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+        <form class="mt-5">
+          <div class="form-floating input-group">
+            <input
+              name="valor"
+              type="text"
+              class="form-control"
+              id="newFeature"
+              placeholder="New Feature"
+              required="true"
+            />
+            <label for="newFeature">Add a new feature...</label>
+            <span class="input-group-text">
+              <button class="btn btn-primary" type="submit">
+                <i class="fa fa-plus" aria-hidden="true"></i></button
+            ></span>
+            <span class="input-group-text">
+              <button class="btn btn-outline-primary" type="reset">
+                <i class="fa fa-undo" aria-hidden="true"></i>
+              </button>
+            </span>
+          </div>
+        </form>
       </div>
-    </div>
   </main>
+{{/partial}}
+
+{{#partial "customJS"}}
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- JQuery Datatables-->
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <!-- Boostrap DataTables -->
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Mandatory DataTable Start-->
+    <script>
+      $("#dataTable").DataTable();
+
+      $(document).ready(function () {
+        $("#example").DataTable({
+          language: {
+            url: "dataTables.spanish.json",
+          },
+        });
+      });
+    </script>
 {{/partial}}
 
 {{> layout/LAYOUT-navbar.html.hbs }}
