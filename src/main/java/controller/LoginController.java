@@ -12,14 +12,19 @@ import spark.Spark;
 public class LoginController extends BaseController {
 
   @Override
-  protected void onInit(Request request, Response response) {
+  protected void onInit() {
+    Spark.post(this.getPath(), (req, res) -> this.onSession(req, res), Router.getEngine());
+  }
+
+  @Override
+  protected void onBeforeRendering(Request request, Response response) {
 
     if (this.isLogged()) {
+      response.status(401);
       response.redirect("/");
       return;
     }
 
-    Spark.post(this.getPath(), (req, res) -> this.onSession(req, res), Router.getEngine());
   }
 
   private ModelAndView onSession(Request request, Response response) {
@@ -64,7 +69,5 @@ public class LoginController extends BaseController {
 
     return this.getViewModel();
   }
-
-
 
 }

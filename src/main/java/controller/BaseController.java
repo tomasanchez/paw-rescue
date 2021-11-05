@@ -3,6 +3,8 @@ package controller;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import i18n.ResourceBundle;
 import model.usuario.Usuario;
 import repositories.RepoUsers;
@@ -11,7 +13,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public abstract class BaseController {
+public abstract class BaseController implements WithGlobalEntityManager, TransactionalOps {
 
   /**
    * View Model.
@@ -19,6 +21,10 @@ public abstract class BaseController {
   private Map<String, Object> model = new HashMap<String, Object>();
   private static volatile ResourceBundle resourceBundle = new ResourceBundle();
   private static volatile Map<String, Object> baseModel;
+
+  BaseController() {
+    this.onInit();
+  }
 
   /**
    * Obtiene el modelo compartido entre todos los controllers.
@@ -90,7 +96,7 @@ public abstract class BaseController {
       resourceBundle.updateMap(String.valueOf(getBaseModel().get("language")), getBaseModel());
     }
 
-    this.onInit(request, response);
+    this.onBeforeRendering(request, response);
     this.getModel().putAll(getBaseModel());
     return new ModelAndView(this.getModel(), this.getViewName());
   }
@@ -126,12 +132,17 @@ public abstract class BaseController {
   }
 
   /**
-   * Funcion llamada antes de obtener el View Model.
+   * Funcion llamada por única vez, antes de crear el controllador.
+   */
+  protected abstract void onInit();
+
+  /**
+   * Funcion llamada siempre antes de renderizar la Vista.
    * 
    * @param request la HTTP request.
    * @param response la HTTP response.
    */
-  protected abstract void onInit(Request request, Response response);
+  protected abstract void onBeforeRendering(Request request, Response response);
 
   /**
    * Chequea si hay un usuario loggeado.
@@ -152,11 +163,12 @@ public abstract class BaseController {
   }
 
   protected void requiereSession(Request request, Response response) {
-
     if (!isLogged(request)) {
       response.redirect(ControllerService.getInstance().getController("login").getPath());
     }
-
   }
 
+  protected void onRefreshView(Response response) {
+    response.redirect(this.getPath());
+  }
 }
