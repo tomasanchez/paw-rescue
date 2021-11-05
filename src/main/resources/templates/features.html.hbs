@@ -11,7 +11,7 @@
 
 <!-- Page Title -->
 {{#partial "pageTitle"}}
-  <title>Rescate Patitas | Features Panel</title>
+  <title>Rescate Patitas | {{i18n.featuresViewTitle}}</title>
 {{/partial}}
 
 {{#partial "content"}}
@@ -19,7 +19,7 @@
       <!-- Panel Toolbar-->
     <div class="mb-4 bg-light rounded-3 align-content-center text-center">
         <div class="container-fluid py-5">
-          <h1 class="display-5 fw-bold">Ajsute de Características</h1>
+          <h1 class="display-5 fw-bold">{{i18n.featuresTitleHeader}}</h1>
           <p>{{i18n.lorem}}</p>
         </div>
     </div>
@@ -33,7 +33,7 @@
          <!-- Column Headers -->
           <thead>
             <tr>
-              <th scope="col">Name</th>
+              <th scope="col">{{i18n.feature}}</th>
             </tr>
           </thead>
           <tbody>
@@ -47,10 +47,10 @@
                       type="text"
                       class="form-control"
                       placeholder="An existing feature"
-                      value="A Feature"
+                      value=""
                       required="true"
                     />
-                    <label for="newFeature">Edit this feature</label>
+                    <label for="newFeature">{{i18n.edit}} {{i18n.feature}}</label>
                     <span class="input-group-text">
                       <button class="btn btn-primary" type="submit">
                         <i class="fa fa-edit" aria-hidden="true"></i></button
@@ -76,7 +76,7 @@
               placeholder="New Feature"
               required="true"
             />
-            <label for="newFeature">Add a new feature...</label>
+            <label for="newFeature">{{i18n.addFeaturePh}}</label>
             <span class="input-group-text">
               <button class="btn btn-primary" type="submit">
                 <i class="fa fa-plus" aria-hidden="true"></i></button
