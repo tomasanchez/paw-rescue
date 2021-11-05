@@ -34,13 +34,18 @@
     <!-- Page Title-->
     {{#block "pageTitle"}}{{/block}}
   </head>
-
   <!-- Body -->
   <body class="text-center">
+    <script>
+      function openNav() {
+      document.getElementById("sidebar").classList.remove("side-bar");
+      document.getElementById("sidebar").classList.add("side-bar-hide")}
+    </script>
     <!-- Main Body -->
     {{#if loggedIn}}
       <!-- Side Bar-->
       <div
+        id="sidebar"
         class="d-flex flex-column flex-shrink-0 bg-light text-center side-bar"
       >
         <!-- Brand Logo-->
@@ -66,9 +71,9 @@
               <i class="fa fa-home side-bar-icon" aria-hidden="true"></i>
             </a>
           </li>
-          <!-- Characteristics -->
+          <!-- Features -->
           <li>
-            <a href="#" class="nav-link py-3 border-bottom" title="">
+            <a href="/features" class="nav-link py-3 border-bottom" title="">
               <i id="charNav" class="fa fa-palette side-bar-icon"></i>
             </a>
           </li>
@@ -104,12 +109,20 @@
                   value="false"
                   class="dropdown-item"
                 >
-                  Log Out
+                  {{i18n.signOut}}
                 </button>
               </form>
             </li>
           </ul>
         </div>
+      </div>
+      <div class="side-bar-button">
+        <button
+          class="btn btn-light bi bi-layout-sidebar-inset"
+          onclick="openNav()"
+        >
+          <i class="fa fa-angle-down" aria-hidden="true"></i>
+        </button>
       </div>
       {{! <div class="b-example-divider"></div> }}
     {{else}}

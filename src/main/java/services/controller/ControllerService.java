@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import controller.BaseController;
+import controller.FeaturesController;
 import controller.HomeController;
 import controller.LoginController;
 
@@ -60,6 +61,7 @@ public class ControllerService {
     // TODO: Agregar controllers
     addController(new LoginController());
     addController(new HomeController());
+    addController(new FeaturesController());
   }
 
 }

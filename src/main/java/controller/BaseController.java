@@ -6,6 +6,7 @@ import java.util.Objects;
 import i18n.ResourceBundle;
 import model.usuario.Usuario;
 import repositories.RepoUsers;
+import services.controller.ControllerService;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -148,6 +149,14 @@ public abstract class BaseController {
 
   protected Usuario getLoggedUser(Request request) {
     return RepoUsers.getInstance().getEntity(request.session().attribute("uid"));
+  }
+
+  protected void requiereSession(Request request, Response response) {
+
+    if (!isLogged(request)) {
+      response.redirect(ControllerService.getInstance().getController("login").getPath());
+    }
+
   }
 
 }
