@@ -70,6 +70,10 @@ public abstract class PersistentEntitySet<T> implements WithGlobalEntityManager 
     return entityManager().merge(entity);
   }
 
+  public T updateEntity(Long id) {
+    return updateEntity(getEntity(id));
+  }
+
   /**
    * Elimina una entidad de la base de datos.
    * 
@@ -77,5 +81,14 @@ public abstract class PersistentEntitySet<T> implements WithGlobalEntityManager 
    */
   public void deleteEntity(T entity) {
     entityManager().remove(entity);
+  }
+
+  /**
+   * Elimina una entidad de la base de datos.
+   * 
+   * @param entity la entidad a eliminarse
+   */
+  public void deleteEntity(Long id) {
+    deleteEntity(getEntity(id));
   }
 }
