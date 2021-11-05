@@ -27,137 +27,86 @@
     />
     <!-- Custom CSS-->
     <link rel="stylesheet" href="style/style.css" />
-    {{#if loggedIn}}
-      <link href="style/sidebar.css" rel="stylesheet" />
-    {{/if}}
     {{#block "customCSS"}}{{/block}}
     <!-- Page Title-->
     {{#block "pageTitle"}}{{/block}}
   </head>
   <!-- Body -->
   <body class="text-center">
-    <script>
-      function openNav() {
-      document.getElementById("sidebar").classList.remove("side-bar");
-      document.getElementById("sidebar").classList.add("side-bar-hide")}
-    </script>
     <!-- Main Body -->
-    {{#if loggedIn}}
-      <!-- Side Bar-->
-      <div
-        id="sidebar"
-        class="d-flex flex-column flex-shrink-0 bg-light text-center side-bar"
-      >
-        <!-- Brand Logo-->
-        <a href="#" class="d-block link-dark text-decoration-none mx-auto">
-          <i
-            class="fa fa-paw mt-3 mb-4 side-bar-icon-brand"
-            aria-hidden="true"
-          ></i>
-        </a>
-        <!-- Navigation Items -->
-        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-          <!-- Home -->
-          <li class="nav-item">
-            <a
-              href="#"
-              class="nav-link active py-3 border-bottom"
-              aria-current="page"
-              title=""
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-              data-bs-original-title="Home"
-            >
-              <i class="fa fa-home side-bar-icon" aria-hidden="true"></i>
-            </a>
-          </li>
-          <!-- Features -->
-          <li>
-            <a href="/features" class="nav-link py-3 border-bottom" title="">
-              <i id="charNav" class="fa fa-palette side-bar-icon"></i>
-            </a>
-          </li>
-        </ul>
-        <!-- Drop Down User panel-->
-        <div class="dropdown border-top">
-          <a
-            href="#"
-            class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
-            id="dropdownUser3"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="https://github.com/{{user.usuario}}.png"
-              alt="{{user.usuario}}"
-              width="50"
-              height="50"
-              class="rounded-circle"
-            />
-          </a>
-          <ul
-            class="dropdown-menu text-small shadow"
-            aria-labelledby="dropdownUser3"
-          >
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <form method="POST" action="/login" class="mt-0 mb-0">
-                <button
-                  type="submit"
-                  name="uid"
-                  value="false"
-                  class="dropdown-item"
-                >
-                  {{i18n.signOut}}
-                </button>
-              </form>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="side-bar-button">
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Rescate de Patitas</a>
         <button
-          class="btn btn-light bi bi-layout-sidebar-inset"
-          onclick="openNav()"
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-          <i class="fa fa-angle-down" aria-hidden="true"></i>
+          <span class="navbar-toggler-icon"></span>
         </button>
-      </div>
-      {{! <div class="b-example-divider"></div> }}
-    {{else}}
-      <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Rescate de Patitas</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarCollapse"
-            aria-controls="navbarCollapse"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            {{#if loggedIn}}
+              <li class="dropdown nav-item">
+                <a
+                  href="#"
+                  class="align-items-center link-dark text-decoration-none dropdown-toggle"
+                  id="dropdownUser3"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="https://github.com/{{user.usuario}}.png"
+                    alt="{{user.usuario}}"
+                    width="45"
+                    height="45"
+                    class="rounded-circle"
+                    onerror="this.src='https://avatars.githubusercontent.com/u/4492795?s=200&v=4'"
+                  />
+                </a>
+                <ul
+                  class="dropdown-menu text-small shadow justify-content-center"
+                  aria-labelledby="dropdownUser3"
+                >
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <form method="POST" action="/login" class="mt-0 mb-0">
+                      <button
+                        type="submit"
+                        name="uid"
+                        value="false"
+                        class="dropdown-item"
+                      >
+                        {{i18n.signOut}}
+                      </button>
+                    </form>
+                  </li>
+                </ul>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
+            {{else}}
               <li class="nav-item">
                 <a class="nav-link" href="/login">Log In</a>
               </li>
-            </ul>
-          </div>
+            {{/if}}
+
+          </ul>
         </div>
-      </nav>
-    {{/if}}
+      </div>
+    </nav>
 
     {{#block "content"}}{{/block}}
+
     <!-- Bootstrap JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
