@@ -117,8 +117,9 @@ public abstract class BaseController {
 
     if (this.isLogged()) {
       Usuario user = this.getLoggedUser(request);
-      getBaseModel().replace("userPrivilege", user.getPrivileges().ordinal());
-      getBaseModel().replace("user", user);
+      boolean hasPrivilege = Objects.isNull(user.getPrivileges());
+      getBaseModel().put("userPrivilege", hasPrivilege ? 0 : user.getPrivileges().ordinal());
+      getBaseModel().put("user", user);
     }
 
   }

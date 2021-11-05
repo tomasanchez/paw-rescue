@@ -6,6 +6,7 @@ import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import model.registro.RegistroDuenioMascota;
+import model.usuario.Privilegio;
 import model.usuario.Usuario;
 import model.usuario.datospersonales.contacto.DatosContacto;
 import model.usuario.datospersonales.documento.TipoDocumento;
@@ -24,6 +25,7 @@ public class SetUp implements WithGlobalEntityManager, EntityManagerOps, Transac
   public void bootStrap() {
     Usuario admin = newAdmin();
     admin.setPassword("admin");
+    admin.setPrivilege(Privilegio.ADMIN);
 
     if (Objects.isNull(RepoUsers.getInstance().getEntity(1L))) {
       withTransaction(() -> {
