@@ -103,3 +103,8 @@ main {
 .side-bar-icon {
   font-size: 1.7rem !important;
 }
+
+.side-bar {
+  width: 4rem;
+  height: 100vh;
+}

@@ -27,56 +27,123 @@
     />
     <!-- Custom CSS-->
     <link rel="stylesheet" href="style/style.css" />
+    {{#if loggedIn}}
+      <link href="style/sidebar.css" rel="stylesheet" />
+    {{/if}}
     {{#block "customCSS"}}{{/block}}
     <!-- Page Title-->
     {{#block "pageTitle"}}{{/block}}
   </head>
 
+  <!-- Body -->
   <body class="text-center">
-
     <!-- Main Body -->
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Rescate de Patitas</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarCollapse"
-          aria-controls="navbarCollapse"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              {{#if loggedIn}}
-                <form method="POST" action="/login" class="mt-0 mb-0">
-                  <button
-                    type="submit"
-                    name="uid"
-                    value="false"
-                    class="btn btn-light nav-link mx-auto"
-                  >
-                    Log Out
-                  </button>
-                </form>
-              {{else}}
-                <a class="nav-link" href="/login">Log In</a>
-              {{/if}}
+    {{#if loggedIn}}
+      <!-- Side Bar-->
+      <div
+        class="d-flex flex-column flex-shrink-0 bg-light text-center side-bar"
+      >
+        <!-- Brand Logo-->
+        <a href="#" class="d-block link-dark text-decoration-none mx-auto">
+          <i
+            class="fa fa-paw mt-3 mb-4 side-bar-icon-brand"
+            aria-hidden="true"
+          ></i>
+        </a>
+        <!-- Navigation Items -->
+        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+          <!-- Home -->
+          <li class="nav-item">
+            <a
+              href="#"
+              class="nav-link active py-3 border-bottom"
+              aria-current="page"
+              title=""
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-original-title="Home"
+            >
+              <i class="fa fa-home side-bar-icon" aria-hidden="true"></i>
+            </a>
+          </li>
+          <!-- Characteristics -->
+          <li>
+            <a href="#" class="nav-link py-3 border-bottom" title="">
+              <i id="charNav" class="fa fa-palette side-bar-icon"></i>
+            </a>
+          </li>
+        </ul>
+        <!-- Drop Down User panel-->
+        <div class="dropdown border-top">
+          <a
+            href="#"
+            class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
+            id="dropdownUser3"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="https://github.com/{{user.usuario}}.png"
+              alt="{{user.usuario}}"
+              width="50"
+              height="50"
+              class="rounded-circle"
+            />
+          </a>
+          <ul
+            class="dropdown-menu text-small shadow"
+            aria-labelledby="dropdownUser3"
+          >
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <form method="POST" action="/login" class="mt-0 mb-0">
+                <button
+                  type="submit"
+                  name="uid"
+                  value="false"
+                  class="dropdown-item"
+                >
+                  Log Out
+                </button>
+              </form>
             </li>
           </ul>
         </div>
       </div>
-    </nav>
+      {{! <div class="b-example-divider"></div> }}
+    {{else}}
+      <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Rescate de Patitas</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Log In</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    {{/if}}
+
     {{#block "content"}}{{/block}}
     <!-- Bootstrap JS -->
     <script
