@@ -58,7 +58,7 @@
                         <i class="fa fa-edit" aria-hidden="true"></i></button
                     ></span>
                     <span class="input-group-text">
-                      <button class="btn btn-outline-danger" type="submit" onclick="onBeforeSubmit({id}})">
+                      <button class="btn btn-outline-danger" type="submit" onclick="onBeforeSubmit({{id}})">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                       </button>
                     </span>
@@ -69,7 +69,7 @@
             {{/caracteristicas}}
           </tbody>
         </table>
-        <form class="mt-5">
+        <form class="mt-5" action="/features" method="POST">
           <div class="form-floating input-group">
             <input
               name="valor"
@@ -114,7 +114,7 @@
 
       onBeforeSubmit = function(id){
         if(true){
-          document.getElementById(`delete-${id}`).setValue(true);
+          document.getElementById(`delete-${id}`).value = true;
         }
         $(`#form-feature-${id}`).submit();
       }

@@ -64,9 +64,9 @@ public class Caracteristica extends PersistentEntity {
       throw new InvalidCaracteristicaException("No puede quedar vacía");
     }
 
-    if (!disponibles.isDisponible(valor)) {
-      throw new InvalidCaracteristicaException("La característica no existe");
-    }
+    // if (!disponibles.isDisponible(valor)) {
+    // throw new InvalidCaracteristicaException("La característica no existe");
+    // }
 
   }
 

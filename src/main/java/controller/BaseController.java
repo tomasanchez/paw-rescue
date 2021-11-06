@@ -163,7 +163,7 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   }
 
   protected void requiereSession(Request request, Response response) {
-    if (!isLogged(request)) {
+    if (!isLogged(request) || !isLogged()) {
       response.redirect(ControllerService.getInstance().getController("login").getPath());
     }
   }

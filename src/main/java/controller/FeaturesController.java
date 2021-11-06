@@ -26,12 +26,27 @@ public class FeaturesController extends BaseController {
   }
 
   private void onSetPost() {
-    Spark.post(this.getPath().concat("/:id"), (req, res) -> this.onPost(req, res),
+    Spark.post(this.getPath().concat("/:id"), (req, res) -> this.onMerge(req, res),
         Router.getEngine());
+
+    Spark.post(this.getPath(), (req, res) -> this.onPost(req, res), Router.getEngine());
   }
 
   private ModelAndView onPost(Request req, Response res) {
+    requiereSession(req, res);
+    try {
+      withTransaction(() -> RepoCaracteristicas.getInstance()
+          .createEntity(new Caracteristica(req.queryParams("valor"))));
+      res.status(201);
+    } catch (RuntimeException e) {
+      res.status(500);
+    }
 
+    return this.getViewModel(req, res);
+  }
+
+  private ModelAndView onMerge(Request req, Response res) {
+    requiereSession(req, res);
     Long id = Long.parseLong(req.params(":id"));
     Boolean del = Boolean.parseBoolean(req.queryParams("delete"));
 
