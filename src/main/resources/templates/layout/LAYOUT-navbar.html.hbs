@@ -55,9 +55,9 @@
             <!-- Home -->
             <li class="nav-item">
               <a
-                class="nav-link active"
+                class="nav-link {{navigation.home}}"
                 aria-current="page"
-                href="#"
+                href="/home"
               >{{i18n.home}}</a>
             </li>
             {{#if loggedIn}}
@@ -65,7 +65,7 @@
                 <!-- Features -->
                 <li class="nav-item">
                   <a
-                    class="nav-link"
+                    class="nav-link {{navigation.features}}"
                     href="/features"
                   >{{i18n.manageFeatures}}</a>
                 </li>
