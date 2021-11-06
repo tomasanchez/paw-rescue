@@ -39,6 +39,15 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   }
 
   /**
+   * Obtiene el bunlde de internacionalizacion.
+   * 
+   * @return el i18n resource bundle
+   */
+  public static ResourceBundle getResourceBundle() {
+    return resourceBundle;
+  }
+
+  /**
    * Obtiene el nombre del controlador.
    * 
    * ? Ej: HomeController => Home
@@ -164,6 +173,7 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
 
   protected void requiereSession(Request request, Response response) {
     if (!isLogged(request) || !isLogged()) {
+      response.status(401);
       response.redirect(ControllerService.getInstance().getController("login").getPath());
     }
   }
