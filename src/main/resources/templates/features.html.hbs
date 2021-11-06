@@ -20,7 +20,7 @@
     <div class="mb-4 bg-light rounded-3 align-content-center text-center">
         <div class="container-fluid py-5">
           <h1 class="display-5 fw-bold">{{i18n.featuresTitleHeader}}</h1>
-          <p>{{i18n.lorem}}</p>
+          <p>{{i18n.featuresViewText}}</p>
         </div>
     </div>
      <div class="container">
@@ -107,7 +107,7 @@
       $(document).ready(function () {
         $("#dataTable").DataTable({
           language: {
-            url: "dataTables.spanish.json",
+            url: `/locales/datatable.${navigator.language}.json`,
           },
         });
       });
