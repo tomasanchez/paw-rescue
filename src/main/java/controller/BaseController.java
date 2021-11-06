@@ -19,11 +19,12 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
    * View Model.
    */
   private Map<String, Object> model = new HashMap<String, Object>();
-  private static volatile ResourceBundle resourceBundle = new ResourceBundle();
-  private static volatile Map<String, Object> baseModel;
+  private static AppController appController = new AppController();
 
+  @SuppressWarnings("unchecked")
   BaseController() {
     this.onInit();
+    ((Map<String, Object>) getBaseModel().get("navigation")).put(this.getControllerName(), "");
   }
 
   /**
@@ -32,10 +33,7 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
    * @return el modelo compartido
    */
   public static Map<String, Object> getBaseModel() {
-    if (Objects.isNull(baseModel)) {
-      baseModel = new HashMap<String, Object>();
-    }
-    return baseModel;
+    return appController.getAppModel();
   }
 
   /**
@@ -44,7 +42,7 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
    * @return el i18n resource bundle
    */
   public static ResourceBundle getResourceBundle() {
-    return resourceBundle;
+    return appController.getResourceBundle();
   }
 
   /**
@@ -99,16 +97,14 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   public ModelAndView getViewModel(Request request, Response response) {
     this.checkLogUser(request);
 
-    if (Objects.isNull(getBaseModel().get("language"))) {
-      resourceBundle.updateMap(request.headers("Accept-Language"), getBaseModel());
-    } else {
-      resourceBundle.updateMap(String.valueOf(getBaseModel().get("language")), getBaseModel());
-    }
+    appController.updateLanguage(request);
+    appController.updateNavigationModel(this.getControllerName());
 
     this.onBeforeRendering(request, response);
     this.getModel().putAll(getBaseModel());
     return new ModelAndView(this.getModel(), this.getViewName());
   }
+
 
   /**
    * Redibuja un ModelAndView.
@@ -118,14 +114,6 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   public ModelAndView getViewModel() {
     this.getModel().putAll(getBaseModel());
     return new ModelAndView(this.getModel(), this.getViewName());
-  }
-
-  public static void initBaseModel() {
-    getBaseModel().put("loggedIn", false);
-    getBaseModel().put("user", null);
-    getBaseModel().put("userPrivilege", 0);
-    getBaseModel().put("language", null);
-    getBaseModel().put("i18n", resourceBundle.getModel());
   }
 
   private void checkLogUser(Request request) {
@@ -154,6 +142,16 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   protected abstract void onBeforeRendering(Request request, Response response);
 
   /**
+   * Obtiene el usuario loggeado de una session.
+   * 
+   * @param request la request con el usuario loggedo
+   * @return
+   */
+  protected Usuario getLoggedUser(Request request) {
+    return RepoUsers.getInstance().getEntity(request.session().attribute("uid"));
+  }
+
+  /**
    * Chequea si hay un usuario loggeado.
    * 
    * @param request
@@ -167,14 +165,9 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
     return (boolean) getBaseModel().get("loggedIn");
   }
 
-  protected Usuario getLoggedUser(Request request) {
-    return RepoUsers.getInstance().getEntity(request.session().attribute("uid"));
-  }
-
   protected void requiereSession(Request request, Response response) {
     if (!isLogged(request) || !isLogged()) {
-      response.status(401);
-      response.redirect(ControllerService.getInstance().getController("login").getPath());
+      response.redirect(ControllerService.getInstance().getController("login").getPath(), 401);
     }
   }
 
