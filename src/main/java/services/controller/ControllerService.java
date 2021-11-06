@@ -18,12 +18,12 @@ public class ControllerService {
 
   private ControllerService() {
     controllers = new HashMap<String, BaseController>();
+    initControllers();
   }
 
   public static ControllerService getInstance() {
     if (Objects.isNull(instance)) {
       instance = new ControllerService();
-      initControllers();
     }
     return instance;
   }
@@ -41,22 +41,19 @@ public class ControllerService {
    * 
    * @param controller un nuevo controller a agregar
    */
-  public static void addController(BaseController controller) {
-    getInstance().getControllers().put(controller.getControllerName(), controller);
+  public void addController(BaseController controller) {
+    this.getControllers().put(controller.getControllerName(), controller);
   }
 
   public BaseController getController(String controllerName) {
-    return getInstance().getControllers().get(controllerName);
+    return this.getControllers().get(controllerName);
   }
 
 
   /**
    * Inicializar todos los controllers.
    */
-  private static void initControllers() {
-    // * Inicializo el modelo compartido entre los controllers
-    BaseController.initBaseModel();
-
+  private void initControllers() {
     // ! Todos los controladores deben estar aquí
     // TODO: Agregar controllers
     addController(new LoginController());
