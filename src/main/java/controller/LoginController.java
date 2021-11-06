@@ -1,5 +1,6 @@
 package controller;
 
+import static spark.Spark.post;
 import java.util.Objects;
 import app.Router;
 import model.usuario.Usuario;
@@ -7,13 +8,12 @@ import repositories.RepoUsers;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-import spark.Spark;
 
 public class LoginController extends BaseController {
 
   @Override
   protected void onInit() {
-    Spark.post(this.getPath(), (req, res) -> this.onSession(req, res), Router.getEngine());
+    post(this.getPath(), (req, res) -> this.onSession(req, res), Router.getEngine());
   }
 
   @Override

@@ -1,7 +1,10 @@
 package app;
 
+import static spark.Spark.get;
+import static spark.Spark.port;
+import static spark.Spark.staticFileLocation;
+
 import services.controller.ControllerService;
-import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Router {
@@ -27,14 +30,14 @@ public class Router {
     ControllerService controllerService = ControllerService.getInstance();
 
     // TODO: Home Page
-    Spark.get("/", (req, res) -> {
+    get("/", (req, res) -> {
       res.redirect(controllerService.getController("home").getPath());
       return null;
     });
 
     // !IMPORTANT: Todos los controladores deben añadire al controller service
     controllerService.getControllersList()
-        .forEach(controller -> Spark.get(controller.getPath(), controller::getViewModel, ENGINE));
+        .forEach(controller -> get(controller.getPath(), controller::getViewModel, ENGINE));
 
 
     System.out.println("Server Initialized!");
@@ -45,9 +48,9 @@ public class Router {
    */
   private static void startServer() {
     System.out.println("Initializing server...");
-    Spark.port(PORT);
+    port(PORT);
     System.out.println("Listening to port " + PORT);
-    Spark.staticFileLocation("/public");
+    staticFileLocation("/public");
   }
 
 }
