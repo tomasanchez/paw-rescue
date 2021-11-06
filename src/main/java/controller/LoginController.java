@@ -20,7 +20,6 @@ public class LoginController extends BaseController {
   protected void onBeforeRendering(Request request, Response response) {
 
     if (this.isLogged()) {
-      response.status(401);
       response.redirect("/");
       return;
     }
@@ -58,12 +57,13 @@ public class LoginController extends BaseController {
 
 
     this.getModel().put("username", uname);
-    this.getModel().put("isValid", (!hasLogin ? "is-invalid" : "is-valid"));
+    this.getModel().put("isValid", (!hasLogin ? "is-invalid" : ""));
 
     if (hasLogin) {
       BaseController.getBaseModel().put("loggedIn", true);
       request.session().attribute("uid", user.getId());
       response.redirect("/");
+      response.status(200);
       return null;
     }
 
