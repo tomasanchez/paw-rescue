@@ -6,7 +6,6 @@ import static spark.Spark.staticFileLocation;
 import spark.debug.DebugScreen;
 
 import services.controller.ControllerService;
-import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Router {
