@@ -49,7 +49,6 @@ public class ResourceBundle {
     return this;
   }
 
-
   public ResourceBundle setLang(String lang) {
 
     if (Objects.isNull(lang) || lang.isEmpty() || lang.length() < 2) {
@@ -90,13 +89,10 @@ public class ResourceBundle {
   /**
    * Genera el modelo con los textos del idioma cargado.
    * 
-   * ? Las keys comienzan con el PREFIX. Ej: PREFIX = i18n>, i18n>menu.
-   * 
    */
   private void loadModel() {
-    this.setModel(this.getProps().entrySet().stream()
-        .collect(Collectors.toMap(e -> String.valueOf(e.getKey()),
-            e -> String.valueOf(e.getValue()), (prev, next) -> next, HashMap::new)));
+    this.setModel(this.getProps().entrySet().stream().collect(Collectors.toMap(e -> String.valueOf(e.getKey()),
+        e -> String.valueOf(e.getValue()), (prev, next) -> next, HashMap::new)));
   }
 
   /**
@@ -130,7 +126,4 @@ public class ResourceBundle {
     }
   }
 
-
 }
-
-
