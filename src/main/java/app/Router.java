@@ -3,8 +3,10 @@ package app;
 import static spark.Spark.get;
 import static spark.Spark.port;
 import static spark.Spark.staticFileLocation;
+import spark.debug.DebugScreen;
 
 import services.controller.ControllerService;
+import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Router {
@@ -14,6 +16,7 @@ public class Router {
 
   public static void main(String[] args) {
     new SetUp().bootStrap();
+    DebugScreen.enableDebugScreen();
     run();
   }
 
@@ -28,7 +31,7 @@ public class Router {
 
   private static void startRoutes() {
     ControllerService controllerService = ControllerService.getInstance();
-
+    
     // TODO: Home Page
     get("/", (req, res) -> {
       res.redirect(controllerService.getController("home").getPath());
