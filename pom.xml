@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ar.edu.utn.frba.dds</groupId>
@@ -78,7 +76,7 @@
       <version>1.0-alpha-1</version>
     </dependency>
 
-        <!-- UI dependencies -->
+    <!-- UI dependencies -->
     <dependency>
       <groupId>com.sparkjava</groupId>
       <artifactId>spark-core</artifactId>
@@ -90,17 +88,17 @@
       <artifactId>spark-template-handlebars</artifactId>
       <version>2.7.1</version>
     </dependency>
-    
+
     <dependency>
       <groupId>com.sparkjava</groupId>
       <artifactId>spark-debug-tools</artifactId>
       <version>0.5</version>
     </dependency>
-    
+
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
-      <version>2.3.1</version>
+      <version>2.8.9</version>
     </dependency>
 
     <!-- drivers jdbc -->
@@ -111,11 +109,11 @@
       <version>8.0.27</version>
     </dependency>
 
- 	<dependency>
-   		 <groupId>org.hsqldb</groupId>
-   		 <artifactId>hsqldb</artifactId>
-   		 <version>2.4.0</version>
-   	 </dependency>
+    <dependency>
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>2.4.0</version>
+    </dependency>
 
   </dependencies>
 
@@ -204,31 +202,31 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
-            <execution>
-                <id>build-b</id>
-                <phase>package</phase>
-                <goals>
-                    <goal>single</goal>
-                </goals>
-                <configuration>
-                  <archive>
-                    <manifest>
-                      <!-- Main -->
-                      <mainClass>app.RescatePatitas</mainClass>
-                    </manifest>
-                  </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <finalName>rescatepatitas</finalName>
-                </configuration>
-            </execution>
+          <execution>
+            <id>build-b</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <archive>
+                <manifest>
+                  <!-- Main -->
+                  <mainClass>app.RescatePatitas</mainClass>
+                </manifest>
+              </archive>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+              <finalName>rescatepatitas</finalName>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
     </plugins>
   </build>
 
-   <!-- Los repositorios son sólo necesarios si no fueron agregados ya al
+  <!-- Los repositorios son sólo necesarios si no fueron agregados ya al
     settings.xml como se explica en http://uqbar-wiki.org/index.php?title=Configuraci%C3%B3n_de_Maven_para_poder_utilizar_las_herramientas_de_Uqbar -->
   <repositories>
     <repository>
