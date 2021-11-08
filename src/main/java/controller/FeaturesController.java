@@ -20,6 +20,8 @@ public class FeaturesController extends BaseController {
   protected void onBeforeRendering(Request request, Response response) {
     requiereSession(request, response);
     updateFeaturesSet();
+    this.getModel().put("toastStatus", "bg-success");
+    this.getModel().put("toastMessage", getResourceBundle().getText("featureSuccess"));
   }
 
   @Override
@@ -40,15 +42,19 @@ public class FeaturesController extends BaseController {
 
   private ModelAndView onPost(Request req, Response res) {
     requiereSession(req, res);
+
+    this.getModel().put("showToast", true);
+
     try {
       withTransaction(
           () -> RepoCaracteristicas.getInstance().createEntity(new Caracteristica(req.queryParams("valor"))));
       res.status(201);
     } catch (RuntimeException e) {
       res.status(500);
+      this.getModel().put("toastStatus", "bg-error");
+      this.getModel().put("toastMessage", getResourceBundle().getText("featureError"));
     }
 
-    this.getModel().put("showToast", true);
     return this.getViewModel(req, res);
   }
 
@@ -56,9 +62,6 @@ public class FeaturesController extends BaseController {
     requiereSession(req, res);
     Long id = Long.parseLong(req.params(":id"));
     Boolean del = Boolean.parseBoolean(req.queryParams("delete"));
-
-    this.getModel().put("toastStatus", "bg-success");
-    this.getModel().put("toastMessage", getResourceBundle().getText("featureSuccess"));
 
     try {
       if (del) {
@@ -69,7 +72,7 @@ public class FeaturesController extends BaseController {
       res.status(200);
     } catch (RuntimeException e) {
       this.getModel().put("toastStatus", "bg-error");
-      this.getModel().put("toastMessage", getResourceBundle().getText("featureSuccess"));
+      this.getModel().put("toastMessage", getResourceBundle().getText("featureError"));
       res.status(500);
     }
 
