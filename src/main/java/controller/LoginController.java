@@ -26,6 +26,11 @@ public class LoginController extends BaseController {
 
   }
 
+  @Override
+  protected void onAfterRendering(Request request, Response response) {
+    // TODO Auto-generated method stub
+  }
+
   private ModelAndView onSession(Request request, Response response) {
 
     if (Objects.isNull(request.queryParams("uid"))) {
@@ -54,7 +59,6 @@ public class LoginController extends BaseController {
 
     Usuario user = RepoUsers.getInstance().getLogin(uname, password);
     boolean hasLogin = !Objects.isNull(user);
-
 
     this.getModel().put("username", uname);
     this.getModel().put("isValid", (!hasLogin ? "is-invalid" : ""));

@@ -13,6 +13,7 @@ public class FeaturesController extends BaseController {
   @Override
   protected void onInit() {
     onSetPost();
+    this.getModel().put("showToast", false);
   }
 
   @Override
@@ -21,13 +22,18 @@ public class FeaturesController extends BaseController {
     updateFeaturesSet();
   }
 
+  @Override
+  protected void onAfterRendering(Request request, Response response) {
+    this.getModel().put("showToast", false);
+  }
+
   private void updateFeaturesSet() {
+    this.getModel().remove("caracteristicas");
     this.getModel().put("caracteristicas", RepoCaracteristicas.getInstance().getEntitySet());
   }
 
   private void onSetPost() {
-    Spark.post(this.getPath().concat("/:id"), (req, res) -> this.onMerge(req, res),
-        Router.getEngine());
+    Spark.post(this.getPath().concat("/:id"), (req, res) -> this.onMerge(req, res), Router.getEngine());
 
     Spark.post(this.getPath(), (req, res) -> this.onPost(req, res), Router.getEngine());
   }
@@ -35,13 +41,14 @@ public class FeaturesController extends BaseController {
   private ModelAndView onPost(Request req, Response res) {
     requiereSession(req, res);
     try {
-      withTransaction(() -> RepoCaracteristicas.getInstance()
-          .createEntity(new Caracteristica(req.queryParams("valor"))));
+      withTransaction(
+          () -> RepoCaracteristicas.getInstance().createEntity(new Caracteristica(req.queryParams("valor"))));
       res.status(201);
     } catch (RuntimeException e) {
       res.status(500);
     }
 
+    this.getModel().put("showToast", true);
     return this.getViewModel(req, res);
   }
 
@@ -50,37 +57,39 @@ public class FeaturesController extends BaseController {
     Long id = Long.parseLong(req.params(":id"));
     Boolean del = Boolean.parseBoolean(req.queryParams("delete"));
 
-    if (del) {
-      this.onDeleteFeature(id, res);
-    } else {
-      this.onUpdateFeature(id, req.queryParams("valor"), res);
+    this.getModel().put("toastStatus", "bg-success");
+    this.getModel().put("toastMessage", getResourceBundle().getText("featureSuccess"));
+
+    try {
+      if (del) {
+        this.onDeleteFeature(id, res);
+      } else {
+        this.onUpdateFeature(id, req.queryParams("valor"), res);
+      }
+      res.status(200);
+    } catch (RuntimeException e) {
+      this.getModel().put("toastStatus", "bg-error");
+      this.getModel().put("toastMessage", getResourceBundle().getText("featureSuccess"));
+      res.status(500);
     }
 
+    this.getModel().put("showToast", true);
     res.redirect(this.getPath());
-
     return null;
   }
 
   private void onUpdateFeature(Long id, String valor, Response res) {
 
-    try {
-      Caracteristica c = RepoCaracteristicas.getInstance().getEntity(id);
-      c.setValor(valor);
-      withTransaction(() -> RepoCaracteristicas.getInstance().updateEntity(c));
-      res.status(200);
-    } catch (RuntimeException e) {
-      res.status(500);
-    }
+    Caracteristica c = RepoCaracteristicas.getInstance().getEntity(id);
+    c.setValor(valor);
+    withTransaction(() -> RepoCaracteristicas.getInstance().updateEntity(c));
+    res.status(200);
 
   }
 
   private void onDeleteFeature(Long id, Response res) {
-    try {
-      withTransaction(() -> RepoCaracteristicas.getInstance().deleteEntity(id));
-      res.status(200);
-    } catch (RuntimeException e) {
-      res.status(500);
-    }
+    withTransaction(() -> RepoCaracteristicas.getInstance().deleteEntity(id));
+    res.status(200);
   }
 
 }

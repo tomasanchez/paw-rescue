@@ -1,5 +1,7 @@
 package controller;
 
+import static spark.Spark.after;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -25,6 +27,7 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   BaseController() {
     this.onInit();
     ((Map<String, Object>) getBaseModel().get("navigation")).put(this.getControllerName(), "");
+    after(this.getPath(), (req, res) -> onAfterRendering(req, res));
   }
 
   /**
@@ -86,11 +89,10 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
     this.model = model;
   }
 
-
   /**
    * Obtiene la ruta del viewmodel.
    * 
-   * @param request la HTTP request
+   * @param request  la HTTP request
    * @param response la HTTP response
    * @return el ViewModel
    */
@@ -104,7 +106,6 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
     this.getModel().putAll(getBaseModel());
     return new ModelAndView(this.getModel(), this.getViewName());
   }
-
 
   /**
    * Redibuja un ModelAndView.
@@ -136,10 +137,18 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   /**
    * Funcion llamada siempre antes de renderizar la Vista.
    * 
-   * @param request la HTTP request.
+   * @param request  la HTTP request.
    * @param response la HTTP response.
    */
   protected abstract void onBeforeRendering(Request request, Response response);
+
+  /**
+   * Método llamado despues de renderizar la vista.
+   * 
+   * @param request  la spark request
+   * @param response la spark response
+   */
+  protected abstract void onAfterRendering(Request request, Response response);
 
   /**
    * Obtiene el usuario loggeado de una session.

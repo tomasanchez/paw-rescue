@@ -5,7 +5,6 @@ import spark.Response;
 
 public class HomeController extends BaseController {
 
-
   @Override
   protected void onInit() {
     // TODO Auto-generated method stub
@@ -17,6 +16,10 @@ public class HomeController extends BaseController {
     // TODO Auto-generated method stub
   }
 
+  @Override
+  protected void onAfterRendering(Request request, Response response) {
+    // TODO Auto-generated method stub
 
+  }
 
 }
