@@ -120,7 +120,7 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   private void checkLogUser(Request request) {
     getBaseModel().replace("loggedIn", isLogged(request));
 
-    if (this.isLogged()) {
+    if (this.isLogged() && Objects.isNull(getBaseModel().get("user"))) {
       Usuario user = this.getLoggedUser(request);
       boolean hasPrivilege = Objects.isNull(user.getPrivileges());
       getBaseModel().put("userPrivilege", hasPrivilege ? 0 : user.getPrivileges().ordinal());
