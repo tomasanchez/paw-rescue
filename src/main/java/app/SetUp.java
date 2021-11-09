@@ -1,10 +1,10 @@
 package app;
 
 import java.time.LocalDate;
-import java.util.Objects;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
+import exceptions.usuario.UsuarioYaExisteException;
 import model.registro.RegistroDuenioMascota;
 import model.usuario.Privilegio;
 import model.usuario.Usuario;
@@ -27,10 +27,12 @@ public class SetUp implements WithGlobalEntityManager, EntityManagerOps, Transac
     admin.setPassword("admin");
     admin.setPrivilege(Privilegio.ADMIN);
 
-    if (Objects.isNull(RepoUsers.getInstance().getEntity(1L))) {
+    try {
       withTransaction(() -> {
-        persist(admin);
+        RepoUsers.getInstance().createEntity(admin);
       });
+    } catch (UsuarioYaExisteException e) {
+      System.out.println("Admin ya existe!");
     }
   }
 
