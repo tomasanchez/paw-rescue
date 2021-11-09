@@ -197,4 +197,10 @@ public class Usuario extends PersistentEntity {
   public Privilegio getPrivileges() {
     return this.privilegio;
   }
+
+  public Usuario setDatosPersonales(DatosPersonales dp) {
+    this.datosPersonales = dp;
+    return this;
+  }
 }
+

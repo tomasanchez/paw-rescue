@@ -73,7 +73,6 @@ public class RegistroDuenioMascota extends RegistroDatosPersonales {
    */
   public Usuario mascotaOwner() {
     Usuario owner = new Usuario(usuario, password, datosPersonales(), mascotas);
-    adminUsers.createEntity(owner);
     return owner;
   }
 }

@@ -1,0 +1,166 @@
+
+{{#partial "customCSS"}}
+<link rel="stylesheet" href="style/signup.css" />
+{{/partial}}
+
+<!-- Page Title -->
+{{#partial "pageTitle"}}
+  <title>RdP | Sign Up</title>
+{{/partial}}
+
+{{#partial "content"}}
+    <div class="container form-signup bg-light">
+      <h1 class="text-center mb-3 display-5">{{i18n.signUp}}</h1>
+      <form action="/signup" method="post">
+        <div class="container mb-1">
+          <!-- User name -->
+          <div class="mb-3 form-floating">
+            <input
+              id="uname"
+              type="text"
+              name="uname"
+              class="form-control {{user-valid}}"
+              placeholder="Username"
+              aria-label="Username"
+              required
+            />
+            <label class="ms-1" for="uname">{{i18n.username}}</label>
+            <div id="passWordValidation" class="invalid-feedback">
+              {{i18n.usernameAlredyTaken}}
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-3 form-floating">
+            <input
+              id="password"
+              type="password"
+              name="password"
+              class="form-control {{pw-valid}}"
+              placeholder="Password"
+              aria-label="Password"
+              minlength="{{minLength}}"
+              required
+            />
+            <label class="ms-1" for="uname">{{i18n.password}}</label>
+            <div id="passWordValidation" class="invalid-feedback">
+              {{i18n.weakPassword}}
+            </div>
+          </div>
+
+          <!-- Personal Data -->
+          <div class="row mb-2">
+            <!-- First Name -->
+            <div class="col-md-auto form-floating mb-2">
+              <input
+                id="name"
+                type="text"
+                name="name"
+                class="form-control"
+                placeholder="First name"
+                aria-label="First name"
+                required
+              />
+              <label class="ms-1" for="name">{{i18n.firstName}}</label>
+            </div>
+            <!-- Last Name -->
+            <div class="col-md-auto form-floating mb-2">
+              <input
+                id="lastName"
+                type="text"
+                name="lastName"
+                class="form-control"
+                placeholder="Last name"
+                aria-label="Last name"
+                required
+              />
+              <label class="ms-1" for="lastName">{{i18n.lastName}}</label>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <!-- Birthday -->
+            <div class="col-md form-floating mb-2">
+              <input
+                id="datePicker"
+                type="date"
+                name="date"
+                class="form-control"
+                placeholder="Email"
+                aria-label="Email"
+                required
+              />
+              <label class="ms-2">{{i18n.birthday}}</label>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <!-- ID Type -->
+            <div class="col-md-auto form-floating mb-2">
+              <select class="form-select" name="typeId">
+                {{#tiposDocs}}
+                <option value="{{this}}">{{this}}</option>
+                {{/tiposDocs}}
+              </select>
+              <label class="ms-2">{{i18n.typeId}}</label>
+            </div>
+            <!-- ID Number -->
+            <div class="col-md-auto form-floating">
+              <input
+                id="id"
+                type="number"
+                name="id"
+                class="form-control"
+                placeholder="ID"
+                aria-label="ID"
+                min="0"
+                required
+              />
+              <label class="ms-2">{{i18n.idNumber}}</label>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <!-- Email -->
+            <div class="col-md-auto form-floating mb-2">
+              <input
+                type="email"
+                name="email"
+                class="form-control"
+                placeholder="Email"
+                aria-label="Email"
+                required
+              />
+              <label class="ms-2">{{i18n.email}}</label>
+            </div>
+            <!-- Phone -->
+            <div class="col-md-auto form-floating">
+              <input
+                id="tel"
+                type="tel"
+                name="phone"
+                class="form-control"
+                placeholder="Phone"
+                aria-label="Phone"
+                required
+              />
+              <label class="ms-2">{{i18n.phone}}</label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success btn-lg mt-2">
+          {{i18n.signUp}}
+        </button>
+      </form>
+    </div>
+{{/partial}}
+
+{{#partial "customJS"}}
+    <script type="text/javascript">
+      document.getElementById("datePicker").max = new Date()
+        .toISOString()
+        .split("T")[0];
+    </script>
+{{/partial}}
+
+{{> layout/LAYOUT.html.hbs }}

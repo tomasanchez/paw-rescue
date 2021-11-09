@@ -9,6 +9,7 @@ import controller.BaseController;
 import controller.FeaturesController;
 import controller.HomeController;
 import controller.LoginController;
+import controller.SignUpController;
 
 public class ControllerService {
 
@@ -59,6 +60,7 @@ public class ControllerService {
     addController(new LoginController());
     addController(new HomeController());
     addController(new FeaturesController());
+    addController(new SignUpController());
   }
 
 }
