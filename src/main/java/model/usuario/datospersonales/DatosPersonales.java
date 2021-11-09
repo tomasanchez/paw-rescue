@@ -46,20 +46,25 @@ public class DatosPersonales {
   @Embedded
   private DatosContacto contacto;
 
-  public DatosPersonales() {
+  public DatosPersonales() {}
+
+  public DatosPersonales(String nombre, String apellido, Documento documento, String mail,
+      String tel, LocalDate fechaNacimiento) {
+    this(nombre, apellido, documento, fechaNacimiento,
+        new DatosContacto(nombre, apellido, tel, mail));
   }
 
   /**
    * Instancia datos personales.
    * 
-   * @param nombre          el nombre de la persona
-   * @param apellido        su apellido
-   * @param documento       tipo documento y numerodocumento
+   * @param nombre el nombre de la persona
+   * @param apellido su apellido
+   * @param documento tipo documento y numerodocumento
    * @param fechaNacimiento dia del nacimiento
-   * @param contacto        datos de un contacto
+   * @param contacto datos de un contacto
    */
-  public DatosPersonales(String nombre, String apellido, Documento documento, LocalDate fechaNacimiento,
-      DatosContacto contacto) {
+  public DatosPersonales(String nombre, String apellido, Documento documento,
+      LocalDate fechaNacimiento, DatosContacto contacto) {
     this.nombre = Objects.requireNonNull(nombre);
     this.apellido = Objects.requireNonNull(apellido);
     this.documento = Objects.requireNonNull(documento);
