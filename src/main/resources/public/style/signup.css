@@ -1,0 +1,59 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #775997;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #e1cfeb, #82679f);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #e1cfeb, #82679f);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.form-signup {
+  width: 100%;
+  padding: 15px;
+  margin: auto;
+  max-width: 650px;
+  color: #212121;
+  border-radius: 25px;
+  border: 4px solid #ccad74;
+}
+
+@media only screen and (max-width: 600px) and (orientation: landscape) {
+  .form-signup {
+    max-width: 350px;
+  }
+}
+
+.form-signup .checkbox {
+  font-weight: 400;
+}
+
+.form-signup .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signup input {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signup input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.paw-logo {
+  font-size: 60px;
+  color: #b1753d;
+}
