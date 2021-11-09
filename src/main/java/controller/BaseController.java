@@ -51,7 +51,7 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   /**
    * Obtiene el nombre del controlador.
    * 
-   * ? Ej: HomeController => Home
+   * ? Ej: HomeController => home
    * 
    * @return el nombre del controller
    */
@@ -92,7 +92,7 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   /**
    * Obtiene la ruta del viewmodel.
    * 
-   * @param request  la HTTP request
+   * @param request la HTTP request
    * @param response la HTTP response
    * @return el ViewModel
    */
@@ -137,7 +137,7 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   /**
    * Funcion llamada siempre antes de renderizar la Vista.
    * 
-   * @param request  la HTTP request.
+   * @param request la HTTP request.
    * @param response la HTTP response.
    */
   protected abstract void onBeforeRendering(Request request, Response response);
@@ -145,7 +145,7 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   /**
    * Método llamado despues de renderizar la vista.
    * 
-   * @param request  la spark request
+   * @param request la spark request
    * @param response la spark response
    */
   protected abstract void onAfterRendering(Request request, Response response);
