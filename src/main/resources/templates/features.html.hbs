@@ -1,29 +1,20 @@
 
-{{#partial "customCSS"}}
-    <!-- Data Tables -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css"
-      crossorigin="anonymous"
-    />
-{{/partial}}
 
 
 <!-- Page Title -->
-{{#partial "pageTitle"}}
-  <title>Rescate Patitas | {{i18n.featuresViewTitle}}</title>
+{{#partial "viewName"}}
+  {{i18n.featuresViewTitle}}
 {{/partial}}
 
-{{#partial "content"}}
-  <main class="pt-3 mt-3 overflow-auto">
-      <!-- Panel Toolbar-->
-    <div class="mb-4 bg-light rounded-3 align-content-center text-center">
-      <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">{{i18n.featuresTitleHeader}}</h1>
-        <p>{{i18n.featuresViewText}}</p>
-      </div>
-    </div>
-    <div class="container">
+{{#partial "headerTitle"}}
+  {{i18n.featuresTitleHeader}}
+{{/partial}}
+
+{{#partial "subtext"}}
+  {{i18n.featuresViewText}}
+{{/partial}}
+
+{{#partial "table"}}
       <!-- Table -->
       <table
         id="dataTable"
@@ -98,64 +89,6 @@
           </span>
         </div>    
       </form>
-      <!-- Flexbox container for aligning the toasts -->
-      <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-        <!-- Then put toasts within -->
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <strong class="me-auto">Rescate de Patitas</strong>
-            <small>{{i18n.justNow}}</small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-          </div>
-          <div class="toast-body {{toastStatus}} text-white">
-            {{toastMessage}}
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
 {{/partial}}
 
-{{#partial "customJS"}}
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <!-- JQuery Datatables-->
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <!-- Boostrap DataTables -->
-    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-    <!-- Mandatory DataTable Start-->
-    <script>
-      $(document).ready(function () {
-
-        // Inits DataTables
-        if(!navigator.language.startsWith("en")){
-          $("#dataTable").DataTable({
-              language: {
-                url: `/locales/datatable.${navigator.language}.json`,
-            },
-          });
-        } else{
-          $("#dataTable").DataTable();
-        }
-
-        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-        var toastList = toastElList.map(function(toastEl) {
-
-        // Creates an array of toasts (it only initializes them)
-          return new bootstrap.Toast(toastEl) // No need for options; use the default options
-        });
-        
-        if({{showToast}}){
-          toastList.forEach(toast => toast.show()); // This show them
-        }
-      
-      });
-
-      onBeforeSubmit = function(id){
-          document.getElementById(`delete-${id}`).value = true;
-         $(`#form-feature-${id}`).submit();
-      }
-    </script>
-{{/partial}}
-
-{{> layout/LAYOUT-navbar.html.hbs }}
+{{> layout/LAYOUT-table.html.hbs }}
