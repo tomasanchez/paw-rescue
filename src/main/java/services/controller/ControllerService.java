@@ -5,11 +5,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
 import controller.BaseController;
 import controller.FeaturesController;
 import controller.HomeController;
 import controller.LoginController;
 import controller.SignUpController;
+import controller.RegisterPetController;
+
+
 
 public class ControllerService {
 
@@ -61,6 +65,7 @@ public class ControllerService {
     addController(new HomeController());
     addController(new FeaturesController());
     addController(new SignUpController());
+    addController(new RegisterPetController());
   }
 
 }
