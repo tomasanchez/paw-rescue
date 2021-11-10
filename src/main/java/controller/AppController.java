@@ -15,6 +15,8 @@ public class AppController {
   AppController() {
     getAppModel().put("loggedIn", false);
     getAppModel().put("user", null);
+    getAppModel().put("isAdmin", false);
+    getAppModel().put("isVoluntario", false);
     getAppModel().put("userPrivilege", 0);
     getAppModel().put("language", null);
     getAppModel().put("i18n", resourceBundle.getModel());

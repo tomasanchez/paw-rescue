@@ -8,6 +8,7 @@ import java.util.Objects;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import i18n.ResourceBundle;
+import model.usuario.Privilegio;
 import model.usuario.Usuario;
 import repositories.RepoUsers;
 import services.controller.ControllerService;
@@ -120,10 +121,15 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   private void checkLogUser(Request request) {
     getBaseModel().replace("loggedIn", isLogged(request));
 
+    // Si está loggeado y no cargamos el usuario
     if (this.isLogged() && Objects.isNull(getBaseModel().get("user"))) {
       Usuario user = this.getLoggedUser(request);
       boolean hasPrivilege = Objects.isNull(user.getPrivileges());
       getBaseModel().put("userPrivilege", hasPrivilege ? 0 : user.getPrivileges().ordinal());
+      getBaseModel().put("isAdmin",
+          (Integer) getBaseModel().get("userPrivilege") == Privilegio.ADMIN.ordinal());
+      getBaseModel().put("isVoluntario",
+          (Integer) getBaseModel().get("userPrivilege") == Privilegio.VOLUNTARIO.ordinal());
       getBaseModel().put("user", user);
     }
 
