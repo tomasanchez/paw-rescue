@@ -61,6 +61,12 @@
               >{{i18n.home}}</a>
             </li>
             {{#if loggedIn}}
+              <li class="nav-item">
+                <a
+                  class="nav-link {{navigation.registerpet}}"
+                  href="/registerpet"
+                >{{i18n.registerPet}}</a>
+              </li>
               {{#if userPrivilege=2}}
                 <!-- Features -->
                 <li class="nav-item">
