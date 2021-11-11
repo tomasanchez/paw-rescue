@@ -10,7 +10,7 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Router {
 
-  private static final Integer PORT = 8083;
+  private static final Integer PORT = 8080;
   private static final HandlebarsTemplateEngine ENGINE = new HandlebarsTemplateEngine();
 
   public static void main(String[] args) {
