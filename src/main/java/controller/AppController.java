@@ -9,7 +9,6 @@ import spark.Request;
 public class AppController {
 
   private volatile Map<String, Object> appModel = new HashMap<>();
-  private volatile Map<String, Object> navModel = new HashMap<>();
   private volatile ResourceBundle resourceBundle = new ResourceBundle();
 
   AppController() {
@@ -20,7 +19,9 @@ public class AppController {
     getAppModel().put("userPrivilege", 0);
     getAppModel().put("language", null);
     getAppModel().put("i18n", resourceBundle.getModel());
-    getAppModel().put("navigation", navModel);
+    getAppModel().put("navigation", new HashMap<String, Object>());
+    getAppModel().put("hrefs", new HashMap<String, Object>());
+
   }
 
   public Map<String, Object> getAppModel() {
@@ -31,8 +32,9 @@ public class AppController {
     this.appModel = appModel;
   }
 
+  @SuppressWarnings("unchecked")
   public Map<String, Object> getNavModel() {
-    return navModel;
+    return (Map<String, Object>) getAppModel().get("navigation");
   }
 
   public ResourceBundle getResourceBundle() {

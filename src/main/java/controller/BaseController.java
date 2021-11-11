@@ -28,6 +28,8 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   BaseController() {
     this.onInit();
     ((Map<String, Object>) getBaseModel().get("navigation")).put(this.getControllerName(), "");
+    ((Map<String, Object>) getBaseModel().get("hrefs")).put(this.getControllerName(),
+        this.getPath());
     after(this.getPath(), (req, res) -> onAfterRendering(req, res));
   }
 
@@ -132,7 +134,6 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
           (Integer) getBaseModel().get("userPrivilege") == Privilegio.VOLUNTARIO.ordinal());
       getBaseModel().put("user", user);
     }
-
   }
 
   /**
@@ -183,6 +184,12 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   protected void requiereSession(Request request, Response response) {
     if (!isLogged(request) || !isLogged()) {
       response.redirect(ControllerService.getInstance().getController("login").getPath(), 401);
+    }
+  }
+
+  protected void requireAdmin(Response response) {
+    if (!(boolean) getBaseModel().get("isAdmin")) {
+      response.redirect(ControllerService.getInstance().getController("home").getPath(), 403);
     }
   }
 
