@@ -67,6 +67,14 @@ public class DatosPersonales {
     this.contacto = Objects.requireNonNull(contacto);
   }
 
+  public DatosPersonales(DatosContacto contacto) {
+    this.nombre = Objects.requireNonNull(contacto.getNombre());
+    this.apellido = Objects.requireNonNull(contacto.getApellido());
+    this.documento = null;
+    this.fechaNacimiento = null;
+    this.contacto = Objects.requireNonNull(contacto);
+  }
+
   public String getNombre() {
     return this.nombre;
   }

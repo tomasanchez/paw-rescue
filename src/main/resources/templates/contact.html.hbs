@@ -1,0 +1,56 @@
+{{#partial "customCSS"}}
+<link rel="stylesheet" href="style/contact.css" />
+{{/partial}}
+
+<!-- Page Title -->
+{{#partial "pageTitle"}}
+<title>RdP | Contact Information</title>
+{{/partial}}
+
+{{#partial "content"}}
+<!-- Required meta tags -->
+
+<div class="form-rescue bg-light">
+    <h1 class="display-5 fw-bold lh-1 mb-3">
+      {{i18n.contactinfo}}
+    </h1>
+    <form action="/contact" method="POST">
+        <div class="d-flex flex-row justify-content-between">
+            <div>
+                <div class="form-floating">
+                    <input name="name" type="text" class="form-control" id="floatingInput"
+                        placeholder="Name" required="true" />
+                    <label for="floatingInput">{{i18n.name}}</label>
+                </div>
+
+                <div class="form-floating">
+                    <input name="last_name" type="text" class="form-control" id="floatingInput"
+                        placeholder="Last Name" required="true" />
+                    <label for="floatingPassword">{{i18n.last_name}}</label>
+                </div>
+
+                <div class="form-floating">
+                    <input name="mail" type="text" class="form-control" id="floatingInput"
+                        placeholder="mail"/>
+                    <label for="floatingPassword">{{i18n.mail}}</label>
+                </div>
+                <div class="form-floating">
+                    <input name="phone" type="text" class="form-control" id="floatingInput"
+                      placeholder="phone" required="true" />
+                    <label for="floatingPassword">{{i18n.phone}}</label>
+                </div>
+            </div>
+            
+        </div>
+        <div style="padding-top: 10%;">
+
+            <button class="w-100 btn btn-lg btn-success" type="submit">Submit</button>
+
+
+
+        </div>
+    </form>
+</div>
+{{/partial}}
+
+{{> layout/LAYOUT.html.hbs }}

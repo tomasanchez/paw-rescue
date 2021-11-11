@@ -73,6 +73,10 @@ public class MascotaEncontrada extends PersistentEntity {
     return this;
   }
 
+  public void setTamanio(TamanioMascota tamanio) {
+    this.tamanio = tamanio;
+  }
+
   public String getDescripcion() {
     return this.descripcion;
   }
@@ -128,7 +132,7 @@ public class MascotaEncontrada extends PersistentEntity {
    * @param tamanio         TODO
    */
   public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar, LocalDate fecha, Chapita chapita,
-      List<Caracteristica> caracteristicas, TamanioMascota tamanio) {
+                           List<Caracteristica> caracteristicas, TamanioMascota tamanio) {
     this.foto = foto;
     this.descripcion = descripcion;
     this.lugar = lugar;
