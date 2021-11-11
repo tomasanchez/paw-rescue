@@ -45,11 +45,6 @@ public class DuenioMascotaTest implements WithGlobalEntityManager {
   }
 
   @Test
-  void duenioEstaRegistrado() {
-    Assertions.assertTrue(adminUsers.existeUsuario(duenio));
-  }
-
-  @Test
   void duenioPoneChapitaAMascota() {
     Mascota mascota = new Mascota();
     duenio.registrarMascota(mascota);

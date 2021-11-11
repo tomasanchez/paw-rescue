@@ -50,10 +50,11 @@ public class RepoUsersTest implements WithGlobalEntityManager {
 
   @Test
   void seRecuperaListadoDeUsuarios() {
+    int previousSize = repository.getEntitySet().size();
     repository.createEntity(owner);
     repository.createEntity(new Usuario());
     entityManager().flush();
-    assertEquals(2, repository.getEntitySet().size());
+    assertEquals(previousSize + 2, repository.getEntitySet().size());
   }
 
   @Test
@@ -68,11 +69,12 @@ public class RepoUsersTest implements WithGlobalEntityManager {
 
   @Test
   void seEliminaUnUsuario() {
+    int previousSize = repository.getEntitySet().size();
     repository.createEntity(owner);
     entityManager().flush();
     repository.deleteEntity(owner);
     entityManager().flush();
-    assertEquals(0, repository.getEntitySet().size());
+    assertEquals(previousSize, repository.getEntitySet().size());
   }
 
   @Test
@@ -83,4 +85,5 @@ public class RepoUsersTest implements WithGlobalEntityManager {
     entityManager().flush();
     Assertions.assertEquals(owner.getId(), repository.buscarDuenio(mascota).getId());
   }
+
 }
