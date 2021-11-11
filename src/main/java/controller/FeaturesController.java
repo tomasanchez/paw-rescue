@@ -19,7 +19,7 @@ public class FeaturesController extends BaseController {
   @Override
   protected void onBeforeRendering(Request request, Response response) {
     requiereSession(request, response);
-    requireAdmin(response);
+    requireAdmin(request, response);
     updateFeaturesSet();
     this.getModel().put("toastStatus", "bg-success");
     this.getModel().put("toastMessage", getResourceBundle().getText("featureSuccess"));

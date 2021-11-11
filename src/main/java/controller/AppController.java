@@ -21,6 +21,7 @@ public class AppController {
     getAppModel().put("i18n", resourceBundle.getModel());
     getAppModel().put("navigation", new HashMap<String, Object>());
     getAppModel().put("hrefs", new HashMap<String, Object>());
+    getAppModel().put("previousHash", null);
 
   }
 
@@ -56,5 +57,4 @@ public class AppController {
   public void updateNavigationModel(String currentView) {
     getNavModel().replaceAll((k, v) -> v = k.equals(currentView) ? "active" : "");
   }
-
 }

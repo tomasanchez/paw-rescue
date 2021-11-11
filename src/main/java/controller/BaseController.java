@@ -100,13 +100,15 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
    * @return el ViewModel
    */
   public ModelAndView getViewModel(Request request, Response response) {
-    this.checkLogUser(request);
+    checkLogUser(request);
 
     appController.updateLanguage(request);
     appController.updateNavigationModel(this.getControllerName());
 
-    this.onBeforeRendering(request, response);
-    this.getModel().putAll(getBaseModel());
+    checkRedirects(request, response);
+
+    onBeforeRendering(request, response);
+    getModel().putAll(getBaseModel());
     return new ModelAndView(this.getModel(), this.getViewName());
   }
 
@@ -118,6 +120,15 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   public ModelAndView getViewModel() {
     this.getModel().putAll(getBaseModel());
     return new ModelAndView(this.getModel(), this.getViewName());
+  }
+
+  private void checkRedirects(Request request, Response response) {
+    String previousHash = (String) getBaseModel().get("previous");
+    if (!Objects.isNull(previousHash) && !request.matchedPath()
+        .equals(ControllerService.getInstance().getController("login").getPath())) {
+      response.redirect(previousHash);
+      getBaseModel().put("previous", null);
+    }
   }
 
   private void checkLogUser(Request request) {
@@ -183,17 +194,18 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
 
   protected void requiereSession(Request request, Response response) {
     if (!isLogged(request) || !isLogged()) {
+      getBaseModel().put("previous", request.matchedPath());
       response.redirect(ControllerService.getInstance().getController("login").getPath(), 401);
     }
   }
 
-  protected void requireAdmin(Response response) {
+  protected void requireAdmin(Request request, Response response) {
     if (!(boolean) getBaseModel().get("isAdmin")) {
       response.redirect(ControllerService.getInstance().getController("home").getPath(), 403);
     }
   }
 
-  protected void onRefreshView(Response response) {
+  protected void onRefreshView(Request request, Response response) {
     response.redirect(this.getPath());
   }
 }
