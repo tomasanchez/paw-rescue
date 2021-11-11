@@ -19,6 +19,7 @@ public class FeaturesController extends BaseController {
   @Override
   protected void onBeforeRendering(Request request, Response response) {
     requiereSession(request, response);
+    requireAdmin(response);
     updateFeaturesSet();
     this.getModel().put("toastStatus", "bg-success");
     this.getModel().put("toastMessage", getResourceBundle().getText("featureSuccess"));
@@ -35,7 +36,8 @@ public class FeaturesController extends BaseController {
   }
 
   private void onSetPost() {
-    Spark.post(this.getPath().concat("/:id"), (req, res) -> this.onMerge(req, res), Router.getEngine());
+    Spark.post(this.getPath().concat("/:id"), (req, res) -> this.onMerge(req, res),
+        Router.getEngine());
 
     Spark.post(this.getPath(), (req, res) -> this.onPost(req, res), Router.getEngine());
   }
@@ -46,8 +48,8 @@ public class FeaturesController extends BaseController {
     this.getModel().put("showToast", true);
 
     try {
-      withTransaction(
-          () -> RepoCaracteristicas.getInstance().createEntity(new Caracteristica(req.queryParams("valor"))));
+      withTransaction(() -> RepoCaracteristicas.getInstance()
+          .createEntity(new Caracteristica(req.queryParams("valor"))));
       res.status(201);
     } catch (RuntimeException e) {
       res.status(500);
