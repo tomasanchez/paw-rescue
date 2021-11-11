@@ -12,6 +12,8 @@ import controller.HomeController;
 import controller.LoginController;
 import controller.SignUpController;
 import controller.RegisterPetController;
+import controller.ContactController;
+import controller.RescueController;
 
 
 
@@ -66,6 +68,8 @@ public class ControllerService {
     addController(new FeaturesController());
     addController(new SignUpController());
     addController(new RegisterPetController());
+    addController(new RescueController());
+    addController(new ContactController());
   }
 
 }
