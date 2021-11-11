@@ -3,6 +3,7 @@ package model.usuario;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -71,8 +72,8 @@ public class Usuario extends PersistentEntity {
   Asociacion asociacion;
 
 
-  @OneToMany
-  @JoinColumn(name = "mascota_id")
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name = "owner_id")
   private List<Mascota> mascotas = new ArrayList<>();
 
   // @ManyToOne
