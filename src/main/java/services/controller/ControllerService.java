@@ -5,15 +5,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
 import controller.BaseController;
+import controller.ContactController;
 import controller.FeaturesController;
 import controller.HomeController;
 import controller.LoginController;
-import controller.SignUpController;
+import controller.PetsController;
 import controller.RegisterPetController;
-import controller.ContactController;
 import controller.RescueController;
+import controller.SignUpController;
 
 
 
@@ -63,11 +63,12 @@ public class ControllerService {
   private void initControllers() {
     // ! Todos los controladores deben estar aquí
     // TODO: Agregar controllers
-    addController(new LoginController());
     addController(new HomeController());
-    addController(new FeaturesController());
+    addController(new LoginController());
     addController(new SignUpController());
+    addController(new PetsController());
     addController(new RegisterPetController());
+    addController(new FeaturesController());
     addController(new RescueController());
     addController(new ContactController());
   }

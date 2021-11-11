@@ -1,0 +1,62 @@
+<!-- Page Title -->
+{{#partial "viewName"}}
+  {{i18n.petsViewTitle}}
+{{/partial}}
+
+{{#partial "headerTitle"}}
+  {{i18n.petsTitleHeader}}
+{{/partial}}
+
+{{#partial "subtext"}}
+  {{i18n.petsViewText}}
+{{/partial}}
+
+
+{{#partial "table"}}
+      <!-- Table -->
+      <table
+        id="dataTable"
+        class="table table-hover table-borderless table-sm mt-3 mb-3 text-center"
+        style="width: 100%"
+      >
+        <!-- Column Headers -->
+        <thead>
+          <tr>
+            <th scope="col">{{i18n.name}}</th>
+            <th scope="col">{{i18n.petType}}</th>
+            <th scope="col">{{i18n.petSex}}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Data rows -->
+          {{#user.mascotas}}
+          <tr>
+            <td>
+              <span>{{nombre}}</span>
+            </td>
+            <td>
+              <span>{{tipoMascota}}</span>
+            <td>
+              <span>{{sexo}}</span>
+            </td>
+            <td>
+              <span style="display:none">{{id}}</span>
+              <form class="mb-0 mt-0">
+                <button class="btn btn-outline-danger mt-0 mb-0" type="submit" onclick="onBeforeSubmit({{id}})">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+          {{/user.mascotas}}
+        </tbody>
+      </table>
+      <div class="container mt-4">
+        <a class="btn btn-success btn-lg" href="{{hrefs.registerpet}}">
+          {{i18n.registerPet}}
+        </a>
+      </div>
+{{/partial}}
+
+{{> layout/LAYOUT-table.html.hbs }}
