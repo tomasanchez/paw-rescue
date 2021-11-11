@@ -7,7 +7,7 @@
         primary key (id)
     )
 
-    create table Caracteristicas (
+    create table Caracteristica (
         id bigint not null auto_increment,
         valor varchar(255),
         primary key (id)
@@ -38,7 +38,7 @@
         sexo varchar(255),
         tipoMascota varchar(255),
         chapita_id bigint,
-        mascota_id bigint,
+        owner_id bigint,
         primary key (id)
     )
 
@@ -165,15 +165,19 @@
         fechaNacimiento tinyblob,
         nombre varchar(255),
         password varchar(255),
+        privilegio integer,
         usuario varchar(255),
         asociacion_id bigint,
         primary key (id)
     )
 
+    alter table Usuario 
+        add constraint UK_op7pcokowhg0t5hyblw6qkd1j  unique (usuario, mail)
+
     alter table Caracteristicas_By_Mascota 
         add constraint FK_24b6rrw5koqsqd1fmvdyutqgy 
         foreign key (mascota_id) 
-        references Caracteristicas (id)
+        references Caracteristica (id)
 
     alter table Caracteristicas_By_Mascota 
         add constraint FK_aniwoc3qagh4a7nt3vq8g0iom 
@@ -183,7 +187,7 @@
     alter table Caracteristicas_By_MascotaEncontrada 
         add constraint FK_7jugvxutgfrhu93i85h7ri84f 
         foreign key (mascota_id) 
-        references Caracteristicas (id)
+        references Caracteristica (id)
 
     alter table Caracteristicas_By_MascotaEncontrada 
         add constraint FK_od27ytugs4c8jhljesc5hu2g7 
@@ -201,8 +205,8 @@
         references Chapitas (id)
 
     alter table Mascota 
-        add constraint FK_re5vmqdgmn229ghjcs8qyqfen 
-        foreign key (mascota_id) 
+        add constraint FK_6tlsnu1x25h30qs1yq1sl3tks 
+        foreign key (owner_id) 
         references Usuario (id)
 
     alter table MascotaEncontrada_foto 
