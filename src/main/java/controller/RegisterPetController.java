@@ -20,6 +20,11 @@ import static spark.Spark.post;
 public class RegisterPetController extends BaseController {
 
   @Override
+  public String getPath() {
+    return "/pets/new";
+  }
+
+  @Override
   protected void onInit() {
     post(this.getPath(), (req, res) -> this.onPost(req, res), Router.getEngine());
   }
@@ -30,7 +35,7 @@ public class RegisterPetController extends BaseController {
     this.getModel().put("caracteristicas", RepoCaracteristicas.getInstance().getEntitySet());
     this.getModel().put("tipos", TipoMascota.values());
     this.getModel().put("sexos", Sexo.values());
-    
+
   }
 
   @Override
@@ -44,7 +49,7 @@ public class RegisterPetController extends BaseController {
       response.redirect(ControllerService.getInstance().getController("login").getPath());
     }
   }
-  
+
   private ModelAndView onPost(Request req, Response res) {
     requiereSession(req, res);
     String nombre = req.queryParams("name");
@@ -55,11 +60,10 @@ public class RegisterPetController extends BaseController {
     List<String> fotos = Arrays.asList(req.queryParams("photos"));
     String descripcionFisica = req.queryParams("description");
     List<String> caracteristicasTxt = Arrays.asList(req.queryParams("characteristics").split(","));
-    
+
     try {
-      withTransaction(
-          () -> new Mascota(nombre, apodo, tipoMascota, edad, sexo, descripcionFisica, fotos, new Chapita())
-      );
+      withTransaction(() -> new Mascota(nombre, apodo, tipoMascota, edad, sexo, descripcionFisica,
+          fotos, new Chapita()));
       res.status(201);
     } catch (RuntimeException e) {
       res.status(500);
