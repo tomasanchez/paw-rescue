@@ -24,10 +24,13 @@ public class RescueController extends BaseController {
   @Override
   protected void onInit() {
     post(this.getPath(), (req, res) -> this.onFound(req, res), Router.getEngine());
+    this.getModel().put("tipos", TipoMascota.values());
+    this.getModel().put("sizes", TamanioMascota.values());
   }
 
   @Override
   protected void onBeforeRendering(Request request, Response response) {
+
   }
 
   @Override
@@ -37,15 +40,15 @@ public class RescueController extends BaseController {
 
   private ModelAndView onFound(Request request, Response response) {
     String descripcion = request.queryParams("description");
-    Coordenada coordenada = new Coordenada(request.queryParams("positionX"),
-      request.queryParams("positionY"));
-    TipoMascota tipoMascota = request.queryParams("type").equals("0")
-      ? TipoMascota.PERRO : TipoMascota.GATO;
-    TamanioMascota tamanioMascota = request.queryParams("size").equals("0")
-      ? TamanioMascota.GRANDE : (request.queryParams("size").equals("1")
-      ? TamanioMascota.MEDIANA : TamanioMascota.PEQUEÑA);
-    long chapitaId = parseLong(request.queryParams("tag")
-      .equals("") ? "-1" : request.queryParams("tag"));
+    Coordenada coordenada =
+        new Coordenada(request.queryParams("positionX"), request.queryParams("positionY"));
+    TipoMascota tipoMascota =
+        request.queryParams("type").equals("0") ? TipoMascota.PERRO : TipoMascota.GATO;
+    TamanioMascota tamanioMascota = request.queryParams("size").equals("0") ? TamanioMascota.GRANDE
+        : (request.queryParams("size").equals("1") ? TamanioMascota.MEDIANA
+            : TamanioMascota.PEQUEÑA);
+    long chapitaId =
+        parseLong(request.queryParams("tag").equals("") ? "-1" : request.queryParams("tag"));
     Chapita chapita;
     if (chapitaId == -1)
       chapita = null;
