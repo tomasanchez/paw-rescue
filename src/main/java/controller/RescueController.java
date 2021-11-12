@@ -14,6 +14,9 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static spark.Spark.post;
 import static java.lang.Long.parseLong;
 
@@ -38,12 +41,13 @@ public class RescueController extends BaseController {
 
   private ModelAndView onFound(Request request, Response response) {
     String descripcion = request.queryParams("description");
+    List<String> fotos = Arrays.asList(request.queryParams("photos"));
     Coordenada coordenada =
       new Coordenada(request.queryParams("positionX"), request.queryParams("positionY"));
     TipoMascota tipoMascota =
-      request.queryParams("type").equals("0") ? TipoMascota.PERRO : TipoMascota.GATO;
-    TamanioMascota tamanioMascota = request.queryParams("size").equals("0") ? TamanioMascota.GRANDE
-      : (request.queryParams("size").equals("1") ? TamanioMascota.MEDIANA
+      request.queryParams("type").equals("PERRO") ? TipoMascota.PERRO : TipoMascota.GATO;
+    TamanioMascota tamanioMascota = request.queryParams("size").equals("GRANDE") ? TamanioMascota.GRANDE
+      : (request.queryParams("size").equals("MEDIANA") ? TamanioMascota.MEDIANA
       : TamanioMascota.PEQUEÑA);
     long chapitaId =
       parseLong(request.queryParams("tag").equals("") ? "-1" : request.queryParams("tag"));
@@ -60,7 +64,6 @@ public class RescueController extends BaseController {
         return null;
       }
 
-
     }
     MascotaEncontrada mascotaEncontrada = new MascotaEncontrada();
     mascotaEncontrada.setChapita(chapita);
@@ -68,7 +71,7 @@ public class RescueController extends BaseController {
     mascotaEncontrada.setLugar(coordenada);
     mascotaEncontrada.setTipoMascota(tipoMascota);
     mascotaEncontrada.setTamanio(tamanioMascota);
-
+    mascotaEncontrada.setFoto(fotos);
     if (this.isLogged()) {
       Usuario user = this.getLoggedUser(request);
       Rescate rescate = new Rescate();
