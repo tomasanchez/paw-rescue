@@ -43,7 +43,13 @@ public class ContactController extends BaseController {
     String last_name = request.queryParams("last_name");
     String mail = request.queryParams("mail");
     String phone = request.queryParams("phone");
-    // TODO validar que tenga mail o telefono
+    
+    if (mail.equals("") && phone.equals("")) {
+        // TODO cartel debe completar telefono o mail
+      BaseController.getBaseModel().put("mascotaEncontrada", mascotaEncontrada);
+      response.redirect("/contact");
+      return null;
+    }
     DatosContacto datosContacto = new DatosContacto(name, last_name, phone, mail);
 
     DatosPersonales datosPersonales = new DatosPersonales(datosContacto);
