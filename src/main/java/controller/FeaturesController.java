@@ -13,7 +13,6 @@ public class FeaturesController extends BaseController {
   @Override
   protected void onInit() {
     onSetPost();
-    this.getModel().put("showToast", false);
   }
 
   @Override
@@ -21,13 +20,11 @@ public class FeaturesController extends BaseController {
     requiereSession(request, response);
     requireAdmin(request, response);
     updateFeaturesSet();
-    this.getModel().put("toastStatus", "bg-success");
-    this.getModel().put("toastMessage", getResourceBundle().getText("featureSuccess"));
   }
 
   @Override
   protected void onAfterRendering(Request request, Response response) {
-    this.getModel().put("showToast", false);
+    onInitToast();
   }
 
   private void updateFeaturesSet() {
@@ -45,16 +42,14 @@ public class FeaturesController extends BaseController {
   private ModelAndView onPost(Request req, Response res) {
     requiereSession(req, res);
 
-    this.getModel().put("showToast", true);
-
     try {
       withTransaction(() -> RepoCaracteristicas.getInstance()
           .createEntity(new Caracteristica(req.queryParams("valor"))));
+      onSwitchToast(true);
       res.status(201);
     } catch (RuntimeException e) {
       res.status(500);
-      this.getModel().put("toastStatus", "bg-error");
-      this.getModel().put("toastMessage", getResourceBundle().getText("featureError"));
+      onSwitchToast(false);
     }
 
     return this.getViewModel(req, res);
@@ -71,14 +66,13 @@ public class FeaturesController extends BaseController {
       } else {
         this.onUpdateFeature(id, req.queryParams("valor"), res);
       }
+      onSwitchToast(true);
       res.status(200);
     } catch (RuntimeException e) {
-      this.getModel().put("toastStatus", "bg-error");
-      this.getModel().put("toastMessage", getResourceBundle().getText("featureError"));
+      onSwitchToast(false);
       res.status(500);
     }
 
-    this.getModel().put("showToast", true);
     res.redirect(this.getPath());
     return null;
   }

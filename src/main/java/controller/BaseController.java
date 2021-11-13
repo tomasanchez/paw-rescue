@@ -27,6 +27,7 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   @SuppressWarnings("unchecked")
   BaseController() {
     this.onInit();
+    this.onInitToast();
     ((Map<String, Object>) getBaseModel().get("navigation")).put(this.getControllerName(), "");
     ((Map<String, Object>) getBaseModel().get("hrefs")).put(this.getControllerName(),
         this.getPath());
@@ -169,6 +170,25 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
    * @param response la spark response
    */
   protected abstract void onAfterRendering(Request request, Response response);
+
+  /**
+   * Inicializa el toast message, ocultandolo.
+   */
+  protected void onInitToast() {
+    this.getModel().put("showToast", false);
+  }
+
+  /**
+   * Intercala el toast message con mensajes de error y éxito.
+   * 
+   * @param status true para mostrar exito, false para mostrar error.
+   */
+  protected void onSwitchToast(boolean status) {
+    this.getModel().put("showToast", true);
+    this.getModel().put("toastStatus", status ? "bg-success" : "bg-danger");
+    this.getModel().put("toastMessage", status ? getResourceBundle().getText("featureSuccess")
+        : getResourceBundle().getText("featureError"));
+  }
 
   /**
    * Obtiene el usuario loggeado de una session.
