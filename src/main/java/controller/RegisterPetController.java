@@ -34,12 +34,11 @@ public class RegisterPetController extends BaseController {
     this.getModel().put("caracteristicas", RepoCaracteristicas.getInstance().getEntitySet());
     this.getModel().put("tipos", TipoMascota.values());
     this.getModel().put("sexos", Sexo.values());
-
   }
 
   @Override
   protected void onAfterRendering(Request request, Response response) {
-    this.getModel().put("showToast", false);
+    onInitToast();
   }
 
   @Override
@@ -56,11 +55,11 @@ public class RegisterPetController extends BaseController {
     try {
       withTransaction(() -> user.registrarMascota(buildMascota(req)));
       res.status(201);
+      onSwitchToast(true);
       res.redirect(ControllerService.getInstance().getController("pets").getPath());
     } catch (RuntimeException e) {
       res.status(500);
-      this.getModel().put("toastStatus", "bg-error");
-      this.getModel().put("toastMessage", getResourceBundle().getText("featureError"));
+      onSwitchToast(false);
     }
     return this.getViewModel(req, res);
   }
