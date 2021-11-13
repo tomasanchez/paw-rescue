@@ -138,12 +138,14 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
     if (this.isLogged() && Objects.isNull(getBaseModel().get("user"))) {
       Usuario user = this.getLoggedUser(request);
       boolean hasPrivilege = Objects.isNull(user.getPrivileges());
-      getBaseModel().put("userPrivilege", hasPrivilege ? 0 : user.getPrivileges().ordinal());
+      getBaseModel().put("user", user);
+      getBaseModel().put("userPrivilege",
+          hasPrivilege ? 0 : ((Usuario) getBaseModel().get("user")).getPrivileges().ordinal());
       getBaseModel().put("isAdmin",
           (Integer) getBaseModel().get("userPrivilege") == Privilegio.ADMIN.ordinal());
       getBaseModel().put("isVoluntario",
           (Integer) getBaseModel().get("userPrivilege") == Privilegio.VOLUNTARIO.ordinal());
-      getBaseModel().put("user", user);
+
     }
   }
 
@@ -176,6 +178,14 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
    */
   protected Usuario getLoggedUser(Request request) {
     return RepoUsers.getInstance().getEntity(request.session().attribute("uid"));
+  }
+
+
+  protected Usuario onRefreshUser() {
+    Usuario user = (Usuario) getBaseModel().get("user");
+    Usuario refreshed = RepoUsers.getInstance().getEntity(user.getId());
+    getBaseModel().put("user", refreshed);
+    return refreshed;
   }
 
   /**

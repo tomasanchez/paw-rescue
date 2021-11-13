@@ -7,13 +7,13 @@ public class PetsController extends BaseController {
 
   @Override
   protected void onInit() {
-    // TODO Auto-generated method stub
     getModel().put("showToast", false);
   }
 
   @Override
   protected void onBeforeRendering(Request request, Response response) {
     requiereSession(request, response);
+    onRefreshUser();
   }
 
   @Override
