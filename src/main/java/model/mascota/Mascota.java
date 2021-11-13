@@ -11,10 +11,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
 
 import db.PersistentEntity;
 import model.mascota.caracteristica.Caracteristica;
 import model.mascota.encontrada.MascotaEncontrada;
+
 
 @Entity
 public class Mascota extends PersistentEntity {
@@ -35,7 +37,7 @@ public class Mascota extends PersistentEntity {
   @JoinTable(name = "Caracteristicas_By_Mascota", joinColumns = @JoinColumn(name = "caracteritsitca_id"), inverseJoinColumns = @JoinColumn(name = "mascota_id"))
   private List<Caracteristica> caracteristicas;
 
-  @OneToOne
+  @OneToOne(cascade=CascadeType.ALL)
   private Chapita chapita;
 
   /**
