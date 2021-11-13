@@ -42,8 +42,9 @@ public class LoginController extends BaseController {
   }
 
   public ModelAndView onLogOut(Request request, Response response) {
-    BaseController.getBaseModel().replace("loggedIn", false);
+    getBaseModel().replace("loggedIn", false);
     this.getModel().replace("isValid", null);
+    getBaseModel().replace("user", null);
     request.session().removeAttribute("uid");
     return this.getViewModel();
   }
