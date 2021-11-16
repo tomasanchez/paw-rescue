@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/dds-utn/2021-vi-no-grupo-23/compare/v0.3.0...v0.4.0) (2021-11-16)
+
+
+### Features
+
+* **boostrap:** admin user ([9fc6e44](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/9fc6e44f3b0075d5eb43aebd70605907565cf596))
+* **controller:** log out ([ec8f0d3](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/ec8f0d3d2706587a587849c9ca4401f10f42ec68))
+* **controller:** login post ([69828c1](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/69828c15111b6c90eb7885c4db17da3ebbdae5b0))
+* **controller:** new model and view ([cf382a4](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/cf382a473e647dd0a4ea84aefc289afad04cb068))
+* **controller:** shared model ([70da4e7](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/70da4e77c791b74a5735685c4b2069810f4aa902))
+* **controller:** update and delete ([4737fb5](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/4737fb545f66f549398fd6b6519c18f6a2aacc03))
+* **i18n:** add possibility to  change language ([f513290](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/f51329078898be3c07ab66246e556da697f6b5eb))
+* **model:** login get ([9f25370](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/9f25370bd286e6c3012a3bff81bce2791fbc3564))
+* **model:** tomi18n ([cb359c2](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/cb359c2efbbcd7a6bc46a9ebd633709f93f65c6f))
+* **mvc:** CRUD on features ([aa7de3e](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/aa7de3e9803c45e7d8c4f1386fa8320baaf5dd5c))
+* **mvc:** delete pet ([5008a58](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/5008a583acca6076a1f4ea3f99b2a043fb100cbd))
+* **mvc:** features mvc ([a7f6868](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/a7f68683284c29e1bb992b5447116ae75c25e2df))
+* **mvc:** home mvc ([339fc77](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/339fc77461a3a12e38d028a8e9c6b197e81ac338))
+* **mvc:** model values ([3b98729](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/3b98729627d4916becaf4febc732a0e80294dada))
+* **mvc:** pets ([8d7bf04](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/8d7bf04591156899bb135e397ee24f6ee670b6d6))
+* **mvc:** signup controller ([16855b3](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/16855b34f592cfaf043a73792aa505d74d4a168a))
+* **router:** get static engine ([82fab99](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/82fab997fa6ff6457121fa2f0dd68eadea56485e))
+* **view:** features view updated ([2601d27](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/2601d27fe187943999675aec5a9cf4542d32d70a))
+* **view:** login validation ([c0bc279](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/c0bc279ea1f878f9126cbfc3b625daa27c9a6cc7))
+* **viewmodel:** hrefs from controllers ([d5aeab5](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/d5aeab54ce90db481011619e688a98bc145bc41a))
+* **view:** sidebar ([1afab79](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/1afab794ea770a971914d01ebf516f352522b612))
+
+
+### Bug Fixes
+
+* **boostrap:** admin creation ([02bf425](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/02bf4257e0254d2097e116f3c9695369a55ea3d2))
+* caracteristicas ([ff968b9](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/ff968b9e5e7c0261521b42eeb38ab42efe6cf924))
+* **controller:** no longer redirects to status code ([0395d8f](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/0395d8fc1f6eb1b306902d9115b9778e0bb24f49))
+* **controller:** performance and correrct color ([b710bc7](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/b710bc708c8706846911918c4527783c92acb841))
+* **controller:** require admin ([77b3b3d](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/77b3b3d8166ad3706caf52ce8675e95e5b4cb25e))
+* **model:** caracteristicas ([61f842a](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/61f842a2f11ef3688fa07a051cc7a66513fb62ee))
+* **model:** column names ([e0b8b2e](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/e0b8b2ed45891d8f4282a1ed48947ff503ad224f))
+* **performance:** get from db only when null ([32edc16](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/32edc16778fac428479a13313f7596ee5cb17bca))
+* **privileges:** now boostraped and default ([66c0a2b](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/66c0a2b33316a086656e609a43f66651ae8fdbdb))
+* **responsivenes:** deleted side navigation ([711822e](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/711822eb6c4343bfdc3462f3731cd8ec21c647a6))
+* **sql:** unique user and mail ([aa7c726](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/aa7c7261c67276ae717c95326ab8b8a803332c1b))
+* updated admin to id 1 ([95a41d3](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/95a41d381c05fcc30c3ff3278b9b44b0b26e4bea))
+* **view:** correct table display ([2fd0025](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/2fd00257dd08bbe8dc13f8dabffbc6c6320be725))
+* **view:** error message ([50f13f1](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/50f13f13b40e5a8f8fe18e42b955f57562928ae3))
+* **viewModel:** logout model ([97769b0](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/97769b0b4c1e69f06316c9e8af8cb10e007f87d1))
+* **viewmodel:** refresh user data ([1315aaa](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/1315aaa9cfc1e54a837164b01fc3a4fa5e25d345))
+* **view:** only admin ([e8a4602](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/e8a460295e668f745ff9967baf864475fbe181ca))
+* **view:** pop up ([ab18bbe](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/ab18bbe22f7612082c4d26cc54b7515069f2af1b))
+* **view:** wrong i18n tag ([74b1894](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/74b1894eecb1bb8ccd803e9eb987cfc9f82062b5))
+
 ## [0.3.0](https://github.com/dds-utn/2021-vi-no-grupo-23/compare/v0.2.1...v0.3.0) (2021-11-02)
 
 
