@@ -203,5 +203,17 @@ public class Usuario extends PersistentEntity {
     this.datosPersonales = dp;
     return this;
   }
-}
 
+  public Usuario deleteMascota(Long id) {
+    getMascotas().removeIf(m -> m.getId() == id);
+    return this;
+  }
+
+  public Mascota getMascota(Long id) {
+    try {
+      return getMascotas().stream().filter(m -> m.getId() == id).findFirst().get();
+    } catch (RuntimeException e) {
+      return null;
+    }
+  }
+}
