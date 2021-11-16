@@ -4,6 +4,7 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 import db.PersistentEntity;
 import exceptions.mascota.InvalidCaracteristicaException;
 
@@ -16,7 +17,7 @@ import exceptions.mascota.InvalidCaracteristicaException;
  */
 
 @Entity
-@Table(name = "Caracteristica")
+@Table(name = "Caracteristica", uniqueConstraints = {@UniqueConstraint(columnNames = {"valor"})})
 public class Caracteristica extends PersistentEntity {
 
   @Transient
