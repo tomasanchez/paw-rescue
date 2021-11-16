@@ -1,6 +1,6 @@
 package controller;
 
-import static spark.Spark.post;
+import static spark.Spark.delete;
 
 import app.Router;
 import repositories.RepoMascotas;
@@ -13,7 +13,7 @@ public class PetsController extends BaseController {
   @Override
   protected void onInit() {
     getModel().put("showToast", false);
-    onSetPost();
+    onSetEndPoints();
   }
 
   @Override
@@ -27,23 +27,16 @@ public class PetsController extends BaseController {
     onInitToast();
   }
 
-  private void onSetPost() {
-    post(getPath().concat("/:id"), (req, res) -> this.onMerge(req, res), Router.getEngine());
+  private void onSetEndPoints() {
+    delete(getPath().concat("/:id"), (req, res) -> this.onDelete(req, res), Router.getEngine());
   }
 
-  private ModelAndView onMerge(Request req, Response res) {
+  private ModelAndView onDelete(Request req, Response res) {
     requiereSession(req, res);
-
     Long id = Long.parseLong(req.params(":id"));
-    Boolean del = Boolean.parseBoolean(req.queryParams("delete"));
-
 
     try {
-      if (del) {
-        onDelete(id);
-      } else {
-        onUpdate(id, req);
-      }
+      withTransaction(() -> new RepoMascotas().deleteEntity(id));
       onSwitchToast(true);
       res.status(200);
     } catch (RuntimeException e) {
@@ -51,16 +44,6 @@ public class PetsController extends BaseController {
       res.status(500);
     }
 
-    return this.getViewModel();
+    return getViewModel();
   }
-
-
-  private void onDelete(Long id) {
-    withTransaction(() -> new RepoMascotas().deleteEntity(id));
-  }
-
-  private void onUpdate(Long id, Request req) {
-
-  }
-
 }
