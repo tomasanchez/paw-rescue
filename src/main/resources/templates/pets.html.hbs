@@ -42,7 +42,8 @@
             </td>
             <td>
               <span style="display:none">{{id}}</span>
-              <form class="mb-0 mt-0">
+              <form class="mb-0 mt-0" action="/pets/{{id}}" method="post">
+                <input id="delete-{{id}}" type="hidden" name="delete" value="true"/>
                 <button class="btn btn-outline-danger mt-0 mb-0" type="submit" onclick="onBeforeSubmit({{id}})">
                   <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
