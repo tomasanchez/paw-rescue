@@ -1,9 +1,10 @@
 package controller;
 
 import static spark.Spark.delete;
-
 import app.Router;
+import model.usuario.Usuario;
 import repositories.RepoMascotas;
+import repositories.RepoUsers;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -34,9 +35,15 @@ public class PetsController extends BaseController {
   private ModelAndView onDelete(Request req, Response res) {
     requiereSession(req, res);
     Long id = Long.parseLong(req.params(":id"));
+    Usuario user = (Usuario) getModel().get("user");
 
     try {
-      withTransaction(() -> new RepoMascotas().deleteEntity(id));
+
+      withTransaction(() -> {
+        new RepoMascotas().deleteEntity(user.getMascota(id));
+        RepoUsers.getInstance().updateEntity(user.deleteMascota(id));
+      });
+
       onSwitchToast(true);
       res.status(200);
     } catch (RuntimeException e) {
