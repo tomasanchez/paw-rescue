@@ -82,13 +82,10 @@ public class FeaturesController extends BaseController {
     Caracteristica c = RepoCaracteristicas.getInstance().getEntity(id);
     c.setValor(valor);
     withTransaction(() -> RepoCaracteristicas.getInstance().updateEntity(c));
-    res.status(200);
-
   }
 
   private void onDeleteFeature(Long id, Response res) {
     withTransaction(() -> RepoCaracteristicas.getInstance().deleteEntity(id));
-    res.status(200);
   }
 
 }
