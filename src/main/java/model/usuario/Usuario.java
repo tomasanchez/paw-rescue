@@ -67,7 +67,7 @@ public class Usuario extends PersistentEntity {
   @Transient
   private List<NotificadorAPI> notificadorAPIs = new ArrayList<>();
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "asociacion_id")
   Asociacion asociacion;
 

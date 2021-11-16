@@ -33,26 +33,28 @@ public class Mascota extends PersistentEntity {
   @Enumerated(EnumType.STRING)
   private TipoMascota tipoMascota;
 
-  @ManyToMany
-  @JoinTable(name = "Caracteristicas_By_Mascota", joinColumns = @JoinColumn(name = "caracteritsitca_id"), inverseJoinColumns = @JoinColumn(name = "mascota_id"))
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "Caracteristicas_By_Mascota",
+      joinColumns = @JoinColumn(name = "caracteritsitca_id"),
+      inverseJoinColumns = @JoinColumn(name = "mascota_id"))
   private List<Caracteristica> caracteristicas;
 
-  @OneToOne(cascade=CascadeType.ALL)
+  @OneToOne(cascade = CascadeType.ALL)
   private Chapita chapita;
 
   /**
    * Instancia una mascota.
    * 
-   * @param nombre            el nombre de la mascota.
-   * @param apodo             un apodo.
-   * @param tipoMascota       el tipo de animal.
-   * @param edad              su edad en años.
-   * @param sexo              el sexo del animal.
+   * @param nombre el nombre de la mascota.
+   * @param apodo un apodo.
+   * @param tipoMascota el tipo de animal.
+   * @param edad su edad en años.
+   * @param sexo el sexo del animal.
    * @param descripcionFisica una descripción física.
-   * @param fotos             Lista de URLs de fotos.
+   * @param fotos Lista de URLs de fotos.
    */
-  public Mascota(String nombre, String apodo, TipoMascota tipoMascota, int edad, Sexo sexo, String descripcionFisica,
-      List<String> fotos, Chapita chapita) {
+  public Mascota(String nombre, String apodo, TipoMascota tipoMascota, int edad, Sexo sexo,
+      String descripcionFisica, List<String> fotos, Chapita chapita) {
     this.nombre = nombre;
     this.apodo = apodo;
     this.tipoMascota = tipoMascota;
