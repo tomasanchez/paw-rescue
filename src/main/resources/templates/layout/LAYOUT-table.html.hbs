@@ -25,20 +25,6 @@
     </div>
     <div class="container table-responsive">
       {{#block "table"}}{{/block}}
-      <!-- Flexbox container for aligning the toasts -->
-      <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-        <!-- Then put toasts within -->
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <strong class="me-auto">Rescate de Patitas</strong>
-            <small>{{i18n.justNow}}</small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-          </div>
-          <div class="toast-body {{toastStatus}} text-white">
-            {{toastMessage}}
-          </div>
-        </div>
-      </div>
     </div>
 {{/partial}}
 
@@ -54,33 +40,50 @@
     <script>
       $(document).ready(function () {
 
-        // Inits DataTables
         if(!navigator.language.startsWith("en")){
-          $("#dataTable").DataTable({
+          $("#dataTable")?.DataTable({
               language: {
                 url: `/locales/datatable.${navigator.language}.json`,
             },
           });
         } else{
-          $("#dataTable").DataTable();
+          $("#dataTable")?.DataTable();
         }
 
         var toastElList = [].slice.call(document.querySelectorAll('.toast'))
         var toastList = toastElList.map(function(toastEl) {
 
-        // Creates an array of toasts (it only initializes them)
-          return new bootstrap.Toast(toastEl) // No need for options; use the default options
+          return new bootstrap.Toast(toastEl) 
         });
         
         if({{showToast}}){
-          toastList.forEach(toast => toast.show()); // This show them
+          toastList.forEach(toast => toast.show());
         }
       
       });
 
-      onBeforeSubmit = function(id){
+      const onBeforeSubmit = function(id){
           document.getElementById(`delete-${id}`).value = true;
          $(`#form-data-${id}`).submit();
+      }
+
+      const onDelete = function(uri){
+
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function(toastEl) {
+
+          return new bootstrap.Toast(toastEl) 
+        });
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("DELETE", uri);
+        xhr.send();
+        xhr.onload = function() {
+          location.reload();
+        };
+        xhr.onerror = function() {
+            console.log('NO CONNECTION');
+        };
       }
     </script>
 {{/partial}}
