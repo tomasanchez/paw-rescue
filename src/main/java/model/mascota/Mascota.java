@@ -34,9 +34,8 @@ public class Mascota extends PersistentEntity {
   private TipoMascota tipoMascota;
 
   @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "Caracteristicas_By_Mascota",
-      joinColumns = @JoinColumn(name = "caracteritsitca_id"),
-      inverseJoinColumns = @JoinColumn(name = "mascota_id"))
+  @JoinTable(name = "Caracteristicas_By_Mascota", joinColumns = @JoinColumn(name = "mascota_id"),
+      inverseJoinColumns = @JoinColumn(name = "caracteritsitca_id"))
   private List<Caracteristica> caracteristicas;
 
   @OneToOne(cascade = CascadeType.ALL)
