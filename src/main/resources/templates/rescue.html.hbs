@@ -69,7 +69,40 @@
 
         </div>
     </form>
+          <!-- Flexbox container for aligning the toasts -->
+          <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
+            <!-- Then put toasts within -->
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+                <strong class="me-auto">Rescate de Patitas</strong>
+                <small>{{i18n.justNow}}</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body {{toastStatus}} text-white">
+                {{toastMessage}}
+              </div>
+            </div>
+          </div>
 </div>
 {{/partial}}
 
+{{#partial "customJS"}}
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- Mandatory DataTable Start-->
+    <script>
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function(toastEl) {
+
+        // Creates an array of toasts (it only initializes them)
+          return new bootstrap.Toast(toastEl) // No need for options; use the default options
+        });
+        
+        if({{showToast}}){
+          toastList.forEach(toast => toast.show()); // This show them
+        }
+
+    </script>
+{{/partial}}
 {{> layout/LAYOUT.html.hbs }}

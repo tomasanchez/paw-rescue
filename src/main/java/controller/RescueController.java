@@ -36,12 +36,12 @@ public class RescueController extends BaseController {
 
   @Override
   protected void onAfterRendering(Request request, Response response) {
-    // TODO Auto-generated method stub
+    onInitToast();
   }
 
   private ModelAndView onFound(Request request, Response response) {
     String descripcion = request.queryParams("description");
-    List<String> fotos = Arrays.asList(request.queryParams("photos"));
+    List<String> fotos = Arrays.asList(request.queryParamsValues("photos"));
     Coordenada coordenada =
       new Coordenada(request.queryParams("positionX"), request.queryParams("positionY"));
     TipoMascota tipoMascota =
@@ -61,6 +61,7 @@ public class RescueController extends BaseController {
       if (!validarChapita(chapitaId)) {
         // TODO cartel no se encontro mascota con ese numero de chapita
         response.redirect("/rescue");
+        onSwitchToast(false);
         return null;
       }
 
@@ -79,6 +80,7 @@ public class RescueController extends BaseController {
       rescate.setMascotaEncontrada(mascotaEncontrada);
       RepoRescates repoRescates = RepoRescates.getInstance();
       withTransaction(() -> repoRescates.addRescate(rescate));
+      onSwitchToast(true);
       response.redirect("/");
 
     } else {
