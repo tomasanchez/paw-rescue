@@ -16,7 +16,7 @@ public class Router {
   private static final HandlebarsTemplateEngine ENGINE = new HandlebarsTemplateEngine();
 
   public static void main(String[] args) {
-    new SetUp().bootStrap();
+    //new SetUp().bootStrap();
     DebugScreen.enableDebugScreen();
     run();
   }
@@ -52,7 +52,8 @@ public class Router {
    */
   private static void startServer() {
     System.out.println("Initializing server...");
-    port(getHerokuAssignedPort());
+     port(getHerokuAssignedPort());
+    //port(PORT);
     System.out.println("Listening to port " + PORT);
     staticFileLocation("/public");
   }

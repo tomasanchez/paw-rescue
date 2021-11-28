@@ -14,8 +14,8 @@
     )
 
     create table Caracteristicas_By_Mascota (
-        caracteritsitca_id bigint not null,
-        mascota_id bigint not null
+        mascota_id bigint not null,
+        caracteritsitca_id bigint not null
     )
 
     create table Caracteristicas_By_MascotaEncontrada (
@@ -171,17 +171,20 @@
         primary key (id)
     )
 
+    alter table Caracteristica 
+        add constraint UK_dbypkqxveoli8c6e24wge1nlx  unique (valor)
+
     alter table Usuario 
         add constraint UK_op7pcokowhg0t5hyblw6qkd1j  unique (usuario, mail)
 
     alter table Caracteristicas_By_Mascota 
-        add constraint FK_24b6rrw5koqsqd1fmvdyutqgy 
-        foreign key (mascota_id) 
+        add constraint FK_aniwoc3qagh4a7nt3vq8g0iom 
+        foreign key (caracteritsitca_id) 
         references Caracteristica (id)
 
     alter table Caracteristicas_By_Mascota 
-        add constraint FK_aniwoc3qagh4a7nt3vq8g0iom 
-        foreign key (caracteritsitca_id) 
+        add constraint FK_24b6rrw5koqsqd1fmvdyutqgy 
+        foreign key (mascota_id) 
         references Mascota (id)
 
     alter table Caracteristicas_By_MascotaEncontrada 
