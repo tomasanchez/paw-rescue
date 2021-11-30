@@ -12,7 +12,7 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Router {
 
-  private static final Integer PORT = 8080;
+  private static Integer PORT = 8080;
   private static final HandlebarsTemplateEngine ENGINE = new HandlebarsTemplateEngine();
 
   public static void main(String[] args) {
@@ -52,8 +52,8 @@ public class Router {
    */
   private static void startServer() {
     System.out.println("Initializing server...");
-     port(getHerokuAssignedPort());
-    //port(PORT);
+    PORT=getHerokuAssignedPort();
+    port(PORT);
     System.out.println("Listening to port " + PORT);
     staticFileLocation("/public");
   }
