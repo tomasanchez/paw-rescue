@@ -4,6 +4,10 @@ import repositories.RepoPubDarEnAdopcion;
 import repositories.RepoPubParaAdoptar;
 import services.mascota.RecomendadorDeAdopcion;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Servicio de Recomendacion Semanal.
  *
@@ -12,9 +16,15 @@ import services.mascota.RecomendadorDeAdopcion;
  * @author Tomás Sánchez
  */
 public class RescatePatitas {
-
+  
   public static void main(String[] args) {
-    System.out.println("Iniciando tareas programadas.");
+    ScheduledExecutorService executorService;
+    executorService = Executors.newSingleThreadScheduledExecutor();
+    executorService.scheduleAtFixedRate(RescatePatitas::tareasProgramadas, 0, 7, TimeUnit.SECONDS);
+  }
+  
+  private static void tareasProgramadas(){
+    System.out.println("Iniciando tareas programadas."+ new java.util.Date());
     RepoPubParaAdoptar repoInteresados = new RepoPubParaAdoptar();
     RepoPubDarEnAdopcion repoPubDarEnAdopcion = new RepoPubDarEnAdopcion();
     RecomendadorDeAdopcion recomendador =

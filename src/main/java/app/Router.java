@@ -19,6 +19,7 @@ public class Router {
     //new SetUp().bootStrap();
     DebugScreen.enableDebugScreen();
     run();
+    RescatePatitas.main(args);
   }
 
   private static void run() {
