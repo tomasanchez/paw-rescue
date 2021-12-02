@@ -16,15 +16,15 @@ import java.util.concurrent.TimeUnit;
  * @author Tomás Sánchez
  */
 public class RescatePatitas {
-  
+
   public static void main(String[] args) {
     ScheduledExecutorService executorService;
     executorService = Executors.newSingleThreadScheduledExecutor();
-    executorService.scheduleAtFixedRate(RescatePatitas::tareasProgramadas, 0, 7, TimeUnit.SECONDS);
+    executorService.scheduleAtFixedRate(RescatePatitas::tareasProgramadas, 0, 7, TimeUnit.DAYS);
   }
-  
-  private static void tareasProgramadas(){
-    System.out.println("Iniciando tareas programadas."+ new java.util.Date());
+
+  private static void tareasProgramadas() {
+    System.out.println("Iniciando tareas programadas." + new java.util.Date());
     RepoPubParaAdoptar repoInteresados = new RepoPubParaAdoptar();
     RepoPubDarEnAdopcion repoPubDarEnAdopcion = new RepoPubDarEnAdopcion();
     RecomendadorDeAdopcion recomendador =
