@@ -1,23 +1,15 @@
 package controller;
 
+import static spark.Spark.post;
 import app.Router;
-import model.mascota.Chapita;
-import model.mascota.encontrada.Coordenada;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.usuario.Rescate;
-import model.usuario.Usuario;
 import model.usuario.datospersonales.DatosPersonales;
-import model.usuario.datospersonales.contacto.Contacto;
 import model.usuario.datospersonales.contacto.DatosContacto;
-import model.usuario.datospersonales.documento.Documento;
-import model.usuario.datospersonales.documento.TipoDocumento;
 import repositories.RepoRescates;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-
-import static java.lang.Long.parseLong;
-import static spark.Spark.post;
 
 public class ContactController extends BaseController {
 
@@ -27,8 +19,7 @@ public class ContactController extends BaseController {
   }
 
   @Override
-  protected void onBeforeRendering(Request request, Response response) {
-  }
+  protected void onBeforeRendering(Request request, Response response) {}
 
   @Override
   protected void onAfterRendering(Request request, Response response) {
@@ -36,16 +27,16 @@ public class ContactController extends BaseController {
   }
 
   private ModelAndView postRescue(Request request, Response response) {
-    MascotaEncontrada mascotaEncontrada = (MascotaEncontrada) this.getModel()
-      .get("mascotaEncontrada");
+    MascotaEncontrada mascotaEncontrada =
+        (MascotaEncontrada) this.getModel().get("mascotaEncontrada");
 
     String name = request.queryParams("name");
     String last_name = request.queryParams("last_name");
     String mail = request.queryParams("mail");
     String phone = request.queryParams("phone");
-    
+
     if (mail.equals("") && phone.equals("")) {
-        // TODO cartel debe completar telefono o mail
+      // TODO cartel debe completar telefono o mail
       BaseController.getBaseModel().put("mascotaEncontrada", mascotaEncontrada);
       response.redirect("/contact");
       return null;

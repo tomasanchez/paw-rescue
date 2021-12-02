@@ -1,7 +1,11 @@
 package controller;
 
-import app.Router;
+import static java.lang.Long.parseLong;
+import static spark.Spark.post;
+import java.util.Arrays;
+import java.util.List;
 import javax.persistence.NoResultException;
+import app.Router;
 import model.mascota.Chapita;
 import model.mascota.TipoMascota;
 import model.mascota.caracteristica.TamanioMascota;
@@ -13,12 +17,6 @@ import repositories.RepoRescates;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static spark.Spark.post;
-import static java.lang.Long.parseLong;
 
 public class RescueController extends BaseController {
 
@@ -43,14 +41,15 @@ public class RescueController extends BaseController {
     String descripcion = request.queryParams("description");
     List<String> fotos = Arrays.asList(request.queryParamsValues("photos"));
     Coordenada coordenada =
-      new Coordenada(request.queryParams("positionX"), request.queryParams("positionY"));
+        new Coordenada(request.queryParams("positionX"), request.queryParams("positionY"));
     TipoMascota tipoMascota =
-      request.queryParams("type").equals("PERRO") ? TipoMascota.PERRO : TipoMascota.GATO;
-    TamanioMascota tamanioMascota = request.queryParams("size").equals("GRANDE") ? TamanioMascota.GRANDE
-      : (request.queryParams("size").equals("MEDIANA") ? TamanioMascota.MEDIANA
-      : TamanioMascota.PEQUEÑA);
+        request.queryParams("type").equals("PERRO") ? TipoMascota.PERRO : TipoMascota.GATO;
+    TamanioMascota tamanioMascota =
+        request.queryParams("size").equals("GRANDE") ? TamanioMascota.GRANDE
+            : (request.queryParams("size").equals("MEDIANA") ? TamanioMascota.MEDIANA
+                : TamanioMascota.PEQUEÑA);
     long chapitaId =
-      parseLong(request.queryParams("tag").equals("") ? "-1" : request.queryParams("tag"));
+        parseLong(request.queryParams("tag").equals("") ? "-1" : request.queryParams("tag"));
     Chapita chapita;
     if (chapitaId == -1)
       chapita = null;
@@ -93,16 +92,11 @@ public class RescueController extends BaseController {
 
   private boolean validarChapita(long chapitaId) {
     try {
-      Chapita chapita = (Chapita) entityManager()
-        .createQuery("FROM " + "Chapita"
-          + " C WHERE C.id LIKE :chapitaId ")
-        .setParameter("chapitaId", chapitaId).getSingleResult();
+      entityManager().createQuery("FROM " + "Chapita" + " C WHERE C.id LIKE :chapitaId ")
+          .setParameter("chapitaId", chapitaId).getSingleResult();
       return true;
     } catch (NoResultException exception) {
       return false;
     }
   }
 }
-
-
-
