@@ -5,28 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import db.PersistentEntity;
 import model.mascota.Chapita;
 import model.mascota.TipoMascota;
 import model.mascota.caracteristica.Caracteristica;
 import model.mascota.caracteristica.TamanioMascota;
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
 
 @Entity
 @Table(name = "Mascotas_Encontradas")
 public class MascotaEncontrada extends PersistentEntity {
 
   private String descripcion;
+  @Convert(converter = LocalDateTimeConverter.class)
   private LocalDate fecha = LocalDate.now();
 
   @Embedded

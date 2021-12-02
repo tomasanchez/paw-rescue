@@ -6,6 +6,9 @@ import model.usuario.datospersonales.DatosPersonales;
 import model.usuario.datospersonales.contacto.DatosContacto;
 import model.usuario.datospersonales.documento.Documento;
 import model.usuario.datospersonales.documento.TipoDocumento;
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
+
+import javax.persistence.Convert;
 
 /**
  * Builder de una Persona.
@@ -18,6 +21,7 @@ public abstract class RegistroDatosPersonales {
 
   protected String apellido;
   protected String nombre;
+  @Convert(converter = LocalDateTimeConverter.class)
   protected LocalDate fechaNacimiento;
   protected TipoDocumento tipoDocumento;
   protected Long numeroDocumento;
