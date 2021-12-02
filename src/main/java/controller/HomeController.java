@@ -6,6 +6,11 @@ import spark.Response;
 public class HomeController extends BaseController {
 
   @Override
+  public String getPath() {
+    return "/";
+  }
+
+  @Override
   protected void onInit() {
     // TODO Auto-generated method stub
 
