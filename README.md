@@ -1,49 +1,23 @@
-# Rescate de Patitas
+# Entrega VII (2021-12-3): Despliegue
 
-## Entrega IV (2021-11-16): Presentación
+## El Enunciado
 
-### Enunciado
-
-El enunciado para esta entrega puede verse en [este docs](https://docs.google.com/document/d/1GLkOBQtSAX2lZmNBML8tmm0xFpEg9uBXp9kQmTzfS9Y/edit)
-
-### Requerimientos
-
-Diseñar, maquetar e implementar:
-
-1. Pantallas que cumplan con la funcionalidad “Quiero registrar a mi mascota”, recordando que se le debe ofrecer la posibilidad de generar un usuario al dueño de la mascota.
-
-2. Pantallas que cumplan con la funcionalidad de “Encontré una mascota perdida", contemplando ambos casos (con chapita y sin chapita), desde la perspectiva de un rescatista.
-
-3. Pantallas para el Administrador que permitan configurar las características de las mascotas.
-
-### Entregables Requeridos
-
-- Wireframe de las Pantallas
-- Implementacion en código fuente
+El enunciado para esta entrega puede verse en [este docs](https://docs.google.com/document/d/17vHuHa8pGX134T9GQwWgzUgIz7w1R2JW4SFX4JGimJI/edit)
 
 
-### Resolucion
+## Requerimientos
 
-#### Wireframe
+1. Se deberá desplegar el sistema en la nube para que pueda ser accedido por el público general.
+2. Se debe configurar el proceso que genera las recomendaciones de adopción de mascotas para que corra semanalmente, a un horario determinado del día. ([entrega 3](./03-rp.md))
+3. Se debe listar las mascotas de un usuario y luego mostrar el código QR para poder imprimirlo.
 
-##### Login
 
-![Login](images/05-entrega/sign-in.png)
+## Entregables Requeridos
 
-##### Home
+1. Diagramas de Arquitectura: diagrama de componentes y de despliegue de la solución.
 
-![Home](images/05-entrega/home-page.png)
+![Architecture](images/06-entrega/arq.png)
 
-##### Registro de Mascotas
+2. Despliegue del Sistema en la nube.
 
-![Pet Register](images/05-entrega/pet-register.png)
-
-#### Registro de Rescate
-
-![Rescue Register](images/05-entrega/rescue-register.png)
-
-#### Implementación
-
-##### Diagrama de Clases
-
-![Class Diagram](images/05-entrega/cd.png)
+[Rescate de Patitas](https://rescate-de-patitas.herokuapp.com/home)
