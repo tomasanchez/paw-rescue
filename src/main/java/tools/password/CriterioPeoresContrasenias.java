@@ -1,11 +1,12 @@
 package tools.password;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import exceptions.acceso.InvalidPasswordException;
 
 public class CriterioPeoresContrasenias implements CriterioPassword {
@@ -36,21 +37,26 @@ public class CriterioPeoresContrasenias implements CriterioPassword {
    * Refreca la lista de peores contraseñas.
    */
   private void refreshLista() {
-    String filePath = System.getProperty("user.dir") + "/src/files/";
     String palabraLeida;
     peoresPasswords = new ArrayList<>();
-    try (FileReader reader = new FileReader(filePath + "10k-worst-passwords.txt");
-        BufferedReader buffer = new BufferedReader(reader)) {
 
-      while ((palabraLeida = buffer.readLine()) != null) {
-        peoresPasswords.add(palabraLeida);
+    ClassLoader cl = Thread.currentThread().getContextClassLoader();
+    InputStream is = cl.getResourceAsStream("tools/passwords.txt");
+
+    if (!Objects.isNull(is)) {
+      BufferedReader buffer = new BufferedReader(new InputStreamReader(is));
+      try {
+        while ((palabraLeida = buffer.readLine()) != null) {
+          peoresPasswords.add(palabraLeida);
+        }
+      } catch (IOException e) {
+        e.printStackTrace();
       }
-    } catch (FileNotFoundException e) {
-      System.out.println("No pude abrir el archivo por el siguiente motivo: " + e.getMessage());
-    } catch (IOException e) {
-      System.out.println("Error leyendo el archivo por el siguiente motivo: " + e.getMessage());
-    } finally {
-      this.ultimoRefresh = System.currentTimeMillis();
+    } else {
+      System.out.println("No pude abrir el archivo de peores contraseñas");
     }
+
+    this.ultimoRefresh = System.currentTimeMillis();
+
   }
 }

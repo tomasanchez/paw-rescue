@@ -1,12 +1,13 @@
 package tools.password;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 import exceptions.acceso.InvalidPasswordException;
 import model.registro.RegistroDuenioMascota;
 import repositories.RepoUsers;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PasswordTest {
+
 
   @Test
   public void entreLasPeoresPasswords() {
