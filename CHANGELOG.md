@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/dds-utn/2021-vi-no-grupo-23/compare/v0.4.0...v1.0.0) (2021-12-02)
+
+
+### Features
+
+* scheduler for 7 days ([33599ad](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/33599ad5d786a6ed5f46ca5b5ea7a1349bd8336a))
+
+
+### Bug Fixes
+
+* add response 400 ([a9aebd3](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/a9aebd34e441e6c211cfc34bda82556be1cf0a19))
+* table layout ([caf4a6e](https://github.com/dds-utn/2021-vi-no-grupo-23/commit/caf4a6e0947de8151c698d741b7030e5fd56bfff))
+
 ## [0.4.0](https://github.com/dds-utn/2021-vi-no-grupo-23/compare/v0.3.0...v0.4.0) (2021-11-16)
 
 
