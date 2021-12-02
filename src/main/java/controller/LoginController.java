@@ -70,6 +70,8 @@ public class LoginController extends BaseController {
       response.redirect("/");
       response.status(200);
       return null;
+    } else {
+      response.status(400);
     }
 
     return this.getViewModel();
