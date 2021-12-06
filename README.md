@@ -20,4 +20,4 @@ El enunciado para esta entrega puede verse en [este docs](https://docs.google.co
 
 2. Despliegue del Sistema en la nube.
 
-[Rescate de Patitas](https://rescate-de-patitas.herokuapp.com/home)
+[Rescate de Patitas](https://rescate-de-patitas.herokuapp.com)
