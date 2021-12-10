@@ -55,6 +55,13 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Reflections -->
+    <dependency>
+      <groupId>org.reflections</groupId>
+      <artifactId>reflections</artifactId>
+      <version>0.10.2</version>
+    </dependency>
+
     <!-- APIS NOTIFICACIONES -->
     <!--	https://javaee.github.io/javamail/ -->
     <dependency>
