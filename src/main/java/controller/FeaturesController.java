@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.Objects;
 import core.mvc.controller.ControllerInitialization;
 import model.mascota.caracteristica.Caracteristica;
 import repositories.RepoCaracteristicas;
@@ -66,10 +67,18 @@ public class FeaturesController extends BaseController {
   @Override
   protected Object onPutResponse(Request request, Response response) {
     Long id = Long.parseLong(request.params(":id"));
-    String valor = request.params(":valor");
+    String valor = request.queryParams("valor");
+
+    if (Objects.isNull(valor) || valor.isEmpty()) {
+      onSwitchToast(false);
+      response.status(400);
+      return null;
+    }
+
     Caracteristica c = RepoCaracteristicas.getInstance().getEntity(id);
     c.setValor(valor);
     onTransactionalOperation(response, () -> RepoCaracteristicas.getInstance().updateEntity(c));
+
     return null;
   }
 
