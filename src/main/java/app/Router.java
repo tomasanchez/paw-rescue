@@ -26,7 +26,8 @@ public class Router {
     System.out.println("Initializing server...");
     PORT = getHerokuAssignedPort();
     port(PORT);
-    System.out.println("Listening to port ".concat(PORT.toString()));
+    System.out.println(
+        "\u001B[32mServer started at http://localhost:".concat(PORT.toString()).concat("/\033[0m"));
     staticFileLocation("/public");
     serveRoutes();
   }
