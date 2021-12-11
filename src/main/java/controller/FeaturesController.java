@@ -1,91 +1,75 @@
 package controller;
 
-import app.Router;
+import core.mvc.controller.ControllerInitialization;
 import model.mascota.caracteristica.Caracteristica;
 import repositories.RepoCaracteristicas;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-import spark.Spark;
 
 public class FeaturesController extends BaseController {
 
+
+  /* =========================================================== */
+  /* Overridables ---------------------------------------------- */
+  /* =========================================================== */
+
+  @Override
+  protected ControllerInitialization getInitialization() {
+    return ControllerInitialization.FULL_CRUD;
+  }
+
+  /* =========================================================== */
+  /* Lifecycle methods ----------------------------------------- */
+  /* =========================================================== */
+
   @Override
   protected void onInit() {
-    onSetPost();
+    // TODO Auto-generated method stub
+
   }
 
   @Override
   protected void onBeforeRendering(Request request, Response response) {
-    requiereSession(request, response);
-    requireAdmin(request, response);
-    updateFeaturesSet();
+    onRequirePrivileges(request, response);
   }
 
   @Override
   protected void onAfterRendering(Request request, Response response) {
-    onInitToast();
+    // TODO Auto-generated method stub
+
   }
 
-  private void updateFeaturesSet() {
-    this.getModel().remove("caracteristicas");
-    this.getModel().put("caracteristicas", RepoCaracteristicas.getInstance().getEntitySet());
+  /* =========================================================== */
+  /* Request Handling ------------------------------------------ */
+  /* =========================================================== */
+
+  @Override
+  protected ModelAndView onPost(Request request, Response response) {
+
+    onRequirePrivileges(request, response);
+    onTransactionalOperation(response, () -> RepoCaracteristicas.getInstance()
+        .createEntity(new Caracteristica(request.queryParams("valor"))));
+
+    return super.onPost(request, response);
   }
 
-  private void onSetPost() {
-    Spark.post(this.getPath().concat("/:id"), (req, res) -> this.onMerge(req, res),
-        Router.getEngine());
 
-    Spark.post(this.getPath(), (req, res) -> this.onPost(req, res), Router.getEngine());
-  }
-
-  private ModelAndView onPost(Request req, Response res) {
-    requiereSession(req, res);
-
-    try {
-      withTransaction(() -> RepoCaracteristicas.getInstance()
-          .createEntity(new Caracteristica(req.queryParams("valor"))));
-      onSwitchToast(true);
-      res.status(201);
-    } catch (RuntimeException e) {
-      res.status(500);
-      onSwitchToast(false);
-    }
-
-    return this.getViewModel(req, res);
-  }
-
-  private ModelAndView onMerge(Request req, Response res) {
-    requiereSession(req, res);
-    Long id = Long.parseLong(req.params(":id"));
-    Boolean del = Boolean.parseBoolean(req.queryParams("delete"));
-
-    try {
-      if (del) {
-        this.onDeleteFeature(id, res);
-      } else {
-        this.onUpdateFeature(id, req.queryParams("valor"), res);
-      }
-      onSwitchToast(true);
-      res.status(200);
-    } catch (RuntimeException e) {
-      onSwitchToast(false);
-      res.status(500);
-    }
-
-    res.redirect(this.getPath());
+  @Override
+  protected Object onDeleteResponse(Request request, Response response) {
+    Long id = Long.parseLong(request.params(":id"));
+    onTransactionalOperation(response, () -> RepoCaracteristicas.getInstance().deleteEntity(id));
     return null;
   }
 
-  private void onUpdateFeature(Long id, String valor, Response res) {
-
+  @Override
+  protected Object onPutResponse(Request request, Response response) {
+    Long id = Long.parseLong(request.params(":id"));
+    String valor = request.params(":valor");
     Caracteristica c = RepoCaracteristicas.getInstance().getEntity(id);
     c.setValor(valor);
-    withTransaction(() -> RepoCaracteristicas.getInstance().updateEntity(c));
-  }
-
-  private void onDeleteFeature(Long id, Response res) {
-    withTransaction(() -> RepoCaracteristicas.getInstance().deleteEntity(id));
+    onTransactionalOperation(response, () -> RepoCaracteristicas.getInstance().updateEntity(c));
+    return null;
   }
 
 }

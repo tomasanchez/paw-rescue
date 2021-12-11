@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.reflections.Reflections;
-import newcontroller.BaseController;
+import controller.BaseController;
 import core.mvc.controller.Controller;
 
 public class ControllerLoaderService {

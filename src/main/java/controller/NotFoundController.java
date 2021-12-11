@@ -1,9 +1,11 @@
 package controller;
 
+import core.mvc.controller.Controller;
+import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class HomeController extends BaseController {
+public class NotFoundController extends Controller {
 
   /* =========================================================== */
   /* Overridables ---------------------------------------------- */
@@ -11,7 +13,25 @@ public class HomeController extends BaseController {
 
   @Override
   public String getEndPoint(Boolean useId) {
-    return "/";
+    return "*";
+  }
+
+  @Override
+  protected ModelAndView onGet(Request request, Response response) {
+    super.onBeforeBeforeRendering(request, response);
+
+    if (!request.pathInfo().startsWith("/static")) {
+      response.status(404);
+      return super.onGet(request, response);
+    } else {
+      return null;
+    }
+  }
+
+  @Override
+  protected Object onGetResponse(Request request, Response response) {
+    response.status(404);
+    return null;
   }
 
   /* =========================================================== */
@@ -23,10 +43,15 @@ public class HomeController extends BaseController {
     // TODO Auto-generated method stub
   }
 
+
+  @Override
+  protected void onBeforeBeforeRendering(Request request, Response response) {
+    return;
+  }
+
   @Override
   protected void onBeforeRendering(Request request, Response response) {
     // TODO Auto-generated method stub
-
   }
 
   @Override
@@ -34,9 +59,5 @@ public class HomeController extends BaseController {
     // TODO Auto-generated method stub
 
   }
-
-  /* =========================================================== */
-  /* Internal Methods ------------------------------------------ */
-  /* =========================================================== */
 
 }

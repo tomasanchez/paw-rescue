@@ -1,182 +1,203 @@
 package controller;
 
-import static spark.Spark.after;
-
-import java.util.HashMap;
+import static spark.Spark.halt;
 import java.util.Map;
 import java.util.Objects;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
-import i18n.ResourceBundle;
+import core.mvc.controller.Controller;
+import core.services.ControllerLoaderService;
 import model.usuario.Privilegio;
 import model.usuario.Usuario;
 import repositories.RepoUsers;
-import services.controller.ControllerService;
-import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public abstract class BaseController implements WithGlobalEntityManager, TransactionalOps {
+public abstract class BaseController extends Controller
+    implements WithGlobalEntityManager, TransactionalOps {
+
+
+  /* =========================================================== */
+  /* LifeCycle Static BaseController --------------------------- */
+  /* =========================================================== */
 
   /**
-   * View Model.
+   * Static method for initialization of BaseController.
    */
-  private Map<String, Object> model = new HashMap<String, Object>();
-  private static AppController appController = new AppController();
-
-  @SuppressWarnings("unchecked")
-  BaseController() {
-    this.onInit();
-    this.onInitToast();
-    ((Map<String, Object>) getBaseModel().get("navigation")).put(this.getControllerName(), "");
-    ((Map<String, Object>) getBaseModel().get("hrefs")).put(this.getControllerName(),
-        this.getPath());
-    after(this.getPath(), (req, res) -> onAfterRendering(req, res));
+  public static void initBaseController() {
+    onAuthenticate(null);
   }
+
+  /* =========================================================== */
+  /* LifeCycle Overrides --------------------------------------- */
+  /* =========================================================== */
+
+  @Override
+  protected void onAfterAfterRendering(Request request, Response response) {
+    onCleanToast();
+  }
+
+  /* =========================================================== */
+  /* Convenience Methods --------------------------------------- */
+  /* =========================================================== */
 
   /**
-   * Obtiene el modelo compartido entre todos los controllers.
+   * Convenience method for getting the view model map.
    * 
-   * @return el modelo compartido
+   * @return the View Model
    */
-  public static Map<String, Object> getBaseModel() {
-    return appController.getAppModel();
-  }
-
-  /**
-   * Obtiene el bunlde de internacionalizacion.
-   * 
-   * @return el i18n resource bundle
-   */
-  public static ResourceBundle getResourceBundle() {
-    return appController.getResourceBundle();
-  }
-
-  /**
-   * Obtiene el nombre del controlador.
-   * 
-   * ? Ej: HomeController => home
-   * 
-   * @return el nombre del controller
-   */
-  public String getControllerName() {
-    return getClass().getSimpleName().toLowerCase().replace("controller", "");
-  }
-
-  /**
-   * Obtiene el nombre del archivo de la vista.
-   * 
-   * ? Ej: HomeController => Home.hbs.html
-   * 
-   * @return el View Name
-   */
-  public String getViewName() {
-    return this.getControllerName().concat(".html.hbs");
-  }
-
-  /**
-   * Obtiene el HTTP path.
-   * 
-   * ? Ej: HomeController => /Home
-   * 
-   * @return
-   */
-  public String getPath() {
-    return "/".concat(this.getClass().getSimpleName().toLowerCase().replace("controller", ""));
-  }
-
   public Map<String, Object> getModel() {
-    return model;
-  }
-
-  public void setModel(Map<String, Object> model) {
-    this.model = model;
+    return this.getView().getModel().getData();
   }
 
   /**
-   * Obtiene la ruta del viewmodel.
+   * Convenience method for getting a value from i18n.
    * 
-   * @param request la HTTP request
-   * @param response la HTTP response
-   * @return el ViewModel
+   * @param text the key value
+   * @return the text value of the key
    */
-  public ModelAndView getViewModel(Request request, Response response) {
-    checkLogUser(request);
-
-    appController.updateLanguage(request);
-    appController.updateNavigationModel(this.getControllerName());
-
-    checkRedirects(request, response);
-
-    onBeforeRendering(request, response);
-    getModel().putAll(getBaseModel());
-    return new ModelAndView(this.getModel(), this.getViewName());
+  public String getText(String text) {
+    return (String) Controller.getI18n().getText(text);
   }
 
   /**
-   * Redibuja un ModelAndView.
+   * Navigates to the specified location.
    * 
-   * @return el nuevo model and view;
+   * @param response the spark HTTP response object
+   * @param location an endpoint, a controller name or a path
    */
-  public ModelAndView getViewModel() {
-    this.getModel().putAll(getBaseModel());
-    return new ModelAndView(this.getModel(), this.getViewName());
+  public void navTo(Response response, String location) {
+
+    if (location.startsWith("/")) {
+      response.redirect(location);
+      return;
+    }
+
+    Controller c = ControllerLoaderService.getService().find(location);
+    response.redirect(Objects.isNull(c) ? "/".concat(location) : c.getEndPoint());
+
   }
 
-  private void checkRedirects(Request request, Response response) {
-    String previousHash = (String) getBaseModel().get("previous");
-    if (!Objects.isNull(previousHash) && !request.matchedPath()
-        .equals(ControllerService.getInstance().getController("login").getPath())) {
-      response.redirect(previousHash);
-      getBaseModel().put("previous", null);
+  /**
+   * Reloads the current view.
+   * 
+   * @param response the spark HTTP response object
+   */
+  protected void onRefreshView(Response response) {
+    navTo(response, this.getEndPoint());
+  }
+
+  /**
+   * Tries a transactional operation activing corresponding toasts.
+   * 
+   * @param response the spark HTTP response object
+   * @param operation the transactional operation
+   */
+  protected boolean onTransactionalOperation(Response response, Runnable operation) {
+    try {
+      withTransaction(operation);
+      onSwitchToast(true);
+      response.status(201);
+      return true;
+    } catch (RuntimeException e) {
+      response.status(500);
+      onSwitchToast(false);
+      return false;
     }
   }
 
-  private void checkLogUser(Request request) {
-    getBaseModel().replace("loggedIn", isLogged(request));
+  /* =========================================================== */
+  /* Authentification ------------------------------------------ */
+  /* =========================================================== */
 
-    // Si está loggeado y no cargamos el usuario
-    if (this.isLogged() && Objects.isNull(getBaseModel().get("user"))) {
-      Usuario user = this.getLoggedUser(request);
-      boolean hasPrivilege = Objects.isNull(user.getPrivileges());
-      getBaseModel().put("user", user);
-      getBaseModel().put("userPrivilege",
-          hasPrivilege ? 0 : ((Usuario) getBaseModel().get("user")).getPrivileges().ordinal());
-      getBaseModel().put("isAdmin",
-          (Integer) getBaseModel().get("userPrivilege") == Privilegio.ADMIN.ordinal());
-      getBaseModel().put("isVoluntario",
-          (Integer) getBaseModel().get("userPrivilege") == Privilegio.VOLUNTARIO.ordinal());
+  /**
+   * Sets Usuario into the shared model.
+   * 
+   * @param user the user to be set
+   */
+  protected static void onAuthenticate(Usuario user) {
+    getSharedModel().set("user", user).set("loggedIn", !Objects.isNull(user))
+        .set("isAdmin",
+            Objects.isNull(user) ? false : user.getPrivileges().equals(Privilegio.ADMIN))
+        .set("userPrivilege", Objects.isNull(user) ? 0 : user.getPrivileges().ordinal());
+  }
 
+  /**
+   * Reloads user data from the database.
+   * 
+   * @return the user updated.
+   */
+  protected Usuario onRefreshUser() {
+    Usuario refreshed = new RepoUsers().getEntity(((Usuario) getSharedModel().get("user")).getId());
+    getSharedModel().set("user", refreshed);
+    return refreshed;
+  }
+
+
+  /**
+   * Verifies if an user is loaded into the shared view model.
+   * 
+   * @return wheter there is an user or not
+   */
+  protected boolean isLogged() {
+    return !Objects.isNull(getSharedModel().get("user"));
+  }
+
+  /**
+   * Verifies if a session is stablished in the request.
+   * 
+   * @param request the Spark HTTP
+   * @return wheter there is a session or not
+   */
+  protected boolean isLogged(Request request) {
+    return !Objects.isNull(request.session().attribute("uid"));
+  }
+
+  /**
+   * Verifies if session is active in the request and model.
+   * 
+   * <br>
+   * </br>
+   * 
+   * ? If not logged in, redirects to 401
+   * 
+   * @param request the Spark HTTP request object
+   * @param response the Spark HTTP response object
+   */
+  protected void onRequireSession(Request request, Response response) {
+    if (!isLogged(request) || !isLogged()) {
+      onHaltLogInNeeded(response);
     }
   }
 
-  /**
-   * Funcion llamada por única vez, antes de crear el controllador.
-   */
-  protected abstract void onInit();
 
   /**
-   * Funcion llamada siempre antes de renderizar la Vista.
+   * Verifies if session is active in the request and model AND corresponds to an Admin session.
    * 
-   * @param request la HTTP request.
-   * @param response la HTTP response.
-   */
-  protected abstract void onBeforeRendering(Request request, Response response);
-
-  /**
-   * Método llamado despues de renderizar la vista.
+   * <br>
+   * </br>
    * 
-   * @param request la spark request
-   * @param response la spark response
+   * ? If not Admin, redirects to 402
+   * 
+   * @param request the Spark HTTP request object
+   * @param response the Spark HTTP response object
    */
-  protected abstract void onAfterRendering(Request request, Response response);
+  protected void onRequirePrivileges(Request request, Response response) {
 
-  /**
-   * Inicializa el toast message, ocultandolo.
-   */
-  protected void onInitToast() {
-    this.getModel().put("showToast", false);
+    Usuario user = (Usuario) getSharedModel().get("user");
+
+    if (Objects.isNull(user)) {
+      onRequireSession(request, response);
+      return;
+    }
+
+    if (!user.getPrivileges().equals(Privilegio.ADMIN)) {
+      onHaltAdminNeeded(response);
+    }
   }
+  /* =========================================================== */
+  /* Toasts Handling ------------------------------------------- */
+  /* =========================================================== */
 
   /**
    * Intercala el toast message con mensajes de error y éxito.
@@ -186,56 +207,37 @@ public abstract class BaseController implements WithGlobalEntityManager, Transac
   protected void onSwitchToast(boolean status) {
     this.getModel().put("showToast", true);
     this.getModel().put("toastStatus", status ? "bg-success" : "bg-danger");
-    this.getModel().put("toastMessage", status ? getResourceBundle().getText("featureSuccess")
-        : getResourceBundle().getText("featureError"));
+    this.getModel().put("toastMessage",
+        status ? getText("featureSuccess") : getText("featureError"));
+  }
+
+  protected void onCleanToast() {
+    this.getModel().put("showToast", false);
+  }
+
+  /* =========================================================== */
+  /* Private methods ------------------------------------------- */
+  /* =========================================================== */
+
+  /**
+   * 
+   * Halts and redirects to Log In page (401).
+   * 
+   * @param response the Spark HTTP response object
+   */
+  private void onHaltLogInNeeded(Response response) {
+    halt(401);
+    response.redirect(ControllerLoaderService.getService().find("login").getEndPoint(), 401);
   }
 
   /**
-   * Obtiene el usuario loggeado de una session.
+   * Halts and redirects to Home 402.
    * 
-   * @param request la request con el usuario loggedo
-   * @return
+   * @param response the Spark HTTP response object
    */
-  protected Usuario getLoggedUser(Request request) {
-    return RepoUsers.getInstance().getEntity(request.session().attribute("uid"));
+  private void onHaltAdminNeeded(Response response) {
+    halt(402);
+    response.redirect(ControllerLoaderService.getService().find("home").getEndPoint(), 402);
   }
 
-
-  protected Usuario onRefreshUser() {
-    Usuario user = (Usuario) getBaseModel().get("user");
-    Usuario refreshed = RepoUsers.getInstance().getEntity(user.getId());
-    getBaseModel().put("user", refreshed);
-    return refreshed;
-  }
-
-  /**
-   * Chequea si hay un usuario loggeado.
-   * 
-   * @param request
-   * @return
-   */
-  protected boolean isLogged(Request request) {
-    return !Objects.isNull(request.session().attribute("uid"));
-  }
-
-  protected boolean isLogged() {
-    return (boolean) getBaseModel().get("loggedIn");
-  }
-
-  protected void requiereSession(Request request, Response response) {
-    if (!isLogged(request) || !isLogged()) {
-      getBaseModel().put("previous", request.matchedPath());
-      response.redirect(ControllerService.getInstance().getController("login").getPath(), 401);
-    }
-  }
-
-  protected void requireAdmin(Request request, Response response) {
-    if (!(boolean) getBaseModel().get("isAdmin")) {
-      response.redirect(ControllerService.getInstance().getController("home").getPath(), 403);
-    }
-  }
-
-  protected void onRefreshView(Request request, Response response) {
-    response.redirect(this.getPath());
-  }
 }

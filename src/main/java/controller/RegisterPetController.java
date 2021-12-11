@@ -1,69 +1,79 @@
 package controller;
 
-import static spark.Spark.post;
 import java.util.Arrays;
 import java.util.List;
-import app.Router;
+import core.mvc.controller.ControllerInitialization;
 import model.mascota.Mascota;
 import model.mascota.Sexo;
 import model.mascota.TipoMascota;
 import model.mascota.caracteristica.Caracteristica;
 import model.usuario.Usuario;
 import repositories.RepoCaracteristicas;
-import services.controller.ControllerService;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-
 public class RegisterPetController extends BaseController {
 
+
+  /* =========================================================== */
+  /* Overridables ---------------------------------------------- */
+  /* =========================================================== */
+
   @Override
-  public String getPath() {
+  public String getEndPoint(Boolean useId) {
     return "/pets/new";
   }
 
   @Override
-  protected void onInit() {
-    post(this.getPath(), (req, res) -> this.onPost(req, res), Router.getEngine());
+  protected ControllerInitialization getInitialization() {
+    return ControllerInitialization.GET_POST;
   }
 
+  /* =========================================================== */
+  /* Lifecycle methods ----------------------------------------- */
+  /* =========================================================== */
+
   @Override
-  protected void onBeforeRendering(Request request, Response response) {
-    requiereSession(request, response);
-    this.getModel().put("caracteristicas", RepoCaracteristicas.getInstance().getEntitySet());
+  protected void onInit() {
     this.getModel().put("tipos", TipoMascota.values());
     this.getModel().put("sexos", Sexo.values());
   }
 
   @Override
-  protected void onAfterRendering(Request request, Response response) {
-    onInitToast();
+  protected void onBeforeRendering(Request request, Response response) {
+    onRequireSession(request, response);
+    this.getModel().put("caracteristicas", new RepoCaracteristicas().getEntitySet());
   }
 
   @Override
-  protected void requiereSession(Request request, Response response) {
-    if (!isLogged(request) || !isLogged()) {
-      response.redirect(ControllerService.getInstance().getController("login").getPath());
-    }
+  protected void onAfterRendering(Request request, Response response) {
+    // TODO Auto-generated method stub
   }
 
-  private ModelAndView onPost(Request req, Response res) {
-    requiereSession(req, res);
-    Usuario user = this.getLoggedUser(req);
+  /* =========================================================== */
+  /* Request Handling ------------------------------------------ */
+  /* =========================================================== */
 
-    try {
-      withTransaction(() -> user.registrarMascota(buildMascota(req)));
-      res.status(201);
-      onSwitchToast(true);
-      res.redirect(ControllerService.getInstance().getController("pets").getPath());
-    } catch (RuntimeException e) {
-      res.status(500);
-      onSwitchToast(false);
-    }
-    return this.getViewModel(req, res);
+  @Override
+  protected ModelAndView onPost(Request request, Response response) {
+    onRequireSession(request, response);
+    Usuario user = onRefreshUser();
+    onTransactionalOperation(response, () -> user.registrarMascota(buildMascota(request)));
+
+    return super.onPost(request, response);
   }
 
+  /* =========================================================== */
+  /* Internal Methods ------------------------------------------ */
+  /* =========================================================== */
+
+  /**
+   * Obtains a new Pet from request params.
+   * 
+   * @param req the spark HTTP request object
+   * @return a new Pet
+   */
   private Mascota buildMascota(Request req) {
     String nombre = req.queryParams("name");
     String apodo = req.queryParams("alias");
@@ -80,4 +90,5 @@ public class RegisterPetController extends BaseController {
     mascota.getCaracteristicas().addAll(caracteristicas);
     return mascota;
   }
+
 }

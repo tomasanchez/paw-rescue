@@ -1,56 +1,64 @@
 package controller;
 
-import static spark.Spark.delete;
-import app.Router;
+import core.mvc.controller.ControllerInitialization;
 import model.usuario.Usuario;
 import repositories.RepoMascotas;
 import repositories.RepoUsers;
-import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 public class PetsController extends BaseController {
 
+  private RepoUsers usersRepository = new RepoUsers();
+  private RepoMascotas petRepository = new RepoMascotas();
+
+  /* =========================================================== */
+  /* Overridables ---------------------------------------------- */
+  /* =========================================================== */
+
+  @Override
+  protected ControllerInitialization getInitialization() {
+    return ControllerInitialization.FULL_CRUD;
+  }
+
+  /* =========================================================== */
+  /* Lifecycle methods ----------------------------------------- */
+  /* =========================================================== */
+
   @Override
   protected void onInit() {
-    getModel().put("showToast", false);
-    onSetEndPoints();
+    // TODO Auto-generated method stub
+
   }
 
   @Override
   protected void onBeforeRendering(Request request, Response response) {
-    requiereSession(request, response);
+    onRequireSession(request, response);
     onRefreshUser();
   }
 
   @Override
   protected void onAfterRendering(Request request, Response response) {
-    onInitToast();
+    // TODO Auto-generated method stub
   }
 
-  private void onSetEndPoints() {
-    delete(getPath().concat("/:id"), (req, res) -> this.onDelete(req, res), Router.getEngine());
+  /* =========================================================== */
+  /* Request Handling ------------------------------------------ */
+  /* =========================================================== */
+
+  @Override
+  protected Object onDeleteResponse(Request request, Response response) {
+    onRequireSession(request, response);
+
+    Long id = Long.parseLong(request.params(":id"));
+    Usuario user = onRefreshUser();
+
+    onTransactionalOperation(response, () -> {
+      usersRepository.updateEntity(user.deleteMascota(id));
+      petRepository.deleteEntity(id);
+    });
+
+    return super.onDeleteResponse(request, response);
   }
 
-  private ModelAndView onDelete(Request req, Response res) {
-    requiereSession(req, res);
-    Long id = Long.parseLong(req.params(":id"));
-    Usuario user = (Usuario) getModel().get("user");
-
-    try {
-
-      withTransaction(() -> {
-        new RepoMascotas().deleteEntity(user.getMascota(id));
-        RepoUsers.getInstance().updateEntity(user.deleteMascota(id));
-      });
-
-      onSwitchToast(true);
-      res.status(200);
-    } catch (RuntimeException e) {
-      onSwitchToast(false);
-      res.status(500);
-    }
-
-    return getViewModel();
-  }
 }

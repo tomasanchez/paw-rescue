@@ -196,7 +196,7 @@ public class Usuario extends PersistentEntity {
   }
 
   public Privilegio getPrivileges() {
-    return this.privilegio;
+    return Objects.isNull(privilegio) ? Privilegio.OWNER_MASCOTA : this.privilegio;
   }
 
   public Usuario setDatosPersonales(DatosPersonales dp) {

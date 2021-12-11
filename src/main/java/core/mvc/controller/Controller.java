@@ -26,6 +26,8 @@ import spark.TemplateEngine;
  */
 public abstract class Controller {
 
+  private static final String ENDPOINTS_MODEL = "endpoints";
+  private static final String NAVIGATION_MODEL = "navigation";
   private static Model sharedModel;
   private static TemplateEngine engine;
   private static ControllerInitialization DEF_INIT = ControllerInitialization.ONLY_GET;
@@ -50,7 +52,7 @@ public abstract class Controller {
    * Initialices the shared model.
    */
   static {
-    setSharedModel(new Model()).set("nav", new Model()).set("links", new Model())
+    setSharedModel(new Model()).set(NAVIGATION_MODEL, new Model()).set(ENDPOINTS_MODEL, new Model())
         .set("i18n", new Model(getI18n().getProperties())).set("lang", getI18n().getLang());
   }
 
@@ -219,6 +221,7 @@ public abstract class Controller {
   protected void onBeforeBeforeRendering(Request request, Response response) {
     // Updates locales.
     getI18n().setLang(request.headers("Accept-Language"));
+    updateNavigationModel(getShortName());
     onBeforeRendering(request, response);
   }
 
@@ -524,9 +527,9 @@ public abstract class Controller {
   private void onStartSharedModel() {
 
     // Binds navigation for nav-links highlighting, set to "active" when in the current link.
-    ((Model) getSharedModel().get("nav")).set(getShortName(), "");
+    ((Model) getSharedModel().get(NAVIGATION_MODEL)).set(getShortName(), "");
     // Binds navigation #href links according to the controller's view.
-    ((Model) getSharedModel().get("links")).set(getShortName(), getEndPoint());
+    ((Model) getSharedModel().get(ENDPOINTS_MODEL)).set(getShortName(), getEndPoint());
   }
 
   /**
@@ -547,5 +550,15 @@ public abstract class Controller {
    */
   private Map<String, Object> getModelMap() {
     return getView().getModel().join(getSharedModel()).getData();
+  }
+
+  /**
+   * Updates navigation active class.
+   * 
+   * @param currentView the current view name
+   */
+  protected void updateNavigationModel(String currentView) {
+    ((Model) getSharedModel().get(NAVIGATION_MODEL))
+        .replaceAll((k, v) -> v = k.equals(currentView) ? "active" : "");
   }
 }

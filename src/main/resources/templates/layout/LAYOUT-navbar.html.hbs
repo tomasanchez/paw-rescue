@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="style/style.css" />
     {{#block "customCSS"}}{{/block}}
     <!-- Page Title-->
-    {{#block "pageTitle"}}{{/block}}
+    <title>{{#block "pageTitle"}}{{/block}}</title>
   </head>
   <!-- Body -->
   <body class="text-center pt-4">
@@ -57,21 +57,21 @@
               <a
                 class="nav-link {{navigation.home}}"
                 aria-current="page"
-                href="{{hrefs.home}}"
+                href="{{endpoints.home}}"
               >{{i18n.home}}</a>
             </li>
             <li class="nav-item">
               <a
                 class="nav-link {{navigation.rescue}}"
                 aria-current="page"
-                href="{{hrefs.rescue}}"
+                href="{{endpoints.rescue}}"
               >{{i18n.rescue}}</a>
             </li>
             {{#if loggedIn}}
               <li class="nav-item">
                 <a
                   class="nav-link {{navigation.pets}}"
-                  href="{{hrefs.pets}}"
+                  href="{{endpoints.pets}}"
                 >{{i18n.pets}}</a>
               </li>
               {{#if isAdmin}}
@@ -79,7 +79,7 @@
                 <li class="nav-item">
                   <a
                     class="nav-link {{navigation.features}}"
-                    href="{{hrefs.features}}"
+                    href="{{endpoints.features}}"
                   >{{i18n.manageFeatures}}</a>
                 </li>
               {{/if}}
@@ -112,7 +112,7 @@
                   <li>
                     <form
                       method="POST"
-                      action="{{hrefs.login}}"
+                      action="{{endpoints.login}}"
                       class="mt-0 mb-0"
                     >
                       <button
@@ -129,7 +129,7 @@
               </li>
             {{else}}
               <li class="nav-item">
-                <a class="nav-link" href="{{hrefs.login}}">Log In</a>
+                <a class="nav-link" href="{{endpoints.login}}">Log In</a>
               </li>
             {{/if}}
           </ul>

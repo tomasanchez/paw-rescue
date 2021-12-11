@@ -64,4 +64,24 @@ public class RepoUsers extends PersistentEntitySet<Usuario> {
       return;
     }
   }
+
+
+  /**
+   * Obtains an user from database that matches the given username and password.
+   * 
+   * @param username to match
+   * @param password to validate
+   * @return An authenticated user
+   */
+  public Usuario getEntity(String username, String password) {
+    try {
+      return (Usuario) entityManager()
+          .createQuery("FROM ".concat(getTableName())
+              .concat(" U WHERE U.usuario LIKE :uname AND U.password LIKE :password"))
+          .setParameter("uname", username).setParameter("password", password).getSingleResult();
+    } catch (NoResultException e) {
+      return null;
+    }
+  }
+
 }

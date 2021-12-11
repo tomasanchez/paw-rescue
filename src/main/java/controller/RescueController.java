@@ -1,11 +1,9 @@
 package controller;
 
-import static java.lang.Long.parseLong;
-import static spark.Spark.post;
 import java.util.Arrays;
 import java.util.List;
 import javax.persistence.NoResultException;
-import app.Router;
+import core.mvc.controller.ControllerInitialization;
 import model.mascota.Chapita;
 import model.mascota.TipoMascota;
 import model.mascota.caracteristica.TamanioMascota;
@@ -20,24 +18,45 @@ import spark.Response;
 
 public class RescueController extends BaseController {
 
+
+  /* =========================================================== */
+  /* Overridables ---------------------------------------------- */
+  /* =========================================================== */
+
+  @Override
+  protected ControllerInitialization getInitialization() {
+    return ControllerInitialization.GET_POST;
+  }
+
+  /* =========================================================== */
+  /* Lifecycle methods ----------------------------------------- */
+  /* =========================================================== */
+
   @Override
   protected void onInit() {
-    post(this.getPath(), (req, res) -> this.onFound(req, res), Router.getEngine());
-    this.getModel().put("tipos", TipoMascota.values());
-    this.getModel().put("sizes", TamanioMascota.values());
+    // TODO Auto-generated method stub
+
   }
 
   @Override
   protected void onBeforeRendering(Request request, Response response) {
+    // TODO Auto-generated method stub
 
   }
 
   @Override
   protected void onAfterRendering(Request request, Response response) {
-    onInitToast();
+    // TODO Auto-generated method stub
+
   }
 
-  private ModelAndView onFound(Request request, Response response) {
+  /* =========================================================== */
+  /* Request Handling ------------------------------------------ */
+  /* =========================================================== */
+
+  @Override
+  protected ModelAndView onPost(Request request, Response response) {
+
     String descripcion = request.queryParams("description");
     List<String> fotos = Arrays.asList(request.queryParamsValues("photos"));
     Coordenada coordenada =
@@ -49,7 +68,7 @@ public class RescueController extends BaseController {
             : (request.queryParams("size").equals("MEDIANA") ? TamanioMascota.MEDIANA
                 : TamanioMascota.PEQUEÑA);
     long chapitaId =
-        parseLong(request.queryParams("tag").equals("") ? "-1" : request.queryParams("tag"));
+        Long.parseLong(request.queryParams("tag").equals("") ? "-1" : request.queryParams("tag"));
     Chapita chapita;
     if (chapitaId == -1)
       chapita = null;
@@ -72,23 +91,26 @@ public class RescueController extends BaseController {
     mascotaEncontrada.setTipoMascota(tipoMascota);
     mascotaEncontrada.setTamanio(tamanioMascota);
     mascotaEncontrada.setFoto(fotos);
+
     if (this.isLogged()) {
-      Usuario user = this.getLoggedUser(request);
+      Usuario user = onRefreshUser();
       Rescate rescate = new Rescate();
       rescate.setDatosRescatista(user.getDatosPeronales());
       rescate.setMascotaEncontrada(mascotaEncontrada);
       RepoRescates repoRescates = RepoRescates.getInstance();
-      withTransaction(() -> repoRescates.addRescate(rescate));
-      onSwitchToast(true);
-      response.redirect("/");
-
+      onTransactionalOperation(response, () -> repoRescates.addRescate(rescate));
+      navTo(response, "home");
     } else {
-      BaseController.getBaseModel().put("mascotaEncontrada", mascotaEncontrada);
-      response.redirect("/contact");
+      getSharedModel().set("mascotaEncontrada", mascotaEncontrada);
+      navTo(response, "contact");
     }
-    return null;
 
+    return super.onPost(request, response);
   }
+
+  /* =========================================================== */
+  /* Internal Methods ------------------------------------------ */
+  /* =========================================================== */
 
   private boolean validarChapita(long chapitaId) {
     try {
@@ -99,4 +121,5 @@ public class RescueController extends BaseController {
       return false;
     }
   }
+
 }
