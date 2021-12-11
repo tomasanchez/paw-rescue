@@ -1,13 +1,97 @@
+
 {{#partial "customCSS"}}
 {{/partial}}
 
 
 <!-- Page Title -->
 {{#partial "pageTitle"}}
-  <title>Rescate Patitas</title>
+ Rescate Patitas
 {{/partial}}
 
 {{#partial "content"}}
+    <!-- Carousel wrapper -->
+    <div
+      id="petsCarousel"
+      class="carousel slide carousel-fade"
+      data-mdb-ride="carousel"
+    >
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-mdb-target="#petsCarousel"
+          data-mdb-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-mdb-target="#petsCarousel"
+          data-mdb-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-mdb-target="#petsCarousel"
+          data-mdb-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+
+      <!-- Inner -->
+      <div class="carousel-inner">
+        <!-- Single item -->
+        <div class="carousel-item active">
+          <img
+            src="https://images.pexels.com/photos/97082/weimaraner-puppy-dog-snout-97082.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            class="d-block w-100"
+            alt="Happy Dog"
+          />
+        </div>
+
+        <!-- Single item -->
+        <div class="carousel-item">
+          <img
+            src="https://images.pexels.com/photos/2558605/pexels-photo-2558605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            class="d-block w-100"           
+            alt="Sleeping Cat"
+          />
+        </div>
+
+        <!-- Single item -->
+        <div class="carousel-item">
+          <img
+            src="https://images.pexels.com/photos/46024/pexels-photo-46024.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            class="d-block w-100"
+            alt="Lovely cat and dog"
+          />
+        </div>
+      </div>
+      <!-- Inner -->
+
+      <!-- Controls -->
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-mdb-target="#petsCarousel"
+        data-mdb-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-mdb-target="#petsCarousel"
+        data-mdb-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <!-- Carousel wrapper -->
+
     <!-- ======= Hero Section ======= -->
     <main id="hero" class="container overflow-auto">
       <div class="container col-xxl-8 px-4 py-5">
