@@ -32,6 +32,7 @@ public class FeaturesController extends BaseController {
   @Override
   protected void onBeforeRendering(Request request, Response response) {
     onRequirePrivileges(request, response);
+    getView().getModel().set("caracteristicas", RepoCaracteristicas.getInstance().getEntitySet());
   }
 
   @Override
