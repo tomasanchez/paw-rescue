@@ -27,7 +27,7 @@ public class RepoRescates extends PersistentEntitySet<Rescate> {
   }
 
   public RepoRescates() {
-    proveedorRefugios.loginRefugios();
+    
   }
 
   public RepoRescates(RepoUsers adminUsers, RepoPublicaciones adminPublicaciones) {
@@ -80,6 +80,7 @@ public class RepoRescates extends PersistentEntitySet<Rescate> {
   }
 
   public List<Refugio> buscarRefugios(MascotaEncontrada mascota) {
+    proveedorRefugios.loginRefugios();
     List<Refugio> refugioList = proveedorRefugios.getAllRefugios();
     return refugioList.stream().filter(cada -> cada.getAdmisiones().contains(mascota.getTipoMascota()))
         .collect(Collectors.toList());

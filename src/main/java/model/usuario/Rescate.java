@@ -1,6 +1,7 @@
 package model.usuario;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -110,10 +111,10 @@ public class Rescate extends PersistentEntity {
    * @return si fue encontrada
    */
   public boolean estaDentroDeUltimosDias(long dias) {
-    return getFechaRescate().isAfter(LocalDate.now().minusDays(dias));
+    return getFechaRescate().isAfter(LocalDateTime.now().minusDays(dias));
   }
 
-  public LocalDate getFechaRescate() {
+  public LocalDateTime getFechaRescate() {
     return getMascotaEncontrada().getFecha();
   }
 

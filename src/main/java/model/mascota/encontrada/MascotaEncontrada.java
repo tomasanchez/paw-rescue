@@ -1,6 +1,7 @@
 package model.mascota.encontrada;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +21,7 @@ public class MascotaEncontrada extends PersistentEntity {
 
   private String descripcion;
   @Convert(converter = LocalDateTimeConverter.class)
-  private LocalDate fecha = LocalDate.now();
+  private LocalDateTime fecha = LocalDateTime.now();
 
   @Embedded
   private Coordenada lugar;
@@ -51,7 +52,7 @@ public class MascotaEncontrada extends PersistentEntity {
     return this;
   }
 
-  public MascotaEncontrada setFecha(LocalDate fecha) {
+  public MascotaEncontrada setFecha(LocalDateTime fecha) {
     this.fecha = fecha;
     return this;
   }
@@ -86,7 +87,7 @@ public class MascotaEncontrada extends PersistentEntity {
     return this.foto;
   }
 
-  public LocalDate getFecha() {
+  public LocalDateTime getFecha() {
     return this.fecha;
   }
 
@@ -124,7 +125,7 @@ public class MascotaEncontrada extends PersistentEntity {
    * @param caracteristicas TODO
    * @param tamanio         TODO
    */
-  public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar, LocalDate fecha, Chapita chapita,
+  public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar, LocalDateTime fecha, Chapita chapita,
                            List<Caracteristica> caracteristicas, TamanioMascota tamanio) {
     this.foto = foto;
     this.descripcion = descripcion;
