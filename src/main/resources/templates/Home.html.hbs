@@ -94,6 +94,11 @@
 
     <!-- ======= Hero Section ======= -->
     <main id="hero" class="container overflow-auto">
+      <hr/>
+      <section id="register">
+        <button type="button" class="btn btn-secondary btn-lg btn-floating mt-2">
+         <i class="fa fa-paw" aria-hidden="true"></i>
+        </button>
       <div class="container col-xxl-8 px-4 py-5">
         <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
           <div class="col-10 col-sm-8 col-lg-6 mx-auto">
@@ -114,7 +119,7 @@
               {{i18n.homeMessageText}}
             </p>
             <div class="">
-              <button type="button" class="btn btn-primary btn-lg px-4 me-md-2"  onclick="location.href='{{hrefs.registerpet}}';">
+              <button type="button" class="btn btn-primary btn-lg px-4 me-md-2"  onclick="location.href='{{#if loggedIn}}{{endpoints.registerpet}}{{else}}{{endpoints.login}}{{/if}}';">
                 {{i18n.registerPet}}
               </button>
               <button type="button" class="btn btn-outline-primary btn-lg px-4">
@@ -124,6 +129,77 @@
           </div>
         </div>
       </div>
+      </section>
+      <hr/>
+      <!-- Associations & Volunteering -->
+      <section id="Volunteering">
+        <button type="button" class="btn btn-secondary btn-lg btn-floating mt-2 mb-2 bg-secondary">
+         <i class="fa fa-paw" aria-hidden="true"></i>
+        </button>
+        <div class="jumbotron jumbotron-fluid rounded bg-light">
+          <div class="container">
+            <h1 class="display-5">{{i18n.associationsDisplay}}</h1>
+            <p class="lead">{{i18n.lorem}}</p>
+            <button type="button" class="btn btn-dark text-light">{{i18n.becomeVolunteer}}</button>
+          </div>
+        </div>
+      </section>
+      <hr/>
+      <!-- Useful Information -->
+      <section id="Information">
+        <button type="button" class="btn btn-secondary btn-lg btn-floating mt-2 mb-2">
+         <i class="fa fa-paw" aria-hidden="true"></i>
+        </button>
+        <div class="jumbotron jumbotron-fluid rounded">
+          <div class="container">
+            <h1 class="display-5">{{i18n.informationDisplay}}</h1>
+            <!-- Column Layouts -->
+            <div class="container">
+              <!-- First Row -->
+              <div class="row">
+                <!-- Before Adopting -->
+                <div class="col-sm-6">
+                  <h2>
+                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    {{i18n.chooseDogInfo}}
+                  </h2>
+                  <p>{{i18n.lorem}}</p>
+                </div>
+                <!-- Agreement-->
+                <div class="col-sm-6">
+                  <h2>
+                    <i class="fas fa-file-alt"></i>
+                    {{i18n.agreementInfo}}
+                  </h2>
+                  <p>{{i18n.lorem}}</p>
+                </div>
+              </div>
+              <!-- Second Row -->
+              <div class="row">
+                <!-- After Adopting Dog -->
+                <div class="col-sm-6">
+                  <h2>
+                    <i class="fas fa-dog"></i>
+                    {{i18n.dogAfterInfo}}
+                  </h2>
+                  <p>{{i18n.lorem}}</p>
+                </div>
+                <!-- After Adopting Cat -->
+                <div class="col-sm-6">
+                  <h2>
+                    <i class="fas fa-cat"></i>
+                    {{i18n.catAfterInfo}}
+                  </h2>
+                  <p>{{i18n.lorem}}</p>
+                </div>
+              </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+      <hr/>
     </main>
 {{/partial}}
 
