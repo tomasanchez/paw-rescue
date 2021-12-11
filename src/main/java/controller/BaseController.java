@@ -206,11 +206,10 @@ public abstract class BaseController extends Controller
    * @param status true para mostrar exito, false para mostrar error.
    */
   protected void onSwitchToast(boolean status) {
-    this.getModel().put("showToast", true);
-    // ? See bootstrap 5 classes for background color.
-    this.getModel().put("toastStatus", status ? "bg-success" : "bg-danger");
-    this.getModel().put("toastMessage",
-        status ? getText("featureSuccess") : getText("featureError"));
+    getSharedModel().set("showToast", true)
+        // ? See bootstrap 5 classes for background color.
+        .set("toastStatus", status ? "bg-success" : "bg-danger")
+        .set("toastMessage", status ? getText("featureSuccess") : getText("featureError"));
   }
 
   protected static void onCleanToast() {
