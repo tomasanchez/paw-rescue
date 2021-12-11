@@ -50,10 +50,10 @@
           $("#dataTable")?.DataTable();
         }
 
-        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-        var toastList = toastElList.map(function(toastEl) {
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
 
-          return new bootstrap.Toast(toastEl) 
+        let toastList = toastElList.map(function(toastEl) {
+          return new bootstrap.Toast(toastEl);
         });
         
         if({{showToast}}){
@@ -69,8 +69,9 @@
 
       const onDelete = function(uri){
 
-        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-        var toastList = toastElList.map(function(toastEl) {
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+
+        let toastList = toastElList.map(function(toastEl) {
 
           return new bootstrap.Toast(toastEl) 
         });

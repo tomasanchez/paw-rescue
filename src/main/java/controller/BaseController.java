@@ -26,6 +26,7 @@ public abstract class BaseController extends Controller
    */
   public static void initBaseController() {
     onAuthenticate(null);
+    getSharedModel().set("showToast", false);
   }
 
   /* =========================================================== */
