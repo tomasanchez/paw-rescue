@@ -1,6 +1,6 @@
 <!-- Page Title -->
 {{#partial "pageTitle"}}
-  <title>Rescate Patitas | {{#block "viewName"}}{{/block}}</title>
+ Rescate Patitas | {{#block "viewName"}}{{/block}}
 {{/partial}}
 
 <!-- Custom CSS -->
@@ -82,6 +82,33 @@
         xhr.onload = function() {
           location.reload();
         };
+        xhr.onerror = function() {
+            console.log('NO CONNECTION');
+        };
+      }
+
+      const onEdit = (uri) => {
+
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+
+        let toastList = toastElList.map(function(toastEl) {
+
+          return new bootstrap.Toast(toastEl) 
+        });
+
+        var params = { valor: document.getElementById(`edit-input-${uri.match(/(\d+)/)[0]}`)?.value};
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("PUT", `${uri}?valor=${params.valor}`);
+        xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+        xhr.setRequestHeader("Content-length", params.length);
+        xhr.setRequestHeader("Connection", "close");
+        xhr.send();
+
+        xhr.onload = function() {
+          location.reload();
+        };
+
         xhr.onerror = function() {
             console.log('NO CONNECTION');
         };
