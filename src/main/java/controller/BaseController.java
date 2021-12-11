@@ -26,7 +26,7 @@ public abstract class BaseController extends Controller
    */
   public static void initBaseController() {
     onAuthenticate(null);
-    getSharedModel().set("showToast", false);
+    onCleanToast();
   }
 
   /* =========================================================== */
@@ -207,13 +207,14 @@ public abstract class BaseController extends Controller
    */
   protected void onSwitchToast(boolean status) {
     this.getModel().put("showToast", true);
+    // ? See bootstrap 5 classes for background color.
     this.getModel().put("toastStatus", status ? "bg-success" : "bg-danger");
     this.getModel().put("toastMessage",
         status ? getText("featureSuccess") : getText("featureError"));
   }
 
-  protected void onCleanToast() {
-    this.getModel().put("showToast", false);
+  protected static void onCleanToast() {
+    getSharedModel().set("showToast", false);
   }
 
   /* =========================================================== */
