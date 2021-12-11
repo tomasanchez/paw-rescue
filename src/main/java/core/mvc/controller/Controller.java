@@ -307,6 +307,7 @@ public abstract class Controller {
 
 
   public Controller setGetFullCrud() {
+    setGet(true);
     get(getEndPoint().concat("/new"), this::onGetNew);
     setGet(true, true);
     return this;
