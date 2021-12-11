@@ -1,14 +1,11 @@
 package model.usuario;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-
 import db.PersistentEntity;
 import model.mascota.encontrada.MascotaEncontrada;
 import model.refugio.Refugio;
@@ -87,13 +84,13 @@ public class Rescate extends PersistentEntity {
   /**
    * Guarda cuenta de una persona que rescata una mascota.
    *
-   * @param datosPersonales     los datos de Nombre, Apellido, Documento, etc.
-   * @param mascotaEncontrada   el animal rescatado.
+   * @param datosPersonales los datos de Nombre, Apellido, Documento, etc.
+   * @param mascotaEncontrada el animal rescatado.
    * @param domicilioRescatista
-   * @param refugioAsignado     el refugio al que se asigno la mascota
+   * @param refugioAsignado el refugio al que se asigno la mascota
    */
-  public Rescate(DatosPersonales datosPersonales, String domicilioRescatista, MascotaEncontrada mascotaEncontrada,
-      Boolean albergaMascota, Refugio refugioAsignado) {
+  public Rescate(DatosPersonales datosPersonales, String domicilioRescatista,
+      MascotaEncontrada mascotaEncontrada, Boolean albergaMascota, Refugio refugioAsignado) {
     this.datosRescatista = datosPersonales;
     this.domicilioRescatista = domicilioRescatista;
     this.mascotaEncontrada = mascotaEncontrada;
@@ -101,8 +98,7 @@ public class Rescate extends PersistentEntity {
     this.refugioAsignado = refugioAsignado;
   }
 
-  public Rescate() {
-  }
+  public Rescate() {}
 
   /**
    * Compara si la mascota fue encontrada dentro de los ultimos días.

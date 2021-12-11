@@ -1,19 +1,26 @@
 package model.mascota.encontrada;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import javax.persistence.*;
-
+import javax.persistence.Convert;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
 import db.PersistentEntity;
 import model.mascota.Chapita;
 import model.mascota.TipoMascota;
 import model.mascota.caracteristica.Caracteristica;
 import model.mascota.caracteristica.TamanioMascota;
-import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
 
 @Entity
 @Table(name = "Mascotas_Encontradas")
@@ -32,7 +39,9 @@ public class MascotaEncontrada extends PersistentEntity {
   @Enumerated(EnumType.STRING)
   private TipoMascota tipoMascota;
   @ManyToMany
-  @JoinTable(name = "Caracteristicas_By_MascotaEncontrada", joinColumns = @JoinColumn(name = "caracteritsitca_id"), inverseJoinColumns = @JoinColumn(name = "mascota_id"))
+  @JoinTable(name = "Caracteristicas_By_MascotaEncontrada",
+      joinColumns = @JoinColumn(name = "caracteritsitca_id"),
+      inverseJoinColumns = @JoinColumn(name = "mascota_id"))
   private List<Caracteristica> caracteristicas;
   @Enumerated(EnumType.STRING)
   private TamanioMascota tamanio;
@@ -118,15 +127,16 @@ public class MascotaEncontrada extends PersistentEntity {
   /**
    * Instancia una mascota encontrada.
    *
-   * @param foto            la foto de la mascota
-   * @param descripcion     la descripcion fisica.
-   * @param lugar           el lugar donde fue encotnrado.
-   * @param fecha           la fecha en la que fue encontrado.
+   * @param foto la foto de la mascota
+   * @param descripcion la descripcion fisica.
+   * @param lugar el lugar donde fue encotnrado.
+   * @param fecha la fecha en la que fue encontrado.
    * @param caracteristicas TODO
-   * @param tamanio         TODO
+   * @param tamanio TODO
    */
-  public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar, LocalDateTime fecha, Chapita chapita,
-                           List<Caracteristica> caracteristicas, TamanioMascota tamanio) {
+  public MascotaEncontrada(List<String> foto, String descripcion, Coordenada lugar,
+      LocalDateTime fecha, Chapita chapita, List<Caracteristica> caracteristicas,
+      TamanioMascota tamanio) {
     this.foto = foto;
     this.descripcion = descripcion;
     this.lugar = lugar;
