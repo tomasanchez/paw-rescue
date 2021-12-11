@@ -88,7 +88,7 @@ public class ControllerLoaderService {
     Arrays.stream(Package.getPackages()).map(Package::getName)
         .filter(p -> p.contains("controller") && !p.contains("core.mvc.controller")).findFirst()
         .ifPresent(controllerPackage -> {
-          System.out.println("\033[0;36mUsing controllers of package ".concat(controllerPackage)
+          System.out.println("\u001B[33mUsing controllers of package ".concat(controllerPackage)
               .concat("\033[0m"));
           Reflections reflections = new Reflections(controllerPackage);
           Set<Class<? extends Controller>> classes = reflections.getSubTypesOf(Controller.class);
