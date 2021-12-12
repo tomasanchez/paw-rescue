@@ -1,11 +1,11 @@
 package controller;
 
 import static spark.Spark.halt;
-import java.util.Map;
 import java.util.Objects;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import core.mvc.controller.Controller;
+import core.mvc.model.Model;
 import core.services.ControllerLoaderService;
 import model.usuario.Privilegio;
 import model.usuario.Usuario;
@@ -47,8 +47,8 @@ public abstract class BaseController extends Controller
    * 
    * @return the View Model
    */
-  public Map<String, Object> getModel() {
-    return this.getView().getModel().getData();
+  public Model getModel() {
+    return this.getView().getModel();
   }
 
   /**

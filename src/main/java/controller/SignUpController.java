@@ -35,8 +35,8 @@ public class SignUpController extends BaseController {
   @Override
   protected void onInit() {
     validator = new ValidadorContrasenia();
-    this.getModel().put("minLength", validator.getMinLength());
-    this.getModel().put("tiposDocs", TipoDocumento.values());
+    this.getModel().set("minLength", validator.getMinLength());
+    this.getModel().set("tiposDocs", TipoDocumento.values());
   }
 
   @Override
@@ -48,8 +48,7 @@ public class SignUpController extends BaseController {
   @Override
   protected void onAfterRendering(Request request, Response response) {
     // Limpio los valores que se pusieron antes
-    getModel().put("user-valid", "");
-    getModel().put("pw-valid", "");
+    getModel().set("user-valid", "").set("pw-valid", "");
   }
 
 
@@ -67,9 +66,9 @@ public class SignUpController extends BaseController {
         navTo(response, "login");
       }
     } catch (InvalidPasswordException e) {
-      getModel().put("pw-valid", "is-invalid");
+      getModel().set("pw-valid", "is-invalid");
     } catch (UsuarioYaExisteException e) {
-      getModel().put("user-valid", "is-invalid");
+      getModel().set("user-valid", "is-invalid");
     }
 
     return super.onPost(request, response);

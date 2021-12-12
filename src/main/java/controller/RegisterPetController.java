@@ -36,14 +36,14 @@ public class RegisterPetController extends BaseController {
 
   @Override
   protected void onInit() {
-    this.getModel().put("tipos", TipoMascota.values());
-    this.getModel().put("sexos", Sexo.values());
+    this.getModel().set("tipos", TipoMascota.values());
+    this.getModel().set("sexos", Sexo.values());
   }
 
   @Override
   protected void onBeforeRendering(Request request, Response response) {
     onRequireSession(request, response);
-    this.getModel().put("caracteristicas", new RepoCaracteristicas().getEntitySet());
+    this.getModel().set("caracteristicas", new RepoCaracteristicas().getEntitySet());
   }
 
   @Override
