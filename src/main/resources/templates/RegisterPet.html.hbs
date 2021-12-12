@@ -1,95 +1,133 @@
 
 <!-- Page Title -->
 {{#partial "pageTitle"}}
-  <title>Rescate Patitas | {{i18n.registerPet}}</title>
+{{i18n.brand}} | {{i18n.registerPet}}
 {{/partial}}
 
 {{#partial "content"}}
-  <main class="pt-3 mt-3 overflow-auto">
-      <!-- Panel Toolbar-->
+  <main class="overflow-auto">
+    <!-- Panel Toolbar-->
     <div class="mb-4 bg-light rounded-3 align-content-center text-center">
       <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold">{{i18n.registerPetTitleHeader}}</h1>
         <p>{{i18n.registerPetViewText}}</p>
       </div>
     </div>
-    <!-- Required meta tags -->
-    <div class="container form-registerpet bg-light">
-      <form action="/pets/new" method="POST">
-        <h1 class="h3 mb-3 fw-normal">{{i18n.registerPetForm}}</h1>
-        <div class="form-floating mb-1">
-          <input
-            name="name"
-            type="text"
-            class="form-control"
-            id="name"
-            placeholder="Mancha"
-            required="true"
-          />
-          <label for="name">{{i18n.petName}}</label>
+    
+    <div class="container">
+      <h1 class="h3 mb-3 fw-normal">{{i18n.registerPetForm}}</h1>
+      <hr/>
+      <form action="{{endpoints.registerpet}}" method="POST">
+        <!-- Animal Data -->
+        <div class="row">
+          <div class="col-sm-6">
+          <!-- Type -->
+            <div class="form-floating mb-1">
+                <select class="form-control" id="animaltype" name="animaltype" placeholder="Select an animal type" required="true">
+                    <option disabled selected value style="display:none">--{{i18n.select}} {{i18n.petType}}--</option>
+                {{#each tipos}}
+                    <option value="{{this}}">{{this}}</option>
+                {{/each}}
+                </select>
+              <label for="animaltype">{{i18n.petType}}</label>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+          <!-- Sex -->
+            <div class="form-floating mb-1">
+                <select class="form-control" id="genre" name="genre" placeholder="Select an animal genre" required="true">
+                    <option disabled selected value style="display:none">--{{i18n.select}} {{i18n.petSex}}--</option>
+                {{#each sexos}}
+                    <option value="{{this}}">{{this}}</option>
+                {{/each}}
+                </select>
+              <label for="genre">{{i18n.petSex}}</label>
+            </div>
+          </div>
         </div>
-        <div class="form-floating mb-1">
-          <input
-            name="alias"
-            type="text"
-            class="form-control"
-            id="alias"
-            placeholder="Machi"
-            required="true"
-          />
-          <label for="alias">{{i18n.petAlias}}</label>
+        <hr />
+        <!-- Pet Data -->
+        <div class="row">
+          <!-- Name -->
+          <div class="col-sm-4">
+            <div class="form-outline mb-1">
+              <input
+                name="name"
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Spark"
+                required="true"
+              />
+              <label class="form-label" for="name">{{i18n.petName}}</label>
+            </div>
+          </div>
+          <!-- Alias -->
+          <div class="col-sm-4">
+            <div class="form-outline mb-1">
+              <input
+                name="alias"
+                type="text"
+                class="form-control"
+                id="alias"
+                placeholder="Sparky"
+                required="true"
+              />
+              <label class="form-label" for="alias">{{i18n.petAlias}}</label>
+            </div>
+          </div>
+          <!-- Age -->
+          <div class="col-sm-4">
+            <div class="form-outline mb-1">
+              <input
+                name="age"
+                type="number"
+                class="form-control"
+                id="age"
+                placeholder="0"
+                min="0"
+                required="true"
+              />
+              <label class="form-label" for="age">{{i18n.age}}</label>
+            </div>
+          </div>
         </div>
-        <div class="form-floating mb-1">
-          <input
-            name="age"
-            type="number"
-            class="form-control"
-            id="age"
-            placeholder="0, 1, 2, ..., 21, etc."
-            min="0"
-            required="true"
-          />
-          <label for="age">{{i18n.age}}</label>
-        </div>
-        <div class="form-floating mb-1">
-            <select class="form-control" id="animaltype" name="animaltype" placeholder="Select an animal type" required="true">
-                <option disabled selected value style="display:none">--{{i18n.select}} {{i18n.petType}}--</option>
-             {{#each tipos}}
-                <option value="{{this}}">{{this}}</option>
-             {{/each}}
+        <hr/>
+        <!-- Pet Description -->
+        <div class="row">
+          <!-- Physical Description -->
+          <div class="col-sm-6">
+            <div class="form-outline mb-1">
+              <textarea  class="form-control" rows="6" placeholder="Leave a description here" id="description" required="true" name="description"></textarea>
+              <label class="form-label" for="description">{{i18n.petDescription}}</label>
+            </div>
+          </div>
+          <!-- Features -->
+          <div class="col-sm-6">
+            <div class="form-control mb-1">
+            <label for="characteristics" class="form-control-plaintext" style="text-align:left" >{{i18n.petFeatures}}</label>
+            <select multiple class="form-select" size="5" id="characteristics" name="characteristics" required="true">
+              <option disabled selected value style="display:none" > -- {{i18n.select}} {{i18n.petFeatures}}</option> -- </option>
+              {{#each caracteristicas}}
+                  <option value="{{this.id}}">{{this.valor}}</option>
+              {{/each}}
             </select>
-          <label for="animaltype">{{i18n.petType}}</label>
+          </div>
+          </div>
         </div>
-        <div class="form-floating mb-1">
-            <select class="form-control" id="genre" name="genre" placeholder="Select an animal genre" required="true">
-                <option disabled selected value style="display:none">--{{i18n.select}} {{i18n.petGenre}}--</option>
-             {{#each sexos}}
-                <option value="{{this}}">{{this}}</option>
-             {{/each}}
-            </select>
-          <label for="genre">{{i18n.petType}}</label>
+        <hr/>
+        <!-- Pet Photo -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-outline mb-1">
+              <input type="url" id="photos" name="photos"  class="form-control"/>
+              <label class="form-label" for="photos">{{i18n.petPhotos}}</label>
+            </div>
+          </div>
         </div>
-        <div class="form-floating mb-1">
-          <input class="form-control form-control-sm" id="photos" name="photos" type="file" multiple required="true"/>
-          <label class="custom-file-label" for="photos">{{i18n.petPhotos}}</label>
-        </div>
-        <div class="form-floating mb-1">
-          <textarea  class="form-control" style="height: 100px" placeholder="Leave a description here" id="description" required="true" name="description"></textarea>
-          <label for="description">{{i18n.petDescription}}</label>
-        </div>
-        <div class="form-control mb-1">
-           <label for="characteristics" class="form-control-plaintext" style="text-align:left" >{{i18n.petFeatures}}</label>
-           <select multiple class="form-select" size="5" id="characteristics" name="characteristics" required="true">
-             <option disabled selected value style="display:none" > -- {{i18n.select}} {{i18n.petFeatures}}</option> -- </option>
-             {{#each caracteristicas}}
-                <option value="{{this.id}}">{{this.valor}}</option>
-             {{/each}}
-           </select>
-        </div>
-        <button class="btn btn-primary" type="submit">{{i18n.registerPet}}</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+        <button class="btn btn-primary btn-rounded mt-2" type="submit">{{i18n.registerPet}}</button>
       </form>
-      
       <!-- Flexbox container for aligning the toasts -->
       <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
         <!-- Then put toasts within -->
@@ -99,12 +137,10 @@
             <small>{{i18n.justNow}}</small>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>
-          <div class="toast-body {{toastStatus}} text-white">
-            {{toastMessage}}
-          </div>
+        <div class="toast-body {{toastStatus}} text-white">
+          {{toastMessage}}
         </div>
-      </div>
-      
+      </div> 
     </div>
   </main>
 {{/partial}}
