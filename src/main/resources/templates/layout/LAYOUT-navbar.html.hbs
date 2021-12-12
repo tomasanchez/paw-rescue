@@ -132,20 +132,23 @@
               <i class="fas fa-bell"></i>
               <span
                 class="badge rounded-pill badge-notification bg-danger"
-              >1</span>
+              >2</span>
             </a>
             <ul
               class="dropdown-menu dropdown-menu-end"
               aria-labelledby="navbarDropdownMenuLink"
             >
               <li>
-                <a class="dropdown-item" href="#">Some news</a>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                >{{i18n.petFoundNotification}}</a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">Another news</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                >{{i18n.recommendationNotification}}</a>
               </li>
             </ul>
 
@@ -173,10 +176,13 @@
               aria-labelledby="navbarDropdownMenuLink"
             >
               <li>
-                <a class="dropdown-item" href="#">My profile</a>
+                <a
+                  class="dropdown-item disabled"
+                  href="#"
+                >{{i18n.myProfile}}</a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">Settings</a>
+                <a class="dropdown-item disabled" href="#">{{i18n.settings}}</a>
               </li>
               <li>
                 <form
