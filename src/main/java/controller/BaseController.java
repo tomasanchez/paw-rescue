@@ -227,8 +227,9 @@ public abstract class BaseController extends Controller
    * @param response the Spark HTTP response object
    */
   private void onHaltLogInNeeded(Response response) {
+    response.status(401);
+    navTo(response, "login");
     halt(401);
-    response.redirect(ControllerLoaderService.getService().find("login").getEndPoint(), 401);
   }
 
   /**
@@ -237,8 +238,9 @@ public abstract class BaseController extends Controller
    * @param response the Spark HTTP response object
    */
   private void onHaltAdminNeeded(Response response) {
+    response.status(402);
+    navTo(response, "home");
     halt(402);
-    response.redirect(ControllerLoaderService.getService().find("home").getEndPoint(), 402);
   }
 
 }
