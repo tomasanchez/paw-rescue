@@ -109,7 +109,10 @@
               {{/if}}
             {{else}}
               <li class="nav-item">
-                <a class="nav-link" href="{{endpoints.login}}">Log In</a>
+                <a
+                  class="nav-link"
+                  href="{{endpoints.login}}"
+                >{{i18n.signIn}}</a>
               </li>
             {{/if}}
           </ul>
@@ -212,6 +215,30 @@
     <!-- Content -->
     {{#block "content"}}{{/block}}
     <!-- Content -->
+
+    <!-- Flexbox container for aligning the toasts -->
+    <div
+      aria-live="polite"
+      aria-atomic="true"
+      class="d-flex justify-content-center align-items-center w-100"
+    >
+      <!-- Then put toasts within -->
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">Rescate de Patitas</strong>
+          <small>{{i18n.justNow}}</small>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body {{toastStatus}} text-white">
+          {{toastMessage}}
+        </div>
+      </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-dark text-center text-white mt-5">
@@ -323,30 +350,6 @@
       <!-- Copyright -->
     </footer>
     <!-- Footer -->
-
-    <!-- Flexbox container for aligning the toasts -->
-    <div
-      aria-live="polite"
-      aria-atomic="true"
-      class="d-flex justify-content-center align-items-center w-100"
-    >
-      <!-- Then put toasts within -->
-      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <strong class="me-auto">Rescate de Patitas</strong>
-          <small>{{i18n.justNow}}</small>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="toast"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="toast-body {{toastStatus}} text-white">
-          {{toastMessage}}
-        </div>
-      </div>
-    </div>
 
     <!-- Bootstrap JS -->
     <script

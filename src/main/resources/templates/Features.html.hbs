@@ -33,8 +33,8 @@
               <!-- Sorter property -->
               <span style="display:none">{{valor}}</span>
               <!-- Form for edit/delete-->
-              <form class="form-horizontal" id="form-feature-{{id}}">
-                <div class="form-floating input-group">
+              <form class="form-horizontal" id="form-feature-{{id}}" action="#">
+                <div class="input-group">
                   <!-- Control for delete or edit an entry -->
                   <input name="delete" type="hidden" value="false" id="delete-{{id}}">
                   <!-- Value input -->
@@ -43,22 +43,20 @@
                     name="valor"
                     type="text"
                     class="form-control"
-                    placeholder="An existing feature"
+                    placeholder="{{valor}}"
                     value="{{valor}}"
                     required="true"
                   />
-                  <label for="newFeature">{{i18n.edit}} {{i18n.feature}}</label>
+                  <div class="btn-group" role="group" aria-label="Edit Feature Group">
                   <!-- Edit button -->
-                  <span class="input-group-text">
-                    <button class="btn btn-primary" onclick="onEdit('{{endpoints.features}}/{{id}}')">
-                      <i class="fa fa-edit" aria-hidden="true"></i></button
-                  ></span>
+                    <button class="btn btn-primary" type="button" onclick="onEdit('{{endpoints.features}}/{{id}}')">
+                      <i class="fa fa-edit" aria-hidden="true"></i>
+                    </button>
                   <!-- Delete button -->
-                  <span class="input-group-text">
-                    <button class="btn btn-outline-danger" onclick="onDelete('{{endpoints.features}}/{{id}}')">
+                    <button class="btn btn-outline-danger" type="button" onclick="onDelete('{{endpoints.features}}/{{id}}')">
                       <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
-                  </span>
+                  </div>
                 </div>
               </form>
             </td>
@@ -67,25 +65,25 @@
         </tbody>
       </table>
       <form class="mt-5" action="/features" method="POST">
-        <div class="form-floating input-group">
+        <div class="form-outline input-group">
           <input
             name="valor"
             type="text"
             class="form-control"
             id="newFeature"
-            placeholder="New Feature"
+            placeholder="{{i18n.newFeaturePh}}"
             required="true"
+            autofocus
           />
-          <label for="newFeature">{{i18n.addFeaturePh}}</label>
-          <span class="input-group-text">
-            <button class="btn btn-success" type="submit">
-              <i class="fa fa-plus" aria-hidden="true"></i></button
-          ></span>
-          <span class="input-group-text">
+          <label class="form-label" for="newFeature">{{i18n.addFeaturePh}}</label>
+          <div class="btn-group" role="group" aria-label="Add Feature Group">
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
             <button class="btn btn-outline-primary" type="reset">
               <i class="fa fa-undo" aria-hidden="true"></i>
             </button>
-          </span>
+          </div>
         </div>    
       </form>
 {{/partial}}
