@@ -1,6 +1,5 @@
 -- Instancio un nuevo usuario administrador, (admin), con password admin
-IF(SELECT EXISTS(SELECT 1 FROM mysql.user WHERE user = 'admin'))
- DROP USER 'admin'@'localhost';
+DROP USER IF EXISTS 'admin'@'localhost';
 FLUSH PRIVILEGES;
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
 
